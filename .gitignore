@@ -1,0 +1,5 @@
+# Config local de previsualización (Claude Code), no necesaria en el sitio
+.claude/
+
+# macOS
+.DS_Store
