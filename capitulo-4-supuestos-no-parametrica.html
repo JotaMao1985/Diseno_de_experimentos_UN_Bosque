@@ -2138,6 +2138,154 @@
     }
 
     /* ------------------------------------------------------------------
+       Componente .rejilla — el plan de un diseño con restricciones
+       ------------------------------------------------------------------
+       Una tabla de verdad —con <th scope>— donde cada celda es una unidad
+       experimental: la fila dice a qué bloque pertenece, la columna en qué
+       posición se corrió, y el contenido qué tratamiento le tocó. Es lo que
+       el estudiante tiene que poder leer de un vistazo para entender que la
+       aleatorización de un DBCA está RESTRINGIDA.
+
+       Se estrena en el capítulo 5 (§4.1, el plan del DBCA) y está pensado
+       para el capítulo 6, donde un cuadro latino es esta misma rejilla con
+       una restricción más y un grecolatino con dos.
+
+       Por qué una tabla y no un lienzo: veinticuatro etiquetas en un canvas
+       salen apretadas, no se pueden leer con un lector de pantalla y no se
+       pueden copiar. Aquí cada celda es texto.
+
+       Las celdas .rejilla-vacia y .rejilla-repetida existen para el
+       contraste: así se ve, sobre la MISMA rejilla, qué pasa cuando se
+       aleatoriza sin respetar los bloques.
+       ------------------------------------------------------------------ */
+    .rejilla {
+      margin: 0.5rem 0 0 0;
+      overflow-x: auto;
+    }
+
+    .rejilla-tabla {
+      border-collapse: separate;
+      border-spacing: 4px;
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* El CSS del curso pinta TODA `table th` de verde con letra blanca y tiñe
+       las filas pares. Aquí eso no vale: las cabeceras de la rejilla son
+       etiquetas, no encabezados de una tabla de datos, y sin este reseteo la
+       columna de bloques sale verde sobre verde —invisible—. Se descubrió
+       mirando la primera captura del componente. */
+    .rejilla-tabla th,
+    .rejilla-tabla td {
+      border: none;
+      padding: 0;
+      text-align: center;
+      background-color: transparent;
+    }
+
+    .rejilla-tabla tr,
+    .rejilla-tabla tr:nth-child(even),
+    .rejilla-tabla tr:hover {
+      background-color: transparent;
+    }
+
+    .rejilla-esquina {
+      background: transparent;
+    }
+
+    .rejilla-cabecera {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: 0.02em;
+      padding: 0 0 0.2rem 0;
+      white-space: nowrap;
+    }
+
+    .rejilla-bloque {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #012820;
+      text-align: right;
+      padding-right: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .rejilla-celda {
+      min-width: 3.4rem;
+      height: 2.6rem;
+      border-radius: 0.45rem;
+      color: #ffffff;
+      line-height: 1.15;
+      padding: 0.3rem 0.45rem;
+      transition: transform 0.15s ease;
+    }
+
+    .rejilla-celda:hover {
+      transform: translateY(-2px);
+    }
+
+    .rejilla-trt {
+      display: block;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .rejilla-orden {
+      display: block;
+      font-size: 0.62rem;
+      opacity: 0.85;
+    }
+
+    /* Una celda que se quedó sin ninguna unidad: el fallo que la
+       aleatorización restringida hace imposible. */
+    .rejilla-vacia {
+      background: repeating-linear-gradient(45deg,
+        rgba(148, 163, 184, 0.16), rgba(148, 163, 184, 0.16) 4px,
+        transparent 4px, transparent 8px);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      color: #94a3b8;
+    }
+
+    /* Y su contraria: dos o más unidades del mismo tratamiento en un bloque. */
+    .rejilla-repetida {
+      box-shadow: 0 0 0 2px #FF6600 inset;
+    }
+
+    .rejilla-leyenda {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      align-items: center;
+      margin-top: 0.75rem;
+      font-size: 0.74rem;
+      color: #374151;
+    }
+
+    .rejilla-clave {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .rejilla-muestra {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 0.2rem;
+      display: inline-block;
+    }
+
+    .rejilla-nota {
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
        Componente .mapa-estacional — mapa de calor mes x año
        ------------------------------------------------------------------
        Un gráfico de línea enseña el nivel; un correlograma, la estructura.
