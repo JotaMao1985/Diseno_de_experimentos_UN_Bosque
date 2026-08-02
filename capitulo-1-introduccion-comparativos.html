@@ -2643,6 +2643,20 @@
         font-size: 0.72rem;
       }
 
+      /* El <caption> de la tabla ordenable, en móvil.
+         La regla global de arriba convierte toda `table` en bloque con
+         desplazamiento propio, y entonces el caption —que sigue siendo
+         `display: table-caption`— se dimensiona al ANCHO INTRÍNSECO de la
+         tabla y se sale de su contenedor, arrastrando la página entera con
+         él. Con siete columnas eso son 895 px dentro de un marco de 505, y
+         el documento pasa a medir 809 donde el viewport mide 579.
+         Convertirlo en bloque lo devuelve al ancho del marco y lo deja
+         envolver. Lo destapó la medición a 579 px del capítulo 6; con las
+         seis columnas del capítulo 5 la tabla todavía cabía. */
+      .tabla-ranking caption {
+        display: block;
+      }
+
       .tabla-ranking th,
       .tabla-ranking td {
         padding: 0.32rem 0.4rem;
