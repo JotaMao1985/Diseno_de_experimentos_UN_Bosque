@@ -2167,6 +2167,16 @@
          · .rejilla-resalte — marca la fila, la columna o la letra que una
            lectura concreta del experimento absorbe. Sin ella, «el DBCA por
            filas no ve las columnas» es una frase; con ella se ve.
+
+       AMPLIADO EN EL CAPÍTULO 7 con .rejilla-margen. En un factorial la
+       tabla central no es un plan de asignación sino la tabla de celdas
+       (Tabla 5.4), y esa tabla tiene MÁRGENES: los totales de fila, los de
+       columna y el gran total. Un margen no es una celda —no es una unidad
+       experimental, es un promedio de varias—, así que pintarlo con el
+       mismo fondo redondo de .rejilla-celda le miente al estudiante justo
+       en el módulo donde se explica que el efecto principal de A es la
+       media de FILA. La regla lo separa con una regla de trazo, le quita el
+       color de tratamiento y lo pone en el verde del curso sobre claro.
        ------------------------------------------------------------------ */
     .rejilla {
       margin: 0.5rem 0 0 0;
@@ -2232,6 +2242,16 @@
       line-height: 1.15;
       padding: 0.3rem 0.45rem;
       transition: transform 0.15s ease;
+      /* En movil la regla global convierte la tabla en bloque con
+         desplazamiento propio, y con `display: block` el algoritmo de tabla
+         deja de respetar `min-width`: las casillas se comprimen por debajo de
+         3.4rem y el contenido se sale de su caja redondeada. Con la tabla de
+         celdas del capitulo 7 —donde cada casilla lleva su total y su media,
+         «539 / y = 134.75»— eso son 9 de 16 casillas desbordadas a 579 px.
+         `nowrap` impide la compresion, la tabla pasa a ser mas ancha que el
+         marco y el `overflow-x: auto` de .rejilla hace lo que tiene que
+         hacer: desplazar en vez de aplastar. */
+      white-space: nowrap;
     }
 
     .rejilla-celda:hover {
@@ -2286,6 +2306,85 @@
 
     .rejilla-apagada {
       opacity: 0.32;
+    }
+
+    /* Un MARGEN de la tabla de celdas: el total (o la media) de una fila, de
+       una columna, o el gran total. No es una unidad experimental, así que no
+       lleva el fondo de tratamiento; y como es de donde salen los efectos
+       principales, va separado por una regla de trazo.
+
+       El selector lleva `.rejilla-tabla td` delante por una razón concreta:
+       el reseteo de arriba —`.rejilla-tabla th, .rejilla-tabla td { ... }`—
+       tiene especificidad (0,1,1) y le GANA a una clase suelta (0,1,0), así
+       que con `.rejilla-margen` a secas el fondo se quedaba transparente y el
+       margen se veía igual que el hueco de la esquina. No lo ve ninguna
+       comprobación de marcado —el HTML es correcto— ni el conjunto de
+       selectores CSS: lo destapó medir el estilo CALCULADO en el navegador.
+       Es la misma lección del verde sobre verde del capítulo 5, por la otra
+       punta. */
+    .rejilla-tabla td.rejilla-margen {
+      white-space: nowrap;
+      background-color: rgba(1, 40, 32, 0.06);
+      color: #012820;
+      border-radius: 0.45rem;
+      font-weight: 600;
+      min-width: 3.4rem;
+      height: 2.6rem;
+      padding: 0.3rem 0.45rem;
+      line-height: 1.15;
+      box-shadow: inset 0 0 0 1px rgba(1, 40, 32, 0.22);
+    }
+
+    /* El gran total, que es el margen de los márgenes. */
+    .rejilla-tabla td.rejilla-margen.rejilla-total {
+      background-color: rgba(255, 102, 0, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.45);
+    }
+
+    /* La etiqueta «Total» de la cabecera del margen. */
+    .rejilla-margen-rotulo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #012820;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    /* En movil la regla global del curso convierte TODA `table` en bloque con
+       desplazamiento propio: `@media (max-width: 768px) { table { display:
+       block; overflow-x: auto } }`. Para una tabla de datos corriente eso
+       esta bien, pero para la rejilla es contraproducente: con `display:
+       block` el elemento pasa a medir lo que mida su contenedor y el
+       algoritmo de tabla reparte ESE ancho entre las columnas, en vez de
+       calcular el ancho natural. Resultado: las casillas se comprimen por
+       debajo de su `min-width`, el `nowrap` de arriba ya no las puede
+       proteger y el contenido se sale de la caja redondeada — 9 de las 16
+       casillas de la tabla de celdas del capitulo 7, medidas a 579 px.
+       Devolviendole `display: table` se recupera el ancho natural, y el
+       desplazamiento lo hace el contenedor .rejilla, que ya tiene su
+       `overflow-x: auto` desde el capitulo 5. */
+    @media (max-width: 768px) {
+      .rejilla-tabla {
+        display: table;
+        overflow-x: visible;
+        width: auto;
+      }
+
+      /* Y una vez recuperado el ancho natural, la segunda linea de la casilla
+         —la media, que en el capitulo 7 llega a «y = 134.75»— todavia se
+         queda a ras del borde redondeado. Un punto menos de cuerpo y algo
+         menos de relleno lateral le devuelven el aire, sin tocar el tamano en
+         pantalla grande, que es donde ya lo tenia. */
+      .rejilla-orden {
+        font-size: 0.56rem;
+      }
+
+      .rejilla-celda,
+      .rejilla-tabla td.rejilla-margen {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+      }
     }
 
     .rejilla-leyenda {
