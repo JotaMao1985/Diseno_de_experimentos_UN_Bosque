@@ -2168,6 +2168,15 @@
            lectura concreta del experimento absorbe. Sin ella, «el DBCA por
            filas no ve las columnas» es una frase; con ella se ve.
 
+       AMPLIADO EN EL CAPÍTULO 8 con la MATRIZ DE CONTRASTES: .rejilla-signo
+       y sus dos variantes .rejilla-signo-mas y .rejilla-signo-menos. Una
+       tabla de signos no es un plan de asignación ni una tabla de celdas: es
+       el diseño escrito en la única forma con la que se opera en un 2^k, y
+       cada columna ES el contraste del que salen a la vez el efecto, su suma
+       de cuadrados y su coeficiente. Con los signos en texto llano y sin
+       color, una columna de ocho filas no se lee de un vistazo — y leerla de
+       un vistazo es justo lo que el módulo 8.1 enseña.
+
        AMPLIADO EN EL CAPÍTULO 7 con .rejilla-margen. En un factorial la
        tabla central no es un plan de asignación sino la tabla de celdas
        (Tabla 5.4), y esa tabla tiene MÁRGENES: los totales de fila, los de
@@ -2308,6 +2317,48 @@
       opacity: 0.32;
     }
 
+    /* Una casilla de la MATRIZ DE CONTRASTES: el signo con el que cada
+       corrida entra en un efecto. Es más pequeña que .rejilla-celda a
+       propósito —un 2³ son siete columnas de signos y un 2⁴ quince—, y lleva
+       el signo en negrita para que la columna se lea en vertical.
+
+       La GEOMETRÍA va sin contenedor delante y eso es deliberado: el reseteo
+       de arriba fija `border`, `padding`, `text-align` y `background-color`,
+       y ninguna de esas cuatro está aquí, así que una clase suelta (0,1,0)
+       basta y el componente declara un selector propio que se ve en la
+       auditoría de homogeneidad. El COLOR es otra historia y va abajo. */
+    .rejilla-signo {
+      min-width: 2.2rem;
+      height: 1.9rem;
+      border-radius: 0.35rem;
+      font-weight: 700;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .rejilla-tabla td.rejilla-signo-mas {
+      background-color: rgba(1, 40, 32, 0.14);
+      color: #012820;
+      box-shadow: inset 0 0 0 1px rgba(1, 40, 32, 0.3);
+    }
+
+    .rejilla-tabla td.rejilla-signo-menos {
+      background-color: rgba(255, 102, 0, 0.14);
+      color: #9a3412;
+      box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.42);
+    }
+
+    /* El resalte de la columna del efecto elegido. NO se reutiliza
+       `.rejilla-resalte` a secas, y esto no es una precaución teórica: es la
+       lección del capítulo 7 aplicada antes de tropezar. `.rejilla-resalte`
+       vale (0,1,0) y `.rejilla-tabla td.rejilla-signo-menos` vale (0,1,1),
+       así que la clase suelta PERDERÍA y el resalte no se vería en las
+       casillas negativas — la mitad de la columna—. Con el contenedor
+       delante, gana. */
+    .rejilla-tabla td.rejilla-signo.rejilla-resalte {
+      box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.9);
+    }
+
     /* Un MARGEN de la tabla de celdas: el total (o la media) de una fila, de
        una columna, o el gran total. No es una unidad experimental, así que no
        lleva el fondo de tratamiento; y como es de donde salen los efectos
@@ -2384,6 +2435,14 @@
       .rejilla-tabla td.rejilla-margen {
         padding-left: 0.3rem;
         padding-right: 0.3rem;
+      }
+
+      /* Quince columnas de signos (el 2⁴) no caben en 579 px ni con la tabla
+         devuelta a su ancho natural, así que la casilla de signo encoge y el
+         desplazamiento lo hace .rejilla como siempre. */
+      .rejilla-signo {
+        min-width: 1.85rem;
+        font-size: 0.76rem;
       }
     }
 
