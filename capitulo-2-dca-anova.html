@@ -2146,9 +2146,9 @@
        el estudiante tiene que poder leer de un vistazo para entender que la
        aleatorización de un DBCA está RESTRINGIDA.
 
-       Se estrena en el capítulo 5 (§4.1, el plan del DBCA) y está pensado
-       para el capítulo 6, donde un cuadro latino es esta misma rejilla con
-       una restricción más y un grecolatino con dos.
+       Se estrena en el capítulo 5 (§4.1, el plan del DBCA) y el capítulo 6
+       la reutiliza para los cuadros latinos, que son esta misma rejilla con
+       una restricción más, y para los grecolatinos, con dos.
 
        Por qué una tabla y no un lienzo: veinticuatro etiquetas en un canvas
        salen apretadas, no se pueden leer con un lector de pantalla y no se
@@ -2157,6 +2157,16 @@
        Las celdas .rejilla-vacia y .rejilla-repetida existen para el
        contraste: así se ve, sobre la MISMA rejilla, qué pasa cuando se
        aleatoriza sin respetar los bloques.
+
+       AMPLIADO EN EL CAPÍTULO 6 con dos reglas:
+
+         · .rejilla-griega — la letra griega de un cuadrado grecolatino, como
+           tercera línea de la celda. Va en otro peso y otro color a
+           propósito: la griega es OTRO factor, y leerla pegada a la latina
+           («Aα») es justo el error conceptual que el módulo 6.9 combate.
+         · .rejilla-resalte — marca la fila, la columna o la letra que una
+           lectura concreta del experimento absorbe. Sin ella, «el DBCA por
+           filas no ve las columnas» es una frase; con ella se ve.
        ------------------------------------------------------------------ */
     .rejilla {
       margin: 0.5rem 0 0 0;
@@ -2240,6 +2250,18 @@
       opacity: 0.85;
     }
 
+    /* La letra griega de un grecolatino. Va aparte de .rejilla-trt porque es
+       un factor distinto: pegarla a la latina («Aα») es el error que el
+       módulo 6.9 corrige. */
+    .rejilla-griega {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      font-style: italic;
+      opacity: 0.92;
+      letter-spacing: 0.04em;
+    }
+
     /* Una celda que se quedó sin ninguna unidad: el fallo que la
        aleatorización restringida hace imposible. */
     .rejilla-vacia {
@@ -2253,6 +2275,17 @@
     /* Y su contraria: dos o más unidades del mismo tratamiento en un bloque. */
     .rejilla-repetida {
       box-shadow: 0 0 0 2px #FF6600 inset;
+    }
+
+    /* Lo que una lectura concreta del experimento SÍ absorbe: la fila, la
+       columna o la letra que ese modelo tiene en cuenta. Lo que no se
+       resalta es lo que se le queda dentro del error. */
+    .rejilla-resalte {
+      box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.85);
+    }
+
+    .rejilla-apagada {
+      opacity: 0.32;
     }
 
     .rejilla-leyenda {
