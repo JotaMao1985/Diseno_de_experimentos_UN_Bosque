@@ -2477,6 +2477,252 @@
     }
 
     /* ------------------------------------------------------------------
+       Componente .jerarquia — el árbol de un diseño anidado
+       ------------------------------------------------------------------
+       Una LISTA ANIDADA de verdad (<ul> dentro de <li>) dibujada como árbol
+       con pseudoelementos. Se estrena en el capítulo 9 (§14.1–14.3), donde
+       la estructura ES el contenido: un factor está anidado cuando sus
+       niveles no significan lo mismo dentro de cada padre, y eso es
+       exactamente lo que un árbol dice y una rejilla no.
+
+       Por qué una lista y no un lienzo. El capítulo 7 dibujó su cubo a mano
+       porque no hay tipo de gráfico que sea un cubo; aquí sí hay una
+       estructura de documento que ES la figura. Una lista anidada se lee con
+       un lector de pantalla («lista de 3 elementos, elemento 1, lista de 4
+       elementos…»), se selecciona, se copia y se imprime; un canvas no hace
+       ninguna de las cuatro. Y como el anidamiento del marcado coincide con
+       el anidamiento del diseño, un error de estructura se ve en el HTML.
+
+       Dos cosas que hereda del CSS global y hay que apagar a mano:
+
+         · `ul { list-style-type: disc }` — un árbol con viñetas es ruido, y
+           además las viñetas se cuelan entre las líneas de unión.
+         · el color de texto de un `li`, que es gris oscuro. Los nodos van
+           sobre fondo de color y necesitan su propio `color`, o salen gris
+           sobre verde. Es el mismo fallo del desglose del quiz de la Fase 0
+           y del verde sobre verde de la rejilla del capítulo 5, por tercera
+           puerta.
+
+       Las líneas de unión son `::before` (el tramo vertical que sube de cada
+       nodo) y `::after` (el travesaño que une a los hermanos), recortado a la
+       mitad en el primero y en el último. La raíz no dibuja ninguna de las
+       dos: no tiene padre del que colgar.
+
+       .jerarquia-apagada y .jerarquia-resalte son las hermanas de las de
+       .rejilla y hacen lo mismo: marcar qué parte del árbol absorbe una
+       lectura concreta del experimento. Aquí sirven para enseñar que el
+       error de un anidado es la variación DENTRO de las hojas.
+       ------------------------------------------------------------------ */
+    .jerarquia {
+      margin: 0.5rem 0 0 0;
+    }
+
+    /* El desplazamiento va en el marco y no en .jerarquia: así el rótulo de
+       las etapas, que va fuera, no se desplaza con el árbol. */
+    .jerarquia-marco {
+      overflow-x: auto;
+      padding: 0.35rem 0 0.2rem 0;
+    }
+
+    .jerarquia-lista {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .jerarquia-rama {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 1.15rem 0.3rem 0 0.3rem;
+      color: inherit;
+      text-align: center;
+    }
+
+    /* El tramo vertical que sube del nodo hasta el travesaño de su nivel. */
+    .jerarquia-rama::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 1.15rem;
+      border-left: 1.5px solid rgba(1, 40, 32, 0.28);
+    }
+
+    /* El travesaño que une a los hermanos. Va de borde a borde y se recorta
+       en el primero y en el último para que no sobresalga por los lados. */
+    .jerarquia-rama::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      border-top: 1.5px solid rgba(1, 40, 32, 0.28);
+    }
+
+    .jerarquia-rama:first-child::after {
+      left: 50%;
+    }
+
+    .jerarquia-rama:last-child::after {
+      right: 50%;
+    }
+
+    /* Un hijo único no necesita travesaño: bastaría con el tramo vertical. */
+    .jerarquia-rama:only-child::after {
+      display: none;
+    }
+
+    /* La raíz no cuelga de nada, así que no dibuja ni tramo ni travesaño. */
+    .jerarquia-raiz > .jerarquia-rama {
+      padding-top: 0;
+    }
+
+    .jerarquia-raiz > .jerarquia-rama::before,
+    .jerarquia-raiz > .jerarquia-rama::after {
+      display: none;
+    }
+
+    /* La caja de un nodo. `color` explícito porque un <li> hereda el gris
+       del CSS global y estos nodos van sobre fondo de color. */
+    .jerarquia-nodo {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      padding: 0.32rem 0.55rem;
+      border-radius: 0.4rem;
+      color: #1e293b;
+      background-color: rgba(148, 163, 184, 0.16);
+      box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.45);
+    }
+
+    /* El experimento entero: la raíz del árbol, sin color de etapa. */
+    .jerarquia-etapa-0 {
+      color: #012820;
+      background-color: #ffffff;
+      box-shadow: inset 0 0 0 1.5px rgba(1, 40, 32, 0.45);
+    }
+
+    /* Una etapa por color, y el orden importa: el verde del curso es siempre
+       el factor de arriba, y cada etapa que baja se aleja de él. Así el
+       mismo color significa la misma altura del árbol en los tres diseños
+       del capítulo (dos etapas, tres etapas y anidado-factorial). */
+    .jerarquia-etapa-1 {
+      color: #ffffff;
+      background-color: #012820;
+      box-shadow: none;
+    }
+
+    .jerarquia-etapa-2 {
+      color: #ffffff;
+      background-color: #0e7490;
+      box-shadow: none;
+    }
+
+    .jerarquia-etapa-3 {
+      color: #ffffff;
+      background-color: #b45309;
+      box-shadow: none;
+    }
+
+    /* Las observaciones que cuelgan de la última etapa. No se dibujan una a
+       una —treinta y seis hojas no caben ni se leen—: se resume cuántas hay,
+       que es la única información que la figura tiene que dar. */
+    .jerarquia-hoja {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.64rem;
+      font-weight: 500;
+      line-height: 1.2;
+      white-space: nowrap;
+      padding: 0.16rem 0.4rem;
+      border-radius: 0.3rem;
+      color: #334155;
+      background-color: rgba(1, 40, 32, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(1, 40, 32, 0.16);
+    }
+
+    /* Lo que una lectura concreta del experimento absorbe, y lo que deja
+       fuera. Mismas dos ideas —y mismos dos efectos— que en .rejilla. */
+    .jerarquia-resalte {
+      box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.85);
+    }
+
+    .jerarquia-apagada {
+      opacity: 0.3;
+    }
+
+    /* La columna de rótulos de etapa, a la izquierda del árbol: «Etapa 1 ·
+       proveedor (a = 3)». Va fuera del marco desplazable a propósito, para
+       que siga visible cuando el árbol se desplaza en móvil. */
+    .jerarquia-rotulos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+      margin: 0 0 0.15rem 0;
+      font-size: 0.72rem;
+      color: #475569;
+    }
+
+    .jerarquia-rotulo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .jerarquia-muestra {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 0.2rem;
+      display: inline-block;
+    }
+
+    /* En móvil el árbol no se comprime: se desplaza. Un nodo con
+       `white-space: nowrap` dentro de un flex que encoge acaba desbordando su
+       caja redondeada —el mismo fallo que la rejilla tuvo a 579 px—, así que
+       se le prohíbe encoger y el desplazamiento lo hace .jerarquia-marco,
+       que ya tiene su `overflow-x: auto`. */
+    @media (max-width: 768px) {
+      .jerarquia-lista {
+        justify-content: flex-start;
+      }
+
+      .jerarquia-rama {
+        flex: 0 0 auto;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+      }
+
+      .jerarquia-nodo {
+        font-size: 0.68rem;
+        padding: 0.28rem 0.42rem;
+      }
+
+      .jerarquia-hoja {
+        font-size: 0.6rem;
+      }
+    }
+
+    .jerarquia-nota {
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
        Componente .mapa-estacional — mapa de calor mes x año
        ------------------------------------------------------------------
        Un gráfico de línea enseña el nivel; un correlograma, la estructura.
@@ -6993,9 +7239,24 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
       limpiarGraficosQuiz(raiz);
 
       const contenedor = raiz.querySelector('.quiz-preguntas');
+      const resumen = raiz.querySelector('.quiz-resumen');
+
+      // El reseteo va AQUÍ, antes de capturar el marcador, y no a mitad del
+      // montaje. El motivo es un fallo real de los capítulos 6, 7 y 8: allí
+      // `.quiz-conteo` había quedado DENTRO de `.quiz-resumen`, así que este
+      // `innerHTML = ''` lo destruía y el contador pasaba el resto de la
+      // sesión escribiendo en un nodo desconectado del documento —invisible,
+      // sin un solo error en la consola—. Capturando después, ese mismo
+      // marcado da `marcador === null` y el `console.error` de abajo lo dice.
+      contenedor.innerHTML = '';
+      if (resumen) { resumen.hidden = true; resumen.innerHTML = ''; }
+
       const marcador = raiz.querySelector('.quiz-conteo');
       const barra = raiz.querySelector('.quiz-progreso-barra');
-      const resumen = raiz.querySelector('.quiz-resumen');
+      if (!marcador) {
+        console.error(`Autoevaluación «${raiz.dataset.quiz}»: no hay .quiz-conteo ` +
+          `fuera de .quiz-resumen, así que el contador no se verá.`);
+      }
 
       const estado = preguntas.map(() => ({ resuelta: false, intentos: 0, acierto: false }));
 
@@ -7003,9 +7264,13 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
         const resueltas = estado.filter(e => e.resuelta).length;
         const alPrimero = estado.filter(e => e.acierto && e.intentos === 1).length;
         const alSegundo = estado.filter(e => e.acierto && e.intentos > 1).length;
-        marcador.textContent =
-          `Respondidas ${resueltas} de ${preguntas.length} · ` +
-          `${alPrimero} al primer intento, ${alSegundo} al segundo`;
+        // Guardado como `barra` y `resumen`: el contador es opcional, y su
+        // ausencia ya la ha denunciado el console.error de la captura.
+        if (marcador) {
+          marcador.textContent =
+            `Respondidas ${resueltas} de ${preguntas.length} · ` +
+            `${alPrimero} al primer intento, ${alSegundo} al segundo`;
+        }
         if (barra) barra.style.width = `${(resueltas / preguntas.length) * 100}%`;
 
         if (resueltas === preguntas.length && resumen) {
@@ -7074,9 +7339,6 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
           katexEn(pista);
         }
       }
-
-      contenedor.innerHTML = '';
-      if (resumen) { resumen.hidden = true; resumen.innerHTML = ''; }
 
       preguntas.forEach((p, i) => {
         const tipo = p.tipo || 'opcion';
