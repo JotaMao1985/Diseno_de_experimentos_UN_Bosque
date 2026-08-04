@@ -2723,6 +2723,286 @@
     }
 
     /* ------------------------------------------------------------------
+       Componente .estrato — la tabla ANOVA partida en ESTRATOS
+       ------------------------------------------------------------------
+       Se estrena en el capítulo 10 (§14.4–14.5), y es el cuarto componente
+       propio del curso después del árbol de decisión del capítulo 4, la
+       rejilla del 5 y la jerarquía del 9.
+
+       Qué dice. En un diseño con la aleatorización restringida no hay UN
+       error experimental: hay uno por cada estrato, porque cada restricción
+       crea una unidad experimental nueva. La tabla ANOVA de un split-plot no
+       es una lista de fuentes con un residuo al final — es un experimento
+       encima de otro, y el F de un efecto se divide por el error del estrato
+       DONDE SE ALEATORIZÓ ese efecto. Eso es lo que una tabla corrida en una
+       sola columna esconde y este componente enseña: cada estrato es una
+       banda, cada término lleva la marca de color de su estrato, la fila del
+       error va destacada porque es un DENOMINADOR y no un sobrante, y el F
+       de cada término dice a qué fila se dividió.
+
+       Por qué una tabla y no un lienzo, que es la pregunta que el capítulo 7
+       resolvió con su cubo y el 9 con su lista anidada: aquí el objeto ya es
+       una tabla —la Tabla 14.18, la 14.23, la 14.25— y lo único que le falta
+       es que la estructura de estratos se vea. Se lee con un lector de
+       pantalla fila a fila, se copia, se imprime, y el marcado sigue siendo
+       una tabla de datos con sus cabeceras.
+
+       Los colores son los MISMOS de las etapas de la jerarquía del capítulo
+       9, y a propósito: el verde del curso es siempre el estrato de arriba
+       (parcela grande), el azul el de en medio (parcela chica) y el ámbar el
+       de abajo (sub-parcela). Un split-split-plot dibujado como jerarquía y
+       leído como tabla ANOVA usa los mismos tres colores para las mismas
+       tres unidades experimentales.
+
+       Tres cosas que hereda del CSS global y hay que apagar a mano, que es
+       la lección del verde sobre verde de la rejilla del capítulo 5:
+
+         · `table th` es verde del curso con letra blanca. La cabecera de
+           esta tabla y la fila que abre cada banda son `th` de verdad —por
+           accesibilidad— así que sin reseteo la banda de parcela grande
+           saldría verde sobre verde.
+         · `tr:nth-child(even)` tiñe las filas pares, y aquí el color de
+           fondo significa estrato: una franja alterna encima haría ilegible
+           la única información que la tabla codifica en color.
+         · el `border` de las celdas, que el reseteo fija para que la única
+           línea horizontal sea la que separa dos estratos.
+
+       Y la del capítulo 7, que solo se ve midiendo el estilo calculado: el
+       reseteo `.estrato-tabla th, .estrato-tabla td` vale (0,1,1) y le gana
+       a una clase suelta (0,1,0), así que **todo selector que pinte una
+       celda lleva delante su contenedor**. La geometría no choca con el
+       reseteo y va como clase suelta, que además es lo que la deja visible
+       en la auditoría de homogeneidad de selectores.
+       ------------------------------------------------------------------ */
+    .estrato {
+      margin: 0.5rem 0 0 0;
+    }
+
+    /* La leyenda va FUERA del marco desplazable, para que siga a la vista
+       cuando la tabla se desplaza en móvil. Mismo criterio que la del árbol
+       de la jerarquía. */
+    .estrato-rotulos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.1rem;
+      margin: 0 0 0.35rem 0;
+      font-size: 0.72rem;
+      color: #475569;
+    }
+
+    .estrato-rotulo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .estrato-muestra {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 0.2rem;
+      display: inline-block;
+    }
+
+    .estrato-marco {
+      overflow-x: auto;
+    }
+
+    .estrato-tabla {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0;
+      font-size: 0.8rem;
+    }
+
+    /* El reseteo. Sin él la cabecera sale verde sobre verde y las bandas se
+       pelean con el rayado de filas pares. */
+    .estrato-tabla th,
+    .estrato-tabla td {
+      background-color: transparent;
+      color: #1e293b;
+      border: none;
+      padding: 0.3rem 0.55rem;
+      text-align: left;
+      font-weight: 400;
+    }
+
+    .estrato-tabla tr,
+    .estrato-tabla tr:nth-child(even),
+    .estrato-tabla tr:hover {
+      background-color: transparent;
+    }
+
+    /* La cabecera de columnas: Fuente, gl, SS, MS, F0 y contra qué. */
+    .estrato-cabecera {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .estrato-tabla th.estrato-cabecera {
+      color: #475569;
+      border-bottom: 1.5px solid rgba(1, 40, 32, 0.25);
+    }
+
+    /* La fila que abre un estrato: dice cuál es la UNIDAD EXPERIMENTAL de
+       esa banda, que es lo que de verdad la define. */
+    .estrato-banda {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .estrato-tabla th.estrato-banda {
+      padding-top: 0.45rem;
+      padding-bottom: 0.45rem;
+    }
+
+    /* El estrato de las REPLICAS o los bloques, que no es una parcela: está
+       por encima de todas ellas y su cuadrado medio no prueba nada del
+       experimento. Va en claro, para que las tres bandas de color queden
+       reservadas a las tres unidades experimentales de verdad. */
+    .estrato-tabla th.estrato-banda-r {
+      color: #012820;
+      background-color: rgba(1, 40, 32, 0.08);
+      box-shadow: inset 0 1.5px 0 rgba(1, 40, 32, 0.35);
+    }
+
+    .estrato-tabla th.estrato-banda-a {
+      color: #ffffff;
+      background-color: #012820;
+    }
+
+    .estrato-tabla th.estrato-banda-b {
+      color: #ffffff;
+      background-color: #0e7490;
+    }
+
+    .estrato-tabla th.estrato-banda-c {
+      color: #ffffff;
+      background-color: #b45309;
+    }
+
+    /* La primera celda de cada fila: el nombre del término. Lleva a la
+       izquierda la barra del color de su estrato, para que una fila suelta
+       —copiada, leída en voz alta, mirada de reojo— siga sabiendo de qué
+       experimento es. */
+    .estrato-fuente {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .estrato-tabla th.estrato-nivel-r,
+    .estrato-tabla td.estrato-nivel-r {
+      border-left: 3px solid rgba(1, 40, 32, 0.3);
+    }
+
+    .estrato-tabla th.estrato-nivel-a,
+    .estrato-tabla td.estrato-nivel-a {
+      border-left: 3px solid #012820;
+    }
+
+    .estrato-tabla th.estrato-nivel-b,
+    .estrato-tabla td.estrato-nivel-b {
+      border-left: 3px solid #0e7490;
+    }
+
+    .estrato-tabla th.estrato-nivel-c,
+    .estrato-tabla td.estrato-nivel-c {
+      border-left: 3px solid #b45309;
+    }
+
+    /* Las columnas numéricas. `tabular-nums` para que las cifras de una
+       columna caigan alineadas aunque no tengan los mismos dígitos. */
+    .estrato-cifra {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .estrato-tabla td.estrato-cifra {
+      text-align: right;
+    }
+
+    /* La fila del error de un estrato. No es un sobrante: es el
+       DENOMINADOR de las filas de su banda, y por eso va destacada. */
+    .estrato-tabla th.estrato-error,
+    .estrato-tabla td.estrato-error {
+      background-color: rgba(1, 40, 32, 0.06);
+      font-style: italic;
+    }
+
+    /* La etiqueta que sale de la celda del F y dice a qué fila se dividió.
+       Es la pieza que convierte la tabla en una explicación: sin ella, el
+       estudiante tiene que adivinar el denominador de cada término. */
+    .estrato-denominador {
+      display: inline-block;
+      margin-left: 0.3rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.64rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.3rem;
+      color: #334155;
+      background-color: rgba(1, 40, 32, 0.07);
+      box-shadow: inset 0 0 0 1px rgba(1, 40, 32, 0.18);
+    }
+
+    /* Un término que NO tiene prueba F exacta. Pasa en cuanto hay dos
+       factores aleatorios que interactúan, y es un resultado del diseño, no
+       un fallo del programa: hay que construir un denominador aproximado
+       por Satterthwaite. Va en naranja porque es una advertencia. */
+    .estrato-sin-prueba {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.64rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.3rem;
+      color: #9a3412;
+      background-color: rgba(255, 102, 0, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255, 102, 0, 0.4);
+    }
+
+    /* En móvil la regla global convierte toda `table` en bloque con
+       desplazamiento propio, y entonces el algoritmo de tabla reparte el
+       ancho del CONTENEDOR en vez de calcular el natural: las columnas se
+       comprimen y las cifras se salen de su celda. Se le devuelve
+       `display: table` y el desplazamiento lo hace .estrato-marco, que ya
+       tiene el suyo. Es la lección de la rejilla a 579 px. */
+    @media (max-width: 768px) {
+      .estrato-tabla {
+        display: table;
+        font-size: 0.72rem;
+      }
+
+      .estrato-tabla th,
+      .estrato-tabla td {
+        padding: 0.26rem 0.4rem;
+      }
+
+      .estrato-cifra {
+        font-size: 0.68rem;
+      }
+    }
+
+    .estrato-nota {
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
        Componente .mapa-estacional — mapa de calor mes x año
        ------------------------------------------------------------------
        Un gráfico de línea enseña el nivel; un correlograma, la estructura.
