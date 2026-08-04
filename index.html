@@ -2,263 +2,596 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diseño de Experimentos · Universidad El Bosque</title>
-    <meta name="description"
-        content="Material de estudio de Diseño de Experimentos — Universidad El Bosque, Programa de Matemáticas y Ciencia de Datos.">
-    <meta name="author" content="Universidad El Bosque - Programa de Matemáticas y Ciencia de Datos">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'] },
-                    colors: {
-                        primary: '#012820',
-                        secondary: '#FF6600',
-                        navy: '#012820',
-                        gold: '#90FF00',
-                        bg: '#F8FAFC',
-                        surface: '#FFFFFF',
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diseño de Experimentos · UnBosque 2026-II</title>
+  <meta name="description"
+    content="Material de estudio interactivo de Diseño de Experimentos (20920), Universidad El Bosque. 10 capítulos con simuladores, derivaciones, código en R y Python y autoevaluación.">
+  <meta name="keywords"
+    content="diseño de experimentos, ANOVA, bloques, cuadros latinos, factoriales, superficie de respuesta, parcelas divididas, R, Python, Universidad El Bosque">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'] },
+          colors: {
+            primary: '#012820', secondary: '#FF6600', navy: '#012820',
+            gold: '#FFC24B', bg: '#F8FAFC', surface: '#FFFFFF',
+          }
         }
-    </script>
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #F8FAFC;
+      color: #1E293B;
+      scroll-behavior: smooth;
+    }
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #F8FAFC;
-            color: #1E293B;
-            scroll-behavior: smooth;
-        }
+    .usta-header { background: linear-gradient(180deg, #012820 0%, #001F18 100%); }
+    .usta-gradient { background: linear-gradient(140deg, #012820 0%, #FF6600 100%); }
 
-        .bosque-header {
-            background: linear-gradient(180deg, #012820 0%, #001F18 100%);
-        }
+    .hero {
+      background:
+        radial-gradient(1200px 400px at 15% -20%, rgba(255, 102, 0, 0.18), transparent 60%),
+        linear-gradient(140deg, #012820 0%, #02382D 55%, #001F18 100%);
+    }
 
-        .bosque-gradient {
-            background: linear-gradient(140deg, #012820 0%, #FF6600 100%);
-        }
+    /* ------------------------------------------------------------------
+       Componente .tarjeta — una tarjeta por capítulo
+       ------------------------------------------------------------------
+       El enlace envuelve la tarjeta entera con ::after, no solo el rótulo
+       «Abrir»: el área de clic es toda la tarjeta pero en el árbol de
+       accesibilidad hay UN enlace con un nombre que se basta solo, no seis
+       trozos sueltos. Por eso el <a> lleva el título dentro y el resto es
+       texto hermano.
+       ------------------------------------------------------------------ */
+    .tarjeta {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .hero {
-            background:
-                radial-gradient(1200px 400px at 15% -20%, rgba(255, 102, 0, 0.18), transparent 60%),
-                linear-gradient(140deg, #012820 0%, #02382D 55%, #001F18 100%);
-        }
+    .tarjeta::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: linear-gradient(180deg, #012820, #FF6600);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
 
-        /* Course card */
-        .doc-card {
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .tarjeta:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(1, 40, 32, 0.16);
+      border-color: rgba(255, 102, 0, 0.4);
+    }
 
-        .doc-card::before {
-            content: '';
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 5px;
-            background: linear-gradient(180deg, #012820, #FF6600);
-            opacity: 0;
-            transition: opacity .25s ease;
-        }
+    .tarjeta:hover::before { opacity: 1; }
 
-        .doc-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(1, 40, 32, 0.16);
-            border-color: rgba(255, 102, 0, 0.4);
-        }
+    .tarjeta:focus-within {
+      outline: 3px solid rgba(255, 102, 0, 0.55);
+      outline-offset: 2px;
+    }
 
-        .doc-card:hover::before {
-            opacity: 1;
-        }
+    .tarjeta-num {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.15rem;
+      background: linear-gradient(140deg, #012820 0%, #FF6600 100%);
+      box-shadow: 0 6px 16px rgba(1, 40, 32, 0.25);
+      flex-shrink: 0;
+    }
 
-        .doc-card:focus-within {
-            outline: 3px solid rgba(255, 102, 0, 0.5);
-            outline-offset: 2px;
-        }
+    .tarjeta-semana {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #012820;
+      background: rgba(255, 102, 0, 0.12);
+      border: 1px solid rgba(255, 102, 0, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
 
-        .icon-badge {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.25rem;
-            background: linear-gradient(140deg, #012820 0%, #FF6600 100%);
-            box-shadow: 0 6px 16px rgba(1, 40, 32, 0.25);
-            flex-shrink: 0;
-        }
+    .tarjeta-titulo { color: #012820; font-weight: 700; line-height: 1.3; }
+    .tarjeta-titulo a { color: inherit; text-decoration: none; }
 
-        .week-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #012820;
-            background: rgba(255, 102, 0, 0.12);
-            border: 1px solid rgba(255, 102, 0, 0.3);
-            padding: 0.25rem 0.6rem;
-            border-radius: 999px;
-            white-space: nowrap;
-        }
+    .tarjeta-titulo a::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
 
-        .doc-title {
-            color: #012820;
-            font-weight: 700;
-            line-height: 1.25;
-        }
+    .tarjeta-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.9rem;
+      font-size: 0.75rem;
+      color: #64748B;
+    }
 
-        .open-link {
-            color: #FF6600;
-            font-weight: 600;
-            font-size: 0.875rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: gap .2s ease;
-        }
+    .tarjeta-abrir {
+      color: #FF6600;
+      font-weight: 600;
+      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap .2s ease;
+    }
 
-        .doc-card:hover .open-link {
-            gap: 0.75rem;
-        }
+    .tarjeta:hover .tarjeta-abrir { gap: 0.75rem; }
 
-        .stretched-link::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-        }
+    /* La tarjeta de un anexo que TODAVÍA NO EXISTE. No es un enlace roto ni
+       un enlace a ninguna parte: es texto, y lo dice. */
+    .tarjeta-pendiente {
+      background: #F1F5F9;
+      border-style: dashed;
+      border-color: #CBD5E1;
+      box-shadow: none;
+    }
 
-        ::-webkit-scrollbar {
-            width: 9px;
-        }
+    .tarjeta-pendiente:hover { transform: none; box-shadow: none; border-color: #CBD5E1; }
+    .tarjeta-pendiente:hover::before { opacity: 0; }
+    .tarjeta-pendiente .tarjeta-num { background: #94A3B8; box-shadow: none; }
+    .tarjeta-pendiente .tarjeta-titulo { color: #475569; }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
+    .tarjeta-aviso {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #92400E;
+      background: #FEF3C7;
+      border: 1px solid #FDE68A;
+      border-radius: 0.5rem;
+      padding: 0.4rem 0.6rem;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #012820, #FF6600);
-            border-radius: 4px;
-        }
-    </style>
+    .corte-rotulo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      border-bottom: 2px solid rgba(1, 40, 32, 0.12);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .corte-rotulo h2 { color: #012820; font-weight: 800; font-size: 1.35rem; margin: 0; }
+    .corte-rotulo .corte-semanas { color: #FF6600; font-weight: 700; font-size: 0.85rem; }
+    .corte-rotulo .corte-lema { color: #64748B; font-size: 0.85rem; font-style: italic; }
+
+    a:focus-visible { outline: 3px solid rgba(255, 102, 0, 0.6); outline-offset: 3px; }
+
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #012820, #FF6600); border-radius: 4px; }
+  </style>
 </head>
 
 <body class="min-h-screen flex flex-col">
+  <a href="#contenido"
+    class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:m-3 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-primary">Saltar
+    al contenido</a>
 
-    <!-- Top bar -->
-    <header class="bosque-header sticky top-0 z-50 shadow-lg" role="banner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-3">
-            <div class="bosque-gradient p-2 rounded-lg shadow-md">
-                <i class="fas fa-flask text-lg text-white"></i>
-            </div>
-            <div>
-                <p class="text-sm md:text-base font-bold text-white leading-tight">Diseño de Experimentos</p>
-                <p class="text-[0.7rem] md:text-xs text-white/70 font-medium tracking-wide">UNIVERSIDAD EL BOSQUE • MATEMÁTICAS Y CIENCIA DE DATOS</p>
-            </div>
-        </div>
-    </header>
+  <header class="usta-header sticky top-0 z-50 shadow-lg" role="banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
+      <div class="usta-gradient p-3 rounded-xl shadow-md">
+        <i class="fas fa-flask text-xl text-white" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="text-xl font-bold text-white leading-tight tracking-tight">Diseño de Experimentos</p>
+        <p class="text-xs text-white/70 font-medium tracking-wide">UNIVERSIDAD EL BOSQUE • MATEMÁTICAS Y CIENCIA DE
+          DATOS • 2026-II</p>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hero -->
-    <section class="hero text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
-            <span class="week-badge" style="color:#fff; background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25);">
-                <i class="fas fa-graduation-cap mr-1"></i> Material de estudio 2026
-            </span>
-            <h1 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                Diseño de Experimentos
-            </h1>
-            <p class="mt-4 max-w-2xl text-white/80 text-base md:text-lg leading-relaxed">
-                Recursos interactivos de la asignatura, organizados por semana. Cada módulo incluye teoría,
-                fórmulas, ejemplos y código reproducible en R y Python.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/75">
-                <span><i class="fas fa-book-open text-secondary mr-2"></i>10 documentos</span>
-                <span><i class="fas fa-list-ul text-secondary mr-2"></i>Navegación por módulos</span>
-                <span><i class="fas fa-code text-secondary mr-2"></i>Código en R y Python</span>
+  <section class="hero text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <span class="tarjeta-semana"
+        style="color:#fff; background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.25);">
+        <i class="fas fa-graduation-cap mr-1" aria-hidden="true"></i> Material de estudio · código 20920
+      </span>
+      <h1 class="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">Diseño de Experimentos</h1>
+      <p class="mt-4 max-w-3xl text-white/80 text-base md:text-lg leading-relaxed">
+        10 capítulos interactivos alineados uno a uno con el cronograma, de la semana 1 a la
+        15. Cada uno trae teoría, derivaciones desplegables, simuladores, el mismo código en
+        <strong class="text-white">R y en Python</strong> con su salida real, ejercicios guiados y
+        autoevaluación. Texto guía: Montgomery, <em>Design and Analysis of Experiments</em>, 9.ª ed.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/75">
+        <span><i class="fas fa-book-open text-secondary mr-2" aria-hidden="true"></i>10 capítulos</span>
+        <span><i class="fas fa-sliders text-secondary mr-2" aria-hidden="true"></i>106 simuladores</span>
+        <span><i class="fas fa-code text-secondary mr-2" aria-hidden="true"></i>271 bloques en R y Python</span>
+        <span><i class="fas fa-list-check text-secondary mr-2" aria-hidden="true"></i>120 módulos</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12" id="contenido">
+    <section class="mb-12">
+      <div class="corte-rotulo">
+        <h2>Corte I</h2>
+        <span class="corte-semanas">Semanas 1–5</span>
+        <span class="corte-lema">Del experimento comparativo al ANOVA, con sus supuestos</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-flask" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 1</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 1</span>
             </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-1-introduccion-comparativos.html">Introducción al diseño de experimentos y experimentos comparativos simples</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 1.1–1.6 y 2.1–2.6</p>
+          </div>
         </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>10 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>12 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>166 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-chart-column" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semanas 2–3</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 2</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-2-dca-anova.html">Diseño completamente al azar y análisis de varianza</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 3.1–3.3 y 3.6–3.8</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>10 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>17 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>188 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-code-compare" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 4</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 3</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-3-comparaciones-multiples.html">Comparaciones múltiples y contrastes</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 3.5</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>10 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>20 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>218 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-stethoscope" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 5</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 4</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-4-supuestos-no-parametrica.html">Verificación de supuestos y alternativas no paramétricas</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 3.4, 3.11 y 15.1</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>10 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>26 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>238 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      </div>
     </section>
 
-    <!-- Cards grid -->
-    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12" id="contenido">
-        <h2 class="text-xl font-bold text-primary mb-6 flex items-center gap-2">
-            <i class="fas fa-layer-group text-secondary"></i> Contenido del curso
-        </h2>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="card-grid">
-            <!-- Cards inyectadas por JS -->
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bosque-header mt-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="bosque-gradient p-2 rounded-lg shadow-md">
-                        <i class="fas fa-flask text-white"></i>
-                    </div>
-                    <div>
-                        <p class="text-white font-semibold">Diseño de Experimentos</p>
-                        <p class="text-xs text-white/60">Universidad El Bosque • Programa de Matemáticas y Ciencia de Datos</p>
-                    </div>
-                </div>
-                <p class="text-xs text-white/60">Material de Estudio — <span class="text-gold">UnBosque 2026</span></p>
+    <section class="mb-12">
+      <div class="corte-rotulo">
+        <h2>Corte II</h2>
+        <span class="corte-semanas">Semanas 6–10</span>
+        <span class="corte-lema">Bloquear: quitar del error lo que no es error</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semanas 6–7</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 5</span>
             </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-5-bloques-completos.html">Diseños en bloques completos al azar</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 4.1</p>
+          </div>
         </div>
-    </footer>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>10 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>25 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>242 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-table-cells" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semanas 8–10</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 6</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-6-cuadros-latinos.html">Cuadros latinos y cuadrados grecolatinos</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 4.2 y 4.3</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>11 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>31 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>264 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      </div>
+    </section>
 
-    <script>
-        const docs = [
-            { file: "2_Diseno_Exp_Semana_I.html", icon: "fa-flask", badge: "Semana 1", title: "Diseños Completamente Aleatorizados", desc: "Modelo de efectos fijos e introducción al ANOVA de un factor." },
-            { file: "1_Diseno_Clase_Repaso.html", icon: "fa-vials", badge: "Semana 2", title: "Experimentos Comparativos Simples", desc: "Repaso de fundamentos y comparación de tratamientos en el DCA." },
-            { file: "3_Dis_Exp_idoneidad_modelo.html", icon: "fa-clipboard-check", badge: "Semana 3", title: "Diagnosis y Validación del Modelo", desc: "Supuestos, análisis de residuales y adecuación del modelo." },
-            { file: "4_material_estudio_dbca.html", icon: "fa-cubes", badge: "Semana 4", title: "Bloques Completos Aleatorizados", desc: "Control de una fuente de variabilidad mediante bloqueo (DBCA)." },
-            { file: "5_material_estudio_dbia.html", icon: "fa-puzzle-piece", badge: "Semana 5", title: "Bloques Incompletos Balanceados", desc: "Diseños cuando no todos los tratamientos caben en cada bloque." },
-            { file: "6_material_estudio_dcl.html", icon: "fa-th", badge: "Semana 6", title: "Cuadros Latinos", desc: "Control simultáneo de dos fuentes de variabilidad." },
-            { file: "7_material_estudio_dcy.html", icon: "fa-table", badge: "Semana 7", title: "Cuadrados de Youden", desc: "Bloques incompletos simétricos derivados del cuadro latino." },
-            { file: "8_material_estudio_dcgl.html", icon: "fa-border-all", badge: "Tema", title: "Cuadros Greco-Latinos", desc: "Superposición de cuadros latinos ortogonales: tres bloqueos." },
-            { file: "9_modulo_efectos_aleatorios.html", icon: "fa-random", badge: "Tema", title: "Modelos de Efectos Aleatorios", desc: "Componentes de varianza y factores con niveles aleatorios." },
-            { file: "10_Disenos_Factoriale.html", icon: "fa-chart-line", badge: "Capítulo 5", title: "Diseños Factoriales", desc: "Efectos principales e interacciones entre factores." },
-        ];
+    <section class="mb-12">
+      <div class="corte-rotulo">
+        <h2>Corte III</h2>
+        <span class="corte-semanas">Semanas 11–15</span>
+        <span class="corte-lema">Varios factores a la vez, y varios errores a la vez</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-cubes" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 11</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 7</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-7-factoriales.html">Diseños factoriales</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 5.1 a 5.6</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>11 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>27 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>272 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-mountain-sun" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 12</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 8</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-8-dos-k-superficie.html">Diseños 2^k y superficie de respuesta</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 6.1 a 6.9 y 11.1 a 11.4</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>12 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>35 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>276 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-sitemap" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semana 13</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 9</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-9-anidados.html">Diseños anidados</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 14.1 a 14.3</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>11 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>36 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>284 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-object-group" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Semanas 14–15</span>
+              <span class="text-xs font-semibold text-slate-400">Capítulo 10</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="capitulo-10-parcelas-divididas.html">Parcelas divididas y medidas repetidas</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 14.4, 14.5 y 15.4</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
+          <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>11 simuladores</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>42 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>298 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span></p>
+      </article>
+      </div>
+    </section>
 
-        const grid = document.getElementById('card-grid');
-        docs.forEach((d, i) => {
-            const card = document.createElement('article');
-            card.className = 'doc-card p-6 flex flex-col';
-            card.innerHTML = `
-                <div class="flex items-start justify-between gap-3 mb-4">
-                    <div class="icon-badge"><i class="fas ${d.icon}"></i></div>
-                    <span class="week-badge">${d.badge}</span>
-                </div>
-                <h3 class="doc-title text-lg mb-2">${d.title}</h3>
-                <p class="text-sm text-gray-600 leading-relaxed flex-grow">${d.desc}</p>
-                <div class="mt-5 pt-4 border-t border-gray-100">
-                    <a href="${d.file}" class="open-link stretched-link" aria-label="Abrir ${d.title}">
-                        Abrir documento <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>`;
-            grid.appendChild(card);
-        });
-    </script>
+    <section class="mb-4">
+      <div class="corte-rotulo">
+        <h2>Material complementario</h2>
+        <span class="corte-semanas">Fuera del cronograma</span>
+        <span class="corte-lema">Temas que el curso menciona y no desarrolla en clase</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article class="tarjeta tarjeta-pendiente p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana"
+                style="color:#475569; background:#E2E8F0; border-color:#CBD5E1;">Anexo A1</span>
+              <span class="text-xs font-semibold text-slate-400">En preparación</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">Diseños en bloques incompletos balanceados</h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 4.4 · Cuando no caben todos los tratamientos en cada bloque.</p>
+          </div>
+        </div>
+        <p class="tarjeta-aviso mt-4">
+          <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>
+          El anexo A1 todavía no está publicado. Mientras tanto, el tema sigue disponible en el
+          material del semestre pasado: <a class="underline font-bold"
+            href="5_material_estudio_dbia.html">5_material_estudio_dbia.html</a>, en el formato antiguo.
+        </p>
+      </article>
+      <article class="tarjeta tarjeta-pendiente p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana"
+                style="color:#475569; background:#E2E8F0; border-color:#CBD5E1;">Anexo A2</span>
+              <span class="text-xs font-semibold text-slate-400">En preparación</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">Cuadrados de Youden</h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 4.4 (material suplementario) · El cuadro latino al que le falta una fila.</p>
+          </div>
+        </div>
+        <p class="tarjeta-aviso mt-4">
+          <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>
+          El anexo A2 todavía no está publicado. Mientras tanto, el tema sigue disponible en el
+          material del semestre pasado: <a class="underline font-bold"
+            href="7_material_estudio_dcy.html">7_material_estudio_dcy.html</a>, en el formato antiguo.
+        </p>
+      </article>
+      <article class="tarjeta tarjeta-pendiente p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana"
+                style="color:#475569; background:#E2E8F0; border-color:#CBD5E1;">Anexo A3</span>
+              <span class="text-xs font-semibold text-slate-400">En preparación</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">Modelos de efectos aleatorios</h3>
+            <p class="mt-1 text-xs text-slate-500">Montgomery 3.9 y 13.1–13.6 · Cuando los niveles del factor son una muestra, no la lista completa.</p>
+          </div>
+        </div>
+        <p class="tarjeta-aviso mt-4">
+          <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>
+          El anexo A3 todavía no está publicado. Mientras tanto, el tema sigue disponible en el
+          material del semestre pasado: <a class="underline font-bold"
+            href="9_modulo_efectos_aleatorios.html">9_modulo_efectos_aleatorios.html</a>, en el formato antiguo.
+        </p>
+      </article>
+      </div>
+      <p class="mt-8 text-sm text-slate-500 max-w-3xl">
+        <i class="fas fa-box-archive mr-1" aria-hidden="true"></i>
+        El material de estudio anterior a esta versión está conservado en
+        <a class="underline font-semibold text-primary" href="_archivo/">_archivo/</a>. Los
+        7 documentos que un capítulo ya reemplaza siguen respondiendo en su
+        dirección de siempre: allí quedó una página que explica el cambio y lleva tanto al capítulo
+        nuevo como a la copia archivada, para que ningún enlace que ya circula se rompa.
+      </p>
+    </section>
+  </main>
+
+  <footer class="usta-header mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="usta-gradient p-2 rounded-lg shadow-md">
+            <i class="fas fa-flask text-white" aria-hidden="true"></i>
+          </div>
+          <div>
+            <p class="text-white font-semibold">Diseño de Experimentos</p>
+            <p class="text-xs text-white/60">Universidad El Bosque • Programa de Matemáticas y Ciencia de Datos •
+              2026-II</p>
+          </div>
+        </div>
+        <p class="text-xs text-white/60 max-w-md md:text-right">
+          Material de elaboración propia. De Montgomery se citan sección y ejemplo, y se usan sus tablas
+          numéricas con atribución; el texto, las figuras y el código son propios.
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

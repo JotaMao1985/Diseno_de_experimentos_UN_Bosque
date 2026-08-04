@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivo · Diseño de Experimentos</title>
+  <meta name="description" content="Material de estudio de Diseño de Experimentos anterior a la versión 2026-II, conservado sin cambios.">
+  <meta name="robots" content="noindex, follow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background-color: #F8FAFC; color: #1E293B; }
+    .usta-header { background: linear-gradient(180deg, #012820 0%, #001F18 100%); }
+    .usta-gradient { background: linear-gradient(140deg, #012820 0%, #FF6600 100%); }
+
+    .fila {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .fila a { color: #012820; font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(255, 102, 0, 0.4); }
+    .fila a:hover { border-bottom-color: #FF6600; }
+    .fila .reemplazo { font-size: 0.8rem; color: #64748B; }
+    a:focus-visible { outline: 3px solid rgba(255, 102, 0, 0.6); outline-offset: 3px; }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+  <header class="usta-header shadow-lg" role="banner">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
+      <div class="usta-gradient p-3 rounded-xl shadow-md">
+        <i class="fas fa-box-archive text-xl text-white" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="text-xl font-bold text-white leading-tight tracking-tight">Archivo</p>
+        <p class="text-xs text-white/70 font-medium tracking-wide">DISEÑO DE EXPERIMENTOS • UNIVERSIDAD EL BOSQUE</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12" id="contenido">
+    <h1 class="text-2xl md:text-3xl font-extrabold text-primary leading-tight">Material anterior a la versión 2026-II
+    </h1>
+    <p class="mt-4 text-slate-600 leading-relaxed max-w-2xl">
+      Estos 7 documentos se conservan <strong>tal y como estaban</strong>, sin ninguna edición, porque
+      hay enlaces a ellos circulando. Cada uno tiene ya su capítulo que lo reemplaza, con simuladores,
+      código en R y Python y autoevaluación.
+    </p>
+
+    <div class="mt-8">
+      <div class="fila">
+        <a href="1_Diseno_Clase_Repaso.html">Experimentos Comparativos Simples - Material de Estudio | El Bosque</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-1-introduccion-comparativos.html">capítulo 1: Introducción al diseño de experimentos y experimentos comparativos simples</a></span>
+      </div>
+      <div class="fila">
+        <a href="2_Diseno_Exp_Semana_I.html">Diseños Completamente Aleatorizados - Modelo de Efectos Fijos</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-2-dca-anova.html">capítulo 2: Diseño completamente al azar y análisis de varianza</a></span>
+      </div>
+      <div class="fila">
+        <a href="3_Dis_Exp_idoneidad_modelo.html">Diagnosis y Validación del Modelo en Diseño de Experimentos</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-4-supuestos-no-parametrica.html">capítulo 4: Verificación de supuestos y alternativas no paramétricas</a></span>
+      </div>
+      <div class="fila">
+        <a href="4_material_estudio_dbca.html">Diseños en Bloques Completos Aleatorizados - Material de Estudio El Bosque</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-5-bloques-completos.html">capítulo 5: Diseños en bloques completos al azar</a></span>
+      </div>
+      <div class="fila">
+        <a href="6_material_estudio_dcl.html">Diseños en Cuadros Latinos - Material de Estudio El Bosque</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-6-cuadros-latinos.html">capítulo 6: Cuadros latinos y cuadrados grecolatinos</a></span>
+      </div>
+      <div class="fila">
+        <a href="8_material_estudio_dcgl.html">Diseños en Cuadros Greco-Latinos - Material de Estudio El Bosque</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-6-cuadros-latinos.html">capítulo 6: Cuadros latinos y cuadrados grecolatinos</a></span>
+      </div>
+      <div class="fila">
+        <a href="10_Disenos_Factoriale.html">Diseños Factoriales — Material de Estudio El Bosque</a>
+        <span class="reemplazo">Hoy es el <a href="../capitulo-7-factoriales.html">capítulo 7: Diseños factoriales</a></span>
+      </div>
+    </div>
+
+    <p class="mt-10">
+      <a class="inline-flex items-center gap-2 text-primary font-semibold border-b-2 border-secondary/40 hover:border-secondary"
+        href="../index.html"><i class="fas fa-house" aria-hidden="true"></i> Ver el material del curso</a>
+    </p>
+  </main>
+
+  <footer class="usta-header mt-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <p class="text-white/70 text-xs">Universidad El Bosque • Programa de Matemáticas y Ciencia de Datos • 2026-II</p>
+    </div>
+  </footer>
+</body>
+
+</html>
