@@ -3003,6 +3003,242 @@
     }
 
     /* ------------------------------------------------------------------
+       Componente .entrega — la plantilla de respuesta del taller
+       ------------------------------------------------------------------
+       Lo estrena el Taller 1 del Corte I, y es el quinto componente propio
+       del curso después del árbol del capítulo 4, la rejilla del 5, la
+       jerarquía del 9 y los estratos del 10. A diferencia de los cuatro,
+       este no DIBUJA nada: es el sitio donde el estudiante escribe.
+
+       Por qué existe. La entrega del taller es digital (D11) y va con una
+       plantilla estructurada de campos rotulados (D12) con un tope de
+       palabras por bloque (D13). Una plantilla que solo se mira obliga a
+       copiarla a mano a otro documento, y ahí es donde se pierden campos:
+       el estudiante que responde tres de los cinco de S-1 casi nunca lo
+       hace por no saber, sino por haber perdido la cuenta. Escribiendo
+       dentro de la propia plantilla eso no puede pasar, y de paso el
+       contador de palabras deja de ser un aviso escrito para ser un dato.
+
+       Tres cosas que hereda y no quiere heredar. Es la lección del verde
+       sobre verde de la rejilla del capítulo 5 y de las viñetas del árbol
+       del 9, por tercera puerta:
+
+         (a) La preflight de Tailwind pone `border-width: 0` a TODO, así
+             que el `<textarea>` nace sin borde y hay que dárselo entero.
+         (b) Y le pasa `font-family: inherit` con `font-size: 100%`, que en
+             un textarea significa el tipo del sistema a 16 px: aquí se fija
+             el del curso explícitamente.
+         (c) El cuerpo del documento va justificado; dentro de una caja de
+             texto eso se ve mal en cuanto la línea es corta, así que la
+             ayuda y el rótulo van alineados a la izquierda.
+
+       Y una cuarta, que es la del capítulo 7 mirada desde otro sitio: el
+       reseteo `.entrega-campo label` vale (0,1,1) y le ganaría a cualquier
+       clase suelta que quisiera recolorear un rótulo. Por eso el color del
+       rótulo va en el reseteo y no en una clase aparte.
+       ------------------------------------------------------------------ */
+    .entrega {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #012820;
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.4rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .entrega-titulo {
+      margin: 0 0 0.9rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #012820;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .entrega-titulo i {
+      color: #FF6600;
+    }
+
+    /* Un bloque es la unidad a la que se le aplica el tope de palabras
+       (D13). En P2 hay dos por informe —uno por fallo declarado— y el tope
+       corre por separado en cada uno. */
+    .entrega-bloque {
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.9rem;
+      margin-top: 0.9rem;
+    }
+
+    .entrega-bloque:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .entrega-bloque-rotulo {
+      margin: 0 0 0.7rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #64748b;
+      text-align: left;
+    }
+
+    .entrega-campo {
+      margin-bottom: 0.9rem;
+    }
+
+    .entrega-campo label {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #012820;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .entrega-ayuda {
+      margin: 0 0 0.35rem 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #64748b;
+      text-align: left;
+    }
+
+    .entrega-texto {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #1f2937;
+      background: white;
+      border: 1px solid rgba(1, 40, 32, 0.25);
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      resize: vertical;
+    }
+
+    .entrega-texto:focus-visible {
+      outline: 2px solid #FF6600;
+      outline-offset: 1px;
+      border-color: #FF6600;
+    }
+
+    /* El contador va al pie del bloque, no del campo: el tope es del bloque.
+       No lleva `aria-live`: se actualiza en cada pulsación y un lector de
+       pantalla lo leería sobre lo que el estudiante está escribiendo, que es
+       peor que no leerlo. El aviso que sí importa —haberse pasado— viaja
+       además en el texto, no solo en el color. */
+    .entrega-contador {
+      margin: 0.15rem 0 0 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: #64748b;
+      text-align: right;
+    }
+
+    .entrega-contador.entrega-pasado {
+      color: #9a3412;
+      font-weight: 600;
+    }
+
+    .entrega-acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .entrega-boton {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #012820;
+      background: white;
+      border: 1px solid rgba(1, 40, 32, 0.35);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .entrega-boton:hover {
+      background: #012820;
+      color: white;
+    }
+
+    .entrega-estado {
+      margin: 0;
+      font-size: 0.78rem;
+      color: #64748b;
+      text-align: left;
+    }
+
+    /* El volcado de texto plano. Aparece al pulsar «reunir mi entrega» y
+       existe por una razón concreta: `navigator.clipboard` puede no estar
+       disponible al abrir el archivo desde el disco, y entonces el botón de
+       copiar no haría nada sin decirlo. Con el volcado delante, seleccionar
+       y copiar a mano siempre funciona. */
+    .entrega-volcado {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.8rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      line-height: 1.55;
+      color: #1f2937;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      padding: 0.7rem;
+      resize: vertical;
+    }
+
+    .entrega-volcado[hidden] {
+      display: none;
+    }
+
+    /* A 579 px el aviso de la rejilla vale igual aquí: nada puede salirse de
+       su caja redondeada. Los textarea ya van a `width: 100%` con
+       `box-sizing: border-box`, así que lo único que hay que apretar es el
+       espaciado y bajar los botones a una columna. */
+    @media (max-width: 768px) {
+      .entrega {
+        padding: 1rem;
+      }
+
+      .entrega-acciones {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .entrega-boton {
+        width: 100%;
+      }
+    }
+
+    .entrega-nota {
+      margin-top: 0.6rem;
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------------------------------------------
        Componente .mapa-estacional — mapa de calor mes x año
        ------------------------------------------------------------------
        Un gráfico de línea enseña el nivel; un correlograma, la estructura.

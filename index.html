@@ -146,6 +146,30 @@
 
     .tarjeta:hover .tarjeta-abrir { gap: 0.75rem; }
 
+    /* Un SEGUNDO enlace dentro de la tarjeta —hoy solo el cuadernillo del
+       taller—. El enlace del título cubre la tarjeta entera con un `::after`
+       en `inset: 0`, así que cualquier otro tiene que ponerse POR ENCIMA o el
+       clic se lo come la capa de arriba: `position: relative` y un `z-index`
+       mayor. No contradice el comentario del componente —que pide un solo
+       enlace y no seis trozos sueltos—: son dos acciones distintas, cada una
+       con su nombre entero, no fragmentos del mismo destino. */
+    .tarjeta-extra {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: 1.25rem;
+      color: #64748B;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(255, 102, 0, 0.35);
+    }
+
+    .tarjeta-extra:hover { color: #012820; border-bottom-color: #FF6600; }
+    .tarjeta-extra:focus-visible { outline: 3px solid rgba(255, 102, 0, 0.6); outline-offset: 3px; }
+
     /* La tarjeta de un anexo que TODAVÍA NO EXISTE. No es un enlace roto ni
        un enlace a ninguna parte: es texto, y lo dice. */
     .tarjeta-pendiente {
@@ -331,6 +355,28 @@
         </div>
         <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
               aria-hidden="true"></i></span></p>
+      </article>
+      <article class="tarjeta tarjeta-taller p-5">
+        <div class="flex items-start gap-4">
+          <div class="tarjeta-num"><i class="fas fa-gavel" aria-hidden="true"></i></div>
+          <div class="min-w-0 flex-grow">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="tarjeta-semana">Taller 1</span>
+              <span class="text-xs font-semibold text-primary">50 % de la nota del corte</span>
+            </div>
+            <h3 class="tarjeta-titulo mt-2 text-base">
+              <a href="taller-1-corte-i.html">Peritaje de análisis</a>
+            </h3>
+            <p class="mt-1 text-xs text-slate-500">Capítulos 1 a 4 · Peritar análisis ya hechos: no calcular, dictaminar.</p>
+          </div>
+        </div>
+        <div class="tarjeta-meta mt-4">
+          <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>7 módulos</span>
+          <span><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>13 figuras</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>195 min</span>
+        </div>
+        <p class="mt-4"><span class="tarjeta-abrir">Abrir el taller <i class="fas fa-arrow-right"
+              aria-hidden="true"></i></span><a class="tarjeta-extra" href="Taller_1_Corte_I.pdf"><i class="fas fa-file-pdf" aria-hidden="true"></i> Cuadernillo en PDF</a></p>
       </article>
       </div>
     </section>
