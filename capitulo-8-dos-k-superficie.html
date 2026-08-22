@@ -3586,6 +3586,92 @@
         padding: 0.42rem 0.4rem;
       }
     }
+    /* --------------------------------------------------------------------
+       Tipografía de la prosa — devolverle al documento lo que el preflight
+       de Tailwind se lleva por delante.
+
+       `cdn.tailwindcss.com` no es una hoja de estilo: es un script que
+       INYECTA la suya en la cabecera cuando se ejecuta, y queda por detrás
+       de este bloque, así que gana todo empate de especificidad. Medido
+       con getComputedStyle sobre el sitio PUBLICADO —en local el resultado
+       es el mismo, pero la medida que vale es esa—, el preflight declara:
+
+         menu, ol, ul  { list-style: none; margin: 0; padding: 0 }
+         h1..h6        { font-size: inherit; font-weight: inherit }
+         …h1..h6, hr, p, pre { margin: 0 }
+         a             { color: inherit; text-decoration: inherit }
+
+       y con eso mataba cinco cosas de este mismo archivo: las listas salían
+       sin viñeta y sin sangrar —una lista se leía como párrafos pegados—,
+       los `h3` a 14 px y peso 400 igual que el cuerpo (la barra naranja de
+       `h3::before` sí aparecía, que es lo que despistaba), los `h4` sueltos
+       lo mismo, los párrafos sin separación entre ellos, y un enlace de
+       contenido del color del texto y sin subrayado.
+
+       Por qué `main` delante y por qué NADA más. Los selectores del
+       preflight son de un solo elemento, (0,0,1). Anteponer `main` los sube
+       a (0,0,2): lo justo para ganarle al reseteo y **no lo bastante para
+       ganarle a ningún componente**, que van con clase y valen (0,1,1) o
+       más. Se probó también con `:not([class])` y hay que NO usarlo: sube a
+       (0,1,2) y entonces pisa a los suyos —el título de una caja pasaba de
+       `margin-top: 0` a 24 px, la lista de `.quiz-retro` sumaba 24 px de
+       margen sobre su propio `padding-left`, y `.arbol-hoja p` perdía el
+       suyo—. La especificidad se sube hasta donde hace falta y ni un paso
+       más.
+
+       No estrena ni una clase, así que el conjunto de selectores del curso
+       —el que mide la homogeneidad, D6— sigue siendo exactamente el mismo.
+
+       El contenido de un capítulo viaja dentro de plantillas inertes y se
+       clona en `main#main-content`, de modo que `main` alcanza toda la prosa. Los 43
+       enlaces de contenido del curso caen ahí dentro y ninguno lleva clase;
+       la bibliografía, que sí la lleva (`underline text-gold`), vive en el
+       pie, fuera de `main`, y no se entera de nada.
+       -------------------------------------------------------------------- */
+    main ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    main ol {
+      list-style-type: decimal;
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    main p {
+      margin-bottom: 1rem;
+    }
+
+    main h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    main h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* El enlace de contenido. El dorado de la bibliografía (#FFC24B) no sirve
+       sobre blanco —1,8:1, muy por debajo del 4,5:1 de la WCAG—; el verde del
+       curso da 15:1. El subrayado es la mitad que importa: sin él, un enlace
+       verde sobre texto gris se confunde con una negrita. */
+    main a {
+      color: #012820;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
+    main a:hover {
+      color: #FF6600;
+    }
+
   </style>
 </head>
 
