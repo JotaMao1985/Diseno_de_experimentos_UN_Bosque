@@ -9747,12 +9747,12 @@ const SOLUCIONES_CAP9 = {"capitulo":9,"ejercicios":[{"id":"EG-33","capitulo":9,"
           'salen <strong>idénticas</strong>. ¿Qué demuestra eso?',
         pista: 'Piensa qué información contiene la etiqueta «envase 2» y de qué depende su significado.',
         opciones: [
-          { texto: 'Que los envases están anidados en la marca: su numeración no significa nada fuera de su marca.', correcta: true,
-            retro: 'Exacto, y es la prueba operativa del módulo 9.1. Si la etiqueta «envase 2» tuviera significado propio —si fuera el mismo envase para las tres marcas— cambiarla movería las medias que se promedian y con ellas las sumas de cuadrados. Que no se mueva nada es la definición de estar anidado, escrita como un experimento que se puede ejecutar en cinco líneas.' },
           { texto: 'Que el programa está calculando mal, porque renumerar un factor siempre cambia el resultado.', correcta: false,
             retro: 'No: renumerar un factor <strong>cruzado</strong> sí lo cambia, y renumerar uno anidado no. Sobre el cuadro latino del capítulo 6, renumerar los lotes dentro de cada columna mueve su suma de cuadrados de 10.40 a 288.00 cuando la real es 68.00. La diferencia entre los dos casos es exactamente lo que la prueba mide.' },
           { texto: 'Que no hay interacción marca × envase, porque su suma de cuadrados sale cero.', correcta: false,
             retro: 'Dos cosas, y las dos importan. La interacción no sale cero: en un análisis factorial sobre estos datos saldría un número perfectamente respetable, con su valor $p$. Y no es que «no haya interacción» en el sentido de que valga cero, es que <strong>no se puede ni formular</strong>: no hay ningún envase que las tres marcas compartan.' },
+          { texto: 'Que los envases están anidados en la marca: su numeración no significa nada fuera de su marca.', correcta: true,
+            retro: 'Exacto, y es la prueba operativa del módulo 9.1. Si la etiqueta «envase 2» tuviera significado propio —si fuera el mismo envase para las tres marcas— cambiarla movería las medias que se promedian y con ellas las sumas de cuadrados. Que no se mueva nada es la definición de estar anidado, escrita como un experimento que se puede ejecutar en cinco líneas.' },
           { texto: 'Que las tres marcas son equivalentes, ya que el resultado no depende del orden.', correcta: false,
             retro: 'La prueba de renumeración no dice nada sobre las marcas: se hizo <em>dentro</em> de cada marca, dejando las marcas donde estaban. Que la estructura sea anidada y que las marcas difieran o no son dos preguntas independientes; la segunda la responde el $F$ del módulo 9.5, con el denominador correcto.' }
         ]
@@ -9809,10 +9809,10 @@ const SOLUCIONES_CAP9 = {"capitulo":9,"ejercicios":[{"id":"EG-33","capitulo":9,"
           '¿Cuál es el $F$ correcto para probar $H_0: \\sigma^2_\\tau = 0$?',
         pista: 'Escribe qué queda de $E(MS_A)$ cuando la hipótesis nula es cierta, y busca qué fila tiene esa esperanza.',
         opciones: [
-          { texto: '$F = 1205.8889 / 352.2083 = 3.4238$, con 3 y 8 grados de libertad.', correcta: true,
-            retro: 'Exacto. Bajo $H_0$, $E(MS_A) = \\sigma^2 + 2\\sigma^2_\\beta$, que es exactamente $E(MS_{B(A)})$: los dos cuadrados medios estiman lo mismo y su cociente es una $F$ de verdad. Da $p = 0.0728$, o sea en el límite. La regla de una línea: <strong>el denominador es el término cuya esperanza es la del objetivo menos su propia componente</strong>.' },
           { texto: '$F = 1205.8889 / 84.5 = 14.2709$, con 3 y 12 grados de libertad.', correcta: false,
             retro: 'Éste es el que devuelve por defecto cualquier programa al que no se le haya dicho que el factor anidado es aleatorio, y da $p = 0.000291$: muy significativo. Pero bajo $H_0$ la esperanza del numerador sigue llevando $2\\sigma^2_\\beta$ y la del denominador no, así que el cociente es una $F$ <em>multiplicada</em> por un factor mayor que uno. El valor $p$ que sale de ahí no tiene interpretación — y como el error es el cuadrado medio más pequeño de la tabla, el error casi siempre va en la dirección de inflar.' },
+          { texto: '$F = 1205.8889 / 352.2083 = 3.4238$, con 3 y 8 grados de libertad.', correcta: true,
+            retro: 'Exacto. Bajo $H_0$, $E(MS_A) = \\sigma^2 + 2\\sigma^2_\\beta$, que es exactamente $E(MS_{B(A)})$: los dos cuadrados medios estiman lo mismo y su cociente es una $F$ de verdad. Da $p = 0.0728$, o sea en el límite. La regla de una línea: <strong>el denominador es el término cuya esperanza es la del objetivo menos su propia componente</strong>.' },
           { texto: '$F = 352.2083 / 84.5 = 4.1681$, con 8 y 12 grados de libertad.', correcta: false,
             retro: 'Ése es un $F$ correcto, pero prueba otra hipótesis: $H_0: \\sigma^2_\\beta = 0$, la variación del factor anidado. Vale 4.1681 con $p = 0.0134$, así que sí hay variación entre niveles anidados. La pregunta era por $\\sigma^2_\\tau$.' },
           { texto: 'No hay prueba $F$ exacta: hay que construir un denominador sintético por Satterthwaite.', correcta: false,
@@ -9857,14 +9857,14 @@ const SOLUCIONES_CAP9 = {"capitulo":9,"ejercicios":[{"id":"EG-33","capitulo":9,"
           'la de Wald es <strong>0.949</strong>. ¿Cuál es la lectura correcta de ese extremo?',
         pista: 'Pregúntate qué signo tiene siempre un intervalo de Satterthwaite, y qué se le suele reprochar al de Wald.',
         opciones: [
-          { texto: 'En la frontera no sirve ninguno de los dos: Satterthwaite falla porque es estrictamente positivo, y Wald acierta solo por el defecto que se le reprocha.', correcta: true,
-            retro: 'Exacto, y es un resultado, no una anécdota. El intervalo de Satterthwaite se construye como $f\\hat\\theta/\\chi^2$, que es estrictamente positivo: si el valor verdadero es cero, no puede contenerlo <em>nunca</em>. Y el de Wald cubre el cero precisamente porque es simétrico y su límite inferior baja de cero — que es justo lo que se le critica cuando el componente es grande. Un intervalo que acierta por un defecto no es un intervalo bueno.' },
           { texto: 'Que el intervalo de Wald es preferible siempre, porque su cobertura está más cerca del nominal.', correcta: false,
             retro: 'Solo en ese extremo. Mira el resto del recorrido: la cobertura de Wald <em>baja</em> hasta 0.864 conforme crece el componente, mientras que la de Satterthwaite sube hasta 0.969. Ningún método domina al otro en todo el rango, y elegir mirando solo un extremo es exactamente el tipo de conclusión que este gráfico existe para evitar.' },
           { texto: 'Que la simulación tiene un error, porque una cobertura de 0 es imposible con 3000 réplicas.', correcta: false,
             retro: 'Es perfectamente posible, y no por azar: es <strong>determinista</strong>. Un intervalo cuyos dos extremos son positivos por construcción no contiene al cero en ninguna réplica, así que la cobertura no es «aproximadamente cero», es cero exacto. Ése es el interés del punto.' },
           { texto: 'Que con el componente en cero hay que usar el intervalo exacto por chi-cuadrado, que se mantiene en 0.95.', correcta: false,
-            retro: 'Cuidado con qué acota ese intervalo. El exacto por $\\chi^2$ es para $\\sigma^2$ —el error, que es la esperanza de <em>un solo</em> cuadrado medio— y por eso su cobertura es plana. No sirve para el componente anidado, que es una <em>diferencia</em> de dos cuadrados medios y no tiene distribución $\\chi^2$ escalada. Son intervalos para parámetros distintos.' }
+            retro: 'Cuidado con qué acota ese intervalo. El exacto por $\\chi^2$ es para $\\sigma^2$ —el error, que es la esperanza de <em>un solo</em> cuadrado medio— y por eso su cobertura es plana. No sirve para el componente anidado, que es una <em>diferencia</em> de dos cuadrados medios y no tiene distribución $\\chi^2$ escalada. Son intervalos para parámetros distintos.' },
+          { texto: 'En la frontera no sirve ninguno de los dos: Satterthwaite falla porque es estrictamente positivo, y Wald acierta solo por el defecto que se le reprocha.', correcta: true,
+            retro: 'Exacto, y es un resultado, no una anécdota. El intervalo de Satterthwaite se construye como $f\\hat\\theta/\\chi^2$, que es estrictamente positivo: si el valor verdadero es cero, no puede contenerlo <em>nunca</em>. Y el de Wald cubre el cero precisamente porque es simétrico y su límite inferior baja de cero — que es justo lo que se le critica cuando el componente es grande. Un intervalo que acierta por un defecto no es un intervalo bueno.' }
         ],
         dibujar: canvas => {
           const D = DATOS_CAP9.simuladores['intervalos-componentes'];

@@ -8786,10 +8786,10 @@ const SOLUCIONES_CAP1 = {"capitulo":1,"fecha_corte":"2026-07-31","semilla":2026,
           'confundirse». El horno se va calentando durante la jornada. ¿Cuál es el problema?',
         pista: 'Pregúntate si, al ver una diferencia entre grupos, sabrías atribuirla al tratamiento.',
         opciones: [
-          { texto: 'El efecto de la formulación queda confundido con la deriva del horno: cualquier diferencia observada puede ser de una cosa o de la otra.', correcta: true,
-            retro: 'Exacto. Y no hay análisis estadístico que arregle esto después: el sesgo se introdujo al asignar. Es justo lo que mide el simulador del módulo 1.3, donde la asignación sistemática con deriva rechaza H₀ casi siempre aunque no haya ningún efecto.' },
           { texto: 'El tamaño de muestra es demasiado pequeño para detectar el efecto.', correcta: false,
             retro: 'El tamaño de muestra es un problema distinto —el del módulo 1.8— y aquí no es lo que falla: con 10 por grupo se puede detectar un efecto de 2 desviaciones sin dificultad. El problema es que la diferencia observada no sería atribuible al tratamiento.' },
+          { texto: 'El efecto de la formulación queda confundido con la deriva del horno: cualquier diferencia observada puede ser de una cosa o de la otra.', correcta: true,
+            retro: 'Exacto. Y no hay análisis estadístico que arregle esto después: el sesgo se introdujo al asignar. Es justo lo que mide el simulador del módulo 1.3, donde la asignación sistemática con deriva rechaza H₀ casi siempre aunque no haya ningún efecto.' },
           { texto: 'No se han replicado los tratamientos.', correcta: false,
             retro: 'Sí se han replicado: hay 10 unidades experimentales por tratamiento. Lo que falta no es replicación sino aleatorización, que son principios distintos y resuelven problemas distintos.' },
           { texto: 'Ninguno: al ser el mismo horno para todos, la deriva afecta por igual a los dos grupos.', correcta: false,
@@ -8872,14 +8872,14 @@ const SOLUCIONES_CAP1 = {"capitulo":1,"fecha_corte":"2026-07-31","semilla":2026,
           '$(-0.545,\\, -0.011)$ kgf/cm². ¿Cuál de estas lecturas es correcta?',
         pista: 'Fíjate en dónde está el cero y en qué tan cerca está de uno de los extremos.',
         opciones: [
-          { texto: 'Se rechaza $H_0$ al 5 %, pero los datos son compatibles tanto con una pérdida casi nula como con una diez veces mayor.', correcta: true,
-            retro: 'Justo. El intervalo no contiene al cero —de ahí el rechazo, por la dualidad del módulo 1.6—, pero su extremo superior está a una centésima del cero. Significancia estadística con muy poca precisión: eso es lo que motivó el cálculo de potencia del módulo 1.8.' },
           { texto: 'Hay un 95 % de probabilidad de que la diferencia verdadera esté entre −0.545 y −0.011.', correcta: false,
             retro: 'Esta es la lectura que la teoría frecuentista no permite: la diferencia verdadera es un número fijo, no una variable aleatoria. Lo aleatorio son los extremos del intervalo. La afirmación correcta es sobre el <em>procedimiento</em>: el 95 % de los intervalos construidos así contienen al parámetro.' },
           { texto: 'Como el intervalo es estrecho, la estimación es precisa.', correcta: false,
             retro: 'Es al revés: el intervalo mide 0.534 kgf/cm² de ancho para una diferencia estimada de 0.278. La incertidumbre es casi el doble del efecto estimado, que es lo contrario de precisión.' },
           { texto: 'No se puede concluir nada porque el intervalo casi toca el cero.', correcta: false,
-            retro: 'Sí se concluye algo: se rechaza $H_0$ al 5 %. Lo que el intervalo añade es que esa conclusión es frágil y que el experimento no permite acotar bien la magnitud. «Frágil» no es lo mismo que «nada».' }
+            retro: 'Sí se concluye algo: se rechaza $H_0$ al 5 %. Lo que el intervalo añade es que esa conclusión es frágil y que el experimento no permite acotar bien la magnitud. «Frágil» no es lo mismo que «nada».' },
+          { texto: 'Se rechaza $H_0$ al 5 %, pero los datos son compatibles tanto con una pérdida casi nula como con una diez veces mayor.', correcta: true,
+            retro: 'Justo. El intervalo no contiene al cero —de ahí el rechazo, por la dualidad del módulo 1.6—, pero su extremo superior está a una centésima del cero. Significancia estadística con muy poca precisión: eso es lo que motivó el cálculo de potencia del módulo 1.8.' }
         ]
       },
       {
@@ -8889,12 +8889,12 @@ const SOLUCIONES_CAP1 = {"capitulo":1,"fecha_corte":"2026-07-31","semilla":2026,
           'puntas sobre la misma probeta es $r = 0.868$. ¿Qué implica para el diseño?',
         pista: 'Recuerda que la varianza del estimador pareado es $(1-\\rho)$ veces la del independiente.',
         opciones: [
-          { texto: 'Que bloquear por probeta compensa con creces los grados de libertad que cuesta: el error estándar cae a menos de la mitad.', correcta: true,
-            retro: 'Correcto: con $\\rho = 0.868$ la varianza del estimador se multiplica por $1-\\rho = 0.132$, y el error estándar pasa de 1.036 a 0.379. Pagar 9 grados de libertad en vez de 18 sale barato a ese precio.' },
           { texto: 'Que las dos puntas dan lecturas prácticamente iguales, así que no hace falta la prueba.', correcta: false,
             retro: 'La correlación alta dice que las probetas <em>duras</em> dan lecturas altas con las dos puntas, no que las puntas coincidan. Una punta podría leer sistemáticamente 3 unidades por encima y la correlación seguiría siendo 0.868.' },
           { texto: 'Que hay un problema de multicolinealidad en el modelo.', correcta: false,
             retro: 'La multicolinealidad es un problema entre variables <em>predictoras</em> de un modelo de regresión. Aquí la correlación es entre dos mediciones de la respuesta sobre el mismo bloque, y no es un problema sino exactamente lo que hace útil al bloqueo.' },
+          { texto: 'Que bloquear por probeta compensa con creces los grados de libertad que cuesta: el error estándar cae a menos de la mitad.', correcta: true,
+            retro: 'Correcto: con $\\rho = 0.868$ la varianza del estimador se multiplica por $1-\\rho = 0.132$, y el error estándar pasa de 1.036 a 0.379. Pagar 9 grados de libertad en vez de 18 sale barato a ese precio.' },
           { texto: 'Que el diseño pareado tendrá menos potencia que el independiente.', correcta: false,
             retro: 'Eso pasa cuando $\\rho$ es <em>pequeña</em>, por debajo de 0.2 aproximadamente, como en el ejercicio de los calibradores. Con 0.868 ocurre lo contrario. El simulador del módulo 1.9 localiza el cruce.' }
         ]

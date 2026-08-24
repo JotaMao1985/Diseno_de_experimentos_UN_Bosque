@@ -8106,10 +8106,10 @@ const DATOS_ANEXO1 = {"catalizador":{"nombre":"Tiempo de reacción con cuatro ca
           'comparar directamente?',
         pista: 'Mira en qué bloques estuvo cada uno, y cuánto vale el total de cada bloque.',
         opciones: [
-          { texto: 'Porque cada tratamiento se corrió en un conjunto distinto de bloques, así que su total lleva dentro el aporte de esos bloques y no el de los otros.', correcta: true,
-            retro: 'Exacto. El tratamiento 4 no pasó por el bloque 2, que es el de total más alto ($\\mathbf{224}$), y el tratamiento 1 sí. Comparar los totales crudos es comparar tratamientos <em>y</em> bloques a la vez. La corrección es la ecuación 4.34: a cada total se le resta la parte que le pusieron sus bloques, y el resultado son los $Q_i$.' },
           { texto: 'Porque no tienen el mismo número de observaciones, así que hay que dividir cada uno entre su número de corridas antes de compararlos.', correcta: false,
             retro: 'No: en un BIBD todos los tratamientos se corren el mismo número de veces, $r$. Aquí $r = \\mathbf{3}$ para los cuatro, y por eso los totales <em>sí</em> son comparables en tamaño. El problema no es cuántas observaciones tiene cada uno sino <strong>de qué bloques</strong> vienen.' },
+          { texto: 'Porque cada tratamiento se corrió en un conjunto distinto de bloques, así que su total lleva dentro el aporte de esos bloques y no el de los otros.', correcta: true,
+            retro: 'Exacto. El tratamiento 4 no pasó por el bloque 2, que es el de total más alto ($\\mathbf{224}$), y el tratamiento 1 sí. Comparar los totales crudos es comparar tratamientos <em>y</em> bloques a la vez. La corrección es la ecuación 4.34: a cada total se le resta la parte que le pusieron sus bloques, y el resultado son los $Q_i$.' },
           { texto: 'Porque el diseño está desbalanceado y hay que usar sumas de cuadrados de tipo III.', correcta: false,
             retro: 'El diseño está perfectamente <strong>balanceado</strong>: cada pareja de tratamientos coincide en $\\lambda = \\mathbf{2}$ bloques, que es la definición de BIBD. Lo que se perdió no es el balance sino la <strong>ortogonalidad</strong> entre tratamientos y bloques, y de eso salen las dos particiones del módulo 5.' },
           { texto: 'Porque hay valores faltantes, y antes de nada hay que imputarlos con la fórmula del capítulo 5.', correcta: false,
@@ -8124,14 +8124,14 @@ const DATOS_ANEXO1 = {"catalizador":{"nombre":"Tiempo de reacción con cuatro ca
           'unos valores que son $1$ en algunas posiciones y $2$ en otras. ¿Qué diseño es?',
         pista: '¿Qué cuenta exactamente un elemento fuera de la diagonal de $\\mathbf{N}\\mathbf{N}\'$?',
         opciones: [
-          { texto: 'Un diseño en bloques incompletos que NO es balanceado: hay parejas que coinciden más veces que otras.', correcta: true,
-            retro: 'Correcto. El elemento $(i, p)$ de $\\mathbf{N}\\mathbf{N}\'$ cuenta los bloques donde coinciden los tratamientos $i$ y $p$. Que ese número sea <strong>el mismo</strong> para todas las parejas <em>es</em> la definición de balanceado; aquí no lo es, así que las fórmulas cerradas de §4.4.1 no se pueden usar y hay que resolver $\\mathbf{C}\\hat{\\boldsymbol\\tau} = \\mathbf{Q}$ invirtiendo de verdad.' },
           { texto: 'Un BIBD con $r = 3$ y $\\lambda = 1.5$, promediando los dos valores.', correcta: false,
             retro: '$\\lambda$ <strong>cuenta bloques</strong>: es el número de veces que dos tratamientos aparecen juntos. No se puede promediar, igual que no existe un diseño donde una pareja coincida vez y media. Ésa es exactamente la razón por la que el problema 4.54 no tiene solución, con $\\lambda = 24/7 = \\mathbf{3.42857}$.' },
           { texto: 'Un DBCA del capítulo 5, porque la diagonal es constante.', correcta: false,
             retro: 'En un DBCA cada tratamiento está en <em>todos</em> los bloques, así que toda pareja coincide en los $b$ bloques y $\\mathbf{N}\\mathbf{N}\'$ es la matriz llena de $b$: diagonal y fuera de ella, el mismo número. Aquí la diagonal vale 3 y lo de fuera vale 1 o 2, así que hay bloques donde no está todo el mundo.' },
           { texto: 'Un cuadrado de Youden, porque bloquea en dos direcciones.', correcta: false,
-            retro: 'La matriz de incidencia solo registra <em>qué tratamiento está en qué bloque</em>; no sabe nada de una segunda dirección de bloqueo. Un cuadrado de Youden es un BIBD —con su $\\lambda$ constante— que además ordena las unidades dentro del bloque; ese segundo bloqueo no se ve en $\\mathbf{N}$. Es el tema del anexo A2.' }
+            retro: 'La matriz de incidencia solo registra <em>qué tratamiento está en qué bloque</em>; no sabe nada de una segunda dirección de bloqueo. Un cuadrado de Youden es un BIBD —con su $\\lambda$ constante— que además ordena las unidades dentro del bloque; ese segundo bloqueo no se ve en $\\mathbf{N}$. Es el tema del anexo A2.' },
+          { texto: 'Un diseño en bloques incompletos que NO es balanceado: hay parejas que coinciden más veces que otras.', correcta: true,
+            retro: 'Correcto. El elemento $(i, p)$ de $\\mathbf{N}\\mathbf{N}\'$ cuenta los bloques donde coinciden los tratamientos $i$ y $p$. Que ese número sea <strong>el mismo</strong> para todas las parejas <em>es</em> la definición de balanceado; aquí no lo es, así que las fórmulas cerradas de §4.4.1 no se pueden usar y hay que resolver $\\mathbf{C}\\hat{\\boldsymbol\\tau} = \\mathbf{Q}$ invirtiendo de verdad.' }
         ]
       },
       {
@@ -8223,12 +8223,12 @@ const DATOS_ANEXO1 = {"catalizador":{"nombre":"Tiempo de reacción con cuatro ca
           'orden de mayor a menor es 4, 1, 3, 2; ajustado es 4, 3, 2, 1. ¿Qué se concluye?',
         pista: 'Pregúntate qué tendría que pasar con los bloques del catalizador 1 para que su media cruda esté inflada.',
         opciones: [
-          { texto: 'Que al catalizador 1 le tocaron bloques generosos: su media cruda está inflada por ellos, y al descontarlos pasa de segundo a último.', correcta: true,
-            retro: 'Exacto. La media cruda del catalizador 1 vale $\\mathbf{72.6667}$ y la ajustada $\\mathbf{71.375}$: baja porque corrió en los bloques 1, 2 y 4, que incluyen el de total más alto ($\\mathbf{224}$). El catalizador 3 ni se mueve —$\\mathbf{72}$ en las dos— y aun así <em>adelanta</em> al 1, porque el que bajó fue el otro. El ajuste no es cosmético: cambia el orden en los cuatro conjuntos del anexo.' },
           { texto: 'Que el ajuste introduce sesgo, porque mueve las medias respecto de lo que dicen los datos.', correcta: false,
             retro: 'Al revés. La media cruda es la que está sesgada: mezcla el efecto del tratamiento con el de los bloques que le tocaron. El estimador ajustado es el insesgado bajo el modelo — es la solución de mínimos cuadrados, y el precálculo lo comprueba por dos caminos distintos.' },
           { texto: 'Que hay que rechazar el diseño y repetir el experimento con bloques completos.', correcta: false,
             retro: 'No hay nada que rechazar: que las medias crudas y las ajustadas difieran es <em>lo normal</em> en un diseño no ortogonal, y para eso existe el ajuste. Repetir con bloques completos no era una opción — el lote solo daba para tres corridas, que es de donde salió el diseño.' },
+          { texto: 'Que al catalizador 1 le tocaron bloques generosos: su media cruda está inflada por ellos, y al descontarlos pasa de segundo a último.', correcta: true,
+            retro: 'Exacto. La media cruda del catalizador 1 vale $\\mathbf{72.6667}$ y la ajustada $\\mathbf{71.375}$: baja porque corrió en los bloques 1, 2 y 4, que incluyen el de total más alto ($\\mathbf{224}$). El catalizador 3 ni se mueve —$\\mathbf{72}$ en las dos— y aun así <em>adelanta</em> al 1, porque el que bajó fue el otro. El ajuste no es cosmético: cambia el orden en los cuatro conjuntos del anexo.' },
           { texto: 'Que los bloques no tienen efecto, porque si lo tuvieran las dos medias coincidirían.', correcta: false,
             retro: 'Justo lo contrario: si los bloques no tuvieran efecto, las dos medias coincidirían y el ajuste no movería nada. Que difieran es la señal de que los bloques importan — y en este experimento importan mucho: $F$ de bloques ajustados $= \\mathbf{33.8889}$ con $p = \\mathbf{0.000952758}$.' }
         ],

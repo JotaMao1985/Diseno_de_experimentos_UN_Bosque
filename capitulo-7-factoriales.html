@@ -9498,12 +9498,12 @@ const SOLUCIONES_CAP7 = {"capitulo":7,"fecha_corte":"2026-08-03","semilla":2026,
           'se explican las dos cosas a la vez?',
         pista: 'Compara la amplitud de la interacción con la desviación típica del error, y piensa qué haría falta para que la prueba la distinguiese del ruido.',
         opciones: [
-          { texto: 'La interacción existe y está estimada en 6.67, pero es pequeña frente al error y con 12 grados de libertad la prueba no tiene potencia para distinguirla de cero.', correcta: true,
-            retro: 'Exacto, y es la lección del ejercicio EG-28. «No significativa» significa «no hemos podido distinguirla del ruido», no «es cero». De hecho, el mismo patrón multiplicado por <strong>1.754</strong> ya sería significativo con este mismo diseño: no ha cambiado la forma de la interacción, solo su tamaño relativo al error.' },
           { texto: 'Que la prueba no rechace demuestra que las rectas son paralelas en la población, y lo que se ve en el gráfico es solo ruido muestral.', correcta: false,
             retro: 'Una prueba que no rechaza nunca demuestra la hipótesis nula: solo dice que los datos son compatibles con ella. Y aquí son compatibles con muchas otras cosas — con una interacción de amplitud 6.67, por ejemplo, que es la que se estimó. Confundir «no rechazo» con «es cero» es el error clásico, y con 12 grados de libertad de error es especialmente injustificado.' },
           { texto: 'Que las rectas no se crucen prueba que no hay interacción; lo que se ve es solo un efecto de escala del eje vertical.', correcta: false,
             retro: 'Cruzarse es el caso extremo, no la definición. Hay interacción en cuanto las rectas <strong>dejan de ser paralelas</strong>, y aquí no lo son: el vidrio 1 sube 16.67 entre los fósforos 1 y 2 mientras el vidrio 2 sube 10. El escenario «interacción sin cruce» del simulador del módulo 7.12 es exactamente este caso.' },
+          { texto: 'La interacción existe y está estimada en 6.67, pero es pequeña frente al error y con 12 grados de libertad la prueba no tiene potencia para distinguirla de cero.', correcta: true,
+            retro: 'Exacto, y es la lección del ejercicio EG-28. «No significativa» significa «no hemos podido distinguirla del ruido», no «es cero». De hecho, el mismo patrón multiplicado por <strong>1.754</strong> ya sería significativo con este mismo diseño: no ha cambiado la forma de la interacción, solo su tamaño relativo al error.' },
           { texto: 'Hay un error en el análisis: con dos rectas claramente distintas, el $F$ de la interacción tendría que ser mayor que 1.263.', correcta: false,
             retro: 'Las dos rectas son claramente distintas <em>en altura</em> —eso es el efecto principal del vidrio, que da $F = 273.79$ y se lleva el 89.47 % de la suma de cuadrados— pero no en <em>forma</em>, que es lo único que mide la interacción. El gráfico impresiona por lo primero y la prueba mide lo segundo.' }
         ],
@@ -9540,10 +9540,10 @@ const SOLUCIONES_CAP7 = {"capitulo":7,"fecha_corte":"2026-08-03","semilla":2026,
           'concluir?',
         pista: 'Pregúntate qué forma concreta de interacción está probando ese único grado de libertad, y qué formas quedan fuera.',
         opciones: [
-          { texto: 'Que no hay evidencia de interacción <em>de la forma</em> $\\gamma\\tau_i\\beta_j$, y por tanto el modelo aditivo se puede usar; otras formas de interacción no se han probado.', correcta: true,
-            retro: 'Exacto, y las dos mitades de la frase importan. La prueba postula que la interacción es proporcional al producto de los efectos principales, y eso es <strong>un</strong> parámetro y por tanto un grado de libertad. Una interacción de otra forma se le escapa entera, y con $n = 1$ no hay manera de detectarla: ese es el precio de no replicar.' },
           { texto: 'Que no hay ninguna interacción entre los dos factores, porque la prueba lo ha comprobado.', correcta: false,
             retro: 'Es más de lo que la prueba puede decir. Con 15 observaciones y 15 parámetros, el modelo con interacción completa está saturado: la interacción general <strong>no es estimable</strong>. Lo único que se ha probado es la componente multiplicativa, y quedarse con «no hay interacción» convierte una prueba muy específica en una conclusión general.' },
+          { texto: 'Que no hay evidencia de interacción <em>de la forma</em> $\\gamma\\tau_i\\beta_j$, y por tanto el modelo aditivo se puede usar; otras formas de interacción no se han probado.', correcta: true,
+            retro: 'Exacto, y las dos mitades de la frase importan. La prueba postula que la interacción es proporcional al producto de los efectos principales, y eso es <strong>un</strong> parámetro y por tanto un grado de libertad. Una interacción de otra forma se le escapa entera, y con $n = 1$ no hay manera de detectarla: ese es el precio de no replicar.' },
           { texto: 'Que el experimento es inválido, porque sin réplicas no se puede estimar $\\sigma^2$.', correcta: false,
             retro: 'El experimento es perfectamente válido; lo que hace falta es un supuesto extra. Si se acepta la aditividad, $SS_{AB}$ hace de error y todo funciona — y de hecho ese es exactamente el modelo del DBCA del capítulo 5, que lleva cinco capítulos usándose sin problemas.' },
           { texto: 'Que hay que aumentar $\\alpha$ a 0.10 para tener más potencia, porque con 7 grados de libertad la prueba es muy conservadora.', correcta: false,
@@ -9601,14 +9601,14 @@ const SOLUCIONES_CAP7 = {"capitulo":7,"fecha_corte":"2026-08-03","semilla":2026,
           'independiente y el lineal coinciden, y el cuadrático no. ¿Qué se puede afirmar?',
         pista: 'Cuenta parámetros y puntos. ¿Cuántas parábolas pasan exactamente por tres puntos dados?',
         opciones: [
-          { texto: 'Que la tabla tiene una errata: con tres puntos y tres parámetros el ajuste es saturado, así que los coeficientes están determinados y no hay margen de discusión.', correcta: true,
-            retro: 'Exacto, y es el razonamiento que destapó la errata de la Tabla 5.15. Por tres puntos con abscisas distintas pasa <strong>una y solo una</strong> parábola: no hay ajuste que discutir, hay un sistema lineal con solución única. Que el independiente y el lineal sí coincidan lo cierra todavía más, porque descarta que se trate de otra parametrización o de otro centrado.' },
           { texto: 'Que el libro usó un método de ajuste distinto —mínimos cuadrados ponderados, por ejemplo— y por eso el cuadrático difiere.', correcta: false,
             retro: 'Con un modelo saturado <strong>todos</strong> los métodos de ajuste dan lo mismo: el residuo es cero para cualquier ponderación, así que ponderar no cambia nada. La explicación de «otro método» solo funcionaría si sobraran puntos, y aquí no sobra ninguno.' },
           { texto: 'Que el libro centró la variable y nosotros no, lo que cambia el coeficiente cuadrático.', correcta: false,
             retro: 'Centrar cambia el término independiente y el lineal, pero <strong>no</strong> el cuadrático: con $u = x - c$, el término $b_2 u^2 = b_2(x-c)^2$ deja $b_2$ intacto y reparte el resto entre los otros dos coeficientes. Aquí pasa justo lo contrario de lo que esta opción propone —coinciden el independiente y el lineal, y falla el cuadrático—, así que el centrado queda descartado. El centrado sí explica otra cosa del mismo capítulo: por qué el intercepto de la Tabla 5.15 vale 107.5833 y no la gran media 105.5278.' },
           { texto: 'Que hay que recalcularlo con más decimales, porque la diferencia puede ser de redondeo.', correcta: false,
-            retro: 'No es cuestión de decimales: en la Tabla 5.15 el libro imprime $+0.41627$ donde el valor es $-0.0056612$. Ni siquiera coincide el signo, y con el coeficiente impreso la curva predeciría más de 6500 horas donde la media observada es 49.5. Un redondeo no hace eso.' }
+            retro: 'No es cuestión de decimales: en la Tabla 5.15 el libro imprime $+0.41627$ donde el valor es $-0.0056612$. Ni siquiera coincide el signo, y con el coeficiente impreso la curva predeciría más de 6500 horas donde la media observada es 49.5. Un redondeo no hace eso.' },
+          { texto: 'Que la tabla tiene una errata: con tres puntos y tres parámetros el ajuste es saturado, así que los coeficientes están determinados y no hay margen de discusión.', correcta: true,
+            retro: 'Exacto, y es el razonamiento que destapó la errata de la Tabla 5.15. Por tres puntos con abscisas distintas pasa <strong>una y solo una</strong> parábola: no hay ajuste que discutir, hay un sistema lineal con solución única. Que el independiente y el lineal sí coincidan lo cierra todavía más, porque descarta que se trate de otra parametrización o de otro centrado.' }
         ]
       }
     ];

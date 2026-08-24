@@ -9292,10 +9292,10 @@ const SOLUCIONES_CAP2 = {"capitulo":2,"fecha_corte":"2026-08-01","semilla":2026,
           ], { tituloX: 'Valor del estadístico F', tituloY: 'Densidad' });
         },
         opciones: [
-          { texto: 'No se rechaza $H_0$: los datos son compatibles con que las cuatro medias sean iguales, pero eso no demuestra que lo sean.', correcta: true,
-            retro: 'Correcto, y las dos mitades de la frase importan. $F_0 = 2.4 < 3.24$, así que no hay evidencia suficiente al 5 %. Lo que no se puede decir es «las medias son iguales»: puede que el experimento simplemente no tuviera potencia para detectar la diferencia que había.' },
           { texto: 'Se rechaza $H_0$, porque $F_0 = 2.4$ es mayor que 1 y eso ya indica que $MS_{\\text{Trat}}$ supera a $MS_E$.', correcta: false,
             retro: 'Que $F_0 > 1$ no basta: bajo $H_0$ el cociente ronda el 1 y lo supera aproximadamente la mitad de las veces por puro azar. La comparación es contra el valor crítico, que aquí es 3.24, no contra 1.' },
+          { texto: 'No se rechaza $H_0$: los datos son compatibles con que las cuatro medias sean iguales, pero eso no demuestra que lo sean.', correcta: true,
+            retro: 'Correcto, y las dos mitades de la frase importan. $F_0 = 2.4 < 3.24$, así que no hay evidencia suficiente al 5 %. Lo que no se puede decir es «las medias son iguales»: puede que el experimento simplemente no tuviera potencia para detectar la diferencia que había.' },
           { texto: 'Se demuestra que los cuatro tratamientos tienen la misma media poblacional.', correcta: false,
             retro: 'Una prueba de hipótesis nunca demuestra la nula. «No rechazar» significa que la evidencia no alcanzó el umbral; con una diferencia real pequeña o con pocas réplicas eso pasa constantemente. Para hablar de equivalencia hace falta otra cosa: potencia calculada de antemano, o una prueba de equivalencia.' },
           { texto: 'No se puede concluir nada porque no se conoce el valor p exacto.', correcta: false,
@@ -9310,12 +9310,12 @@ const SOLUCIONES_CAP2 = {"capitulo":2,"fecha_corte":"2026-08-01","semilla":2026,
           '$-0.0721$ en vez de cero. ¿Qué pasó?',
         pista: '¿Cómo se calculó $\\bar{y}_{..}$: promediando las 25 observaciones o promediando las tres medias de grupo?',
         opciones: [
-          { texto: 'Nada anómalo: con tamaños desiguales $\\bar{y}_{..}$ es una media ponderada, y lo que se anula es $\\sum n_i \\hat\\tau_i$, no $\\sum \\hat\\tau_i$.', correcta: true,
-            retro: 'Exacto. Para tener de verdad $\\sum\\tau_i = 0$ habría que tomar como origen el promedio <em>sin ponderar</em> de las tres medias de grupo, que es lo que hace <code>contr.sum</code>. En un diseño balanceado las dos medias coinciden y por eso el asunto nunca aparece.' },
           { texto: 'Hay un error de redondeo acumulado al calcular las medias de grupo.', correcta: false,
             retro: 'El desvío es de siete centésimas sobre datos de dos cifras: eso es cinco órdenes de magnitud mayor que cualquier error de redondeo en doble precisión. Además el desvío es reproducible, y un error de redondeo no lo sería de forma sistemática.' },
           { texto: 'El modelo de efectos no se puede usar con datos desbalanceados; hay que usar el de medias.', correcta: false,
             retro: 'Los dos modelos sirven igual con desbalance. Lo único que cambia son las fórmulas de cálculo de las sumas de cuadrados (ecuaciones 3.14 y 3.15) y, como muestra este caso, la forma exacta que toma la restricción.' },
+          { texto: 'Nada anómalo: con tamaños desiguales $\\bar{y}_{..}$ es una media ponderada, y lo que se anula es $\\sum n_i \\hat\\tau_i$, no $\\sum \\hat\\tau_i$.', correcta: true,
+            retro: 'Exacto. Para tener de verdad $\\sum\\tau_i = 0$ habría que tomar como origen el promedio <em>sin ponderar</em> de las tres medias de grupo, que es lo que hace <code>contr.sum</code>. En un diseño balanceado las dos medias coinciden y por eso el asunto nunca aparece.' },
           { texto: 'Falta una observación en alguno de los grupos y hay que imputarla antes de estimar.', correcta: false,
             retro: 'El desbalance no es un dato faltante que haya que rellenar: es un diseño con tamaños distintos, y el ANOVA lo maneja sin imputar nada. Imputar valores inventaría información y reduciría artificialmente el error experimental.' }
         ]
@@ -9330,14 +9330,14 @@ const SOLUCIONES_CAP2 = {"capitulo":2,"fecha_corte":"2026-08-01","semilla":2026,
           'afirmación?',
         pista: 'La confianza del 95 % se refiere a un intervalo fijado de antemano. ¿Qué garantiza la desigualdad de Bonferroni cuando son varios?',
         opciones: [
-          { texto: 'No: la confianza conjunta solo está garantizada por encima de $1 - 6(0.05) = 0.70$.', correcta: true,
-            retro: 'Correcto. Es la cota de Bonferroni: con $r$ intervalos al $100(1-\\alpha)\\%$, la probabilidad de que todos sean correctos es al menos $1 - r\\alpha$. Con seis y $\\alpha = 0.05$ eso da 0.70, y con diez bajaría a 0.50. Para recuperar el 95 % conjunto hay que usar $\\alpha/(2r)$ en lugar de $\\alpha/2$.' },
           { texto: 'Sí, porque cada intervalo usa el mismo $MS_E$ y por tanto no son independientes.', correcta: false,
             retro: 'Que compartan $MS_E$ los hace dependientes, es cierto, pero eso no salva la afirmación: la cota de Bonferroni vale <em>sea cual sea</em> la estructura de dependencia, y sigue siendo 0.70. La dependencia puede hacer que la confianza real sea algo mayor que la cota, pero nunca garantiza el 95 %.' },
           { texto: 'Sí, siempre que el ANOVA global haya rechazado $H_0$ primero.', correcta: false,
             retro: 'Rechazar el ANOVA global es un buen requisito previo para ponerse a comparar, pero no cambia el nivel de confianza conjunta de los intervalos. Son dos problemas distintos: uno es cuándo mirar, el otro es con qué ancho.' },
           { texto: 'No, y el problema se arregla aumentando el tamaño de muestra.', correcta: false,
-            retro: 'Aumentar $n$ acorta cada intervalo, pero no cambia la cota: seis intervalos al 95 % siguen dando 0.70 de confianza conjunta con cualquier $n$. El problema no es de precisión sino de <em>cuántas afirmaciones</em> se hacen a la vez, y se arregla ajustando el nivel de cada una.' }
+            retro: 'Aumentar $n$ acorta cada intervalo, pero no cambia la cota: seis intervalos al 95 % siguen dando 0.70 de confianza conjunta con cualquier $n$. El problema no es de precisión sino de <em>cuántas afirmaciones</em> se hacen a la vez, y se arregla ajustando el nivel de cada una.' },
+          { texto: 'No: la confianza conjunta solo está garantizada por encima de $1 - 6(0.05) = 0.70$.', correcta: true,
+            retro: 'Correcto. Es la cota de Bonferroni: con $r$ intervalos al $100(1-\\alpha)\\%$, la probabilidad de que todos sean correctos es al menos $1 - r\\alpha$. Con seis y $\\alpha = 0.05$ eso da 0.70, y con diez bajaría a 0.50. Para recuperar el 95 % conjunto hay que usar $\\alpha/(2r)$ en lugar de $\\alpha/2$.' }
         ]
       },
       {

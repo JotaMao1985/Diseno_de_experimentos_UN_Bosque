@@ -8622,10 +8622,10 @@ const DATOS_ANEXO2 = {"propelente":{"nombre":"Velocidad de combustión de un pro
           'pudo venir—. ¿Qué queda?',
         pista: 'Cuenta cuántos tratamientos ve ahora cada fila, y cuántos ve cada columna.',
         opciones: [
-          { texto: 'Un cuadrado de Youden: las filas son bloques incompletos de tamaño 4 y cada columna sigue conteniendo los cinco tratamientos.', correcta: true,
-            retro: 'Exacto. Cada lote pasa de cinco corridas a cuatro —y se salta una formulación distinta, que es lo que lo hace un BIBD— mientras que cada operador sigue probando las cinco formulaciones, una vez cada una. Las dos propiedades juntas son la definición del cuadrado de Youden, y salen con $a = b = \\mathbf{5}$, $k = r = \\mathbf{4}$ y $\\lambda = \\mathbf{3}$.' },
           { texto: 'Un cuadro latino incompleto que hay que completar estimando las cinco observaciones que faltan.', correcta: false,
             retro: 'No hace falta estimar nada. Estimar valores faltantes tiene sentido cuando se pierde <em>alguna</em> observación de un diseño que existió completo; aquí falta una columna entera, o sea una dirección de bloqueo con un nivel menos, y el diseño que queda se analiza tal cual con su propia tabla ANOVA. Estimar cinco valores sobre veinte observaciones sería inventarse una cuarta parte del experimento.' },
+          { texto: 'Un cuadrado de Youden: las filas son bloques incompletos de tamaño 4 y cada columna sigue conteniendo los cinco tratamientos.', correcta: true,
+            retro: 'Exacto. Cada lote pasa de cinco corridas a cuatro —y se salta una formulación distinta, que es lo que lo hace un BIBD— mientras que cada operador sigue probando las cinco formulaciones, una vez cada una. Las dos propiedades juntas son la definición del cuadrado de Youden, y salen con $a = b = \\mathbf{5}$, $k = r = \\mathbf{4}$ y $\\lambda = \\mathbf{3}$.' },
           { texto: 'Un DBCA con los lotes como bloques: al perder los operadores ya no hay segunda dirección.', correcta: false,
             retro: 'Los operadores no desaparecen: quedan cuatro, y siguen siendo una restricción de la aleatorización que conviene sacar del error. En el propelente eso vale $SS_{\\text{operadores}} = \\mathbf{137.75}$ sobre un total de $\\mathbf{496.95}$; tirarlo al error cambia el veredicto, como se mide en el módulo 4.' },
           { texto: 'Nada analizable: sin la quinta columna el diseño pierde el balance y las fórmulas dejan de valer.', correcta: false,
@@ -8697,14 +8697,14 @@ const DATOS_ANEXO2 = {"propelente":{"nombre":"Velocidad de combustión de un pro
           'resultado no da $SS_T$. ¿Qué pasó?',
         pista: '¿Cuáles de esas cuatro fuentes son ortogonales entre sí, y cuáles no?',
         opciones: [
-          { texto: 'Nada: es lo esperado. Hay dos particiones válidas y en cada una uno de los dos factores va sin ajustar; mezclarlas cuenta dos veces la parte compartida.', correcta: true,
-            retro: 'Exacto. $SS_T$ se parte de dos maneras: con tratamientos ajustados y bloques crudos, o al revés. Sobre el propelente las cuatro ajustadas dan $\\mathbf{475.05}$ frente a un total de $\\mathbf{496.95}$, y esos $\\mathbf{21.9}$ de diferencia son la huella de la no ortogonalidad entre tratamientos y bloques. La posición, en cambio, vale lo mismo en las dos particiones: ella sí es ortogonal.' },
           { texto: 'Hay un error de redondeo acumulado: con más decimales las cuatro sumarían el total.', correcta: false,
             retro: 'No es redondeo. Sobre el propelente la diferencia vale $\\mathbf{21.9}$ sobre un total de $\\mathbf{496.95}$ —más del 4 %— y sale idéntica calculada por mínimos cuadrados con doble precisión. Es estructural: las dos particiones existen porque tratamientos y bloques comparten información, y esa parte compartida se cuenta en las dos.' },
           { texto: 'El diseño está mal construido: en un BIBD correcto las cuatro sumas de cuadrados siempre cierran.', correcta: false,
             retro: 'El diseño está bien: $\\lambda$ es constante, cada columna tiene los cinco tratamientos y el arreglo es un rectángulo lleno. Que las cuatro ajustadas no cierren es una propiedad de <em>todos</em> los diseños no ortogonales, no un síntoma de nada. Montgomery lo advierte para el BIBD en la p. 166.' },
           { texto: 'Falta la interacción bloque × posición, que es la que completa el total.', correcta: false,
-            retro: 'No hay grados de libertad para esa interacción —el arreglo tiene una sola observación por casilla— y el modelo del diseño es aditivo por construcción. Lo que sobra no es una fuente sin estimar sino una parte <strong>compartida</strong> entre dos fuentes, que es cosa distinta.' }
+            retro: 'No hay grados de libertad para esa interacción —el arreglo tiene una sola observación por casilla— y el modelo del diseño es aditivo por construcción. Lo que sobra no es una fuente sin estimar sino una parte <strong>compartida</strong> entre dos fuentes, que es cosa distinta.' },
+          { texto: 'Nada: es lo esperado. Hay dos particiones válidas y en cada una uno de los dos factores va sin ajustar; mezclarlas cuenta dos veces la parte compartida.', correcta: true,
+            retro: 'Exacto. $SS_T$ se parte de dos maneras: con tratamientos ajustados y bloques crudos, o al revés. Sobre el propelente las cuatro ajustadas dan $\\mathbf{475.05}$ frente a un total de $\\mathbf{496.95}$, y esos $\\mathbf{21.9}$ de diferencia son la huella de la no ortogonalidad entre tratamientos y bloques. La posición, en cambio, vale lo mismo en las dos particiones: ella sí es ortogonal.' }
         ]
       },
       {
@@ -8740,12 +8740,12 @@ const DATOS_ANEXO2 = {"propelente":{"nombre":"Velocidad de combustión de un pro
           'concluye de que la mitad caiga a cada lado del umbral?',
         pista: 'Pregúntate cuál de esos veinticuatro órdenes es el «verdadero».',
         opciones: [
-          { texto: 'Que ajustar por una posición que nadie registró no añade información: reparte el error a capricho y encima gasta grados de libertad.', correcta: true,
-            retro: 'Exacto, y es el resultado que cierra el anexo. Ninguno de los veinticuatro órdenes es más legítimo que otro, porque ninguno pasó en el laboratorio; y sin embargo la conclusión al 5 % cambia en <strong>12 de los 24</strong>. El análisis que no ordena nada —el del anexo A1— da $p = \\mathbf{0.0107387}$ con cinco grados de libertad de error en vez de tres. La segunda dirección de bloqueo solo vale algo si fue una <strong>restricción real de la aleatorización</strong>.' },
           { texto: 'Que hay que elegir el orden que dé el valor p más pequeño, porque es el que mejor explica los datos.', correcta: false,
             retro: 'Eso es exactamente lo que no se puede hacer: elegir el análisis por su resultado. Sería la versión más pura de la maldición del ganador que cuenta el capítulo 3 — con veinticuatro intentos y ningún criterio previo, encontrar uno significativo no dice nada sobre el mundo.' },
           { texto: 'Que el diseño está mal construido, porque un cuadrado de Youden bien hecho daría el mismo resultado con cualquier orden.', correcta: false,
             retro: 'Los veinticuatro arreglos son cuadrados de Youden <em>correctos</em>: en todos, cada catalizador sale una vez en cada posición y $\\lambda$ vale 2. Lo que cambia entre ellos no es el diseño sino qué observaciones caen juntas en cada posición, y con ello qué parte del error se lleva la posición: entre $\\mathbf{0.5}$ y $\\mathbf{1.5}$ de los $\\mathbf{3.25}$ que había.' },
+          { texto: 'Que ajustar por una posición que nadie registró no añade información: reparte el error a capricho y encima gasta grados de libertad.', correcta: true,
+            retro: 'Exacto, y es el resultado que cierra el anexo. Ninguno de los veinticuatro órdenes es más legítimo que otro, porque ninguno pasó en el laboratorio; y sin embargo la conclusión al 5 % cambia en <strong>12 de los 24</strong>. El análisis que no ordena nada —el del anexo A1— da $p = \\mathbf{0.0107387}$ con cinco grados de libertad de error en vez de tres. La segunda dirección de bloqueo solo vale algo si fue una <strong>restricción real de la aleatorización</strong>.' },
           { texto: 'Que hay que promediar los veinticuatro valores p para obtener el correcto.', correcta: false,
             retro: 'Promediar valores p no produce un valor p, y aquí además tapa el problema en vez de resolverlo. La respuesta correcta no es un promedio: es <strong>no hacer el ajuste</strong>. Si la posición no se registró, el análisis que corresponde es el del BIBD, que usa sus cinco grados de libertad de error y no inventa una fuente de variación.' }
         ],

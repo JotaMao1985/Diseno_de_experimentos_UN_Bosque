@@ -9945,10 +9945,10 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
           '325 W. ¿Es válida esa conclusión?',
         pista: '¿Cuántos valores distintos de potencia se han observado en el experimento?',
         opciones: [
-          { texto: 'No: con dos niveles no se puede distinguir una recta de una curva, porque por dos puntos siempre pasa exactamente una recta.', correcta: true,
-            retro: 'Exacto, y es la limitación que define al $2^k$. El diseño <strong>supone</strong> linealidad, no la comprueba: con la potencia medida solo en 275 y 325 W, cualquier curva que pase por esas dos medias produce los mismos datos. El efecto estimado es correcto como <em>diferencia entre los dos niveles</em>; lo que no está justificado es interpolar entre ellos. La corrección cuesta cuatro corridas al centro (módulo 8.6).' },
           { texto: 'Sí: el efecto de la potencia es significativo con $p &lt; 0.001$, y eso demuestra la relación lineal.', correcta: false,
             retro: 'La significación dice que las medias de los dos niveles <strong>difieren</strong>, no que la relación entre ellos sea una recta. Son dos afirmaciones distintas y solo la primera está contrastada. Un $F$ enorme sobre dos niveles sigue sin decir nada de lo que pasa en 300 W.' },
+          { texto: 'No: con dos niveles no se puede distinguir una recta de una curva, porque por dos puntos siempre pasa exactamente una recta.', correcta: true,
+            retro: 'Exacto, y es la limitación que define al $2^k$. El diseño <strong>supone</strong> linealidad, no la comprueba: con la potencia medida solo en 275 y 325 W, cualquier curva que pase por esas dos medias produce los mismos datos. El efecto estimado es correcto como <em>diferencia entre los dos niveles</em>; lo que no está justificado es interpolar entre ellos. La corrección cuesta cuatro corridas al centro (módulo 8.6).' },
           { texto: 'Sí, siempre que la interacción $AC$ no sea significativa.', correcta: false,
             retro: 'La interacción es otra cosa: dice si el efecto de un factor depende del nivel de otro. Aunque todas las interacciones fueran nulas, seguiría sin haber información sobre la <em>forma</em> de la respuesta entre los dos niveles de un factor. En este experimento, además, $AC$ sí es significativa ($F = 41.909$).' },
           { texto: 'No, porque con 8 grados de libertad de error la potencia de la prueba es demasiado baja.', correcta: false,
@@ -9991,14 +9991,14 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
           'representa esa recta, y por qué justifica declarar activos a los cinco?',
         pista: 'Piensa qué distribución tendrían los efectos si <em>ninguno</em> fuese real, y qué aspecto tendría entonces el gráfico completo.',
         opciones: [
-          { texto: 'La recta es el comportamiento de los efectos que solo son ruido; los cinco que se salen no encajan en esa distribución y por eso se declaran activos.', correcta: true,
-            retro: 'Exacto. Si un efecto es inerte, su estimación es ruido con media cero y varianza $4\\sigma^2/(n2^k)$ — la misma para todos, que es lo que demuestra el módulo 8.1. Un conjunto de estimaciones así cae sobre una recta en un gráfico de probabilidad normal, y su pendiente estima $\\sigma$. Los diez alineados hacen de <strong>error medido</strong> en un diseño que formalmente no tiene ninguno; los cinco que se despegan no pertenecen a esa distribución. El método de Lenth es la versión numérica de este mismo razonamiento.' },
           { texto: 'La recta es la regresión de la respuesta sobre los factores, y los cinco puntos son los que peor ajusta.', correcta: false,
             retro: 'No hay ninguna regresión aquí: los ejes son el valor del efecto y su cuantil semi-normal, no una respuesta contra un predictor. El gráfico no ajusta nada, solo compara la distribución observada de los quince efectos con la que tendrían si todos fueran ruido.' },
           { texto: 'La recta marca el umbral de significación al 5 %, y los puntos por encima lo superan.', correcta: false,
             retro: 'Un umbral de significación sería una <em>línea vertical</em> en el eje de los efectos —el margen de error de Lenth, por ejemplo, que aquí vale 6.7478—, no la recta que atraviesa la nube. Esta recta no es un umbral: es la referencia contra la que se juzga qué puntos son anómalos.' },
           { texto: 'La recta indica que los diez efectos pequeños están correlacionados entre sí.', correcta: false,
-            retro: 'Al contrario: en un $2^k$ todos los contrastes son <strong>ortogonales</strong>, así que las quince estimaciones son incorreladas por construcción. Lo que la recta muestra es que esos diez son compatibles con una misma distribución normal centrada en cero, que es una afirmación sobre su distribución y no sobre su dependencia.' }
+            retro: 'Al contrario: en un $2^k$ todos los contrastes son <strong>ortogonales</strong>, así que las quince estimaciones son incorreladas por construcción. Lo que la recta muestra es que esos diez son compatibles con una misma distribución normal centrada en cero, que es una afirmación sobre su distribución y no sobre su dependencia.' },
+          { texto: 'La recta es el comportamiento de los efectos que solo son ruido; los cinco que se salen no encajan en esa distribución y por eso se declaran activos.', correcta: true,
+            retro: 'Exacto. Si un efecto es inerte, su estimación es ruido con media cero y varianza $4\\sigma^2/(n2^k)$ — la misma para todos, que es lo que demuestra el módulo 8.1. Un conjunto de estimaciones así cae sobre una recta en un gráfico de probabilidad normal, y su pendiente estima $\\sigma$. Los diez alineados hacen de <strong>error medido</strong> en un diseño que formalmente no tiene ninguno; los cinco que se despegan no pertenecen a esa distribución. El método de Lenth es la versión numérica de este mismo razonamiento.' }
         ],
         dibujar: canvas => {
           const S = DATOS_CAP8.simuladores['grafico-de-daniel'].observado.semi;
@@ -10054,12 +10054,12 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
           '\\mathbf{0.814}$. ¿Cuál de estas conclusiones NO está justificada?',
         pista: 'Escribe qué cantidad estima exactamente la diferencia entre la media de las esquinas y la del centro.',
         opciones: [
-          { texto: 'Que la superficie es plana en la región estudiada.', correcta: true,
-            retro: 'Ésta es la que no se sostiene, por dos motivos independientes. Primero, la prueba solo mira la <strong>suma</strong> de los coeficientes cuadráticos: $E[\\bar y_F - \\bar y_C] = \\sum_j \\beta_{jj}$. Una superficie con $\\beta_{11} = +3$ y $\\beta_{22} = -3$ —una silla pronunciada— tiene $\\sum\\beta_{jj} = 0$ y pasaría la prueba sin despeinarse. Segundo, con 1 grado de libertad en el numerador y 4 en el denominador la potencia es baja: <em>no rechazar no es demostrar</em>.' },
           { texto: 'Que no hay evidencia contra el modelo de primer orden en esta región.', correcta: false,
             retro: 'Ésta sí está justificada, y es exactamente lo que la prueba autoriza a decir: no hay evidencia en contra. Fíjate en la diferencia con la opción correcta — «no hay evidencia contra» y «es plana» no son la misma afirmación, y el capítulo entero descansa sobre esa distinción.' },
           { texto: 'Que los cinco puntos centrales aportan 4 grados de libertad de error puro.', correcta: false,
             retro: 'Correcto y bien contado: $n_C - 1 = 4$. Ése es el segundo servicio que prestan los puntos centrales, independiente de la prueba de curvatura, y es una estimación del ruido del proceso que no depende de ninguna suposición de modelo.' },
+          { texto: 'Que la superficie es plana en la región estudiada.', correcta: true,
+            retro: 'Ésta es la que no se sostiene, por dos motivos independientes. Primero, la prueba solo mira la <strong>suma</strong> de los coeficientes cuadráticos: $E[\\bar y_F - \\bar y_C] = \\sum_j \\beta_{jj}$. Una superficie con $\\beta_{11} = +3$ y $\\beta_{22} = -3$ —una silla pronunciada— tiene $\\sum\\beta_{jj} = 0$ y pasaría la prueba sin despeinarse. Segundo, con 1 grado de libertad en el numerador y 4 en el denominador la potencia es baja: <em>no rechazar no es demostrar</em>.' },
           { texto: 'Que las estimaciones de los efectos principales y de la interacción no han cambiado al añadir los centros.', correcta: false,
             retro: 'Correcto, y es la propiedad que hace que añadir centros salga tan barato: en un punto central todos los $x_j$ valen cero, así que esas corridas <strong>no entran en ningún contraste</strong>. El diseño factorial que había sigue intacto y lo que se compra es información nueva.' }
         ]

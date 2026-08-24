@@ -9420,12 +9420,12 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-01","semilla":2026,
           '¿Cómo se explica que la cota sea casi el doble?',
         pista: 'Las diez comparaciones se construyen con solo cinco medias. ¿Puede $\\bar{y}_{1.} - \\bar{y}_{2.}$ ser independiente de $\\bar{y}_{1.} - \\bar{y}_{3.}$?',
         opciones: [
-          { texto: 'Porque la cota supone que las 10 comparaciones son independientes, y no lo son: comparten medias y comparten $MS_E$.', correcta: true,
-            retro: 'Exacto. $1-(1-\\alpha)^m$ es el resultado de multiplicar probabilidades, lo que exige independencia. Aquí $\\bar{y}_{1.}$ entra en cuatro de las diez comparaciones, así que están positivamente correlacionadas y los falsos positivos tienden a agruparse en los mismos experimentos. La cota sigue siendo válida como <em>cota</em> —el FWER real nunca la supera— pero es pesimista, y cada vez más según crece $a$.' },
           { texto: 'Porque 20 000 repeticiones son pocas: con más simulaciones el valor medido se acercaría a 0.4013.', correcta: false,
             retro: 'No. El error estándar de Monte Carlo con 20 000 repeticiones y una proporción cercana a 0.26 es $\\sqrt{0.26 \\cdot 0.74/20000} \\approx 0.003$: la diferencia observada, de 0.137, es más de cuarenta errores estándar. La discrepancia es estructural, no ruido.' },
           { texto: 'Porque la cota se aplica al nivel conjunto de los intervalos de confianza y no a la tasa de error de las pruebas.', correcta: false,
             retro: 'Son la misma cuenta vista desde los dos lados: una prueba al $\\alpha$ y un intervalo al $1-\\alpha$ son equivalentes, y la desigualdad de Bonferroni vale igual para las dos. El motivo de la diferencia es la dependencia entre comparaciones, no la traducción entre pruebas e intervalos.' },
+          { texto: 'Porque la cota supone que las 10 comparaciones son independientes, y no lo son: comparten medias y comparten $MS_E$.', correcta: true,
+            retro: 'Exacto. $1-(1-\\alpha)^m$ es el resultado de multiplicar probabilidades, lo que exige independencia. Aquí $\\bar{y}_{1.}$ entra en cuatro de las diez comparaciones, así que están positivamente correlacionadas y los falsos positivos tienden a agruparse en los mismos experimentos. La cota sigue siendo válida como <em>cota</em> —el FWER real nunca la supera— pero es pesimista, y cada vez más según crece $a$.' },
           { texto: 'Porque la simulación usó la prueba $t$ agrupada y la cota supone pruebas $t$ separadas para cada par.', correcta: false,
             retro: 'Usar el $MS_E$ agrupado es precisamente lo que hay que hacer, y añade dependencia (todas las comparaciones comparten denominador), pero no es la causa principal. Aunque cada par usara su propia varianza, seguirían compartiendo <em>medias</em>, y eso solo bastaría para que la cota sobreestimara.' }
         ]
@@ -9541,10 +9541,10 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-01","semilla":2026,
           'tasa vuelve a <strong>5.1 %</strong>. ¿Cuál es el motivo?',
         pista: 'La prueba $t$ al 5 % es válida para UN contraste fijado de antemano. ¿Cuántos contrastes ha considerado en realidad quien mira primero los datos?',
         opciones: [
-          { texto: 'Elegir el contraste después de ver los datos equivale a probar todos los contrastes posibles y quedarse con el mayor, y Scheffé es el único crítico calibrado para eso.', correcta: true,
-            retro: 'Exacto. El máximo de $|C|/S_C$ sobre <em>todos</em> los contrastes imaginables vale exactamente $\\sqrt{(a-1)F_0}$, así que controlar ese máximo es controlar la prueba $F$ global — y ese es justo el crítico de Scheffé, $\\sqrt{(a-1)F_{\\alpha,a-1,N-a}}$. Es más ancho que la $t$ (3.117 frente a 2.120, un 47 % más) y esa anchura es exactamente el precio de haber mirado.' },
           { texto: 'Porque el contraste $(1,1,-1,-1)$ tiene $\\sum c_i^2 = 4$ y eso infla el estadístico respecto de una comparación por pares.', correcta: false,
             retro: 'No: $\\sum c_i^2$ entra en el error estándar $S_C = \\sqrt{MS_E\\sum c_i^2/n}$, así que se cancela. Un contraste con coeficientes grandes tiene un $C$ grande <em>y</em> un error estándar grande; el estadístico $t_0 = C/S_C$ no se infla. El problema no está en el contraste sino en cómo se eligió.' },
+          { texto: 'Elegir el contraste después de ver los datos equivale a probar todos los contrastes posibles y quedarse con el mayor, y Scheffé es el único crítico calibrado para eso.', correcta: true,
+            retro: 'Exacto. El máximo de $|C|/S_C$ sobre <em>todos</em> los contrastes imaginables vale exactamente $\\sqrt{(a-1)F_0}$, así que controlar ese máximo es controlar la prueba $F$ global — y ese es justo el crítico de Scheffé, $\\sqrt{(a-1)F_{\\alpha,a-1,N-a}}$. Es más ancho que la $t$ (3.117 frente a 2.120, un 47 % más) y esa anchura es exactamente el precio de haber mirado.' },
           { texto: 'Porque el $MS_E$ estimado con solo 16 grados de libertad es demasiado inestable y hay que usar la distribución normal.', correcta: false,
             retro: 'La prueba $t$ ya tiene en cuenta esa inestabilidad: para eso usa 16 grados de libertad en vez de la normal. Si el contraste se hubiera fijado antes de ver los datos, la misma prueba con el mismo $MS_E$ daría una tasa de error del 5.1 % — de hecho eso es lo que mide la simulación preplaneada.' },
           { texto: 'Porque hay que aplicar Bonferroni dividiendo 0.05 entre los seis pares posibles.', correcta: false,
@@ -9573,14 +9573,14 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-01","semilla":2026,
           '¿Cuál es la lectura correcta de esas cifras?',
         pista: 'Fíjate en qué cantidad se mantiene en el 5 % con cada procedimiento. No son la misma cantidad.',
         opciones: [
-          { texto: 'BH no controla el FWER y no pretende hacerlo: controla la <em>proporción</em> de falsos entre lo declarado, y a cambio casi triplica los hallazgos.', correcta: true,
-            retro: 'Correcto, y el cambio de cantidad controlada es el punto entero. Con 1000 pruebas, exigir que no haya <em>ni un</em> falso positivo (FWER) obliga a un listón tan alto que se pierden 42 de los 50 efectos reales. BH acepta que en torno al 5 % de lo que reporta sea falso —eso es el FDR de 0.050— y eso le permite reportar 20.7. En un cribado exploratorio, donde después habrá una fase de confirmación, esa es casi siempre la decisión correcta.' },
           { texto: 'BH está mal aplicado: un FWER de 0.64 significa que el procedimiento no controla nada.', correcta: false,
             retro: 'Controla el FDR, que es exactamente lo que promete, y el valor medido (0.050) coincide con el nivel nominal. Que el FWER suba a 0.64 es una consecuencia esperada y declarada: con 950 hipótesis nulas ciertas, la probabilidad de que <em>alguna</em> se cuele es alta, aunque la proporción de coladas entre los 20.7 hallazgos siga siendo pequeña.' },
           { texto: 'Bonferroni es siempre preferible porque su FWER de 0.054 está más cerca del nivel nominal.', correcta: false,
             retro: 'Bonferroni acierta en su promesa, pero su promesa puede no ser la que interesa. Con potencia 0.147 se pierden 42 de los 50 efectos reales; si el objetivo es una lista de candidatos para investigar después, ese coste es mucho mayor que el de arrastrar un puñado de falsos. La elección depende de qué error cuesta más caro, no de qué número está más cerca de 0.05.' },
           { texto: 'La diferencia se debe a que BH usa un nivel nominal más alto que 0.05.', correcta: false,
-            retro: 'Los dos usan $\\alpha = 0.05$. Lo que cambia es el umbral que aplican a los valores $p$ ordenados: Bonferroni compara todos contra $\\alpha/m$, mientras que BH compara el $i$-ésimo contra $i\\alpha/m$, que es más laxo para los valores $p$ que quedan atrás en la lista. Misma $\\alpha$, distinta regla de decisión, distinta cantidad controlada.' }
+            retro: 'Los dos usan $\\alpha = 0.05$. Lo que cambia es el umbral que aplican a los valores $p$ ordenados: Bonferroni compara todos contra $\\alpha/m$, mientras que BH compara el $i$-ésimo contra $i\\alpha/m$, que es más laxo para los valores $p$ que quedan atrás en la lista. Misma $\\alpha$, distinta regla de decisión, distinta cantidad controlada.' },
+          { texto: 'BH no controla el FWER y no pretende hacerlo: controla la <em>proporción</em> de falsos entre lo declarado, y a cambio casi triplica los hallazgos.', correcta: true,
+            retro: 'Correcto, y el cambio de cantidad controlada es el punto entero. Con 1000 pruebas, exigir que no haya <em>ni un</em> falso positivo (FWER) obliga a un listón tan alto que se pierden 42 de los 50 efectos reales. BH acepta que en torno al 5 % de lo que reporta sea falso —eso es el FDR de 0.050— y eso le permite reportar 20.7. En un cribado exploratorio, donde después habrá una fase de confirmación, esa es casi siempre la decisión correcta.' }
         ]
       }
     ];
