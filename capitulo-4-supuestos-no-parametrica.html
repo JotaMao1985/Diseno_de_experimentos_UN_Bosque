@@ -4619,7 +4619,7 @@ print("veces MS_E:", round(t.loc["sucio", "MS_E"] / t.loc["limpio", "MS_E"], 1),
       <p>El experimento pasa de ser uno de los rechazos más claros que se pueden ver —$F_0 = 66.80$ con
         $p = 2.9\times10^{-9}$— a <strong>no encontrar absolutamente nada</strong>: $F_0 = 0.50$, $p = 0.685$. Un solo
         dígito mal transcrito. El mecanismo está a la vista en la columna del $MS_E$: se multiplica por
-        <strong>31.6</strong>, porque el residuo de esa observación pasa a valer $-435$ y entra al cuadrado. El
+        <strong>31.6</strong>, porque el residuo de esa observación pasa a valer $-362$ y entra al cuadrado. El
         denominador del $F$ se hincha y aplasta cualquier señal.</p>
 
       <p>Kruskal–Wallis, en cambio, baja de $H = 16.91$ a <strong>10.04</strong> y <em>sigue rechazando</em>
@@ -9736,10 +9736,9 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
         alto: 280,
         descripcionGrafico: 'Tres curvas del error tipo I real del estadístico F frente a la razón ' +
           'entre la desviación mayor y la menor (1, 2, 3 y 5), con errores normales y las cuatro ' +
-          'medias iguales. La curva del diseño balanceado (8, 8, 8, 8) sube muy poco, de 0.0506 a ' +
-          '0.0731. La del diseño donde la varianza grande cae en el grupo de menos observaciones ' +
-          '(12, 10, 6, 4) sube con fuerza, de 0.0506 a 0.2084. La del diseño donde la varianza ' +
-          'grande cae en el grupo de más observaciones (4, 6, 10, 12) baja, de 0.0506 a 0.0252. ' +
+          'medias iguales. La curva del diseño (8, 8, 8, 8) va de 0.0506 a 0.0731; la del diseño ' +
+          '(12, 10, 6, 4) va de 0.0506 a 0.2084; la del diseño (4, 6, 10, 12) va de 0.0506 a ' +
+          '0.0252. ' +
           'Una línea roja de trazos marca el nivel nominal de 0.05.',
         pregunta: 'El gráfico muestra el error tipo I <em>real</em> del $F$ medido con 20 000 ' +
           'experimentos en los que las cuatro medias son <strong>iguales</strong>, con errores ' +
@@ -9835,12 +9834,12 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
           '<strong>10.04</strong> ($p = 0.018$). ¿Cuál es la explicación?',
         pista: 'Escribe qué le pasa al valor 725 cuando se convierte en 250, primero en la suma de cuadrados y después en la lista ordenada de las veinte observaciones.',
         opciones: [
-          { texto: 'Que $H$ solo usa el orden: esa observación pasa de ser el rango 20 al rango 1 y ahí se acaba el daño, mientras que $SS_E$ eleva al cuadrado un residuo que pasa a valer −435.', correcta: true,
+          { texto: 'Que $H$ solo usa el orden: esa observación pasa de ser el rango 20 al rango 1 y ahí se acaba el daño, mientras que $SS_E$ eleva al cuadrado un residuo que pasa a valer −362.', correcta: true,
             retro: 'Correcto, y se ve en el $MS_E$: se multiplica por 31.6, de 333.7 a 10 546. El denominador del $F$ se hincha y aplasta cualquier señal. Los rangos no tienen forma de saber <em>cuánto</em> menor es ese valor, solo que es el menor. Es la misma propiedad que hace que $H$ sea invariante frente a cualquier transformación monótona.' },
           { texto: 'Que Kruskal–Wallis tiene más potencia que el $F$ y por eso detecta el efecto cuando el $F$ ya no puede.', correcta: false,
             retro: 'Con datos limpios y normales pasa lo contrario: el $F$ es más potente, y la eficiencia de $H$ frente a él ronda 0.87. Lo que ocurre aquí no es una ventaja de potencia sino de <strong>robustez</strong>: $H$ no gana porque sea mejor detectando efectos, gana porque no se deja arrastrar por un dato extremo.' },
           { texto: 'Que el cambio rompe la normalidad y por eso el $F$, que la necesita, deja de ser válido, mientras que $H$ no la necesita.', correcta: false,
-            retro: 'La normalidad sí se rompe —Shapiro–Wilk lo detecta— pero no es el mecanismo del desastre. Aunque los errores fueran perfectamente normales, un residuo de −435 elevado al cuadrado inflaría igual el $MS_E$. El problema es aritmético, no distribucional; y de hecho el módulo sobre la robustez del $F$ muestra que la no normalidad, por sí sola, apenas mueve el nivel real.' },
+            retro: 'La normalidad sí se rompe —Shapiro–Wilk lo detecta— pero no es el mecanismo del desastre. Aunque los errores fueran perfectamente normales, un residuo de −362 elevado al cuadrado inflaría igual el $MS_E$. El problema es aritmético, no distribucional; y de hecho el módulo sobre la robustez del $F$ muestra que la no normalidad, por sí sola, apenas mueve el nivel real.' },
           { texto: 'Que al cambiar la observación mayor se reduce el rango de la respuesta y con él la suma de cuadrados de tratamientos.', correcta: false,
             retro: '$SS_{\\text{Trat}}$ sí cambia —baja de 66 871 a 15 927— pero eso no explica el desplome. La clave está en el denominador: $SS_E$ pasa de 5339 a 168 739, un factor de 31.6. Si solo hubiera cambiado el numerador, el $F$ habría bajado a unos 16, no a 0.50.' }
         ]

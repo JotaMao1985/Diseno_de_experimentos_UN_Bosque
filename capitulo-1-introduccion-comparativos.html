@@ -8842,8 +8842,10 @@ const SOLUCIONES_CAP1 = {"capitulo":1,"fecha_corte":"2026-07-31","semilla":2026,
         tipo: 'grafico',
         modulo: 6,
         alto: 230,
-        descripcionGrafico: 'Gráfico de probabilidad normal de una muestra de 30 observaciones ' +
-          'cuyos puntos se curvan hacia arriba en el extremo derecho',
+        descripcionGrafico: 'Gráfico de probabilidad normal de una muestra de 30 observaciones, con ' +
+          'una recta de referencia trazada por los cuartiles. Los puntos centrales caen sobre ' +
+          'la recta; los de ambos extremos quedan por encima de ella, y el mayor de todos vale ' +
+          '7.12 donde la recta predice 3.08.',
         pregunta: 'Este gráfico de probabilidad normal corresponde a una muestra de $n = 30$. ' +
           '¿Qué está diciendo?',
         pista: 'Mira el extremo derecho: ¿los puntos se quedan por debajo de la recta o se disparan por encima?',
@@ -8872,9 +8874,9 @@ const SOLUCIONES_CAP1 = {"capitulo":1,"fecha_corte":"2026-07-31","semilla":2026,
           { texto: 'Los datos son normales: con 30 observaciones esta desviación es puro azar.', correcta: false,
             retro: 'Con $n = 30$ el azar ya no explica una curvatura tan sistemática. Prueba en el simulador del módulo 1.6 a poner «Normal» con $n=30$ y cambiar de realización: verás desviaciones, pero no una curva monótona como esta.' },
           { texto: 'Hay un dato atípico que arrastra el gráfico.', correcta: false,
-            retro: 'Un atípico sería <em>un</em> punto despegado del resto, con los demás alineados. Aquí la desviación es gradual y afecta a toda la mitad derecha: eso es forma de la distribución, no un dato suelto.' },
+            retro: 'Un atípico sería <em>un</em> punto despegado del resto, con los demás alineados. El mayor se aparta mucho, sí —cuatro unidades por encima de la recta, frente a poco más de una de sus vecinos—, pero no está solo: la cola baja queda por encima de la recta, el centro se hunde ligeramente por debajo y los cuatro mayores vuelven a subir. Esa curva recorre la nube entera, y eso es forma de la distribución; un dato suelto solo movería su propio punto.' },
           { texto: 'La muestra tiene colas más cortas que una normal.', correcta: false,
-            retro: 'Las colas cortas —una uniforme, por ejemplo— producen el patrón opuesto: los extremos se doblan <em>hacia</em> la recta, con forma de S invertida. Puedes verlo eligiendo «Colas cortas» en el simulador del módulo 1.6.' }
+            retro: 'Las colas cortas —una uniforme, por ejemplo— doblan los extremos <em>hacia la horizontal</em>: el punto más alto queda por debajo de la recta en vez de por encima. Ojo, que el más bajo queda por encima en los dos casos, así que lo que separa una cola corta de un sesgo a la derecha es la cola alta. Puedes verlo eligiendo «Colas cortas» en el simulador del módulo 1.6.' }
         ]
       },
       {
