@@ -4138,6 +4138,14 @@ print("medias:", medias, "| MS_E:", round(ms_e, 4),
           escalonan». Pero no tiene un nivel de significancia declarado, y la impresión visual depende de la escala
           del dibujo. Lo que se reporta son los procedimientos de los módulos siguientes.</p>
       </div>
+
+      <p>Antes de esos procedimientos, sin embargo, conviene tomar un desvío. Todo lo que se ha hecho hasta aquí
+        —ordenar las medias sobre el eje, mirar cuál se despega, medir el recorrido en unidades de su error
+        estándar— responde siempre a la misma pregunta: <em>cuál media se separa de cuál</em>. Los cuatro
+        procedimientos del módulo 3.7 la responderán mejor, pero no la cambian. El módulo siguiente sí la cambia: en
+        vez de refinar la respuesta, replantea la pregunta, y resulta que la mayoría de los experimentos no traían
+        seis preguntas por pares sino dos o tres de otra forma. Preguntar menos y mejor es la primera defensa contra
+        la inflación que midió el módulo 3.1, y no cuesta ningún ajuste.</p>
     </div>
   </template>
 
@@ -4156,57 +4164,165 @@ print("medias:", medias, "| MS_E:", round(ms_e, 4),
           <span class="text-xl">🎯</span>
           <div>
             <h3 class="font-bold text-gray-800 text-sm" style="margin:0;">Objetivo</h3>
-            <p class="text-gray-600 text-sm" style="margin:0;">Escribir cualquier pregunta sobre las medias como un
-              contraste, probarlo con una $t$ o con una $F$, dar su intervalo de confianza, y saber qué cambia cuando
+            <p class="text-gray-600 text-sm" style="margin:0;">Traducir una pregunta del experimento a
+              coeficientes, entender por qué esos coeficientes tienen que sumar cero y qué se rompe si no lo hacen,
+              probar el contraste con una $t$ o con una $F$, dar su intervalo de confianza, y saber qué cambia cuando
               los $n_i$ son desiguales.</p>
           </div>
         </div>
       </div>
 
-      <p>La comparación por pares es solo una de las preguntas posibles, y muchas veces no es la interesante. En el
-        grabado, la pregunta técnica no es «¿difiere 160 de 180?» sino <strong>«¿el salto está en la mitad alta de la
-          potencia?»</strong>, que compara el promedio de 160 y 180 contra el de 200 y 220. Eso es un contraste.</p>
+      <h3>Seis comparaciones, y ninguna era la pregunta</h3>
 
-      <div class="definition">
-        <h4><i class="fas fa-book mr-2" aria-hidden="true"></i>Contraste</h4>
-        <p>Una combinación lineal de las medias de tratamiento</p>
-        $$\Gamma = \sum_{i=1}^{a} c_i\mu_i \qquad \text{sujeta a} \qquad \sum_{i=1}^{a} c_i = 0$$
-        <p>La restricción sobre los coeficientes es lo que convierte la combinación en una pregunta sobre
-          <em>diferencias</em> y no sobre el nivel general: al sustituir $\mu_i = \mu + \tau_i$, el término
-          $\mu\sum c_i$ se anula y queda $\sum c_i\tau_i$, que no depende de dónde esté centrada la respuesta.</p>
-        <p style="margin-bottom:0;">Se estima con $C = \sum c_i\bar{y}_{i.}$ y se contrasta $H_0: \Gamma = 0$.</p>
-      </div>
+      <p>El módulo anterior dejó las cuatro medias del grabado ordenadas sobre el eje y una pregunta implícita
+        rondando: cuál se separa de cuál. Con cuatro tratamientos esa pregunta se abre en <strong>seis</strong>
+        comparaciones por pares, y lo primero que hizo este capítulo, en el módulo 3.1, fue medir lo que cuesta
+        hacerlas todas. La salida habitual es pagar el peaje con un ajuste. Hay otra anterior, y más barata.</p>
+
+      <p>La pregunta incómoda es si alguien quería hacer las seis. En el grabado, la potencia de radiofrecuencia no
+        es un catálogo de cuatro marcas entre las que escoger: es un dial. Nadie opera la máquina «en 160 o en 180»;
+        se fija un régimen de trabajo y se vive con sus consecuencias sobre el rendimiento y el desgaste. Las
+        preguntas que la ingeniería trae al experimento tienen esa forma: <em>¿compensa irse al régimen alto?</em>,
+        <em>¿sigue pagando el último escalón, de 200 a 220?</em>, <em>¿la velocidad crece de manera pareja con la
+          potencia o hay un umbral?</em> Son tres preguntas, no seis. Y de las tres, solo la segunda es una
+        comparación por pares.</p>
+
+      <p>Ahí está el giro de este módulo, y conviene decirlo antes de que aparezca ninguna fórmula: la comparación
+        por pares no se sustituye por otra cosa, se revela como un caso particular de algo más ancho. «¿Difiere 160
+        de 180?» es $\mu_1 - \mu_2$, y eso mismo se puede escribir repartiendo un <strong>peso</strong> sobre cada
+        una de las cuatro medias: $+1$ a la primera, $-1$ a la segunda, $0$ a las que no participan. Escrita así, la
+        pregunta deja sitio a hermanas suyas que no caben en ninguna tabla de pares.</p>
 
       <table>
         <thead>
           <tr>
-            <th>Pregunta</th>
-            <th>Coeficientes $(c_1, c_2, c_3, c_4)$</th>
+            <th>La pregunta, en castellano</th>
+            <th>Escrita con las medias</th>
+            <th>Pesos $(c_1, c_2, c_3, c_4)$</th>
+            <th>$\sum c_i$</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>¿Difieren 160 y 180 W?</td>
-            <td>$(1, -1, 0, 0)$</td>
+            <td>$\mu_1 - \mu_2$</td>
+            <td>$(1,\; -1,\; 0,\; 0)$</td>
+            <td>$0$</td>
           </tr>
           <tr>
-            <td>¿La mitad baja contra la mitad alta?</td>
-            <td>$(1, 1, -1, -1)$</td>
+            <td>¿Sigue pagando el último escalón?</td>
+            <td>$\mu_3 - \mu_4$</td>
+            <td>$(0,\; 0,\; 1,\; -1)$</td>
+            <td>$0$</td>
+          </tr>
+          <tr>
+            <td>¿Compensa el régimen alto?</td>
+            <td>$\dfrac{\mu_1 + \mu_2}{2} - \dfrac{\mu_3 + \mu_4}{2}$</td>
+            <td>$(\tfrac12,\; \tfrac12,\; -\tfrac12,\; -\tfrac12)$</td>
+            <td>$0$</td>
           </tr>
           <tr>
             <td>¿160 W contra el promedio de los otros tres?</td>
-            <td>$(3, -1, -1, -1)$</td>
+            <td>$\mu_1 - \dfrac{\mu_2 + \mu_3 + \mu_4}{3}$</td>
+            <td>$(1,\; -\tfrac13,\; -\tfrac13,\; -\tfrac13)$</td>
+            <td>$0$</td>
           </tr>
           <tr>
-            <td>¿Hay tendencia lineal en la potencia?</td>
-            <td>$(-3, -1, 1, 3)$</td>
+            <td>¿Crece de manera pareja con la potencia?</td>
+            <td>tendencia lineal (módulo 3.4)</td>
+            <td>$(-3,\; -1,\; 1,\; 3)$</td>
+            <td>$0$</td>
           </tr>
         </tbody>
       </table>
 
-      <p>Las cuatro filas son contrastes: sus coeficientes suman cero. La última merece atención — un contraste puede
-        preguntar por la <em>forma</em> de la respuesta, no solo por diferencias entre grupos, y de eso trata el módulo
-        siguiente.</p>
+      <p><strong>Las fracciones se suelen quitar.</strong> Multiplicar todos los pesos por un mismo número no cambia
+        la pregunta, solo las unidades en que se responde, así que la tercera fila se escribe casi siempre
+        $(1, 1, -1, -1)$ y la cuarta $(3, -1, -1, -1)$. El constructor de contrastes de más abajo permite comprobar
+        que eso es inofensivo: al duplicar los pesos, la estimación y su error estándar se duplican los dos, y el
+        estadístico $t_0$ y el valor $p$ no se mueven ni un dígito.</p>
+
+      <p>Y ahora mírese la última columna, que es la que importa. <strong>Ninguna de las cinco filas se propuso que
+        sus pesos sumaran cero.</strong> Salió cero sola, en las cinco, y sale sola siempre que la pregunta tenga la
+        forma «esto contra aquello»: lo que va delante se lleva pesos positivos que suman uno, lo que va detrás se
+        lleva negativos que suman uno, y el total se cancela. La condición que define un contraste no es un requisito
+        impuesto desde fuera para que las cuentas salgan; es <em>la huella de que la pregunta es una comparación</em>.
+        La última fila es la excepción interesante —no sale de restar dos promedios, pregunta por la forma de la
+        respuesta y no por una diferencia entre grupos— y aun así suma cero. De ella trata el módulo siguiente.</p>
+
+      <div class="definition">
+        <h4><i class="fas fa-book mr-2" aria-hidden="true"></i>Contraste</h4>
+        <p>Una combinación lineal de las medias de tratamiento</p>
+        $$\Gamma = \sum_{i=1}^{a} c_i\mu_i \qquad \text{sujeta a} \qquad \sum_{i=1}^{a} c_i = 0$$
+        <p>Se estima con $C = \sum c_i\bar{y}_{i.}$ y se contrasta $H_0: \Gamma = 0$. Los $c_i$ los pone quien
+          formula la pregunta, no los datos, y ese orden —primero la pregunta, después las cuentas— es lo que hace
+          válido todo lo que sigue.</p>
+        <p style="margin-bottom:0;">Con $a$ tratamientos, cada pregunta del experimento es un punto de este conjunto,
+          y las seis comparaciones por pares son solo seis de sus infinitos puntos.</p>
+      </div>
+
+      <div class="derivacion">
+        <button type="button" class="derivacion-boton" aria-expanded="false" aria-controls="der-suma-cero">
+          <i class="fas fa-square-root-variable" aria-hidden="true"></i>
+          <span class="derivacion-texto">Por qué los pesos tienen que sumar cero, y qué se rompe si no</span>
+          <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </button>
+        <div class="derivacion-panel" id="der-suma-cero" hidden>
+          <ol class="derivacion-pasos">
+            <li>
+              <p>El modelo de efectos del capítulo 2 escribe cada media de tratamiento como el nivel general más lo
+                que ese tratamiento le añade:</p>
+              $$\mu_i = \mu + \tau_i$$
+            </li>
+            <li>
+              <p>Sustitúyase en la combinación lineal y sepárense los dos términos:</p>
+              $$\Gamma = \sum_i c_i(\mu + \tau_i) = \mu \underbrace{\sum_i c_i}_{\text{el nivel}}
+              + \underbrace{\sum_i c_i \tau_i}_{\text{los efectos}}$$
+              <p>La cantidad que se quiere medir aparece partida en dos piezas: una que habla del nivel general de la
+                respuesta y otra que habla de los tratamientos.</p>
+            </li>
+            <li>
+              <p>Si $\sum c_i = 0$, la primera pieza desaparece y queda $\Gamma = \sum c_i\tau_i$: la cantidad
+                habla <strong>solo</strong> de los efectos de tratamiento, que es de lo único que el experimento
+                puede dar cuenta.</p>
+            </li>
+            <li>
+              <p>Y si no suma cero, el estrago es concreto y vale la pena verlo. Supóngase que los tratamientos no
+                hacen absolutamente nada, $\tau_1 = \dots = \tau_a = 0$. Entonces</p>
+              $$\Gamma = \mu \sum_i c_i \neq 0$$
+              <p>La cantidad no vale cero <em>aunque no haya ningún efecto</em>. Probar «$\Gamma = 0$» ha dejado de
+                ser probar «los tratamientos no difieren»: se ha convertido en una prueba sobre el nivel general de
+                la respuesta, disfrazada de comparación. Un rechazo ya no se puede atribuir a los tratamientos.</p>
+            </li>
+            <li>
+              <p>La misma idea, dicha desde el laboratorio: súmese una constante $k$ a todas las observaciones
+                —recalibrar el cero del instrumento, medir la velocidad de grabado desde otra referencia—. Cada media
+                pasa a $\mu_i + k$ y la combinación pasa a</p>
+              $$\Gamma' = \sum_i c_i(\mu_i + k) = \Gamma + k\sum_i c_i$$
+              <p>Una pregunta sobre diferencias no puede depender de dónde alguien puso el cero del aparato. La
+                restricción $\sum c_i = 0$ es exactamente lo que garantiza $\Gamma' = \Gamma$: lo que la vuelve
+                una pregunta sobre el experimento y no sobre la escala en que se anotó.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="note">
+        <p><strong>Qué no es un contraste.</strong> Tres combinaciones que se le parecen y no lo son, cada una por su
+          motivo:</p>
+        <ul>
+          <li><strong>$(1, 1, 1, 1)$.</strong> Suma cuatro, no cero. Es cuatro veces la media general: mide el nivel
+            de la respuesta, no una diferencia. El constructor de contrastes avisa en cuanto se intenta.</li>
+          <li><strong>$(1, 0, 0, 0)$.</strong> La media de un solo tratamiento. Es una cantidad perfectamente
+            estimable y a veces es justo lo que se quiere reportar, pero no es una comparación, y su valor cambia si
+            se recalibra el cero del instrumento.</li>
+          <li><strong>Unos pesos que suman cero sobre un diseño desbalanceado.</strong> Esta es la traicionera,
+            porque parece un contraste y la primera comprobación la pasa. Con $n_i$ desiguales la condición es
+            $\sum n_i c_i = 0$, y unos coeficientes legítimos en un diseño balanceado pueden dejar de serlo en
+            cuanto se pierde una unidad experimental. Se comprueba; no se supone. La última sección del módulo
+            vuelve sobre ello.</li>
+        </ul>
+      </div>
 
       <h3>Probar un contraste</h3>
 
@@ -4350,21 +4466,6 @@ for etiqueta, fila in zip(["C1: 160 = 180", "C2: 160+180 = 200+220",
           las dos vías dan lo mismo. En el módulo 3.10, cuando toque decidir qué reportar, el ajuste vuelve.</p>
       </div>
 
-      <div class="simulador" data-simulador="constructor-contrastes">
-        <h4><i class="fas fa-sliders" aria-hidden="true"></i> Constructor de contrastes</h4>
-        <p class="simulador-intro">Mueve los coeficientes y mira qué pasa. Dos cosas que conviene probar: (1) pon
-          todos los coeficientes en $+1$ y observa que la suma deja de ser cero — la lectura avisa de que eso ya no es
-          un contraste; (2) multiplica un contraste válido por 2 y comprueba que $C$ y su error estándar se duplican
-          pero $t_0$ y el valor $p$ <em>no cambian</em>. Cambia después al conjunto de los ladrillos, que está
-          desbalanceado, y verás que la condición pasa a ser $\sum n_ic_i = 0$.</p>
-        <div class="simulador-controles"></div>
-        <p class="grafico-etiqueta">Coeficientes del contraste por nivel del factor</p>
-        <div class="grafico-wrapper" style="height:230px;">
-          <canvas aria-label="Diagrama de barras con el coeficiente asignado a cada nivel del factor" role="img"></canvas>
-        </div>
-        <p class="simulador-lectura"></p>
-      </div>
-
       <h3>Cuando los $n_i$ son desiguales</h3>
 
       <p>Con tamaños distintos por tratamiento, dos cosas cambian y las dos hay que recordarlas:</p>
@@ -4378,6 +4479,23 @@ for etiqueta, fila in zip(["C1: 160 = 180", "C2: 160+180 = 200+220",
         <em>su</em> $n_i$. La razón es la misma que en el capítulo 2 con los efectos $\hat\tau_i$: cuando el diseño no
         es balanceado, la media general es una media <em>ponderada</em>, y lo que se anula es la versión ponderada de
         la suma.</p>
+
+      <div class="simulador" data-simulador="constructor-contrastes">
+        <h4><i class="fas fa-sliders" aria-hidden="true"></i> Constructor de contrastes</h4>
+        <p class="simulador-intro">Aquí se comprueba todo lo anterior con las manos. Tres cosas que conviene probar:
+          (1) pon todos los coeficientes en $+1$ y observa que la suma deja de ser cero — la lectura avisa de que eso
+          ya no es un contraste, que es el primer caso de la caja de más arriba; (2) multiplica un contraste válido
+          por 2 y comprueba lo que se anunció al quitar las fracciones: $C$ y su error estándar se duplican, pero
+          $t_0$ y el valor $p$ <em>no cambian</em>; (3) cambia al conjunto de los ladrillos, que está desbalanceado, y
+          comprueba ahí la condición ponderada $\sum n_ic_i = 0$ que se acaba de ver — busca unos coeficientes que
+          sumen cero sin ponderar y dejen de sumarlo al ponderar.</p>
+        <div class="simulador-controles"></div>
+        <p class="grafico-etiqueta">Coeficientes del contraste por nivel del factor</p>
+        <div class="grafico-wrapper" style="height:230px;">
+          <canvas aria-label="Diagrama de barras con el coeficiente asignado a cada nivel del factor" role="img"></canvas>
+        </div>
+        <p class="simulador-lectura"></p>
+      </div>
 
       <div class="warning">
         <p><strong>Un contraste se elige ANTES de mirar los datos.</strong> Todo lo de este módulo —la $t$, el
@@ -6748,7 +6866,7 @@ print(f"contraste 160+180 vs 200+220: C = {float(r.effect.item()):.1f} "
       modules: [
         { id: 1, title: "3.1 El error tipo I acumulado", shortTitle: "FWER", duration: "16 min" },
         { id: 2, title: "3.2 Comparación gráfica de medias", shortTitle: "Comparación gráfica", duration: "14 min" },
-        { id: 3, title: "3.3 Contrastes", shortTitle: "Contrastes", duration: "18 min" },
+        { id: 3, title: "3.3 Contrastes", shortTitle: "Contrastes", duration: "24 min" },
         { id: 4, title: "3.4 Contrastes ortogonales y partición de la SS", shortTitle: "Ortogonales", duration: "20 min" },
         { id: 5, title: "3.5 El método de Scheffé y el precio de mirar", shortTitle: "Scheffé", duration: "18 min" },
         { id: 6, title: "3.6 La diferencia mínima significativa de Fisher", shortTitle: "LSD", duration: "16 min" },
@@ -8632,9 +8750,18 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-03","semilla":2026,
         const t0 = den === 0 ? NaN : valor / ee;
         const ss = den === 0 ? NaN : valor * valor / den;
         const rej = D.log10_p_de_t['gl' + C.gl_e];
+        const tope = D.rejilla_abs_t[D.rejilla_abs_t.length - 1];
         const p = den === 0 ? NaN
           : Math.pow(10, interpola(D.rejilla_abs_t, rej, Math.abs(t0)));
-        return { c, suma, valor, ee, t0, ss, p, valido: Math.abs(suma) < 1e-9 && den > 0 };
+        // `interpola` recorta en el extremo de la rejilla, así que por encima
+        // del tope el valor devuelto NO es el valor p: es el del tope. El
+        // contraste (1,1,-1,-1) del grabado, que es el que trae puesto el
+        // simulador, tiene |t₀| = 11.86 y su p verdadero es dos órdenes de
+        // magnitud menor que el del tope. Se anuncia como cota, no como
+        // igualdad, o el simulador contradice al ejemplo trabajado del texto.
+        const fuera = den !== 0 && Math.abs(t0) > tope;
+        return { c, suma, valor, ee, t0, ss, p, fuera,
+                 valido: Math.abs(suma) < 1e-9 && den > 0 };
       }
 
       function dibuja() {
@@ -8672,7 +8799,8 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-03","semilla":2026,
           { etiqueta: 'C =', valor: r.valido ? r.valor.toFixed(4) : '—' },
           { etiqueta: 'error estándar =', valor: r.valido ? r.ee.toFixed(4) : '—' },
           { etiqueta: 't₀ =', valor: r.valido ? r.t0.toFixed(4) : '—' },
-          { etiqueta: 'p (interpolado) ≈', valor: r.valido ? fmtP(r.p) : '—' },
+          { etiqueta: r.fuera ? 'p (|t₀| se sale de la rejilla):' : 'p (interpolado) ≈',
+            valor: r.valido ? (r.fuera ? '< ' + fmtP(r.p) : fmtP(r.p)) : '—' },
           { etiqueta: 'SS_C =', valor: r.valido ? r.ss.toFixed(2) : '—' },
           { etiqueta: 't crítico al 5 % =', valor: C.t_critico_05.toFixed(4) }
         ]);
