@@ -5164,7 +5164,7 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
     // que se reparte. El ensamblador poda esos campos y COMPRUEBA que
     // el enunciado sale idéntico volcando la prosa dos veces.
     // ================================================================
-    const TALLER1 = {"informes": {"I1": {"id": "I-1", "respuesta": "Brillo especular a 60°", "unidades": "GU", "escenario": "Cuatro formulaciones de un recubrimiento semibrillante, 5 réplicas cada una. La respuesta es el brillo especular medido a 60° en unidades de brillo (GU). El orden de corrida se aleatorizó y está registrado.", "semilla": 1, "datos": {"grupo": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "D", "D", "D"], "y": [47.494, 50.735, 46.657, 56.381, 51.318, 48.718, 53.95, 54.953, 54.303, 50.778, 66.047, 61.559, 57.515, 51.141, 64.5, 65.82, 65.935, 69.775, 69.285, 68.376]}, "medias": [50.517, 52.54, 60.152, 67.838], "n_por_grupo": [5, 5, 5, 5], "anova": {"SS_trat": 934.9948, "SS_E": 245.3615, "SS_T": 1180.3563, "gl_trat": 3, "gl_E": 16, "MS_trat": 311.6649, "MS_E": 15.3351, "F0": 20.3236, "p": 1.05e-05}, "diagnostico": {"shapiro_p": 0.4377, "levene_p": 0.3259, "ajustados": [50.517, 50.517, 50.517, 50.517, 50.517, 52.54, 52.54, 52.54, 52.54, 52.54, 60.152, 60.152, 60.152, 60.152, 60.152, 67.838, 67.838, 67.838, 67.838, 67.838], "residuos": [-3.023, 0.218, -3.86, 5.864, 0.801, -3.822, 1.41, 2.413, 1.763, -1.762, 5.895, 1.407, -2.637, -9.011, 4.348, -2.018, -1.903, 1.937, 1.447, 0.538], "qq": {"teorico": [-1.96, -1.4395, -1.1503, -0.9346, -0.7554, -0.5978, -0.4538, -0.3186, -0.1891, -0.0627, 0.0627, 0.1891, 0.3186, 0.4538, 0.5978, 0.7554, 0.9346, 1.1503, 1.4395, 1.96], "muestral": [-9.0114, -3.86, -3.8224, -3.023, -2.6374, -2.0182, -1.9032, -1.7624, 0.218, 0.5378, 0.801, 1.4066, 1.4096, 1.4468, 1.7626, 1.9368, 2.4126, 4.3476, 5.864, 5.8946]}}, "tukey": [{"par": "B-A", "dif": 2.0234, "lwr": -5.0625, "upr": 9.1093, "p_adj": 0.845594, "ancho": 14.1718}, {"par": "C-A", "dif": 9.6354, "lwr": 2.5495, "upr": 16.7213, "p_adj": 0.006404, "ancho": 14.1718}, {"par": "D-A", "dif": 17.3212, "lwr": 10.2353, "upr": 24.4071, "p_adj": 1.65e-05, "ancho": 14.1718}, {"par": "C-B", "dif": 7.612, "lwr": 0.5261, "upr": 14.6979, "p_adj": 0.033106, "ancho": 14.1718}, {"par": "D-B", "dif": 15.2978, "lwr": 8.2119, "upr": 22.3837, "p_adj": 7.13e-05, "ancho": 14.1718}, {"par": "D-C", "dif": 7.6858, "lwr": 0.5999, "upr": 14.7717, "p_adj": 0.031223, "ancho": 14.1718}]}, "I2": {"id": "I-2", "respuesta": "Resistencia a la tracción", "unidades": "MPa", "escenario": "Inspección de entrada de un componente de aleación de aluminio que llega de cinco proveedores, 4 probetas por proveedor. La respuesta es la resistencia a la tracción en MPa.", "semilla": 9, "datos": {"grupo": ["A", "A", "A", "A", "B", "B", "B", "B", "C", "C", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E"], "y": [96.933, 96.734, 99.434, 98.89, 103.745, 97.253, 106.768, 101.927, 104.008, 103.548, 110.11, 103.124, 101.284, 99.936, 108.381, 97.642, 102.69, 92.529, 106.552, 100.17]}, "medias": [97.998, 102.423, 105.197, 101.811, 100.485], "n_por_grupo": [4, 4, 4, 4, 4], "via_analista": {"descripcion": "ANOVA no significativo; aun así corre TukeyHSD y declara que C difiere de A.", "anova": {"gl_trat": 4, "gl_E": 15, "MS_trat": 27.8816, "MS_E": 17.011, "F0": 1.639, "p": 0.216232}, "tukey": [{"par": "B-A", "dif": 4.4255, "lwr": -4.5802, "upr": 13.4312, "p_adj": 0.567498, "ancho": 18.0114}, {"par": "C-A", "dif": 7.1997, "lwr": -1.8059, "upr": 16.2054, "p_adj": 0.150548, "ancho": 18.0114}, {"par": "D-A", "dif": 3.813, "lwr": -5.1927, "upr": 12.8187, "p_adj": 0.690966, "ancho": 18.0114}, {"par": "E-A", "dif": 2.4875, "lwr": -6.5182, "upr": 11.4932, "p_adj": 0.909439, "ancho": 18.0114}, {"par": "C-B", "dif": 2.7742, "lwr": -6.2314, "upr": 11.7799, "p_adj": 0.872227, "ancho": 18.0114}, {"par": "D-B", "dif": -0.6125, "lwr": -9.6182, "upr": 8.3932, "p_adj": 0.999513, "ancho": 18.0114}, {"par": "E-B", "dif": -1.938, "lwr": -10.9437, "upr": 7.0677, "p_adj": 0.961081, "ancho": 18.0114}, {"par": "D-C", "dif": -3.3867, "lwr": -12.3924, "upr": 5.6189, "p_adj": 0.772282, "ancho": 18.0114}, {"par": "E-C", "dif": -4.7122, "lwr": -13.7179, "upr": 4.2934, "p_adj": 0.510268, "ancho": 18.0114}, {"par": "E-D", "dif": -1.3255, "lwr": -10.3312, "upr": 7.6802, "p_adj": 0.990283, "ancho": 18.0114}], "par_citado": "C-A", "conclusion_escrita": "El proveedor C difiere del A."}}, "I3": {"id": "I-3", "respuesta": "Espesor de lámina", "unidades": "µm", "escenario": "Estudio de dos métodos de medición de espesor —micrómetro y medidor óptico— aplicados a las MISMAS 12 láminas de polímero. La respuesta es el espesor en micras (µm). Cada lámina se midió con los dos métodos.", "semilla": 1, "datos": {"pieza": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "metodo_1": [92.871, 96.338, 95.179, 114.25, 102.927, 94.881, 106.358, 108.07, 107.388, 99.129, 113.785, 98.734], "metodo_2": [99.049, 104.718, 95.305, 114.028, 105.018, 96.819, 110.848, 109.598, 109.312, 100.322, 113.501, 105.713], "diferencia": [6.178, 8.38, 0.126, -0.222, 2.091, 1.938, 4.49, 1.528, 1.924, 1.193, -0.284, 6.979]}, "correlacion_intra_par": 0.9201, "piezas_mismo_signo": 10, "via_analista": {"descripcion": "t.test(m1, m2) — sin paired = TRUE.", "t": -1.0149, "gl": 21.5098, "p": 0.321435, "ic": [-8.712, 2.992], "conclusion_escrita": "No hay evidencia de diferencia entre los métodos."}}, "I4": {"id": "I-4", "respuesta": "Rendimiento de la reacción", "unidades": "%", "escenario": "Cuatro condiciones de catalizador, 6 lotes por condición. La respuesta es el rendimiento de la reacción en porcentaje. Una observación cae muy por fuera de su grupo.", "semilla": 182, "desplazamiento_atipico": 17, "observacion_atipica": 14, "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4"], "y": [61.436, 49.408, 52.846, 52.33, 54.077, 54.849, 63.636, 54.261, 57.227, 56.852, 59.581, 52.739, 57.786, 71.483, 51.471, 57.342, 52.995, 52.326, 60.678, 57.608, 60.261, 62.848, 66.814, 64.857]}, "diagnostico": {"shapiro_p": 0.0124, "levene_p": 0.5952, "shapiro_p_sin_el_atipico": 0.3124, "ajustados": [54.158, 54.158, 54.158, 54.158, 54.158, 54.158, 57.383, 57.383, 57.383, 57.383, 57.383, 57.383, 57.234, 57.234, 57.234, 57.234, 57.234, 57.234, 62.178, 62.178, 62.178, 62.178, 62.178, 62.178], "residuos": [7.278, -4.75, -1.312, -1.828, -0.081, 0.691, 6.253, -3.122, -0.156, -0.531, 2.198, -4.644, 0.552, 14.249, -5.763, 0.108, -4.239, -4.908, -1.5, -4.57, -1.917, 0.67, 4.636, 2.679], "qq": {"teorico": [-2.0368, -1.5341, -1.2582, -1.0545, -0.8871, -0.7416, -0.6103, -0.4888, -0.3741, -0.2641, -0.1573, -0.0522, 0.0522, 0.1573, 0.2641, 0.3741, 0.4888, 0.6103, 0.7416, 0.8871, 1.0545, 1.2582, 1.5341, 2.0368], "muestral": [-5.7628, -4.9078, -4.7497, -4.6437, -4.5697, -4.2388, -3.1217, -1.9167, -1.8277, -1.4997, -1.3117, -0.5307, -0.1557, -0.0807, 0.1082, 0.5522, 0.6703, 0.6913, 2.1983, 2.6793, 4.6363, 6.2533, 7.2783, 14.2492]}}, "via_analista": {"descripcion": "ANOVA no significativo; ve el atípico en el gráfico de residuos, lo elimina «por ser un valor atípico» y reajusta. No dice de dónde salió.", "anova_con": {"F0": 2.6801, "p": 0.074527, "MS_E": 24.5589, "gl_E": 20}, "anova_sin": {"F0": 6.2421, "p": 0.00394, "MS_E": 13.028, "gl_E": 19}, "conclusion_escrita": "Los tratamientos difieren (p = 0.004)."}}, "I5": {"id": "I-5", "respuesta": "Concentración de impureza", "unidades": "ppm", "escenario": "Cinco condiciones de proceso, 6 lotes cada una. La respuesta es la concentración de una impureza en partes por millón (ppm). La dispersión crece con la media: el coeficiente de variación es prácticamente constante (~18 %) sobre un rango de doce veces, que es lo habitual en análisis de trazas.", "semilla": 60, "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4", "T5", "T5", "T5", "T5", "T5", "T5"], "y": [22.77, 21.883, 18.033, 19.455, 14.64, 14.67, 54.627, 47.701, 38.23, 48.706, 43.393, 44.892, 102.274, 71.916, 74.523, 105.515, 77.206, 89.018, 122.53, 140.778, 123.358, 119.025, 146.879, 147.285, 211.277, 216.638, 191.919, 146.128, 295.828, 268.116]}, "medias": [18.575, 46.258, 86.742, 133.309, 221.651], "desviaciones": [3.474, 5.525, 14.553, 13.073, 53.631], "alpha_estimado": 1.026, "lambda_implicado": -0.026, "diagnostico_original": {"ajustados": [18.575, 18.575, 18.575, 18.575, 18.575, 18.575, 46.258, 46.258, 46.258, 46.258, 46.258, 46.258, 86.742, 86.742, 86.742, 86.742, 86.742, 86.742, 133.309, 133.309, 133.309, 133.309, 133.309, 133.309, 221.651, 221.651, 221.651, 221.651, 221.651, 221.651], "residuos": [4.195, 3.308, -0.542, 0.88, -3.935, -3.905, 8.369, 1.443, -8.028, 2.448, -2.865, -1.366, 15.532, -14.826, -12.219, 18.773, -9.536, 2.276, -10.779, 7.469, -9.951, -14.284, 13.57, 13.976, -10.374, -5.013, -29.732, -75.523, 74.177, 46.465]}, "via_analista": {"descripcion": "Ve el megáfono, aplica la raíz cuadrada sin estimar alpha, NO vuelve a dibujar los residuos, corre Shapiro sobre los residuos transformados, concluye «no se cumple normalidad» y se pasa a Kruskal-Wallis.", "megafono_original": 0.6854, "megafono_tras_raiz": 0.5303, "shapiro_tras_raiz": 0.0391, "kruskal": {"H": 27.5785, "gl": 4, "p": 1.52e-05}, "conclusion_escrita": "Los tratamientos difieren (Kruskal-Wallis)."}}, "I6": {"id": "I-6", "respuesta": "Resistencia a la compresión", "unidades": "MPa", "escenario": "Tres dosificaciones de mortero con n = 9, 6 y 8 probetas. La respuesta es la resistencia a la compresión en MPa. El desbalance viene de probetas perdidas por una causa AJENA al tratamiento, y el contexto lo dice.", "semilla": 2, "datos": {"grupo": ["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "C", "C", "C"], "y": [26.412, 30.739, 36.351, 25.478, 29.679, 30.53, 32.832, 29.041, 37.938, 35.445, 37.671, 39.927, 34.429, 31.841, 43.129, 31.756, 44.514, 41.143, 45.051, 42.729, 49.363, 36.2, 47.359]}, "medias": [31, 37.074, 42.264], "n_por_grupo": [9, 6, 8], "anova": {"SS_trat": 540.0486, "SS_E": 457.58, "gl_trat": 2, "gl_E": 20, "MS_trat": 270.0243, "MS_E": 22.879, "F0": 11.8023, "p": 0.000412}, "diagnostico": {"shapiro_p": 0.7348, "levene_p": 0.6586, "ajustados": [31, 31, 31, 31, 31, 31, 31, 31, 31, 37.074, 37.074, 37.074, 37.074, 37.074, 37.074, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264], "residuos": [-4.588, -0.261, 5.351, -5.522, -1.321, -0.47, 1.832, -1.959, 6.938, -1.629, 0.597, 2.853, -2.645, -5.233, 6.055, -10.508, 2.25, -1.121, 2.787, 0.465, 7.099, -6.064, 5.095], "qq": {"teorico": [-2.0191, -1.5124, -1.2335, -1.0272, -0.8573, -0.7091, -0.5751, -0.4507, -0.333, -0.2197, -0.1092, 0, 0.1092, 0.2197, 0.333, 0.4507, 0.5751, 0.7091, 0.8573, 1.0272, 1.2335, 1.5124, 2.0191], "muestral": [-10.5084, -6.0644, -5.522, -5.2327, -4.588, -2.6447, -1.959, -1.6287, -1.321, -1.1214, -0.47, -0.261, 0.4646, 0.5973, 1.832, 2.2496, 2.7866, 2.8533, 5.0946, 5.351, 6.0553, 6.938, 7.0986]}}, "tukey_kramer": [{"par": "B-A", "dif": 6.0737, "lwr": -0.3043, "upr": 12.4517, "p_adj": 0.06372, "ancho": 12.756}, {"par": "C-A", "dif": 11.2644, "lwr": 5.3841, "upr": 17.1446, "p_adj": 0.000277, "ancho": 11.7605}, {"par": "C-B", "dif": 5.1907, "lwr": -1.3448, "upr": 11.7262, "p_adj": 0.135803, "ancho": 13.071}]}}, "paneles": {"P1": {"id": "P-1", "modulo": ["4.2", "4.6"], "n": 40, "semilla": 13, "respuesta": "Tiempo de respuesta de un sensor", "unidades": "ms", "residuos": [1.663, -0.841, 21.302, 0.562, 3.428, 1.247, 14.754, 0.71, -1.096, 13.262, -3.281, 5.542, -4.083, -22.272, -1.32, -0.582, 4.189, 0.302, -1.373, 2.107, 0.788, 5.508, 1.072, -3.136, 1.861, 0.448, -4.378, -6.081, -3.171, -2.184, -0.025, 2.543, -1.15, -1.58, -0.82, -1.817, -3.994, -0.725, -2.588, -10.164], "qq": {"teorico": [-2.2414, -1.7805, -1.5341, -1.3563, -1.2133, -1.0916, -0.9842, -0.8871, -0.7978, -0.7144, -0.6357, -0.5607, -0.4888, -0.4193, -0.3518, -0.2858, -0.2211, -0.1573, -0.0941, -0.0313, 0.0313, 0.0941, 0.1573, 0.2211, 0.2858, 0.3518, 0.4193, 0.4888, 0.5607, 0.6357, 0.7144, 0.7978, 0.8871, 0.9842, 1.0916, 1.2133, 1.3563, 1.5341, 1.7805, 2.2414], "muestral": [-22.272, -10.164, -6.081, -4.378, -4.083, -3.994, -3.281, -3.171, -3.136, -2.588, -2.184, -1.817, -1.58, -1.373, -1.32, -1.15, -1.096, -0.841, -0.82, -0.725, -0.582, -0.025, 0.302, 0.448, 0.562, 0.71, 0.788, 1.072, 1.247, 1.663, 1.861, 2.107, 2.543, 3.428, 4.189, 5.508, 5.542, 13.262, 14.754, 21.302]}}, "P2": {"id": "P-2", "modulo": ["4.3", "4.8"], "respuesta": "Burbujas por panel de vidrio", "unidades": "conteo", "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4"], "y": [16, 18, 13, 20, 19, 19, 39, 37, 38, 42, 41, 36, 61, 58, 63, 63, 57, 72, 91, 103, 104, 99, 93, 95]}, "medias": [17.5, 38.833, 62.333, 97.5], "desviaciones": [2.588, 2.317, 5.354, 5.357], "ajustados": [17.5, 17.5, 17.5, 17.5, 17.5, 17.5, 38.833, 38.833, 38.833, 38.833, 38.833, 38.833, 62.333, 62.333, 62.333, 62.333, 62.333, 62.333, 97.5, 97.5, 97.5, 97.5, 97.5, 97.5], "residuos": [-1.5, 0.5, -4.5, 2.5, 1.5, 1.5, 0.167, -1.833, -0.833, 3.167, 2.167, -2.833, -1.333, -4.333, 0.667, 0.667, -5.333, 9.667, -6.5, 5.5, 6.5, 1.5, -4.5, -2.5], "alpha_estimado": 0.503, "lambda_implicado": 0.497}, "P3": {"id": "P-3", "modulo": ["4.4", "1.3"], "semilla": 1, "respuesta": "Contenido de humedad", "unidades": "%", "orden_corrida": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "grupo": ["A", "B", "A", "A", "C", "D", "C", "D", "C", "A", "D", "A", "B", "D", "B", "C", "C", "B", "D", "B"], "y": [38.255, 42.521, 41.052, 41.377, 44.254, 44.516, 45.721, 44.925, 45.501, 46.255, 49.317, 48.208, 49.036, 51.707, 52.422, 48.418, 47.781, 51.993, 52.979, 51.914], "residuos": [-4.774, -7.056, -1.977, -1.652, -2.081, -4.173, -0.614, -3.764, -0.834, 3.226, 0.628, 5.179, -0.541, 3.018, 2.845, 2.083, 1.446, 2.416, 4.29, 2.337]}, "P4": {"id": "P-4", "modulo": ["3.6", "3.7", "3.10"], "respuesta": "Dureza Brinell", "unidades": "HB", "datos": {"grupo": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "D", "D", "D", "E", "E", "E", "E", "E"], "y": [68.44, 72.824, 72.897, 68.593, 74.76, 74.441, 72.727, 79.516, 75.628, 70.551, 80.189, 74.804, 78.521, 75.221, 75.283, 76.876, 83.359, 70.608, 72.586, 75.578, 81.52, 83.334, 81.656, 76.959, 87.852]}, "medias": [71.503, 74.573, 76.804, 75.801, 82.264], "MS_E": 12.8794, "gl_E": 20, "F0": 6.0182, "p": 0.002393, "intervalos_A": [{"par": "B-A", "dif": 3.07, "lwr": -1.665, "upr": 7.804, "ancho": 9.469}, {"par": "C-A", "dif": 5.301, "lwr": 0.566, "upr": 10.035, "ancho": 9.469}, {"par": "D-A", "dif": 4.299, "lwr": -0.436, "upr": 9.033, "ancho": 9.469}, {"par": "E-A", "dif": 10.761, "lwr": 6.027, "upr": 15.496, "ancho": 9.469}, {"par": "C-B", "dif": 2.231, "lwr": -2.504, "upr": 6.966, "ancho": 9.469}, {"par": "D-B", "dif": 1.229, "lwr": -3.506, "upr": 5.963, "ancho": 9.469}, {"par": "E-B", "dif": 7.692, "lwr": 2.957, "upr": 12.426, "ancho": 9.469}, {"par": "D-C", "dif": -1.002, "lwr": -5.737, "upr": 3.732, "ancho": 9.469}, {"par": "E-C", "dif": 5.461, "lwr": 0.726, "upr": 10.195, "ancho": 9.469}, {"par": "E-D", "dif": 6.463, "lwr": 1.728, "upr": 11.197, "ancho": 9.469}], "intervalos_B": [{"par": "B-A", "dif": 3.07, "lwr": -3.722, "upr": 9.862, "p_adj": 0.663, "ancho": 13.584}, {"par": "C-A", "dif": 5.301, "lwr": -1.491, "upr": 12.093, "p_adj": 0.175, "ancho": 13.584}, {"par": "D-A", "dif": 4.299, "lwr": -2.493, "upr": 11.091, "p_adj": 0.352, "ancho": 13.584}, {"par": "E-A", "dif": 10.761, "lwr": 3.969, "upr": 17.553, "p_adj": 0.001, "ancho": 13.584}, {"par": "C-B", "dif": 2.231, "lwr": -4.561, "upr": 9.023, "p_adj": 0.86, "ancho": 13.584}, {"par": "D-B", "dif": 1.229, "lwr": -5.563, "upr": 8.021, "p_adj": 0.982, "ancho": 13.584}, {"par": "E-B", "dif": 7.692, "lwr": 0.9, "upr": 14.484, "p_adj": 0.022, "ancho": 13.584}, {"par": "D-C", "dif": -1.002, "lwr": -7.794, "upr": 5.79, "p_adj": 0.991, "ancho": 13.584}, {"par": "E-C", "dif": 5.461, "lwr": -1.331, "upr": 12.253, "p_adj": 0.155, "ancho": 13.584}, {"par": "E-D", "dif": 6.463, "lwr": -0.329, "upr": 13.255, "p_adj": 0.067, "ancho": 13.584}]}, "P5": {"id": "P-5", "modulo": "3.2", "respuesta": "Tiempo de secado", "unidades": "min", "medias": [20.095, 19.977, 25.173, 26.313], "MS_E": 7.5299, "gl_E": 20, "escala_referencia": 1.1203, "referencia": {"x": [-4.481, -4.425, -4.369, -4.313, -4.257, -4.201, -4.145, -4.089, -4.033, -3.977, -3.921, -3.865, -3.809, -3.753, -3.697, -3.641, -3.585, -3.529, -3.473, -3.417, -3.361, -3.305, -3.249, -3.193, -3.137, -3.081, -3.025, -2.969, -2.913, -2.857, -2.801, -2.745, -2.689, -2.633, -2.577, -2.521, -2.465, -2.409, -2.353, -2.297, -2.241, -2.185, -2.128, -2.072, -2.016, -1.96, -1.904, -1.848, -1.792, -1.736, -1.68, -1.624, -1.568, -1.512, -1.456, -1.4, -1.344, -1.288, -1.232, -1.176, -1.12, -1.064, -1.008, -0.952, -0.896, -0.84, -0.784, -0.728, -0.672, -0.616, -0.56, -0.504, -0.448, -0.392, -0.336, -0.28, -0.224, -0.168, -0.112, -0.056, 0, 0.056, 0.112, 0.168, 0.224, 0.28, 0.336, 0.392, 0.448, 0.504, 0.56, 0.616, 0.672, 0.728, 0.784, 0.84, 0.896, 0.952, 1.008, 1.064, 1.12, 1.176, 1.232, 1.288, 1.344, 1.4, 1.456, 1.512, 1.568, 1.624, 1.68, 1.736, 1.792, 1.848, 1.904, 1.96, 2.016, 2.072, 2.128, 2.185, 2.241, 2.297, 2.353, 2.409, 2.465, 2.521, 2.577, 2.633, 2.689, 2.745, 2.801, 2.857, 2.913, 2.969, 3.025, 3.081, 3.137, 3.193, 3.249, 3.305, 3.361, 3.417, 3.473, 3.529, 3.585, 3.641, 3.697, 3.753, 3.809, 3.865, 3.921, 3.977, 4.033, 4.089, 4.145, 4.201, 4.257, 4.313, 4.369, 4.425, 4.481], "densidad": [0.000822, 0.000924, 0.001038, 0.001166, 0.00131, 0.00147, 0.00165, 0.001852, 0.002077, 0.002329, 0.002611, 0.002925, 0.003276, 0.003668, 0.004104, 0.00459, 0.005131, 0.005732, 0.0064, 0.007142, 0.007964, 0.008874, 0.009882, 0.010996, 0.012226, 0.013582, 0.015075, 0.016718, 0.018522, 0.020502, 0.022669, 0.02504, 0.027629, 0.030451, 0.033522, 0.036859, 0.040477, 0.044393, 0.048622, 0.053182, 0.058087, 0.063352, 0.068991, 0.075015, 0.081437, 0.088264, 0.095503, 0.10316, 0.111234, 0.119725, 0.128627, 0.137932, 0.147625, 0.157689, 0.168102, 0.178837, 0.189862, 0.20114, 0.212629, 0.224281, 0.236046, 0.247866, 0.259682, 0.271429, 0.283039, 0.294443, 0.305568, 0.316341, 0.326687, 0.336534, 0.345809, 0.354442, 0.362367, 0.36952, 0.375845, 0.38129, 0.385809, 0.389365, 0.391926, 0.393472, 0.393989, 0.393472, 0.391926, 0.389365, 0.385809, 0.38129, 0.375845, 0.36952, 0.362367, 0.354442, 0.345809, 0.336534, 0.326687, 0.316341, 0.305568, 0.294443, 0.283039, 0.271429, 0.259682, 0.247866, 0.236046, 0.224281, 0.212629, 0.20114, 0.189862, 0.178837, 0.168102, 0.157689, 0.147625, 0.137932, 0.128627, 0.119725, 0.111234, 0.10316, 0.095503, 0.088264, 0.081437, 0.075015, 0.068991, 0.063352, 0.058087, 0.053182, 0.048622, 0.044393, 0.040477, 0.036859, 0.033522, 0.030451, 0.027629, 0.02504, 0.022669, 0.020502, 0.018522, 0.016718, 0.015075, 0.013582, 0.012226, 0.010996, 0.009882, 0.008874, 0.007964, 0.007142, 0.0064, 0.005732, 0.005131, 0.00459, 0.004104, 0.003668, 0.003276, 0.002925, 0.002611, 0.002329, 0.002077, 0.001852, 0.00165, 0.00147, 0.00131, 0.001166, 0.001038, 0.000924, 0.000822]}}, "P6": {"id": "P-6", "modulo": ["2.1", "2.7"], "respuesta": "Par de apriete", "unidades": "N·m", "es_simulado": true, "experimento_1": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4"], "y": [46.251, 48.311, 50.98, 54.253, 50.205, 53.917, 49.774, 55.588, 57.8, 52.921, 53.958, 60.056, 61.384, 56.075, 58.527, 58.277, 65.443, 61.308, 60.326, 64.646], "medias": [50, 54, 58, 62], "SS_trat": 400, "MS_E": 8.9992, "F0": 14.8161, "p": 7.03e-05}, "experimento_2": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4"], "y": [59.589, 59.47, 37.841, 48.515, 44.585, 47.158, 45.15, 51.275, 57.784, 68.633, 44.566, 53.017, 59.114, 65.106, 68.197, 67.522, 67.191, 46.705, 58.854, 69.728], "medias": [50, 54, 58, 62], "SS_trat": 400, "MS_E": 90.251, "F0": 1.4774, "p": 0.258353}}}, "situaciones": {"S1": {"id": "S-1", "modulo": ["1.3", "2.5", "1.1"], "respuesta": "Dureza Rockwell B tras revenido", "unidades": "HRB", "niveles_C": [150, 175, 200], "probetas_por_horno": 10, "hornos": 3, "escenario": "Tres hornos, cada uno a una temperatura de revenido (150, 175 y 200 °C). La respuesta es la dureza Rockwell B (HRB). De cada horno se extraen 10 probetas y se miden por separado. El analista escribe n = 30.", "datos": {"grupo": ["150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C"], "y": [58.965, 59.459, 60.911, 61.322, 61.068, 58.236, 61.228, 61.833, 61.27, 61.479, 62.01, 60.017, 61.572, 61.043, 60.871, 61.597, 60.345, 60.501, 59.608, 62.285, 63.121, 66.872, 64.582, 65.973, 65.035, 63.994, 65.344, 63.002, 65.047, 63.644]}, "analisis_del_analista": {"N": 30, "gl_trat": 2, "gl_E": 27, "F0": 39.6527, "p": 9.22e-09}}, "S2": {"id": "S-2", "modulo": ["1.1", "1.3", "2.10", "3.9", "4.1"], "respuesta": "Rendimiento", "unidades": "%", "medias_supuestas": {"control": 82, "A": 85, "B": 88, "C": 91}, "sigma_piloto": 4.5, "tamano_muestra": {"n_exacto": 5.979, "n_usado": 6, "potencia_objetivo": 0.8, "potencia_real": 0.8019, "total_corridas": 24}, "plan_aleatorizacion": {"semilla": 202, "orden": ["B", "B", "A", "C", "control", "C", "control", "B", "C", "control", "B", "C", "A", "control", "A", "A", "C", "C", "control", "A", "B", "A", "control", "B"], "orden_R": "set.seed(202); sample(rep(c(\"control\",\"A\",\"B\",\"C\"), each = n))"}}}, "calentamiento": {"C6": {"id": "C-6", "modulo": "2.11", "a": 3, "n": 7, "anova": {"gl_trat": 2, "gl_E": 18, "gl_total": 20, "SS_trat": 158.9187, "SS_E": 187.9754, "SS_T": 346.8941, "MS_trat": 79.4594, "MS_E": 10.4431, "F0": 7.6088, "p": 0.004028}}, "C4": {"id": "C-4", "modulo": "2.5", "N": 20, "gl_total": 19, "diseno_a": {"a": 4, "n": 5, "gl_E": 16}, "diseno_b": {"a": 5, "n": 4, "gl_E": 15}}, "C5": {"id": "C-5", "modulo": "2.8", "a": 4, "n": 6, "niveles": ["A", "B", "C", "D"], "medias": [40.533, 44.939, 47.577, 52.248], "MS_E": 9.8155, "gl_E": 20, "ee_una_media": 1.279, "ee_diferencia": 1.8088, "t_critico": 2.086, "ic_medias": [[37.865, 43.202], [42.271, 47.607], [44.909, 50.245], [49.58, 54.916]], "par_que_enganya": {"par": "B-A", "dif": 4.405, "ic": [0.632, 8.178], "ic_individuales_se_solapan": true}, "ventana": {"inferior": 3.7731, "superior": 5.336}}, "C7": {"id": "C-7", "modulo": "3.4", "n": [6, 4, 4, 6], "c1": [1, 1, -1, -1], "c2": [1, -1, 1, -1], "suma_simple": 0, "suma_ponderada": 4}}, "auditoria_ia": {"respuesta": "Unidades terminadas por hora", "unidades": "u/h", "escenario": "Datos OBSERVACIONALES de tres turnos de producción; la respuesta son las unidades terminadas por hora (u/h). Nadie asignó nada al azar: los turnos son los que la planta ya tenía.", "datos": {"grupo": ["Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3"], "y": [47.616, 53.014, 52.503, 46.148, 50.607, 52.014, 47.75, 41.363, 48.552, 44.057, 50.065, 54.223, 52.19, 50.141, 53.272, 52.486, 61.239, 56.918, 50.872, 49.408, 60.707, 60.285, 59.169, 56.644]}, "anova": {"gl_trat": 2, "gl_E": 21, "MS_E": 15.532, "F0": 9.1826, "p": 0.001363}, "medias": [48.877, 50.623, 56.905]}, "rubrica": {"taller_del_corte": 0.5, "tope": {"sobre": "defensa", "umbral": 3, "escala": 5, "formula": "entrega x min(1, defensa / 3)", "tramos": [{"id": "defensa", "peso": 0.4, "acota_la_entrega": true}, {"id": "contrafactico", "peso": 0.4, "acota_la_entrega": false}, {"id": "transferencia", "peso": 0.2, "acota_la_entrega": false}], "ejemplos": [{"entrega": 4.5, "defensa": 1, "contrafactico": 1, "transferencia": 1, "sustentacion": 1, "factor": 0.3333, "entrega_acotada": 1.5, "taller_sin_tope": 2.4, "taller_con_tope": 1.2}, {"entrega": 4.5, "defensa": 3.5, "contrafactico": 2, "transferencia": 2, "sustentacion": 2.6, "factor": 1, "entrega_acotada": 4.5, "taller_sin_tope": 3.36, "taller_con_tope": 3.36}, {"entrega": 4, "defensa": 2.7, "contrafactico": 3, "transferencia": 3, "sustentacion": 2.88, "factor": 0.9, "entrega_acotada": 3.6, "taller_sin_tope": 3.33, "taller_con_tope": 3.17}, {"entrega": 2.5, "defensa": 4, "contrafactico": 4, "transferencia": 4, "sustentacion": 4, "factor": 1, "entrega_acotada": 2.5, "taller_sin_tope": 3.4, "taller_con_tope": 3.4}], "parcial_necesario_sin_tope": 3.6, "parcial_necesario_con_tope": 4.8}, "sustentacion_del_taller": 0.6, "entregas_del_taller": 0.4, "sustentacion_del_corte": 0.3, "entregas_del_corte": 0.2, "n_items": 25, "niveles": ["insuficiente", "aceptable", "sólido"], "partes": [{"id": "P0", "n_items": 10, "de_entregas": 0, "de_taller": 0, "del_corte": 0, "por_item_del_corte": 0}, {"id": "P1", "n_items": 6, "de_entregas": 0.2, "de_taller": 0.08, "del_corte": 0.04, "por_item_del_corte": 0.0067}, {"id": "P2", "n_items": 6, "de_entregas": 0.45, "de_taller": 0.18, "del_corte": 0.09, "por_item_del_corte": 0.015}, {"id": "P3", "n_items": 2, "de_entregas": 0.2, "de_taller": 0.08, "del_corte": 0.04, "por_item_del_corte": 0.02}, {"id": "P4", "n_items": 1, "n_subitems": 3, "de_entregas": 0.15, "de_taller": 0.06, "del_corte": 0.03, "por_item_del_corte": 0.03, "por_subitem_del_corte": 0.01}]}, "resumen": {"n_informes": 6, "informes_limpios": 2, "informes_con_fallo": 4, "fallos_totales": 6, "n_paneles": 6, "n_situaciones": 2}, "metadatos": {"generador": "precalculo/genera_taller1.R", "especificacion": "taller1/ESPECIFICACION.md", "R": "4.6.0", "semillas": {"I1": 1, "I2": 9, "I3": 1, "I4": 182, "I5": 60, "I6": 2, "paneles": [101, 102, 103, 104, 105, 106, 107], "situaciones": [201, 202], "calentamiento": 301, "auditoria_ia": 401}, "calculado_a_mano": ["la tabla ANOVA de un factor por sumas centradas, contrastada contra aov() en los seis informes", "los intervalos de Tukey y de Tukey-Kramer, contrastados contra TukeyHSD()", "los intervalos de la LSD de Fisher", "los gl de Welch por la formula de Satterthwaite, contrastados contra t.test()", "la t pareada como t de una muestra sobre las diferencias", "lambda por dos vias independientes: el perfil de Box-Cox y la regresion de log(s) sobre log(ybar)"]}, "descripcion": "Precálculo del Taller 1 del Corte I (capítulos 1-4): los seis informes de peritaje con SUS DOS VÍAS —la del analista y la correcta—, los seis paneles gráficos, las dos situaciones de diseño, los dos ítems del calentamiento que llevan cifras y el experimento de la auditoría de IA. Tarea T1.1 de PLAN_Taller_1_Corte_I.md; los ítems están especificados en taller1/ESPECIFICACION.md.", "generado": "2026-08-20"};
+    const TALLER1 = {"informes": {"I1": {"id": "I-1", "respuesta": "Brillo especular a 60°", "unidades": "GU", "escenario": "Cuatro formulaciones de un recubrimiento semibrillante, 5 réplicas cada una. La respuesta es el brillo especular medido a 60° en unidades de brillo (GU). El orden de corrida se aleatorizó y está registrado.", "semilla": 1, "datos": {"grupo": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "D", "D", "D"], "y": [47.494, 50.735, 46.657, 56.381, 51.318, 48.718, 53.95, 54.953, 54.303, 50.778, 66.047, 61.559, 57.515, 51.141, 64.5, 65.82, 65.935, 69.775, 69.285, 68.376]}, "medias": [50.517, 52.54, 60.152, 67.838], "n_por_grupo": [5, 5, 5, 5], "anova": {"SS_trat": 934.9948, "SS_E": 245.3615, "SS_T": 1180.3563, "gl_trat": 3, "gl_E": 16, "MS_trat": 311.6649, "MS_E": 15.3351, "F0": 20.3236, "p": 1.05e-05}, "diagnostico": {"shapiro_p": 0.4377, "levene_p": 0.3259, "ajustados": [50.517, 50.517, 50.517, 50.517, 50.517, 52.54, 52.54, 52.54, 52.54, 52.54, 60.152, 60.152, 60.152, 60.152, 60.152, 67.838, 67.838, 67.838, 67.838, 67.838], "residuos": [-3.023, 0.218, -3.86, 5.864, 0.801, -3.822, 1.41, 2.413, 1.763, -1.762, 5.895, 1.407, -2.637, -9.011, 4.348, -2.018, -1.903, 1.937, 1.447, 0.538], "qq": {"teorico": [-1.96, -1.4395, -1.1503, -0.9346, -0.7554, -0.5978, -0.4538, -0.3186, -0.1891, -0.0627, 0.0627, 0.1891, 0.3186, 0.4538, 0.5978, 0.7554, 0.9346, 1.1503, 1.4395, 1.96], "muestral": [-9.0114, -3.86, -3.8224, -3.023, -2.6374, -2.0182, -1.9032, -1.7624, 0.218, 0.5378, 0.801, 1.4066, 1.4096, 1.4468, 1.7626, 1.9368, 2.4126, 4.3476, 5.864, 5.8946]}}, "tukey": [{"par": "B-A", "dif": 2.0234, "lwr": -5.0625, "upr": 9.1093, "p_adj": 0.845594, "ancho": 14.1718}, {"par": "C-A", "dif": 9.6354, "lwr": 2.5495, "upr": 16.7213, "p_adj": 0.006404, "ancho": 14.1718}, {"par": "D-A", "dif": 17.3212, "lwr": 10.2353, "upr": 24.4071, "p_adj": 1.65e-05, "ancho": 14.1718}, {"par": "C-B", "dif": 7.612, "lwr": 0.5261, "upr": 14.6979, "p_adj": 0.033106, "ancho": 14.1718}, {"par": "D-B", "dif": 15.2978, "lwr": 8.2119, "upr": 22.3837, "p_adj": 7.13e-05, "ancho": 14.1718}, {"par": "D-C", "dif": 7.6858, "lwr": 0.5999, "upr": 14.7717, "p_adj": 0.031223, "ancho": 14.1718}]}, "I2": {"id": "I-2", "respuesta": "Resistencia a la tracción", "unidades": "MPa", "escenario": "Inspección de entrada de un componente de aleación de aluminio que llega de cinco proveedores, 4 probetas por proveedor. La respuesta es la resistencia a la tracción en MPa.", "semilla": 9, "datos": {"grupo": ["A", "A", "A", "A", "B", "B", "B", "B", "C", "C", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E"], "y": [96.933, 96.734, 99.434, 98.89, 103.745, 97.253, 106.768, 101.927, 104.008, 103.548, 110.11, 103.124, 101.284, 99.936, 108.381, 97.642, 102.69, 92.529, 106.552, 100.17]}, "medias": [97.998, 102.423, 105.197, 101.811, 100.485], "n_por_grupo": [4, 4, 4, 4, 4], "via_analista": {"descripcion": "ANOVA no significativo; aun así corre TukeyHSD y declara que C difiere de A.", "anova": {"gl_trat": 4, "gl_E": 15, "MS_trat": 27.8816, "MS_E": 17.011, "F0": 1.639, "p": 0.216232}, "tukey": [{"par": "B-A", "dif": 4.4255, "lwr": -4.5802, "upr": 13.4312, "p_adj": 0.567498, "ancho": 18.0114}, {"par": "C-A", "dif": 7.1997, "lwr": -1.8059, "upr": 16.2054, "p_adj": 0.150548, "ancho": 18.0114}, {"par": "D-A", "dif": 3.813, "lwr": -5.1927, "upr": 12.8187, "p_adj": 0.690966, "ancho": 18.0114}, {"par": "E-A", "dif": 2.4875, "lwr": -6.5182, "upr": 11.4932, "p_adj": 0.909439, "ancho": 18.0114}, {"par": "C-B", "dif": 2.7742, "lwr": -6.2314, "upr": 11.7799, "p_adj": 0.872227, "ancho": 18.0114}, {"par": "D-B", "dif": -0.6125, "lwr": -9.6182, "upr": 8.3932, "p_adj": 0.999513, "ancho": 18.0114}, {"par": "E-B", "dif": -1.938, "lwr": -10.9437, "upr": 7.0677, "p_adj": 0.961081, "ancho": 18.0114}, {"par": "D-C", "dif": -3.3867, "lwr": -12.3924, "upr": 5.6189, "p_adj": 0.772282, "ancho": 18.0114}, {"par": "E-C", "dif": -4.7122, "lwr": -13.7179, "upr": 4.2934, "p_adj": 0.510268, "ancho": 18.0114}, {"par": "E-D", "dif": -1.3255, "lwr": -10.3312, "upr": 7.6802, "p_adj": 0.990283, "ancho": 18.0114}], "par_citado": "C-A", "conclusion_escrita": "El proveedor C difiere del A."}}, "I3": {"id": "I-3", "respuesta": "Espesor de lámina", "unidades": "µm", "escenario": "Estudio de dos métodos de medición de espesor —micrómetro y medidor óptico— aplicados a las MISMAS 12 láminas de polímero. La respuesta es el espesor en micras (µm). Cada lámina se midió con los dos métodos.", "semilla": 1, "datos": {"pieza": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "metodo_1": [92.871, 96.338, 95.179, 114.25, 102.927, 94.881, 106.358, 108.07, 107.388, 99.129, 113.785, 98.734], "metodo_2": [99.049, 104.718, 95.305, 114.028, 105.018, 96.819, 110.848, 109.598, 109.312, 100.322, 113.501, 105.713], "diferencia": [6.178, 8.38, 0.126, -0.222, 2.091, 1.938, 4.49, 1.528, 1.924, 1.193, -0.284, 6.979]}, "correlacion_intra_par": 0.9201, "piezas_mismo_signo": 10, "via_analista": {"descripcion": "t.test(m1, m2) — sin paired = TRUE.", "t": -1.0149, "gl": 21.5098, "p": 0.321435, "ic": [-8.712, 2.992], "conclusion_escrita": "No hay evidencia de diferencia entre los métodos."}}, "I4": {"id": "I-4", "respuesta": "Rendimiento de la reacción", "unidades": "%", "escenario": "Cuatro condiciones de catalizador, 6 lotes por condición. La respuesta es el rendimiento de la reacción en porcentaje. Una observación cae muy por fuera de su grupo.", "semilla": 182, "desplazamiento_atipico": 17, "observacion_atipica": 14, "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4"], "y": [61.436, 49.408, 52.846, 52.33, 54.077, 54.849, 63.636, 54.261, 57.227, 56.852, 59.581, 52.739, 57.786, 71.483, 51.471, 57.342, 52.995, 52.326, 60.678, 57.608, 60.261, 62.848, 66.814, 64.857]}, "diagnostico": {"shapiro_p": 0.0124, "levene_p": 0.5952, "shapiro_p_sin_el_atipico": 0.3124, "ajustados": [54.158, 54.158, 54.158, 54.158, 54.158, 54.158, 57.383, 57.383, 57.383, 57.383, 57.383, 57.383, 57.234, 57.234, 57.234, 57.234, 57.234, 57.234, 62.178, 62.178, 62.178, 62.178, 62.178, 62.178], "residuos": [7.278, -4.75, -1.312, -1.828, -0.081, 0.691, 6.253, -3.122, -0.156, -0.531, 2.198, -4.644, 0.552, 14.249, -5.763, 0.108, -4.239, -4.908, -1.5, -4.57, -1.917, 0.67, 4.636, 2.679], "qq": {"teorico": [-2.0368, -1.5341, -1.2582, -1.0545, -0.8871, -0.7416, -0.6103, -0.4888, -0.3741, -0.2641, -0.1573, -0.0522, 0.0522, 0.1573, 0.2641, 0.3741, 0.4888, 0.6103, 0.7416, 0.8871, 1.0545, 1.2582, 1.5341, 2.0368], "muestral": [-5.7628, -4.9078, -4.7497, -4.6437, -4.5697, -4.2388, -3.1217, -1.9167, -1.8277, -1.4997, -1.3117, -0.5307, -0.1557, -0.0807, 0.1082, 0.5522, 0.6703, 0.6913, 2.1983, 2.6793, 4.6363, 6.2533, 7.2783, 14.2492]}}, "via_analista": {"descripcion": "ANOVA no significativo; ve el atípico en el gráfico de residuos, lo elimina «por ser un valor atípico» y reajusta. No dice de dónde salió.", "anova_con": {"F0": 2.6801, "p": 0.074527, "MS_E": 24.5589, "gl_E": 20}, "anova_sin": {"F0": 6.2421, "p": 0.00394, "MS_E": 13.028, "gl_E": 19}, "conclusion_escrita": "Los tratamientos difieren (p = 0.004)."}}, "I5": {"id": "I-5", "respuesta": "Concentración de impureza", "unidades": "ppm", "escenario": "Cinco condiciones de proceso, 6 lotes cada una. La respuesta es la concentración de una impureza en partes por millón (ppm). La dispersión crece con la media: el coeficiente de variación es prácticamente constante (~18 %) sobre un rango de doce veces, que es lo habitual en análisis de trazas.", "semilla": 60, "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4", "T5", "T5", "T5", "T5", "T5", "T5"], "y": [22.77, 21.883, 18.033, 19.455, 14.64, 14.67, 54.627, 47.701, 38.23, 48.706, 43.393, 44.892, 102.274, 71.916, 74.523, 105.515, 77.206, 89.018, 122.53, 140.778, 123.358, 119.025, 146.879, 147.285, 211.277, 216.638, 191.919, 146.128, 295.828, 268.116]}, "medias": [18.575, 46.258, 86.742, 133.309, 221.651], "desviaciones": [3.474, 5.525, 14.553, 13.073, 53.631], "alpha_estimado": 1.026, "lambda_implicado": -0.026, "diagnostico_original": {"ajustados": [18.575, 18.575, 18.575, 18.575, 18.575, 18.575, 46.258, 46.258, 46.258, 46.258, 46.258, 46.258, 86.742, 86.742, 86.742, 86.742, 86.742, 86.742, 133.309, 133.309, 133.309, 133.309, 133.309, 133.309, 221.651, 221.651, 221.651, 221.651, 221.651, 221.651], "residuos": [4.195, 3.308, -0.542, 0.88, -3.935, -3.905, 8.369, 1.443, -8.028, 2.448, -2.865, -1.366, 15.532, -14.826, -12.219, 18.773, -9.536, 2.276, -10.779, 7.469, -9.951, -14.284, 13.57, 13.976, -10.374, -5.013, -29.732, -75.523, 74.177, 46.465]}, "via_analista": {"descripcion": "Ve el megáfono, aplica la raíz cuadrada sin estimar alpha, NO vuelve a dibujar los residuos, corre Shapiro sobre los residuos transformados, concluye «no se cumple normalidad» y se pasa a Kruskal-Wallis.", "megafono_original": 0.6854, "megafono_tras_raiz": 0.5303, "shapiro_tras_raiz": 0.0391, "kruskal": {"H": 27.5785, "gl": 4, "p": 1.52e-05}, "conclusion_escrita": "Los tratamientos difieren (Kruskal-Wallis)."}}, "I6": {"id": "I-6", "respuesta": "Resistencia a la compresión", "unidades": "MPa", "escenario": "Tres dosificaciones de mortero con n = 9, 6 y 8 probetas. La respuesta es la resistencia a la compresión en MPa. El desbalance viene de probetas perdidas por una causa AJENA al tratamiento, y el contexto lo dice.", "semilla": 2, "datos": {"grupo": ["A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "C", "C", "C"], "y": [26.412, 30.739, 36.351, 25.478, 29.679, 30.53, 32.832, 29.041, 37.938, 35.445, 37.671, 39.927, 34.429, 31.841, 43.129, 31.756, 44.514, 41.143, 45.051, 42.729, 49.363, 36.2, 47.359]}, "medias": [31, 37.074, 42.264], "n_por_grupo": [9, 6, 8], "anova": {"SS_trat": 540.0486, "SS_E": 457.58, "gl_trat": 2, "gl_E": 20, "MS_trat": 270.0243, "MS_E": 22.879, "F0": 11.8023, "p": 0.000412}, "diagnostico": {"shapiro_p": 0.7348, "levene_p": 0.6586, "ajustados": [31, 31, 31, 31, 31, 31, 31, 31, 31, 37.074, 37.074, 37.074, 37.074, 37.074, 37.074, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264, 42.264], "residuos": [-4.588, -0.261, 5.351, -5.522, -1.321, -0.47, 1.832, -1.959, 6.938, -1.629, 0.597, 2.853, -2.645, -5.233, 6.055, -10.508, 2.25, -1.121, 2.787, 0.465, 7.099, -6.064, 5.095], "qq": {"teorico": [-2.0191, -1.5124, -1.2335, -1.0272, -0.8573, -0.7091, -0.5751, -0.4507, -0.333, -0.2197, -0.1092, 0, 0.1092, 0.2197, 0.333, 0.4507, 0.5751, 0.7091, 0.8573, 1.0272, 1.2335, 1.5124, 2.0191], "muestral": [-10.5084, -6.0644, -5.522, -5.2327, -4.588, -2.6447, -1.959, -1.6287, -1.321, -1.1214, -0.47, -0.261, 0.4646, 0.5973, 1.832, 2.2496, 2.7866, 2.8533, 5.0946, 5.351, 6.0553, 6.938, 7.0986]}}, "tukey_kramer": [{"par": "B-A", "dif": 6.0737, "lwr": -0.3043, "upr": 12.4517, "p_adj": 0.06372, "ancho": 12.756}, {"par": "C-A", "dif": 11.2644, "lwr": 5.3841, "upr": 17.1446, "p_adj": 0.000277, "ancho": 11.7605}, {"par": "C-B", "dif": 5.1907, "lwr": -1.3448, "upr": 11.7262, "p_adj": 0.135803, "ancho": 13.071}]}}, "paneles": {"P1": {"id": "P-1", "modulo": ["4.2", "4.6"], "n": 40, "semilla": 13, "respuesta": "Tiempo de respuesta de un sensor", "unidades": "ms", "residuos": [1.663, -0.841, 21.302, 0.562, 3.428, 1.247, 14.754, 0.71, -1.096, 13.262, -3.281, 5.542, -4.083, -22.272, -1.32, -0.582, 4.189, 0.302, -1.373, 2.107, 0.788, 5.508, 1.072, -3.136, 1.861, 0.448, -4.378, -6.081, -3.171, -2.184, -0.025, 2.543, -1.15, -1.58, -0.82, -1.817, -3.994, -0.725, -2.588, -10.164], "qq": {"teorico": [-2.2414, -1.7805, -1.5341, -1.3563, -1.2133, -1.0916, -0.9842, -0.8871, -0.7978, -0.7144, -0.6357, -0.5607, -0.4888, -0.4193, -0.3518, -0.2858, -0.2211, -0.1573, -0.0941, -0.0313, 0.0313, 0.0941, 0.1573, 0.2211, 0.2858, 0.3518, 0.4193, 0.4888, 0.5607, 0.6357, 0.7144, 0.7978, 0.8871, 0.9842, 1.0916, 1.2133, 1.3563, 1.5341, 1.7805, 2.2414], "muestral": [-22.272, -10.164, -6.081, -4.378, -4.083, -3.994, -3.281, -3.171, -3.136, -2.588, -2.184, -1.817, -1.58, -1.373, -1.32, -1.15, -1.096, -0.841, -0.82, -0.725, -0.582, -0.025, 0.302, 0.448, 0.562, 0.71, 0.788, 1.072, 1.247, 1.663, 1.861, 2.107, 2.543, 3.428, 4.189, 5.508, 5.542, 13.262, 14.754, 21.302]}}, "P2": {"id": "P-2", "modulo": ["4.3", "4.8"], "respuesta": "Burbujas por panel de vidrio", "unidades": "conteo", "datos": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4", "T4"], "y": [16, 18, 13, 20, 19, 19, 39, 37, 38, 42, 41, 36, 61, 58, 63, 63, 57, 72, 91, 103, 104, 99, 93, 95]}, "medias": [17.5, 38.833, 62.333, 97.5], "desviaciones": [2.588, 2.317, 5.354, 5.357], "ajustados": [17.5, 17.5, 17.5, 17.5, 17.5, 17.5, 38.833, 38.833, 38.833, 38.833, 38.833, 38.833, 62.333, 62.333, 62.333, 62.333, 62.333, 62.333, 97.5, 97.5, 97.5, 97.5, 97.5, 97.5], "residuos": [-1.5, 0.5, -4.5, 2.5, 1.5, 1.5, 0.167, -1.833, -0.833, 3.167, 2.167, -2.833, -1.333, -4.333, 0.667, 0.667, -5.333, 9.667, -6.5, 5.5, 6.5, 1.5, -4.5, -2.5], "alpha_estimado": 0.503, "lambda_implicado": 0.497}, "P3": {"id": "P-3", "modulo": ["4.4", "1.3"], "semilla": 1, "respuesta": "Contenido de humedad", "unidades": "%", "orden_corrida": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "grupo": ["A", "B", "A", "A", "C", "D", "C", "D", "C", "A", "D", "A", "B", "D", "B", "C", "C", "B", "D", "B"], "y": [38.255, 42.521, 41.052, 41.377, 44.254, 44.516, 45.721, 44.925, 45.501, 46.255, 49.317, 48.208, 49.036, 51.707, 52.422, 48.418, 47.781, 51.993, 52.979, 51.914], "residuos": [-4.774, -7.056, -1.977, -1.652, -2.081, -4.173, -0.614, -3.764, -0.834, 3.226, 0.628, 5.179, -0.541, 3.018, 2.845, 2.083, 1.446, 2.416, 4.29, 2.337]}, "P4": {"id": "P-4", "modulo": ["3.6", "3.7", "3.10"], "respuesta": "Dureza Brinell", "unidades": "HB", "datos": {"grupo": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "D", "D", "D", "E", "E", "E", "E", "E"], "y": [68.44, 72.824, 72.897, 68.593, 74.76, 74.441, 72.727, 79.516, 75.628, 70.551, 80.189, 74.804, 78.521, 75.221, 75.283, 76.876, 83.359, 70.608, 72.586, 75.578, 81.52, 83.334, 81.656, 76.959, 87.852]}, "medias": [71.503, 74.573, 76.804, 75.801, 82.264], "MS_E": 12.8794, "gl_E": 20, "F0": 6.0182, "p": 0.002393, "intervalos_A": [{"par": "B-A", "dif": 3.07, "lwr": -1.665, "upr": 7.804, "ancho": 9.469}, {"par": "C-A", "dif": 5.301, "lwr": 0.566, "upr": 10.035, "ancho": 9.469}, {"par": "D-A", "dif": 4.299, "lwr": -0.436, "upr": 9.033, "ancho": 9.469}, {"par": "E-A", "dif": 10.761, "lwr": 6.027, "upr": 15.496, "ancho": 9.469}, {"par": "C-B", "dif": 2.231, "lwr": -2.504, "upr": 6.966, "ancho": 9.469}, {"par": "D-B", "dif": 1.229, "lwr": -3.506, "upr": 5.963, "ancho": 9.469}, {"par": "E-B", "dif": 7.692, "lwr": 2.957, "upr": 12.426, "ancho": 9.469}, {"par": "D-C", "dif": -1.002, "lwr": -5.737, "upr": 3.732, "ancho": 9.469}, {"par": "E-C", "dif": 5.461, "lwr": 0.726, "upr": 10.195, "ancho": 9.469}, {"par": "E-D", "dif": 6.463, "lwr": 1.728, "upr": 11.197, "ancho": 9.469}], "intervalos_B": [{"par": "B-A", "dif": 3.07, "lwr": -3.722, "upr": 9.862, "p_adj": 0.663, "ancho": 13.584}, {"par": "C-A", "dif": 5.301, "lwr": -1.491, "upr": 12.093, "p_adj": 0.175, "ancho": 13.584}, {"par": "D-A", "dif": 4.299, "lwr": -2.493, "upr": 11.091, "p_adj": 0.352, "ancho": 13.584}, {"par": "E-A", "dif": 10.761, "lwr": 3.969, "upr": 17.553, "p_adj": 0.001, "ancho": 13.584}, {"par": "C-B", "dif": 2.231, "lwr": -4.561, "upr": 9.023, "p_adj": 0.86, "ancho": 13.584}, {"par": "D-B", "dif": 1.229, "lwr": -5.563, "upr": 8.021, "p_adj": 0.982, "ancho": 13.584}, {"par": "E-B", "dif": 7.692, "lwr": 0.9, "upr": 14.484, "p_adj": 0.022, "ancho": 13.584}, {"par": "D-C", "dif": -1.002, "lwr": -7.794, "upr": 5.79, "p_adj": 0.991, "ancho": 13.584}, {"par": "E-C", "dif": 5.461, "lwr": -1.331, "upr": 12.253, "p_adj": 0.155, "ancho": 13.584}, {"par": "E-D", "dif": 6.463, "lwr": -0.329, "upr": 13.255, "p_adj": 0.067, "ancho": 13.584}]}, "P5": {"id": "P-5", "modulo": "3.2", "respuesta": "Tiempo de secado", "unidades": "min", "medias": [20.095, 19.977, 25.173, 26.313], "MS_E": 7.5299, "gl_E": 20, "escala_referencia": 1.1203, "referencia": {"x": [-4.481, -4.425, -4.369, -4.313, -4.257, -4.201, -4.145, -4.089, -4.033, -3.977, -3.921, -3.865, -3.809, -3.753, -3.697, -3.641, -3.585, -3.529, -3.473, -3.417, -3.361, -3.305, -3.249, -3.193, -3.137, -3.081, -3.025, -2.969, -2.913, -2.857, -2.801, -2.745, -2.689, -2.633, -2.577, -2.521, -2.465, -2.409, -2.353, -2.297, -2.241, -2.185, -2.128, -2.072, -2.016, -1.96, -1.904, -1.848, -1.792, -1.736, -1.68, -1.624, -1.568, -1.512, -1.456, -1.4, -1.344, -1.288, -1.232, -1.176, -1.12, -1.064, -1.008, -0.952, -0.896, -0.84, -0.784, -0.728, -0.672, -0.616, -0.56, -0.504, -0.448, -0.392, -0.336, -0.28, -0.224, -0.168, -0.112, -0.056, 0, 0.056, 0.112, 0.168, 0.224, 0.28, 0.336, 0.392, 0.448, 0.504, 0.56, 0.616, 0.672, 0.728, 0.784, 0.84, 0.896, 0.952, 1.008, 1.064, 1.12, 1.176, 1.232, 1.288, 1.344, 1.4, 1.456, 1.512, 1.568, 1.624, 1.68, 1.736, 1.792, 1.848, 1.904, 1.96, 2.016, 2.072, 2.128, 2.185, 2.241, 2.297, 2.353, 2.409, 2.465, 2.521, 2.577, 2.633, 2.689, 2.745, 2.801, 2.857, 2.913, 2.969, 3.025, 3.081, 3.137, 3.193, 3.249, 3.305, 3.361, 3.417, 3.473, 3.529, 3.585, 3.641, 3.697, 3.753, 3.809, 3.865, 3.921, 3.977, 4.033, 4.089, 4.145, 4.201, 4.257, 4.313, 4.369, 4.425, 4.481], "densidad": [0.000822, 0.000924, 0.001038, 0.001166, 0.00131, 0.00147, 0.00165, 0.001852, 0.002077, 0.002329, 0.002611, 0.002925, 0.003276, 0.003668, 0.004104, 0.00459, 0.005131, 0.005732, 0.0064, 0.007142, 0.007964, 0.008874, 0.009882, 0.010996, 0.012226, 0.013582, 0.015075, 0.016718, 0.018522, 0.020502, 0.022669, 0.02504, 0.027629, 0.030451, 0.033522, 0.036859, 0.040477, 0.044393, 0.048622, 0.053182, 0.058087, 0.063352, 0.068991, 0.075015, 0.081437, 0.088264, 0.095503, 0.10316, 0.111234, 0.119725, 0.128627, 0.137932, 0.147625, 0.157689, 0.168102, 0.178837, 0.189862, 0.20114, 0.212629, 0.224281, 0.236046, 0.247866, 0.259682, 0.271429, 0.283039, 0.294443, 0.305568, 0.316341, 0.326687, 0.336534, 0.345809, 0.354442, 0.362367, 0.36952, 0.375845, 0.38129, 0.385809, 0.389365, 0.391926, 0.393472, 0.393989, 0.393472, 0.391926, 0.389365, 0.385809, 0.38129, 0.375845, 0.36952, 0.362367, 0.354442, 0.345809, 0.336534, 0.326687, 0.316341, 0.305568, 0.294443, 0.283039, 0.271429, 0.259682, 0.247866, 0.236046, 0.224281, 0.212629, 0.20114, 0.189862, 0.178837, 0.168102, 0.157689, 0.147625, 0.137932, 0.128627, 0.119725, 0.111234, 0.10316, 0.095503, 0.088264, 0.081437, 0.075015, 0.068991, 0.063352, 0.058087, 0.053182, 0.048622, 0.044393, 0.040477, 0.036859, 0.033522, 0.030451, 0.027629, 0.02504, 0.022669, 0.020502, 0.018522, 0.016718, 0.015075, 0.013582, 0.012226, 0.010996, 0.009882, 0.008874, 0.007964, 0.007142, 0.0064, 0.005732, 0.005131, 0.00459, 0.004104, 0.003668, 0.003276, 0.002925, 0.002611, 0.002329, 0.002077, 0.001852, 0.00165, 0.00147, 0.00131, 0.001166, 0.001038, 0.000924, 0.000822]}}, "P6": {"id": "P-6", "modulo": ["2.1", "2.7"], "respuesta": "Par de apriete", "unidades": "N·m", "es_simulado": true, "experimento_1": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4"], "y": [46.251, 48.311, 50.98, 54.253, 50.205, 53.917, 49.774, 55.588, 57.8, 52.921, 53.958, 60.056, 61.384, 56.075, 58.527, 58.277, 65.443, 61.308, 60.326, 64.646], "medias": [50, 54, 58, 62], "SS_trat": 400, "MS_E": 8.9992, "F0": 14.8161, "p": 7.03e-05}, "experimento_2": {"grupo": ["T1", "T1", "T1", "T1", "T1", "T2", "T2", "T2", "T2", "T2", "T3", "T3", "T3", "T3", "T3", "T4", "T4", "T4", "T4", "T4"], "y": [59.589, 59.47, 37.841, 48.515, 44.585, 47.158, 45.15, 51.275, 57.784, 68.633, 44.566, 53.017, 59.114, 65.106, 68.197, 67.522, 67.191, 46.705, 58.854, 69.728], "medias": [50, 54, 58, 62], "SS_trat": 400, "MS_E": 90.251, "F0": 1.4774, "p": 0.258353}}}, "situaciones": {"S1": {"id": "S-1", "modulo": ["1.3", "2.5", "1.1"], "respuesta": "Dureza Rockwell B tras revenido", "unidades": "HRB", "niveles_C": [150, 175, 200], "probetas_por_horno": 10, "hornos": 3, "escenario": "Tres hornos, cada uno a una temperatura de revenido (150, 175 y 200 °C). La respuesta es la dureza Rockwell B (HRB). De cada horno se extraen 10 probetas y se miden por separado. El analista escribe n = 30.", "datos": {"grupo": ["150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "150C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "175C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C", "200C"], "y": [58.965, 59.459, 60.911, 61.322, 61.068, 58.236, 61.228, 61.833, 61.27, 61.479, 62.01, 60.017, 61.572, 61.043, 60.871, 61.597, 60.345, 60.501, 59.608, 62.285, 63.121, 66.872, 64.582, 65.973, 65.035, 63.994, 65.344, 63.002, 65.047, 63.644]}, "analisis_del_analista": {"N": 30, "gl_trat": 2, "gl_E": 27, "F0": 39.6527, "p": 9.22e-09}}, "S2": {"id": "S-2", "modulo": ["1.1", "1.3", "2.10", "3.9", "4.1"], "respuesta": "Rendimiento", "unidades": "%", "medias_supuestas": {"control": 82, "A": 85, "B": 88, "C": 91}, "sigma_piloto": 4.5, "tamano_muestra": {"n_exacto": 5.979, "n_usado": 6, "potencia_objetivo": 0.8, "potencia_real": 0.8019, "total_corridas": 24}, "plan_aleatorizacion": {"semilla": 202, "orden": ["B", "B", "A", "C", "control", "C", "control", "B", "C", "control", "B", "C", "A", "control", "A", "A", "C", "C", "control", "A", "B", "A", "control", "B"], "orden_R": "set.seed(202); sample(rep(c(\"control\",\"A\",\"B\",\"C\"), each = n))"}}}, "calentamiento": {"C6": {"id": "C-6", "modulo": "2.11", "a": 3, "n": 7, "anova": {"gl_trat": 2, "gl_E": 18, "gl_total": 20, "SS_trat": 158.9187, "SS_E": 187.9754, "SS_T": 346.8941, "MS_trat": 79.4594, "MS_E": 10.4431, "F0": 7.6088, "p": 0.004028}}, "C4": {"id": "C-4", "modulo": "2.5", "N": 20, "gl_total": 19, "diseno_a": {"a": 4, "n": 5, "gl_E": 16}, "diseno_b": {"a": 5, "n": 4, "gl_E": 15}}, "C5": {"id": "C-5", "modulo": "2.8", "a": 4, "n": 6, "niveles": ["A", "B", "C", "D"], "medias": [40.533, 44.939, 47.577, 52.248], "MS_E": 9.8155, "gl_E": 20, "ee_una_media": 1.279, "ee_diferencia": 1.8088, "t_critico": 2.086, "ic_medias": [[37.865, 43.202], [42.271, 47.607], [44.909, 50.245], [49.58, 54.916]], "par_que_enganya": {"par": "B-A", "dif": 4.405, "ic": [0.632, 8.178], "ic_individuales_se_solapan": true}, "ventana": {"inferior": 3.7731, "superior": 5.336}}, "C7": {"id": "C-7", "modulo": "3.4", "n": [6, 4, 4, 6], "c1": [1, 1, -1, -1], "c2": [1, -1, 1, -1], "suma_simple": 0, "suma_ponderada": 4}}, "auditoria_ia": {"respuesta": "Unidades terminadas por hora", "unidades": "u/h", "escenario": "Datos OBSERVACIONALES de tres turnos de producción; la respuesta son las unidades terminadas por hora (u/h). Nadie asignó nada al azar: los turnos son los que la planta ya tenía.", "datos": {"grupo": ["Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno1", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno2", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3", "Turno3"], "y": [47.616, 53.014, 52.503, 46.148, 50.607, 52.014, 47.75, 41.363, 48.552, 44.057, 50.065, 54.223, 52.19, 50.141, 53.272, 52.486, 61.239, 56.918, 50.872, 49.408, 60.707, 60.285, 59.169, 56.644]}, "anova": {"gl_trat": 2, "gl_E": 21, "MS_E": 15.532, "F0": 9.1826, "p": 0.001363}, "medias": [48.877, 50.623, 56.905]}, "rubrica": {"taller_del_corte": 0.5, "tope": {"sobre": "defensa", "umbral": 3, "escala": 5, "formula": "entrega x min(1, defensa / 3)", "tramos": [{"id": "defensa", "peso": 0.4, "acota_la_entrega": true}, {"id": "contrafactico", "peso": 0.4, "acota_la_entrega": false}, {"id": "transferencia", "peso": 0.2, "acota_la_entrega": false}], "ejemplos": [{"entrega": 4.5, "defensa": 1, "contrafactico": 1, "transferencia": 1, "sustentacion": 1, "factor": 0.3333, "entrega_acotada": 1.5, "taller_sin_tope": 2.4, "taller_con_tope": 1.2}, {"entrega": 4.5, "defensa": 3.5, "contrafactico": 2, "transferencia": 2, "sustentacion": 2.6, "factor": 1, "entrega_acotada": 4.5, "taller_sin_tope": 3.36, "taller_con_tope": 3.36}, {"entrega": 4, "defensa": 2.7, "contrafactico": 3, "transferencia": 3, "sustentacion": 2.88, "factor": 0.9, "entrega_acotada": 3.6, "taller_sin_tope": 3.33, "taller_con_tope": 3.17}, {"entrega": 2.5, "defensa": 4, "contrafactico": 4, "transferencia": 4, "sustentacion": 4, "factor": 1, "entrega_acotada": 2.5, "taller_sin_tope": 3.4, "taller_con_tope": 3.4}], "parcial_necesario_sin_tope": 3.6, "parcial_necesario_con_tope": 4.8}, "sustentacion_del_taller": 0.6, "entregas_del_taller": 0.4, "sustentacion_del_corte": 0.3, "entregas_del_corte": 0.2, "n_items": 25, "niveles": ["insuficiente", "aceptable", "sólido"], "partes": [{"id": "P0", "n_items": 10, "de_entregas": 0, "de_taller": 0, "del_corte": 0, "por_item_del_corte": 0}, {"id": "P1", "n_items": 6, "de_entregas": 0.2, "de_taller": 0.08, "del_corte": 0.04, "por_item_del_corte": 0.0067}, {"id": "P2", "n_items": 6, "de_entregas": 0.45, "de_taller": 0.18, "del_corte": 0.09, "por_item_del_corte": 0.015}, {"id": "P3", "n_items": 2, "de_entregas": 0.2, "de_taller": 0.08, "del_corte": 0.04, "por_item_del_corte": 0.02}, {"id": "P4", "n_items": 1, "n_subitems": 3, "de_entregas": 0.15, "de_taller": 0.06, "del_corte": 0.03, "por_item_del_corte": 0.03, "por_subitem_del_corte": 0.01}]}, "resumen": {"n_informes": 6, "informes_limpios": 2, "informes_con_fallo": 4, "fallos_totales": 6, "n_paneles": 6, "n_situaciones": 2}, "metadatos": {"generador": "precalculo/genera_taller1.R", "especificacion": "taller1/ESPECIFICACION.md", "R": "4.6.0", "semillas": {"I1": 1, "I2": 9, "I3": 1, "I4": 182, "I5": 60, "I6": 2, "paneles": [101, 102, 103, 104, 105, 106, 107], "situaciones": [201, 202], "calentamiento": 301, "auditoria_ia": 401}, "calculado_a_mano": ["la tabla ANOVA de un factor por sumas centradas, contrastada contra aov() en los seis informes", "los intervalos de Tukey y de Tukey-Kramer, contrastados contra TukeyHSD()", "los intervalos de la LSD de Fisher", "los gl de Welch por la formula de Satterthwaite, contrastados contra t.test()", "la t pareada como t de una muestra sobre las diferencias", "lambda por dos vias independientes: el perfil de Box-Cox y la regresion de log(s) sobre log(ybar)"]}, "descripcion": "Precálculo del Taller 1 del Corte I (capítulos 1-4): los seis informes de peritaje con SUS DOS VÍAS —la del analista y la correcta—, los seis paneles gráficos, las dos situaciones de diseño, los dos ítems del calentamiento que llevan cifras y el experimento de la auditoría de IA. Tarea T1.1 de PLAN_Taller_1_Corte_I.md; los ítems están especificados en taller1/ESPECIFICACION.md.", "generado": "2026-09-07"};
 
     // ================================================================
     // Estado y elementos del DOM
@@ -6586,39 +6586,8 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
     // ================================================================
 
 
-    // ================================================================
-    // P0 · Calentamiento del Taller 1 (Corte I)
-    //
-    // Diez preguntas de los CUATRO tipos, con retroalimentación en TODA
-    // opción, también las incorrectas. NO se entregan ni se califican: son
-    // el rodaje antes de las partes que sí, y por eso están visibles en los
-    // dos estados de publicación (D5).
-    //
-    // Cubren los diez módulos que P1–P4 no tocan y que NINGUNA de las 32
-    // preguntas de las autoevaluaciones de los capítulos 1–4 evalúa. Esa
-    // no-repetición se comprobó a mano al especificar (T0.1 §1) y la audita
-    // audita_solapamiento.py en T4.2.
-    //
-    // Toda cifra sale de TALLER1.calentamiento, generado por
-    // precalculo/genera_taller1.R. Ninguna se teclea aquí.
-    //
-    // El campo `remite` apunta al módulo del CURSO donde se estudia, no a un
-    // módulo de este taller: el taller no enseña, evalúa. La misma referencia
-    // se repite en la retroalimentación, que es donde el estudiante la lee.
-    //
-    // `modulo` es OTRA COSA y no se puede confundir con `remite`: es el número
-    // del módulo de ESTE documento con el que el motor del quiz arma el resumen
-    // de «qué repasar», resolviendo courseData.modules[modulo - 1]. Las diez
-    // preguntas llevaban aquí un 2 —el módulo del propio calentamiento—, así
-    // que el resumen mandaba al estudiante al módulo en el que ya estaba. Cada
-    // una apunta ahora a la parte del taller donde su concepto se pone a
-    // trabajar: la replicación de C-1 a P3, la aleatorización de C-2 a P1, la
-    // no paramétrica de C-10 al informe I-5. Lo destapó una comprobación de
-    // ensambla_taller1.py, y esa comprobación es lo que impide que vuelva.
-    // ================================================================
     AUTOEVALUACIONES['taller1'] = [
 
-      // --- C-1 · Replicación no es repetición -----------------------
       {
         tipo: 'opcion', modulo: 5, remite: '1.3',
         pregunta: 'Un ingeniero fija <strong>tres</strong> baños de recubrimiento, uno por ' +
@@ -6637,7 +6606,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-2 · Qué protege la aleatorización -----------------------
       {
         tipo: 'opcion', modulo: 3, remite: '1.3',
         pregunta: 'Bloquear y aleatorizar protegen de cosas distintas. ¿De qué protege la ' +
@@ -6655,7 +6623,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-3 · A/B testing: espiar el resultado --------------------
       {
         tipo: 'opcion', modulo: 4, remite: '1.11',
         pregunta: 'En un A/B test se mira el valor p <strong>cada día</strong> y se decide parar ' +
@@ -6674,7 +6641,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-4 · Los gl del error con presupuesto fijo ---------------
       {
         tipo: 'opcion', modulo: 5, remite: '2.5',
         pregunta: (function () {
@@ -6706,7 +6672,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-5 · Dos clases de intervalo (con gráfico) ---------------
       {
         tipo: 'grafico', modulo: 4, remite: '2.8', alto: 300,
         descripcionGrafico: (function () {
@@ -6782,7 +6747,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         }
       },
 
-      // --- C-6 · Leer una salida de aov ------------------------------
       {
         tipo: 'opcion', modulo: 4, remite: '2.11',
         pregunta: (function () {
@@ -6817,7 +6781,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-7 · Ortogonalidad con n desiguales (numérica) -----------
       {
         tipo: 'numerica', modulo: 4, remite: '3.4',
         pregunta: (function () {
@@ -6851,7 +6814,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         })()
       },
 
-      // --- C-8 · Dunnett y no Tukey (selección múltiple) -------------
       {
         tipo: 'multiple', modulo: 5, remite: '3.9',
         pregunta: 'Un experimento compara <strong>cinco tratamientos nuevos contra el proceso ' +
@@ -6870,7 +6832,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-9 · Por qué los supuestos se comprueban al final --------
       {
         tipo: 'multiple', modulo: 4, remite: '4.1',
         pregunta: 'Los supuestos del ANOVA se comprueban <strong>después</strong> de ajustar el ' +
@@ -6888,7 +6849,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // --- C-10 · Qué supone Kruskal-Wallis --------------------------
       {
         tipo: 'opcion', modulo: 4, remite: '4.10',
         pregunta: 'Ante unos residuos claramente heterocedásticos, un analista decide usar ' +
@@ -6908,29 +6868,7 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       }
     ];
 
-    // ================================================================
-    // P1 · Lectura de evidencia gráfica — los seis paneles
-    //
-    // Gráficos SIN prosa. Se entrega la figura y el contexto mínimo; el
-    // estudiante escribe qué ve y qué decisión implica. Evalúa lectura de
-    // evidencia gráfica en estado puro, que es lo que el parcial va a pedir.
-    //
-    // Cada panel lleva una PISTA (decisión D6): orienta la mirada sin dar la
-    // lectura. Está visible en el estado 1 —durante el taller— para que el
-    // HTML sirva como material de práctica desde el primer día. La lectura
-    // razonada se despliega en el estado 2, tras la última sustentación (D41).
-    //
-    // Toda coordenada sale de TALLER1.paneles, generado por
-    // precalculo/genera_taller1.R y auditado por audita_taller1.py. Aquí no
-    // se dibuja nada a ojo ni se calcula nada: solo se selecciona y se pinta.
-    //
-    // P-4 y P-6 llevan DOS lienzos cada uno; los otros cuatro, uno. El número
-    // se declara en `lienzos` y el ensamblador lo exige exacto: un lienzo de
-    // más se queda en blanco y uno de menos revienta la función.
-    // ================================================================
 
-    // Dispersión: el ayudante que la plantilla no trae (solo tiene línea y
-    // barras) y que cuatro de los seis paneles necesitan.
     function crearDispersion(canvas, series, ejes) {
       return new Chart(canvas, {
         type: 'scatter',
@@ -6953,8 +6891,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       });
     }
 
-    // Una recta horizontal en y = 0, que es la referencia de todo gráfico de
-    // residuos: sin ella el ojo no tiene contra qué juzgar la simetría.
     function cero(xmin, xmax) {
       return { label: '', data: [{ x: xmin, y: 0 }, { x: xmax, y: 0 }],
                borderColor: COLORES_GRAFICO.gris, borderWidth: 1.4, borderDash: [6, 4],
@@ -6966,16 +6902,10 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
                pointRadius: 4, showLine: false };
     }
 
-    // ================================================================
-    // P-1 · Gráfico de probabilidad normal con colas pesadas
-    // ================================================================
     SIMULADORES['panel-p1'] = function (raiz) {
       const P = TALLER1.paneles.P1;
       const canvas = raiz.querySelector('canvas');
       const pts = P.qq.teorico.map((t, i) => ({ x: t, y: P.qq.muestral[i] }));
-      // La recta de referencia pasa por los cuartiles, como la qqline de R:
-      // trazarla por mínimos cuadrados la doblaría hacia las colas y borraría
-      // justo lo que el panel pide ver.
       const n = pts.length;
       const q = p => {
         const h = (n - 1) * p, lo = Math.floor(h);
@@ -6998,9 +6928,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       ], { x: 'Cuantil teórico de la normal', y: 'Residuo ordenado (ms)' })];
     };
 
-    // ================================================================
-    // P-2 · Residuos contra ajustados: el embudo
-    // ================================================================
     SIMULADORES['panel-p2'] = function (raiz) {
       const P = TALLER1.paneles.P2;
       const canvas = raiz.querySelector('canvas');
@@ -7012,9 +6939,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       ], { x: 'Valor ajustado (burbujas por panel)', y: 'Residuo' })];
     };
 
-    // ================================================================
-    // P-3 · Residuos en secuencia de corrida: la deriva
-    // ================================================================
     SIMULADORES['panel-p3'] = function (raiz) {
       const P = TALLER1.paneles.P3;
       const canvas = raiz.querySelector('canvas');
@@ -7026,13 +6950,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       ], { x: 'Orden de corrida', y: 'Residuo (% de humedad)' })];
     };
 
-    // ================================================================
-    // P-4 · Dos juegos de intervalos SIN etiquetar
-    //
-    // Los dos lienzos comparten escala a propósito: si cada uno se ajustara a
-    // sus datos, la diferencia de anchura —que es TODO lo que hay que leer—
-    // desaparecería del gráfico.
-    // ================================================================
     SIMULADORES['panel-p4'] = function (raiz) {
       const P = TALLER1.paneles.P4;
       const lienzos = raiz.querySelectorAll('canvas');
@@ -7072,9 +6989,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       return [pinta(lienzos[0], P.intervalos_A), pinta(lienzos[1], P.intervalos_B)];
     };
 
-    // ================================================================
-    // P-5 · Comparación gráfica de medias sobre la distribución de referencia
-    // ================================================================
     SIMULADORES['panel-p5'] = function (raiz) {
       const P = TALLER1.paneles.P5;
       const canvas = raiz.querySelector('canvas');
@@ -7090,13 +7004,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       ], { x: 'Tiempo de secado (min)', y: 'Densidad de la referencia' })];
     };
 
-    // ================================================================
-    // P-6 · Dos experimentos, las MISMAS medias, distinto veredicto
-    //
-    // Los dos lienzos comparten escala vertical, y aquí no es una preferencia
-    // sino la condición para que el panel funcione: si cada uno se ajustara a
-    // su propio rango, los dos se verían iguales y el panel no enseñaría nada.
-    // ================================================================
     SIMULADORES['panel-p6'] = function (raiz) {
       const P = TALLER1.paneles.P6;
       const lienzos = raiz.querySelectorAll('canvas');
@@ -7133,12 +7040,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       return [pinta(lienzos[0], P.experimento_1), pinta(lienzos[1], P.experimento_2)];
     };
 
-    // ================================================================
-    // La prosa de los seis paneles: enunciado, pista y descripción
-    // accesible. El ensamblador construye el marcado desde aquí (T3.1) y
-    // audita_texto_taller1.py comprueba que ninguna cifra de estos textos
-    // esté escrita a mano (T4.2).
-    // ================================================================
     const PANELES_T1 = [
       { id: 'P-1', simulador: 'panel-p1', lienzos: 1, modulo: ['4.2', '4.6'], alto: 320,
         titulo: 'Gráfico de probabilidad normal de los residuos',
@@ -7224,35 +7125,7 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           'mucho más y las columnas se solapan ampliamente.' }
     ];
 
-    // ================================================================
-    // P2 · Peritaje de informes — primera mitad: I-1, I-2 e I-3
-    //
-    // Cada informe se presenta igual: contexto del experimento, el código que
-    // corrió el analista con su salida, las figuras que produjo y LA
-    // CONCLUSIÓN QUE ESCRIBIÓ. El estudiante dictamina.
-    //
-    // Dos reglas que gobiernan la redacción de esta parte:
-    //
-    //  1. LA CONCLUSIÓN DEL ANALISTA NUNCA MIENTE SOBRE LAS CIFRAS. Informa
-    //     bien lo que obtuvo; lo que está mal es el CRITERIO. I-2 declara
-    //     honestamente que p = 0.216 y aun así recomienda un proveedor. Un
-    //     informe que además falsee números sería otro ejercicio —detectar
-    //     fraude— y no el que este taller evalúa.
-    //  2. EL LIMPIO SE ESCRIBE IGUAL QUE LOS DEMÁS. Misma estructura, mismo
-    //     registro, misma extensión. Si el tono delatara cuál es el bueno, el
-    //     ítem se resolvería sin estadística. Es lo único de este archivo que
-    //     ningún auditor puede comprobar: hace falta leerlo.
-    //
-    // Los datos de los bloques salen de TALLER1: si el precálculo cambia, el
-    // código cambia con él. Las salidas `#>` son las que R imprimió de verdad
-    // al ejecutarlos, y verifica_bloques.py vuelve a ejecutarlos para
-    // comprobarlo. Ninguna cifra se tecleó a ojo.
-    //
-    // El dictamen NO está aquí: vive en solucionario.js (T2.4) y solo se
-    // publica en el estado 2, tras la última sustentación (D5 y D41).
-    // ================================================================
 
-    // Formatea un vector de R con `por` números por línea y sangría `ind`.
     function vectorR(xs, por, ind) {
       const lineas = [];
       for (let i = 0; i < xs.length; i += por) {
@@ -7263,9 +7136,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
 
     const INFORMES_A = [
 
-      // ============================================================
-      // I-1
-      // ============================================================
       {
         id: 'I-1', modulo: ['2.7', '2.8', '3.7', '3.10', '4.1', '4.2', '4.3'],
         titulo: 'Cuatro formulaciones de recubrimiento',
@@ -7317,9 +7187,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           'Se recomienda adoptar la formulación D.'
       },
 
-      // ============================================================
-      // I-2
-      // ============================================================
       {
         id: 'I-2', modulo: ['2.7', '3.7', '3.10'],
         titulo: 'Cinco proveedores de un componente',
@@ -7366,9 +7233,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           'material más resistente que el A, y se recomienda concentrar las compras en C.'
       },
 
-      // ============================================================
-      // I-3
-      // ============================================================
       {
         id: 'I-3', modulo: ['1.9', '1.5', '1.3'],
         titulo: 'Dos métodos de medición de espesor',
@@ -7409,14 +7273,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       }
     ];
 
-    // ================================================================
-    // Las figuras que produjo cada analista.
-    //
-    // Se dibuja SOLO lo que el analista dibujó. Es una decisión de diseño y
-    // no un descuido: en I-3 la figura elegida —dos nubes lado a lado— es
-    // justamente la que ESCONDE el emparejamiento, y ver que la figura no
-    // puede mostrar la estructura del diseño es parte del peritaje.
-    // ================================================================
     SIMULADORES['informe-i1'] = function (raiz) {
       const D = TALLER1.informes.I1.diagnostico;
       const c = raiz.querySelectorAll('canvas');
@@ -7472,8 +7328,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       const D = TALLER1.informes.I3.datos;
       const canvas = raiz.querySelector('canvas');
       const media = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
-      // Un desplazamiento horizontal fijo por índice para que los puntos no se
-      // pisen. NO es aleatorio: el material tiene que salir igual cada vez.
       const disp = (xs, x0) => xs.map((y, i) => ({ x: x0 + (i % 4 - 1.5) * 0.06, y: y }));
       return [new Chart(canvas, {
         type: 'scatter',
@@ -7499,53 +7353,9 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       })];
     };
 
-    // ================================================================
-    // P2 · Peritaje de informes — segunda mitad: I-4, I-5 e I-6
-    //
-    // Continúa `p2-informes-a.js` y se carga DESPUÉS: usa su `vectorR()`. Es
-    // una dependencia de orden a propósito. La alternativa —copiar la función
-    // aquí— dejaría dos versiones de la misma regla de formato, y el día que
-    // una cambie el material publicará dos estilos de vector sin que nadie lo
-    // note. Si se cargara suelto, revienta en voz alta, que es lo que se
-    // quiere.
-    //
-    // Las dos reglas de redacción de la primera mitad siguen vigentes aquí, y
-    // esta mitad añade la tercera, que solo aparece con los seis juntos:
-    //
-    //  3. EL DIAGNÓSTICO EN REGLA NO PUEDE SER LA MARCA DEL LIMPIO. Ninguno de
-    //     los seis informes se delata por separado, pero si los limpios fueran
-    //     los únicos que comprueban los supuestos, el estudiante resolvería el
-    //     taller CONTANDO pruebas de normalidad en vez de peritando. Por eso
-    //     I-4 —que falla— informa el diagnóstico MÁS completo de los seis:
-    //     Shapiro, Levene, el gráfico de residuos, el de probabilidad normal y
-    //     el residuo estandarizado del punto. Su analista es impecable hasta
-    //     el momento en que borra el dato. El precálculo sostiene esa
-    //     propiedad con tres objetivos (Levene no rechaza, Shapiro sí, y se
-    //     recompone al quitar el punto) y el auditor la comprueba.
-    //
-    //     Y por eso mismo I-4 VUELVE A DIAGNOSTICAR después de reajustar, y su
-    //     modelo final sale impecable. Sin ese último renglón, «diagnóstico
-    //     final limpio» equivaldría a «informe defendible» y bastaría para
-    //     acertar los dos limpios sin hacer estadística. Con él, el informe
-    //     cuya última comprobación sale mejor es uno de los que fallan — y
-    //     además es la verdad del ítem: borrar el punto deja un modelo que se
-    //     ve perfecto, y esa es justamente la razón por la que borrarlo sin
-    //     investigar es peligroso.
-    //
-    // Los datos de los bloques salen de TALLER1. Las salidas `#>` son las que
-    // R imprimió de verdad al ejecutarlos —recortado el pie de «Signif.
-    // codes», que el material no publica— y verifica_bloques.py vuelve a
-    // ejecutarlos para comprobarlo.
-    //
-    // El dictamen NO está aquí: vive en solucionario.js (T2.4) y solo se
-    // publica en el estado 2, tras la última sustentación (D5 y D41).
-    // ================================================================
 
     const INFORMES_B = [
 
-      // ============================================================
-      // I-4
-      // ============================================================
       {
         id: 'I-4', modulo: ['4.5', '4.1', '2.7'],
         titulo: 'Cuatro condiciones de catalizador',
@@ -7602,9 +7412,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           'catalizador afecta al rendimiento y se recomienda pasar a la comparación de medias.'
       },
 
-      // ============================================================
-      // I-5
-      // ============================================================
       {
         id: 'I-5', modulo: ['4.3', '4.8', '4.9', '4.6', '4.10'],
         titulo: 'Cinco condiciones de un proceso de purificación',
@@ -7659,9 +7466,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           'depende de la condición de proceso.'
       },
 
-      // ============================================================
-      // I-6
-      // ============================================================
       {
         id: 'I-6', modulo: ['2.9', '3.7', '4.1'],
         titulo: 'Tres dosificaciones de mortero',
@@ -7716,16 +7520,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       }
     ];
 
-    // ================================================================
-    // Las figuras que produjo cada analista.
-    //
-    // Sigue vigente la regla de la primera mitad: se dibuja SOLO lo que el
-    // analista dibujó. En I-5 eso importa más que en ningún otro informe —hay
-    // UN gráfico, el de la escala original, y no hay ninguno de después de la
-    // transformación porque el analista no volvió a mirar—. Esa ausencia es el
-    // primer fallo del informe; dibujar aquí un diagnóstico que su autor nunca
-    // produjo sería contestar el ítem en la figura.
-    // ================================================================
     SIMULADORES['informe-i4'] = function (raiz) {
       const D = TALLER1.informes.I4.diagnostico;
       const c = raiz.querySelectorAll('canvas');
@@ -7764,10 +7558,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         cero(Math.min.apply(null, xs) - 2, Math.max.apply(null, xs) + 2),
         nube(xs.map((a, i) => ({ x: a, y: D.residuos[i] })))
       ], { x: 'Valor ajustado (MPa)', y: 'Residuo' });
-      // Las tres barras van del MISMO color a propósito. Colorearlas según
-      // contengan o no el cero contestaría media pregunta —cuáles difieren— y
-      // lo que este panel tiene que dejar ver es otra cosa: que son de
-      // LONGITUDES distintas, que es Tukey-Kramer haciendo su trabajo.
       const barras = T.map((t, i) => ({
         label: '', data: [{ x: t.lwr, y: i + 1 }, { x: t.upr, y: i + 1 }],
         borderColor: COLORES_GRAFICO.gris, borderWidth: 3, pointRadius: 0,
@@ -7797,50 +7587,9 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       return [g1, g2];
     };
 
-    // ================================================================
-    // P3 · Las dos situaciones de diseño — S-1 y S-2
-    //
-    // Aquí no se analiza: se DISEÑA. Es la parte donde la IA tiene menos
-    // apoyo, porque la respuesta no depende de reconocer un procedimiento sino
-    // de mirar un contexto concreto y decidir sobre él.
-    //
-    // Se carga DESPUÉS de `p1-paneles.js`: usa su `crearDispersion()`. Misma
-    // dependencia de orden, y por la misma razón, que la de las dos mitades
-    // de P2.
-    //
-    // Tres cosas que gobiernan esta parte:
-    //
-    //  1. CADA SITUACIÓN LLEVA PLANTILLA (decisión D16, extendida a S-1).
-    //     La respuesta no es un párrafo: son campos rotulados. En S-2 la
-    //     plantilla existe para que nadie deje fuera la unidad experimental,
-    //     que es donde se cae el plan entero; en S-1 el argumento es más
-    //     fuerte todavía, porque la unidad experimental ES el ítem. Se
-    //     califica la COHERENCIA del conjunto, no cada campo por separado: un
-    //     tamaño de muestra correcto sobre una unidad experimental mal
-    //     identificada no vale.
-    //
-    //  2. CADA SITUACIÓN LLEVA UNA PISTA (decisión D17, que extiende la D6 de
-    //     los paneles). Orienta la mirada sin dar la respuesta, y está visible
-    //     en el estado 1 para que el HTML sirva de práctica desde el primer
-    //     día. La de S-1 es la más delicada de todo el taller: el ítem es un
-    //     único salto conceptual, así que la pista pregunta A QUÉ se le asignó
-    //     la temperatura, y no la contesta.
-    //
-    //  3. LO QUE EL ENUNCIADO NO PUEDE TRAER. S-2 pide la orden de R que
-    //     produce el plan de asignación; el precálculo la tiene resuelta
-    //     (`plan_aleatorizacion`), y por eso mismo S-2 NO lleva bloque de
-    //     código. Un bloque aquí sería la respuesta impresa sobre el
-    //     enunciado. Vive en solucionario.js (T2.4), estado 2.
-    //
-    // Los datos y los niveles salen de TALLER1.situaciones. Las salidas `#>`
-    // son las que R imprimió de verdad, y verifica_bloques.py las reejecuta.
-    // ================================================================
 
     const SITUACIONES_T1 = [
 
-      // ============================================================
-      // S-1 · La unidad experimental
-      // ============================================================
       {
         id: 'S-1', modulo: ['1.3', '2.5', '1.1'],
         titulo: 'Tres hornos, tres temperaturas de revenido',
@@ -7888,9 +7637,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         ]
       },
 
-      // ============================================================
-      // S-2 · El plan completo, de la pregunta al análisis
-      // ============================================================
       {
         id: 'S-2', modulo: ['1.1', '1.3', '2.10', '3.9', '4.1'],
         titulo: 'Un aditivo para el rendimiento, de la pregunta al análisis',
@@ -7931,23 +7677,12 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       }
     ];
 
-    // ================================================================
-    // La figura de S-1.
-    //
-    // Enseña lo que el analista vio y le dio confianza: tres nubes apretadas y
-    // tres medias muy separadas. Esa estrechez es justamente el problema —es
-    // la precisión del INSTRUMENTO, no la variabilidad entre unidades
-    // tratadas—, y por eso la figura se dibuja tal cual, sin marcar nada: si
-    // señalara el horno, contestaría el ítem.
-    // ================================================================
     SIMULADORES['situacion-s1'] = function (raiz) {
       const S = TALLER1.situaciones.S1;
       const niveles = S.niveles_C;
       const media = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
       const porNivel = niveles.map(t =>
         S.datos.y.filter((_, i) => S.datos.grupo[i] === t + 'C'));
-      // Desplazamiento horizontal fijo por índice, no aleatorio: el material
-      // tiene que salir igual en cada carga.
       const disp = (xs, x0) => xs.map((y, i) => ({ x: x0 + (i % 5 - 2) * 0.05, y: y }));
       const puntos = porNivel.reduce((acc, xs, k) => acc.concat(disp(xs, k + 1)), []);
       return [new Chart(raiz.querySelector('canvas'), {
@@ -7975,56 +7710,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       })];
     };
 
-    // ================================================================
-    // P4 · La auditoría de la respuesta de IA — el ítem IA-1
-    //
-    // OJO CON EL NOMBRE: «P4» es la PARTE cuarta del taller, y no tiene nada
-    // que ver con el panel «P-4» de P1. Para que no se confundan en la rúbrica
-    // ni en el ensamblado, el ítem de esta parte se llama IA-1.
-    //
-    // Un texto de unas 500 palabras que analiza un experimento del Corte I:
-    // fluido, bien escrito y seguro de sí mismo. Lleva EXACTAMENTE TRES
-    // fallos, y el enunciado dice que son tres.
-    //
-    // Cuatro decisiones que gobiernan este archivo:
-    //
-    //  1. LA PROCEDENCIA SE DECLARA (decisión D14). El enunciado dice que el
-    //     texto está redactado PARA el taller en el registro de una respuesta
-    //     de IA, con tres fallos deliberados. Presentarlo como la salida real
-    //     de un modelo sería más inmersivo y sería falso: los tres fallos
-    //     están plantados, no salieron solos. El cierre pedagógico —que el
-    //     criterio para aceptar o rechazar prosa convincente lo pone el
-    //     estudiante— se sostiene igual, y de paso el taller no le enseña a
-    //     creerse una atribución que nadie comprobó.
-    //
-    //  2. PÁRRAFOS NUMERADOS (decisión D15). El estudiante cita «párrafo 3»
-    //     además de la frase. La dificultad del ítem está en VER el fallo, no
-    //     en localizarlo dentro de un muro de texto: numerar no lo abarata, y
-    //     hace calificable la respuesta y discutible el punto en la
-    //     sustentación.
-    //
-    //  3. EL BLOQUE DE CÓDIGO VA, Y VA ENTERO. El texto cita F, p, la media
-    //     cuadrática del error y las tres medias; el bloque permite
-    //     comprobarlas. Es deliberado: LA ARITMÉTICA DEL TEXTO ES CORRECTA
-    //     —cada cifra que cita es la que R imprime— y lo único que está mal es
-    //     lo que dice que significan. Un estudiante que salga de aquí creyendo
-    //     que auditar es recalcular no ha entendido el taller.
-    //
-    //  4. NINGÚN CUARTO FALLO. El riesgo propio de este ítem, y está en el
-    //     registro de riesgos del plan: que al redactar 500 palabras se cuele
-    //     un error no declarado. La rúbrica califica sobre tres, y
-    //     `verifica_dictamenes.py` contrasta los fallos DECLARADOS contra el
-    //     precálculo — no puede ver uno que nadie declaró. Por eso el texto
-    //     habla de comparaciones múltiples y de significancia frente a
-    //     relevancia práctica DICIENDO LA VERDAD sobre ambas: los párrafos
-    //     limpios están escritos para ser correctos, no para ser inofensivos.
-    //     Lo que no toca —la homogeneidad de varianzas— no lo toca a
-    //     propósito: callarse no es un fallo, y que el texto se preocupe del
-    //     supuesto equivocado es parte de F-b, no un cuarto error.
-    //
-    // El texto NO señala sus fallos. Las correcciones viven en
-    // TALLER1.auditoria_ia.fallos_plantados y se publican en el estado 2.
-    // ================================================================
 
     const AUDITORIA_IA_T1 = {
       id: 'IA-1',
@@ -8053,12 +7738,6 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           '#> 48.877 50.623 56.905 ' }
       ],
 
-      // Los seis párrafos, numerados. El estudiante cita por número.
-      //
-      // Están escritos para que NINGUNO se delate por el tono: los tres que
-      // fallan suenan igual de razonables que los tres que no. Si los fallos
-      // se notaran por el estilo —una frase más rotunda, un adverbio de más—,
-      // el ítem se resolvería leyendo en diagonal.
       parrafos: [
         'Se dispone de los registros de productividad de una planta correspondientes a tres ' +
         'turnos de trabajo, con ocho observaciones por turno y la productividad medida en ' +
