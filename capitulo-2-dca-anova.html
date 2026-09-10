@@ -7209,24 +7209,67 @@ const SOLUCIONES_CAP2 = {"capitulo":2,"fecha_corte":"2026-08-01","semilla":2026,
     // El contenedor lleva data-simulador="mi-id", un .simulador-controles
     // vacío y un <canvas>. La función devuelve los Chart creados para
     // destruirlos al cambiar de módulo.
+    //
+    // ⚠️ EL CONTRATO ES DEVOLVER UN ARREGLO, Y ROMPERLO SALÍA CARÍSIMO.
+    // `crearDispersion()` devuelve UN Chart, así que `return crearDispersion(…)`
+    // es el descuido natural — y `push(...unChart)` lanza. Como esto corre
+    // dentro de `loadModule`, la excepción se llevaba por delante el MÓDULO
+    // ENTERO: el `forEach` abortaba, los lienzos siguientes se quedaban en
+    // blanco y KaTeX no llegaba a renderizarse, así que el estudiante veía
+    // gráficos vacíos y LaTeX crudo. Pasó en el Taller 2, en diez de doce
+    // simuladores, y llegó a publicarse sin que ningún frente lo viera.
+    //
+    // Desde entonces el motor no confía en el contrato, pero tampoco lo calla:
+    // NORMALIZA lo devuelto y AVISA por consola, y AÍSLA cada simulador para
+    // que uno que falle se lleve solo su lienzo. Las dos cosas hacen falta —
+    // tolerar en silencio esconde la violación, y no tolerar rompe la página.
     // ================================================================
     const SIMULADORES = {};
     let graficosActivos = [];
 
+    // Lo devuelto por un simulador, siempre como arreglo de Chart destruibles.
+    function normalizaGraficos(id, devuelto) {
+      if (devuelto == null) return [];
+      if (Array.isArray(devuelto)) {
+        return devuelto.filter(g => g && typeof g.destroy === 'function');
+      }
+      if (typeof devuelto.destroy === 'function') {
+        console.warn(`El simulador «${id}» devolvió un Chart suelto. El contrato `
+          + `es un ARREGLO: usa "return [chart];". Se tolera, pero arréglalo.`);
+        return [devuelto];
+      }
+      console.warn(`El simulador «${id}» devolvió algo que no son Chart; se ignora.`);
+      return [];
+    }
+
     function iniciarSimuladores() {
       mainContent.querySelectorAll('[data-simulador]').forEach(raiz => {
-        const init = SIMULADORES[raiz.dataset.simulador];
-        if (init) {
-          const graficos = init(raiz) || [];
-          graficosActivos.push(...graficos);
-        } else {
-          console.warn(`Simulador no registrado: ${raiz.dataset.simulador}`);
+        const id = raiz.dataset.simulador;
+        const init = SIMULADORES[id];
+        if (!init) {
+          console.warn(`Simulador no registrado: ${id}`);
+          return;
+        }
+        // Cada simulador va aislado: si uno falla, se queda SU lienzo vacío y
+        // el resto del módulo —los demás gráficos y, sobre todo, el KaTeX que
+        // se renderiza después— sigue adelante.
+        try {
+          graficosActivos.push(...normalizaGraficos(id, init(raiz)));
+        } catch (e) {
+          console.error(`El simulador «${id}» falló; su lienzo se queda vacío `
+            + `y el resto del módulo sigue.`, e);
         }
       });
     }
 
     function destruirSimuladores() {
-      graficosActivos.forEach(g => g.destroy());
+      graficosActivos.forEach(g => {
+        try {
+          g.destroy();
+        } catch (e) {
+          console.warn('No se pudo destruir un gráfico; se descarta igualmente.', e);
+        }
+      });
       graficosActivos = [];
     }
 

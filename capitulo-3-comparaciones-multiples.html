@@ -7146,24 +7146,67 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-03","semilla":2026,
     // El contenedor lleva data-simulador="mi-id", un .simulador-controles
     // vacío y un <canvas>. La función devuelve los Chart creados para
     // destruirlos al cambiar de módulo.
+    //
+    // ⚠️ EL CONTRATO ES DEVOLVER UN ARREGLO, Y ROMPERLO SALÍA CARÍSIMO.
+    // `crearDispersion()` devuelve UN Chart, así que `return crearDispersion(…)`
+    // es el descuido natural — y `push(...unChart)` lanza. Como esto corre
+    // dentro de `loadModule`, la excepción se llevaba por delante el MÓDULO
+    // ENTERO: el `forEach` abortaba, los lienzos siguientes se quedaban en
+    // blanco y KaTeX no llegaba a renderizarse, así que el estudiante veía
+    // gráficos vacíos y LaTeX crudo. Pasó en el Taller 2, en diez de doce
+    // simuladores, y llegó a publicarse sin que ningún frente lo viera.
+    //
+    // Desde entonces el motor no confía en el contrato, pero tampoco lo calla:
+    // NORMALIZA lo devuelto y AVISA por consola, y AÍSLA cada simulador para
+    // que uno que falle se lleve solo su lienzo. Las dos cosas hacen falta —
+    // tolerar en silencio esconde la violación, y no tolerar rompe la página.
     // ================================================================
     const SIMULADORES = {};
     let graficosActivos = [];
 
+    // Lo devuelto por un simulador, siempre como arreglo de Chart destruibles.
+    function normalizaGraficos(id, devuelto) {
+      if (devuelto == null) return [];
+      if (Array.isArray(devuelto)) {
+        return devuelto.filter(g => g && typeof g.destroy === 'function');
+      }
+      if (typeof devuelto.destroy === 'function') {
+        console.warn(`El simulador «${id}» devolvió un Chart suelto. El contrato `
+          + `es un ARREGLO: usa "return [chart];". Se tolera, pero arréglalo.`);
+        return [devuelto];
+      }
+      console.warn(`El simulador «${id}» devolvió algo que no son Chart; se ignora.`);
+      return [];
+    }
+
     function iniciarSimuladores() {
       mainContent.querySelectorAll('[data-simulador]').forEach(raiz => {
-        const init = SIMULADORES[raiz.dataset.simulador];
-        if (init) {
-          const graficos = init(raiz) || [];
-          graficosActivos.push(...graficos);
-        } else {
-          console.warn(`Simulador no registrado: ${raiz.dataset.simulador}`);
+        const id = raiz.dataset.simulador;
+        const init = SIMULADORES[id];
+        if (!init) {
+          console.warn(`Simulador no registrado: ${id}`);
+          return;
+        }
+        // Cada simulador va aislado: si uno falla, se queda SU lienzo vacío y
+        // el resto del módulo —los demás gráficos y, sobre todo, el KaTeX que
+        // se renderiza después— sigue adelante.
+        try {
+          graficosActivos.push(...normalizaGraficos(id, init(raiz)));
+        } catch (e) {
+          console.error(`El simulador «${id}» falló; su lienzo se queda vacío `
+            + `y el resto del módulo sigue.`, e);
         }
       });
     }
 
     function destruirSimuladores() {
-      graficosActivos.forEach(g => g.destroy());
+      graficosActivos.forEach(g => {
+        try {
+          g.destroy();
+        } catch (e) {
+          console.warn('No se pudo destruir un gráfico; se descarta igualmente.', e);
+        }
+      });
       graficosActivos = [];
     }
 
@@ -9674,7 +9717,7 @@ const SOLUCIONES_CAP3 = {"capitulo":3,"fecha_corte":"2026-08-03","semilla":2026,
           { texto: 'Que los cuatro procedimientos son equivalentes, porque coinciden en $p = 2$.', correcta: false,
             retro: 'Ni en $p = 2$ coinciden los cuatro: ahí valen 2.950 el LSD, Duncan y Newman–Keuls —es donde el rango estudentizado con dos medias se reduce a $\\sqrt{2}\\,t_{\\alpha/2}$— mientras que Tukey ya está en 4.445. Y a partir de ahí se separan más: en $p = 6$ el listón de Tukey es un 35 % más alto que el de Duncan, y esa diferencia decide qué pares se declaran distintos.' },
           { texto: 'Que Newman–Keuls controla el FWER igual que Tukey, porque las dos curvas terminan en el mismo punto.', correcta: false,
-            retro: 'Terminar en el mismo punto no basta: Tukey usa 4.445 para <em>todos</em> los pares y Newman–Keuls solo para el par extremo, aplicando umbrales menores a los demás. Por eso Newman–Keuls controla el error dentro de cada grupo de $p$ medias, pero no el de toda la familia; su FWER medido con $a = 4$ es 0.034 frente a 0.028 de Tukey, y la brecha crece con $a$.' }
+            retro: 'Terminar en el mismo punto no basta: Tukey usa 4.445 para <em>todos</em> los pares y Newman–Keuls solo para el par extremo, aplicando umbrales menores a los demás. Con las medias <em>todas</em> iguales la diferencia no se ve —los dos miden 0.050, porque ahí decide el primer paso y es el mismo—: la grieta se abre cuando hay grupos de verdad. Con $a = 6$ y tres parejas bien separadas, Newman–Keuls declara algún falso positivo el 13.9 % de las veces y Tukey el 1.6 %, porque dentro de cada grupo Newman–Keuls vuelve a gastarse un 5 % entero: su FWER tiende a $1-(1-\\alpha)^g$ con $g$ grupos, y por eso la brecha crece con $a$.' }
         ]
       },
       {
