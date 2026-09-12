@@ -5081,14 +5081,19 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
           <button type="button" class="entrega-boton" data-accion="reunir">Reunir mi entrega</button>
           <button type="button" class="entrega-boton" data-accion="copiar">Copiar</button>
           <button type="button" class="entrega-boton" data-accion="descargar">Descargar .txt</button>
+          <button type="button" class="entrega-boton" data-accion="restaurar">Restaurar desde un .txt</button>
         </div>
+        <input type="file" accept=".txt,text/plain" data-entrega-archivo hidden
+          aria-label="Archivo .txt de una entrega descargada antes">
         <p class="entrega-estado" data-estado="reunir"></p>
         <textarea class="entrega-volcado" rows="14" readonly hidden
           aria-label="Tu entrega reunida en texto plano"></textarea>
         <p class="entrega-nota">Se guarda en <em>este</em> navegador y en <em>este</em> equipo, y
           hay navegadores que no lo guardan en absoluto: abriendo el archivo desde el disco en
           Safari, o en una ventana privada, lo escrito vive solo mientras la pestaña siga
-          abierta. <strong>Descarga tu entrega antes de irte</strong>, y cada vez que pares.</p>
+          abierta. <strong>Descarga tu entrega antes de irte</strong>, y cada vez que pares. Si un
+          día lo escrito ya no está, <strong>Restaurar desde un .txt</strong> lo devuelve desde ese
+          archivo.</p>
       </div>
 
       <h3>Cómo va a ser el oral</h3>
@@ -7819,6 +7824,11 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
     //     entrega los campos de los otros seis no existen en la página.
     // ================================================================
     const CLAVE_ENTREGA = 'taller1-corte-i-entrega';
+    // Las marcas del volcado. Las escribe `textoEntrega()` y las lee
+    // `datosDesdeTexto()`: si una cambiara en un sitio y no en el otro, el
+    // contrato de más abajo lo caza y el restaurador se planta.
+    const LINEA_VOLCADO = '='.repeat(70);
+    const SIN_RESPONDER = '(sin responder)';
 
     // La copia en memoria es la FUENTE; localStorage es solo el espejo que
     // sobrevive a cerrar la pestaña. Al revés no vale, y no es teórico: hay
@@ -7880,9 +7890,9 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       }
     }
 
-    function textoEntrega() {
-      const datos = leerEntrega();
-      const linea = '='.repeat(70);
+    function textoEntrega(datos) {
+      datos = datos || leerEntrega();
+      const linea = LINEA_VOLCADO;
       const salida = ['TALLER 1 · CORTE I — Diseño de Experimentos (20920)',
                       'Nombre: ______________________________________',
                       ''];
@@ -7895,11 +7905,97 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
             const v = (datos[campo.id] || '').trim();
             totales += 1;
             if (v) escritos += 1;
-            salida.push(campo.etiqueta + ':', v || '(sin responder)', '');
+            salida.push(campo.etiqueta + ':', v || SIN_RESPONDER, '');
           });
         });
       });
       return { texto: salida.join('\n'), escritos: escritos, totales: totales };
+    }
+
+    // ----------------------------------------------------------------
+    // Restaurar la entrega desde el .txt descargado
+    //
+    // El archivo que el estudiante descarga es la única copia que sobrevive a
+    // que el navegador olvide, así que tiene que poder volver a entrar. No se
+    // adivina nada: se recorren EN ORDEN las mismas marcas que escribe
+    // `textoEntrega()`, y lo que hay entre dos marcas es el valor.
+    //
+    // Y hay contrato: con lo leído se vuelve a escribir el volcado y se compara
+    // con el archivo. Si no sale el mismo texto, NO SE RESTAURA NADA — una
+    // restauración a medias es peor que ninguna, porque se lleva por delante lo
+    // que hubiera escrito. La cabecera se queda fuera de la comparación a
+    // propósito: la línea del nombre está para rellenarla a mano. Y los
+    // espacios de sobra tampoco cuentan, que un archivo pasa por editores.
+    function marcasDelVolcado() {
+      const marcas = [];
+      ENTREGA_T1.forEach(parte => {
+        // La cabecera de la parte también es marca. Sin ella, el último campo de
+        // cada parte se traga el rótulo de la siguiente y el contrato se cae.
+        marcas.push({ linea: LINEA_VOLCADO }, { linea: parte.parte.toUpperCase() },
+                    { linea: LINEA_VOLCADO });
+        parte.items.forEach(item => {
+          marcas.push({ linea: '--- ' + item.id + ' · ' + item.titulo + ' ---' });
+          item.campos.forEach(campo => {
+            marcas.push({ linea: campo.etiqueta + ':', id: campo.id });
+          });
+        });
+      });
+      return marcas;
+    }
+
+    function normalizado(texto) {
+      return texto.replace(/\r\n?/g, '\n').split('\n')
+                  .map(l => l.replace(/[ \t]+$/, '')).join('\n')
+                  .replace(/\n{3,}/g, '\n\n').replace(/\s+$/, '');
+    }
+
+    function cuerpoDelVolcado(texto) {
+      const n = normalizado(texto);
+      const i = n.indexOf(LINEA_VOLCADO);
+      return i < 0 ? null : n.slice(i);
+    }
+
+    function datosDesdeTexto(texto) {
+      const lineas = texto.replace(/\r\n?/g, '\n').split('\n');
+      // Los espacios del final no cuentan para reconocer una marca: un archivo
+      // pasa por editores, y un rótulo con un espacio detrás sigue siendo ese
+      // rótulo.
+      const sinCola = l => l.replace(/[ \t]+$/, '');
+      const limpias = lineas.map(sinCola);
+      const marcas = marcasDelVolcado();
+      const rotulos = {};
+      marcas.forEach(m => { rotulos[m.linea] = true; });
+      const donde = [];
+      let i = 0;
+      for (let k = 0; k < marcas.length; k += 1) {
+        while (i < limpias.length && limpias[i] !== marcas[k].linea) i += 1;
+        if (i >= limpias.length) return { ok: false, falta: marcas[k].linea };
+        donde.push(i);
+        i += 1;
+      }
+      const datos = {};
+      let escritos = 0, totales = 0, ambigua = null;
+      marcas.forEach((marca, k) => {
+        if (!marca.id) return;
+        const hasta = k + 1 < donde.length ? donde[k + 1] : lineas.length;
+        const trozo = lineas.slice(donde[k] + 1, hasta);
+        while (trozo.length && !trozo[trozo.length - 1].trim()) trozo.pop();
+        // Un valor con una línea igual a un rótulo no se puede repartir sin
+        // adivinar —el recorrido se paró ahí y el texto acabaría en el campo de
+        // al lado—, y el contrato NO lo caza: al reescribirlo sale el mismo
+        // archivo. Se dice cuál es la línea y no se restaura nada.
+        trozo.forEach(l => { if (rotulos[sinCola(l)]) ambigua = l.trim(); });
+        const v = trozo.map(sinCola).join('\n').trim();
+        datos[marca.id] = v === SIN_RESPONDER ? '' : v;
+        totales += 1;
+        if (datos[marca.id]) escritos += 1;
+      });
+      if (ambigua) return { ok: false, ambigua: ambigua };
+      const antes = cuerpoDelVolcado(texto);
+      if (antes === null || antes !== cuerpoDelVolcado(textoEntrega(datos).texto)) {
+        return { ok: false, contrato: true };
+      }
+      return { ok: true, datos: datos, escritos: escritos, totales: totales };
     }
 
     function iniciarEntregas() {
@@ -7934,8 +8030,58 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         return r.texto;
       }
 
+      const selector = mainContent.querySelector('[data-entrega-archivo]');
+
+      function restaurar(archivo) {
+        const lector = new FileReader();
+        lector.onerror = () => {
+          estado.textContent = 'No se pudo leer ' + archivo.name + '.';
+          selector.value = '';
+        };
+        lector.onload = () => {
+          const r = datosDesdeTexto(String(lector.result));
+          selector.value = '';
+          if (!r.ok) {
+            // Decir POR QUÉ, y decir que no se ha tocado nada: si no, el
+            // estudiante prueba otra vez con el mismo archivo.
+            estado.textContent = 'Ese archivo no es una entrega de este taller, o le falta un '
+              + 'trozo: NO se ha restaurado nada y lo que tuvieras sigue donde estaba.'
+              + (r.falta ? ' No aparece la línea «' + r.falta + '».' : '')
+              + (r.ambigua ? ' Hay una respuesta que lleva dentro la línea «' + r.ambigua
+                 + '», igual que un rótulo: cámbiala en el archivo y vuelve a intentarlo.' : '');
+            return;
+          }
+          const previos = leerEntrega();
+          const conTexto = Object.keys(previos).filter(k => (previos[k] || '').trim()).length;
+          if (conTexto && !window.confirm('En este navegador hay ' + conTexto
+              + ' campo(s) escritos. Restaurar los sustituye por los del archivo. ¿Seguir?')) {
+            estado.textContent = 'No se restauró nada.';
+            return;
+          }
+          guardarEntrega(r.datos);
+          mainContent.querySelectorAll('.entrega-texto').forEach(c => {
+            if (r.datos[c.id] !== undefined) c.value = r.datos[c.id];
+          });
+          mainContent.querySelectorAll('.entrega-bloque').forEach(actualizarContador);
+          estado.textContent = 'Restaurados ' + r.escritos + ' de ' + r.totales
+            + ' campos desde ' + archivo.name + '. Abre P1 a P4 para verlos.';
+        };
+        lector.readAsText(archivo);
+      }
+
+      if (selector) {
+        selector.addEventListener('change', () => {
+          const archivo = selector.files && selector.files[0];
+          if (archivo) restaurar(archivo);
+        });
+      }
+
       mainContent.querySelectorAll('.entrega-boton[data-accion]').forEach(boton => {
         boton.addEventListener('click', () => {
+          if (boton.dataset.accion === 'restaurar') {
+            if (selector) selector.click();
+            return;
+          }
           const texto = reunir();
           if (boton.dataset.accion === 'copiar') {
             // Abrir el archivo desde el disco puede dejar sin `clipboard`, y
