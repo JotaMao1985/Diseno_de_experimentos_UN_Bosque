@@ -3672,6 +3672,247 @@
       color: #FF6600;
     }
 
+    /* ------------------------------------------------------------------
+       Componente .simulacro — un examen de práctica que se responde y se
+       cronometra, pero NO se corrige. Publica las preguntas de un quiz cuya
+       clave no puede viajar en la página, porque el capítulo es público.
+
+       Injertado del Módulo 11 del capítulo 3 de Series de Tiempo
+       (2026-09-22) sin tocar una declaración —los cursos comparten
+       paleta—, con tres añadidos al final para lo que allá no hacía falta:
+       el caso con sus tablas (.simulacro-caso) y la casilla de las
+       preguntas que piden un número (.simulacro-respuesta y
+       .simulacro-numero). Lo usa el módulo 5.13 y lo instala
+       ensamblado/retropropaga_simulacro.py, entre este rótulo y el de
+       cierre.
+       ------------------------------------------------------------------ */
+    .simulacro {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .simulacro h4 {
+      color: #012820;
+      margin-top: 0;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .simulacro > h4 + p {
+      margin-top: 0.6rem;
+    }
+
+    .simulacro-mandos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1rem 0 0.5rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .simulacro-empezar,
+    .simulacro-borrar {
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .simulacro-empezar {
+      color: white;
+      background: #012820;
+      border: none;
+    }
+
+    .simulacro-empezar:hover {
+      background: #FF6600;
+    }
+
+    .simulacro-borrar {
+      color: #012820;
+      background: white;
+      border: 1px solid rgba(1, 40, 32, 0.25);
+    }
+
+    .simulacro-borrar:hover {
+      background: #f1f5f9;
+    }
+
+    .simulacro-reloj {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #012820;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .simulacro-reloj.acabado {
+      color: #b91c1c;
+    }
+
+    .simulacro-conteo {
+      font-size: 0.8125rem;
+      color: #475569;
+    }
+
+    .simulacro-pregunta {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.1rem 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .simulacro-etiqueta {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #475569;
+      background: #f1f5f9;
+      border-radius: 50px;
+      padding: 0.15rem 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .simulacro-enunciado {
+      color: #1f2937;
+    }
+
+    .simulacro-enunciado table {
+      border-collapse: collapse;
+    }
+
+    .simulacro-opciones {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .simulacro-opcion {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      color: #1f2937;
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .simulacro-opcion:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .simulacro-opcion:focus-visible {
+      outline: 2px solid #FF6600;
+      outline-offset: 1px;
+    }
+
+    .simulacro-opcion.marcada {
+      border-color: #012820;
+      background: #ecfdf5;
+    }
+
+    .simulacro-letra {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #475569;
+      flex: none;
+    }
+
+    .simulacro-opcion.marcada .simulacro-letra {
+      color: #012820;
+    }
+
+    .simulacro-resumen {
+      font-size: 0.8125rem;
+      color: #475569;
+      margin-top: 1rem;
+    }
+
+    .simulacro-resumen b {
+      font-family: 'Fira Code', monospace;
+      color: #012820;
+    }
+
+    .simulacro-caso {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.1rem 1.25rem;
+      margin-top: 1rem;
+      color: #1f2937;
+      overflow-x: auto;
+    }
+
+    /* Las tablas del caso son las del encabezado de Brightspace, con su
+       fondo claro en línea; el `table th` del curso les pone letra blanca, y
+       sin esto la cabecera sale blanca sobre blanco. Se vio en la primera
+       captura. */
+    .simulacro-caso table th {
+      color: #012820;
+    }
+
+    .simulacro-caso h3 {
+      font-size: 1.1rem;
+      margin-top: 0;
+    }
+
+    .simulacro-caso h4 {
+      font-size: 1rem;
+      margin-top: 1.1rem;
+    }
+
+    .simulacro-respuesta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .simulacro-numero {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9375rem;
+      color: #1f2937;
+      width: 10rem;
+      max-width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.7rem;
+    }
+
+    .simulacro-numero:focus-visible {
+      outline: 2px solid #FF6600;
+      outline-offset: 1px;
+    }
+    /* ------------------- fin del componente .simulacro ------------------- */
+
   </style>
 </head>
 
@@ -7120,6 +7361,83 @@ print(pd.DataFrame(filas).T.round(4).to_string())
     </div>
   </template>
 
+  <!-- ============================================================ -->
+  <!-- MÓDULO 13 · Simulacro del quiz de los capítulos 3–5          -->
+  <!-- ============================================================ -->
+  <template id="module-13">
+    <div class="animate-fade-in">
+      <div class="border-b border-gray-100 pb-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
+          <span>Módulo 13</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">5.13 Simulacro del quiz <span
+            class="text-gray-400 font-normal text-2xl">/ Mock quiz</span></h2>
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
+          <span class="text-xl">🎯</span>
+          <div>
+            <h3 class="font-bold text-gray-800 text-sm" style="margin:0;">Objetivo</h3>
+            <p class="text-gray-600 text-sm" style="margin:0;">Medir, con el reloj puesto, si las cuentas y las
+              decisiones de los capítulos 3, 4 y 5 salen solas cuando las pide un mismo experimento, y dejar por
+              escrito las respuestas para contrastarlas después.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Este módulo no añade contenido: es un ensayo. El quiz de los capítulos 3, 4 y 5 se presenta en Brightspace y
+        dura <strong>cincuenta minutos</strong>. No son preguntas sueltas sino <strong>un solo experimento contado en
+        tres etapas</strong>: primero un diseño completamente al azar y sus comparaciones múltiples (<a
+          href="capitulo-3-comparaciones-multiples.html" class="text-primary underline">capítulo 3</a>), después el
+        diagnóstico de esos mismos datos (<a href="capitulo-4-supuestos-no-parametrica.html"
+          class="text-primary underline">capítulo 4</a>) y al final el experimento rehecho con bloques (este
+        capítulo). De ahí salen <strong>diecinueve preguntas</strong> de un punto: catorce piden una cifra que se
+        teclea y cinco son de selección con una sola respuesta. Cada estudiante recibe una variante con sus propios
+        datos.</p>
+
+      <p>Abajo está un simulacro con esa misma forma: el caso arriba, con sus tablas, y las preguntas debajo.
+        <strong>No es ninguna de las variantes del quiz</strong>: es otra aparte, con otros datos, que no se usa en
+        Brightspace. Memorizar sus cifras no sirve de nada; lo que se repite de una variante a otra es la
+        <em>decisión</em> —qué diferencia crítica lleva el 2 dentro de la raíz y cuál no, entre qué se divide la suma
+        de cuadrados de un contraste, cuántos grados de libertad le quedan al error cuando los bloques se llevan los
+        suyos— y esa es la que conviene tener automatizada antes de entrar.</p>
+
+      <div class="warning">
+        <p><strong>Aquí no se corrige.</strong> El simulacro no trae la clave ni la retroalimentación, y no las trae a
+          propósito: esta página es pública, y una clave incrustada en ella la lee cualquiera desde el código fuente.
+          Responde, anota lo que respondiste —el resumen de abajo lo escribe por ti— y contrástalo con el material:
+          cada pregunta dice de qué módulos sale. Las ocho preguntas del <strong>módulo 12</strong> sí llevan pista y
+          explicación de cada opción.</p>
+      </div>
+
+      <div class="simulacro" data-simulador="cap5-simulacro">
+        <h4><i class="fas fa-stopwatch" aria-hidden="true"></i> Simulacro del quiz · capítulos 3, 4 y 5</h4>
+        <p class="text-sm" style="margin-bottom:0;">Un caso, diecinueve preguntas, cincuenta minutos. Se responde y se
+          cronometra; no se corrige.</p>
+        <div class="simulacro-mandos">
+          <button type="button" class="simulacro-empezar"></button>
+          <span class="simulacro-reloj" role="timer" aria-live="off"></span>
+          <span class="simulacro-conteo"></span>
+          <button type="button" class="simulacro-borrar">Borrar</button>
+        </div>
+        <div class="simulacro-caso"></div>
+        <div class="simulacro-preguntas"></div>
+        <p class="simulacro-resumen" role="status"></p>
+      </div>
+
+      <div class="note">
+        <p><strong>Cómo aprovecharlo.</strong> Hazlo una vez con el reloj y sin abrir nada: lo que falle ahí es lo que
+          hay que repasar. Después repítelo con el material delante y mira cuánto cuesta cada consulta, porque en el
+          quiz ese tiempo sale del mismo presupuesto. Las que más se demoran son las de la tercera etapa —completar la
+          tabla del bloque y, sobre todo, la eficiencia relativa con su factor de corrección—, y se abrevian sabiendo de
+          antemano qué entra en cada fórmula.</p>
+        <p>Teclea las cifras como las teclearías en Brightspace: con los decimales que pide cada pregunta, punto o coma
+          como separador decimal y <strong>sin separador de miles</strong>.</p>
+        <p style="margin-bottom:0;">El reloj sigue corriendo si sales a otro módulo, igual que el del salón, y lo
+          respondido se conserva mientras no cierres la página. <strong>Borrar</strong> lo devuelve todo al
+          principio.</p>
+      </div>
+    </div>
+  </template>
+
   <script>
     // ================================================================
     // Configuración del capítulo
@@ -7148,7 +7466,8 @@ print(pd.DataFrame(filas).T.round(4).to_string())
         { id: 9, title: "5.9 Cuando falta un dato", shortTitle: "Dato faltante", duration: "20 min" },
         { id: 10, title: "5.10 El bloque como factor aleatorio", shortTitle: "Bloque aleatorio", duration: "20 min" },
         { id: 11, title: "5.11 Ciencia de datos: bloquear, estratificar y no filtrar información", shortTitle: "Ciencia de datos", duration: "20 min" },
-        { id: 12, title: "5.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "26 min" }
+        { id: 12, title: "5.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "26 min" },
+        { id: 13, title: "5.13 Simulacro del quiz", shortTitle: "Simulacro", duration: "50 min" }
       ]
     };
 
@@ -9899,6 +10218,376 @@ const SOLUCIONES_CAP5 = {"capitulo":5,"fecha_corte":"2026-08-01","semilla":2026,
         ]
       }
     ];
+
+    // ================================================================
+    // Simulacro del quiz (Módulo 13)
+    //
+    // Se responde y se cronometra, pero NO se corrige: en la página no hay
+    // clave, ni retroalimentación, ni nada de donde deducirlas. Es lo que
+    // lo distingue de la autoevaluación del módulo 12, que sí las lleva: un
+    // examen de práctica no puede publicar su clave, porque viajaría en el
+    // HTML de un capítulo público.
+    //
+    // Injertado del Módulo 11 del capítulo 3 de Series de Tiempo
+    // (2026-09-22), que a su vez viene del Módulo 13 del capítulo 4 de
+    // Estadística Espacial. Dos cambios:
+    //   · el quiz de los capítulos 3–5 es un CASO: arriba va el encabezado
+    //     con sus tablas, como en el cuestionario de Brightspace;
+    //   · catorce de sus diecinueve preguntas piden un NÚMERO, no una
+    //     opción, así que la pregunta de tipo 'numero' trae una casilla de
+    //     texto donde se teclea tal como se teclearía en el quiz.
+    //
+    // Igual que allá, se engancha al registro SIMULADORES, que loadModule()
+    // ya recorre, y lo respondido y la hora de final del reloj viven en
+    // ESTADO_SIMULACRO, fuera del renderizado: salir al módulo 6 a consultar
+    // algo y volver no borra el trabajo, y el reloj sigue corriendo mientras
+    // tanto, como el del salón.
+    //
+    // El CSS gemelo está en ensamblado/cap5/estilos-simulacro.css. Los dos
+    // los instala ensamblado/retropropaga_simulacro.py.
+    //
+    // SIMULACROS['id'] = { minutos, variante, caso, preguntas: [{ n,
+    // etiqueta, tipo, enunciado, opciones? }] } lo escribe
+    // quiz/exporta_simulacro.py. `tipo` es 'opcion' (una marca) o 'numero'
+    // (una casilla).
+    // ================================================================
+    const SIMULACROS = {};
+    const ESTADO_SIMULACRO = {};
+
+    SIMULADORES['cap5-simulacro'] = function (raiz) {
+      const id = raiz.dataset.simulador;
+      const sim = SIMULACROS[id];
+      if (!sim) {
+        console.warn(`Simulacro no registrado: ${id}`);
+        return [];
+      }
+      if (!ESTADO_SIMULACRO[id]) {
+        ESTADO_SIMULACRO[id] = {
+          respuestas: sim.preguntas.map(pr => pr.tipo === 'numero' ? '' : []),
+          finAt: null,
+          restante: sim.minutos * 60
+        };
+      }
+      return pintarSimulacro(raiz, sim, ESTADO_SIMULACRO[id]);
+    };
+
+    function pintarSimulacro(raiz, sim, estado) {
+      const caso = raiz.querySelector('.simulacro-caso');
+      const contenedor = raiz.querySelector('.simulacro-preguntas');
+      const conteo = raiz.querySelector('.simulacro-conteo');
+      const resumen = raiz.querySelector('.simulacro-resumen');
+      const reloj = raiz.querySelector('.simulacro-reloj');
+      const empezar = raiz.querySelector('.simulacro-empezar');
+      const borrar = raiz.querySelector('.simulacro-borrar');
+      const listas = [];
+      const casillas = [];
+      caso.innerHTML = sim.caso;
+      contenedor.innerHTML = '';
+
+      const vacia = r => (Array.isArray(r) ? r.length === 0 : r.trim() === '');
+
+      sim.preguntas.forEach((pr, i) => {
+        const caja = document.createElement('div');
+        caja.className = 'simulacro-pregunta';
+        caja.innerHTML = `<span class="simulacro-etiqueta">${pr.n}. ${pr.etiqueta}</span>` +
+          `<div class="simulacro-enunciado">${pr.enunciado}</div>`;
+        if (pr.tipo === 'numero') {
+          const fila = document.createElement('label');
+          fila.className = 'simulacro-respuesta';
+          fila.innerHTML = '<span>Respuesta</span>';
+          const casilla = document.createElement('input');
+          casilla.type = 'text';
+          casilla.inputMode = 'decimal';
+          casilla.autocomplete = 'off';
+          casilla.spellcheck = false;
+          casilla.className = 'simulacro-numero';
+          casilla.setAttribute('aria-label', `Respuesta de la pregunta ${pr.n}`);
+          casilla.value = estado.respuestas[i];
+          casilla.oninput = () => {
+            estado.respuestas[i] = casilla.value;
+            pintaMarcador();
+          };
+          fila.appendChild(casilla);
+          caja.appendChild(fila);
+          casillas[i] = casilla;
+        } else {
+          const lista = document.createElement('div');
+          lista.className = 'simulacro-opciones';
+          lista.setAttribute('role', 'group');
+          lista.setAttribute('aria-label', `Opciones de la pregunta ${pr.n}`);
+          pr.opciones.forEach((texto, j) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'simulacro-opcion';
+            b.innerHTML = `<span class="simulacro-letra">${LETRAS[j]})</span><span>${texto}</span>`;
+            b.onclick = () => {
+              estado.respuestas[i] = estado.respuestas[i].includes(j) ? [] : [j];
+              pintaOpciones(i);
+              pintaMarcador();
+            };
+            lista.appendChild(b);
+          });
+          caja.appendChild(lista);
+          listas[i] = lista;
+        }
+        contenedor.appendChild(caja);
+        if (listas[i]) pintaOpciones(i);
+      });
+
+      function pintaOpciones(i) {
+        listas[i].querySelectorAll('.simulacro-opcion').forEach((o, j) => {
+          const marcada = estado.respuestas[i].includes(j);
+          o.classList.toggle('marcada', marcada);
+          o.setAttribute('aria-pressed', marcada ? 'true' : 'false');
+        });
+      }
+
+      // Lo tecleado entra en el resumen como TEXTO, nunca como HTML: es lo
+      // único de la página que escribe el estudiante.
+      function pintaMarcador() {
+        const hechas = estado.respuestas.filter(r => !vacia(r)).length;
+        conteo.textContent = `${hechas} de ${sim.preguntas.length} respondidas`;
+        resumen.textContent = 'Tus respuestas: ';
+        sim.preguntas.forEach((pr, i) => {
+          const r = estado.respuestas[i];
+          const b = document.createElement('b');
+          b.textContent = `${pr.n}: ` + (vacia(r) ? '—'
+            : Array.isArray(r) ? r.map(j => LETRAS[j]).join('') : r.trim());
+          if (i) resumen.appendChild(document.createTextNode(' · '));
+          resumen.appendChild(b);
+        });
+        resumen.appendChild(document.createTextNode('. No se corrigen aquí.'));
+      }
+
+      // El reloj: `finAt` es la hora en que se acaba y manda mientras corre;
+      // `restante` solo guarda los segundos cuando está pausado.
+      let tic = null;
+      function para() {
+        if (tic !== null) { clearInterval(tic); tic = null; }
+      }
+      function segundos() {
+        return estado.finAt === null
+          ? estado.restante
+          : Math.max(0, Math.round((estado.finAt - Date.now()) / 1000));
+      }
+      function pintaReloj() {
+        const s = segundos();
+        reloj.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        reloj.classList.toggle('acabado', s === 0);
+        empezar.textContent = estado.finAt !== null ? 'Pausar'
+          : (s === sim.minutos * 60 ? `Empezar los ${sim.minutos} minutos` : 'Seguir');
+      }
+      function arranca() {
+        para();
+        tic = setInterval(() => {
+          if (segundos() === 0) {
+            estado.finAt = null;
+            estado.restante = 0;
+            para();
+          }
+          pintaReloj();
+        }, 250);
+      }
+      empezar.onclick = () => {
+        if (estado.finAt !== null) {          // corriendo: se pausa
+          estado.restante = segundos();
+          estado.finAt = null;
+          para();
+        } else {
+          if (estado.restante === 0) estado.restante = sim.minutos * 60;
+          estado.finAt = Date.now() + estado.restante * 1000;
+          arranca();
+        }
+        pintaReloj();
+      };
+      borrar.onclick = () => {
+        para();
+        estado.respuestas = sim.preguntas.map(pr => pr.tipo === 'numero' ? '' : []);
+        estado.finAt = null;
+        estado.restante = sim.minutos * 60;
+        sim.preguntas.forEach((pr, i) => {
+          if (casillas[i]) casillas[i].value = '';
+          if (listas[i]) pintaOpciones(i);
+        });
+        pintaMarcador();
+        pintaReloj();
+      };
+
+      if (estado.finAt !== null) arranca();
+      pintaReloj();
+      pintaMarcador();
+      // Lo que devuelve un simulador son los objetos que destruirSimuladores()
+      // apaga al cambiar de módulo. Aquí no hay gráficos: lo que hay que apagar
+      // es el intervalo, que si no seguiría pintando sobre nodos que ya no
+      // están en el documento.
+      return [{ destroy: para }];
+    }
+
+    // [inicio · simulacro del quiz]
+    // ================================================================
+    // Simulacro del quiz (Módulo 13) · variante E, SIN CLAVE
+    //
+    // NO SE EDITA A MANO: lo escribe quiz/exporta_simulacro.py desde el
+    // mismo generador que arma los paquetes de Brightspace. Aquí solo
+    // viajan el caso, los enunciados y las opciones: la clave y la
+    // retroalimentación se quedan fuera, porque este capítulo es público.
+    //
+    // La variante E no está en el banco, a propósito: publicar una
+    // de las cuatro le daría a uno de cada cuatro estudiantes los datos
+    // que le tocan, con tiempo ilimitado para estudiarlos.
+    // ================================================================
+    SIMULACROS['cap5-simulacro'] = {
+      "minutos": 50,
+      "variante": "E",
+      "caso": "<h3>Cuatro excipientes y el tiempo de disolución — variante E</h3>\n<p>Un laboratorio farmacéutico quiere sustituir el excipiente de un comprimido. Compara la\nformulación <b>actual (E1)</b> con tres candidatas (<b>E2, E3, E4</b>) midiendo el\n<b>tiempo de disolución</b> en segundos: menos es mejor. El caso tiene tres etapas y las\npreguntas siguen ese orden. <b>Cada pregunta repite las cifras que necesita</b>; responda con\nlos decimales que se le piden y use punto o coma como separador decimal.\n<b>No use separador de miles</b>: escriba 1234,56 o 1234.56, nunca 1.234,56 ni 1,234.56.</p>\n\n<h4>Etapa 1 — El experimento (capítulo 3)</h4>\n<p>Se fabricaron 20 comprimidos con un mismo lote de principio activo, 5 por formulación, y\nse ensayaron en orden aleatorio (diseño completamente al azar).</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Formulación</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Comp. 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Comp. 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Comp. 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Comp. 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Comp. 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i</sub></th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">s<sub>i</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">168.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">154.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">144.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">138.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">169.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">154.96</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">14.29</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">189.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">176.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">163.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">187.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">183.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">180.02</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">10.56</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">223.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">211.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">197.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">186.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">202.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">204.24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">14.07</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">214.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">212.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">182.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">165.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">192.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">193.54</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">20.55</td></tr></tbody></table>\n<p>Tabla ANOVA del DCA:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">F<sub>0</sub></th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">valor p</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Formulaciones</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">6786.03</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">2262.01</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">9.67</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.0007</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3744.24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">16</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">234.02</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">10530.28</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">19</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: t<sub>0.025,16</sub> = 2.120 · q<sub>0.05</sub>(4, 16) = 4.05 ·\nF<sub>0.05</sub>(3, 16) = 3.24.</p>\n\n<h4>Etapa 2 — El diagnóstico (capítulo 4)</h4>\n<p>Antes de informar, el analista revisa los residuos del DCA. Al ajustar\nlog s<sub>i</sub> contra log ȳ<sub>i</sub> con las cuatro formulaciones obtiene una\npendiente <b>α̂ = 0.55</b>.</p>\n\n<h4>Etapa 3 — El experimento rehecho con bloques (capítulo 5)</h4>\n<p>El laboratorio repite el experimento con <b>5 lotes</b> de principio activo. De cada lote\nsalen 4 comprimidos, uno por formulación, ensayados en orden aleatorio dentro del lote\n(diseño en bloques completos al azar, a = 4, b = 5). Para esta etapa se cambió el equipo de\nmedición y la dispersión resultó estable: trabaje con los datos tal cual.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Formulación</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Lote 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Lote 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Lote 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Lote 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Lote 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i.</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">162.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">150.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">176.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">146.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">115.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">150.32</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">208.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">198.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">200.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">199.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">166.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">194.54</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">212.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">204.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">225.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">209.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">187.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">207.84</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">192.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">210.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">194.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">192.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">196.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">197.32</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ȳ<sub>.j</sub></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">193.80</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">190.83</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">199.40</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">187.10</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">166.40</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Tabla ANOVA del DBCA, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Formulaciones</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">9710.31</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3236.77</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Lotes (bloques)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">2550.90</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">637.73</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">13853.29</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">19</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(4, 12) = 4.20 · F<sub>0.05</sub>(3, 12) = 3.49.</p>",
+      "preguntas": [
+        {
+          "n": 1,
+          "etiqueta": "cap. 3 · mód. 3.6 · LSD de Fisher",
+          "enunciado": "<p><b>Etapa 1.</b> Con MS<sub>E</sub> = 234.02, n = 5 réplicas por formulación y t<sub>0.025,16</sub> = 2.120, calcule la diferencia mínima significativa de Fisher (LSD) al 5 %. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 2,
+          "etiqueta": "cap. 3 · mód. 3.7 · Diferencia crítica de Tukey",
+          "enunciado": "<p><b>Etapa 1.</b> Con MS<sub>E</sub> = 234.02, n = 5 y q<sub>0.05</sub>(4, 16) = 4.05, calcule la diferencia crítica del procedimiento de Tukey al 5 %. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 3,
+          "etiqueta": "cap. 3 · mód. 3.7 · Pares que Tukey declara distintos",
+          "enunciado": "<p><b>Etapa 1.</b> Las medias son ȳ<sub>E1</sub> = 154.96, ȳ<sub>E2</sub> = 180.02, ȳ<sub>E3</sub> = 204.24, ȳ<sub>E4</sub> = 193.54. Con la diferencia crítica de Tukey T = 27.71, ¿cuántos de los 6 pares de formulaciones declara distintos el procedimiento de Tukey al 5 %? Responda con un número entero.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 4,
+          "etiqueta": "cap. 3 · mód. 3.3 · Un contraste",
+          "enunciado": "<p><b>Etapa 1.</b> El laboratorio quiere contrastar la formulación actual contra el promedio de las tres nuevas con el contraste C = 3ȳ<sub>E1</sub> − ȳ<sub>E2</sub> − ȳ<sub>E3</sub> − ȳ<sub>E4</sub>. Con ȳ<sub>E1</sub> = 154.96, ȳ<sub>E2</sub> = 180.02, ȳ<sub>E3</sub> = 204.24, ȳ<sub>E4</sub> = 193.54, calcule el valor de C. Responda con dos decimales y con signo.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 5,
+          "etiqueta": "cap. 3 · mód. 3.3 · Suma de cuadrados del contraste",
+          "enunciado": "<p><b>Etapa 1.</b> Con C = -112.92, n = 5 y coeficientes (3, −1, −1, −1), calcule la suma de cuadrados del contraste, SS<sub>C</sub> = n·C² / Σc<sub>i</sub>². Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 6,
+          "etiqueta": "cap. 3 · mód. 3.3 · El F del contraste",
+          "enunciado": "<p><b>Etapa 1.</b> Con SS<sub>C</sub> = 5312.89 y MS<sub>E</sub> = 234.02, calcule el estadístico F<sub>0</sub> del contraste (un grado de libertad en el numerador). Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 7,
+          "etiqueta": "cap. 3 · mód. 3.9 y 3.10 · Elegir el procedimiento",
+          "enunciado": "<p><b>Etapa 1.</b> El objetivo comercial del laboratorio es uno solo: saber cuáles de las formulaciones nuevas (E2, E3, E4) se disuelven en un tiempo distinto del de la actual (E1). No le interesa comparar las nuevas entre sí, pero sí reportará en conjunto cuáles de las tres difieren de E1, así que exige el error de familia al 5 % sobre esas tres comparaciones. ¿Qué procedimiento se ajusta a ese objetivo con el menor precio en potencia?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "Tukey: los seis pares posibles, con el error de familia controlado sobre todos ellos a la vez.",
+            "LSD de Fisher sobre las tres comparaciones con E1, sin corregir, porque el F del ANOVA ya salió significativo.",
+            "Dunnett: cada formulación nueva contra E1, con el error de familia sobre esas tres comparaciones.",
+            "Scheffé: cualquier contraste que se quiera examinar después, incluido el de cada nueva contra E1."
+          ]
+        },
+        {
+          "n": 8,
+          "etiqueta": "cap. 4 · mód. 4.2 y 4.5 · El residuo mayor",
+          "enunciado": "<p><b>Etapa 2.</b> El comprimido de la formulación E4 que tardó 165.8 s es el que más se aparta de su media. Con ȳ<sub>E4</sub> = 193.54, calcule su residuo e = y − ȳ. Responda con dos decimales y con signo.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 9,
+          "etiqueta": "cap. 4 · mód. 4.2 y 4.5 · Residuo estandarizado",
+          "enunciado": "<p><b>Etapa 2.</b> Con e = -27.74 y MS<sub>E</sub> = 234.02, calcule el residuo estandarizado d = e / √MS<sub>E</sub>. Responda con dos decimales y con signo.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 10,
+          "etiqueta": "cap. 4 · mód. 4.3 y 4.6 · Razón de varianzas",
+          "enunciado": "<p><b>Etapa 2.</b> Las desviaciones estándar por formulación son s<sub>E1</sub> = 14.29, s<sub>E2</sub> = 10.56, s<sub>E3</sub> = 14.07, s<sub>E4</sub> = 20.55. Calcule la razón entre la varianza muestral mayor y la menor, s²<sub>max</sub> / s²<sub>min</sub>. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 11,
+          "etiqueta": "cap. 4 · mód. 4.8 · Qué transformación",
+          "enunciado": "<p><b>Etapa 2.</b> Al ajustar log s<sub>i</sub> contra log ȳ<sub>i</sub> con las cuatro formulaciones se obtiene una pendiente α̂ = 0.55. Según la relación empírica σ ∝ μ<sup>α</sup> y la regla λ = 1 − α, ¿qué transformación de la respuesta sugiere ese resultado?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "La raíz cuadrada de la respuesta, √y (λ = ½).",
+            "El logaritmo de la respuesta, log y (λ = 0).",
+            "El recíproco de la respuesta, 1/y (λ = −1).",
+            "Ninguna: esa pendiente es compatible con varianza constante (λ = 1)."
+          ]
+        },
+        {
+          "n": 12,
+          "etiqueta": "cap. 4 · mód. 4.6 y 4.8 · Qué hacer con la etapa 1",
+          "enunciado": "<p><b>Etapa 2.</b> El analista toma la pendiente α̂ como evidencia de que la dispersión crece con la media, y la razón de varianzas apunta en la misma dirección. Las comparaciones de la etapa 1 (LSD, Tukey y el contraste) se hicieron sobre los tiempos originales. ¿Qué debe hacer con ellas?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "Mantenerlas: con n igual en las cuatro formulaciones el F es robusto, y eso cubre a Tukey.",
+            "Rehacer el ANOVA y las comparaciones sobre la escala transformada, y reportar esas.",
+            "Sustituirlas por pruebas t de Welch por pares, sin corrección, porque Welch no exige varianzas iguales.",
+            "Eliminar la formulación de mayor varianza y repetir el análisis con las otras tres."
+          ]
+        },
+        {
+          "n": 13,
+          "etiqueta": "cap. 5 · mód. 5.3 y 5.4 · SS del error en el DBCA",
+          "enunciado": "<p><b>Etapa 3.</b> En el DBCA, SS<sub>T</sub> = 13853.29, SS<sub>Formulaciones</sub> = 9710.31 y SS<sub>Lotes</sub> = 2550.90. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 14,
+          "etiqueta": "cap. 5 · mód. 5.3 y 5.4 · MS del error en el DBCA",
+          "enunciado": "<p><b>Etapa 3.</b> Con SS<sub>E</sub> = 1592.08, a = 4 formulaciones y b = 5 lotes, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 15,
+          "etiqueta": "cap. 5 · mód. 5.4 · El F de las formulaciones",
+          "enunciado": "<p><b>Etapa 3.</b> Con MS<sub>Formulaciones</sub> = 3236.77 y MS<sub>E</sub> = 132.67, calcule F<sub>0</sub> para las formulaciones. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 16,
+          "etiqueta": "cap. 5 · mód. 5.7 · Error estándar de una diferencia",
+          "enunciado": "<p><b>Etapa 3.</b> Con MS<sub>E</sub> = 132.67 y b = 5 lotes, calcule el error estándar de la diferencia entre dos medias de formulación, √(2MS<sub>E</sub>/b). Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 17,
+          "etiqueta": "cap. 5 · mód. 5.6 · Eficiencia relativa",
+          "enunciado": "<p><b>Etapa 3.</b> Con MS<sub>Lotes</sub> = 637.73, MS<sub>E</sub> = 132.67, a = 4 formulaciones y b = 5 lotes, calcule la eficiencia relativa R del DBCA frente al DCA, con σ̂²<sub>DCA</sub> = [(b − 1)MS<sub>Lotes</sub> + b(a − 1)MS<sub>E</sub>] / (ab − 1) y el factor de corrección [(f<sub>b</sub> + 1)(f<sub>r</sub> + 3)] / [(f<sub>b</sub> + 3)(f<sub>r</sub> + 1)], donde f<sub>b</sub> = (a − 1)(b − 1) y f<sub>r</sub> = a(b − 1). Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 18,
+          "etiqueta": "cap. 5 · mód. 5.2 · Qué se sortea",
+          "enunciado": "<p><b>Etapa 3.</b> ¿Qué se sortea al ejecutar el DBCA de la etapa 3?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "El orden de las 20 corridas en conjunto, con un solo sorteo global, como se hizo en la etapa 1.",
+            "Qué lote recibe cada formulación, de modo que cada lote quede con una sola de ellas.",
+            "Nada: al fijar los lotes, el bloque ya controla el ruido y cualquier sorteo sobra.",
+            "El orden de ensayo de las cuatro formulaciones dentro de cada lote, con un sorteo por lote."
+          ]
+        },
+        {
+          "n": 19,
+          "etiqueta": "cap. 5 · mód. 5.3 y 5.8 · La interacción que el modelo no ve",
+          "enunciado": "<p><b>Etapa 3.</b> Suponga que la formulación E2 se disuelve más lento solo en el lote 4, porque ese lote traía el principio activo más grueso y E2 es la única que no lo compensa. El modelo del DBCA es aditivo. ¿Dónde va a parar ese efecto?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "A la fila de los lotes, que recoge todo lo que dependa del lote de donde salió el comprimido.",
+            "A la fila de las formulaciones, porque desplaza la media de E2 respecto de las otras tres.",
+            "Al error: la interacción formulación × lote no tiene fila propia e infla SS<sub>E</sub>.",
+            "A ninguna parte: con una observación por celda el modelo la estima con un grado de libertad adicional."
+          ]
+        }
+      ]
+    };
+    // [fin · simulacro del quiz]
 
   </script>
 
