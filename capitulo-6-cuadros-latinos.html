@@ -5286,7 +5286,7 @@ print("cochran_cox:", p / (p + 1), "| poblacion_finita:", p * (p - 1) / (p ** 2 
           medido</h4>
         <p style="margin-bottom:0;">En el conjunto de <strong>ingredientes</strong> (problema 4.27) ninguna de las dos
           direcciones hacía falta: los $F$ de filas y columnas valen 1.235 y 0.979, los dos por debajo de 1.3. La
-          eficiencia relativa frente al DCA sale <strong>0.982</strong> — menor que 1. El cuadro latino no invalidó
+          eficiencia relativa frente al DCA sale <strong>0.983</strong> — menor que 1. El cuadro latino no invalidó
           nada, pero <strong>salió perdiendo</strong>: gastó ocho grados de libertad en controlar un ruido que no
           existía. Bloquear es una apuesta, y como toda apuesta, se puede perder.</p>
       </div>
@@ -5408,9 +5408,11 @@ print({"LSD": round(float(stats.t.ppf(0.975, 12) * ee), 5),
           saber de dónde viene antes de pensar que uno de los dos está mal.</p>
       </div>
 
-      <p>Con $LSD = 4.50$, las diferencias significativas son las de $B$ y $C$ frente a $A$ y $D$. Con el criterio de
-        Tukey, más conservador ($6.58$), solo sobreviven $D-B = 9.6$ y $A-B = 8.4$: es el mismo estrechamiento que el
-        capítulo 3 medía, agravado aquí porque doce grados de libertad de error son muy pocos.</p>
+      <p>Con $LSD = 4.50$ son significativas cinco diferencias: las cuatro de $B$ y $C$ frente a $A$ y $D$
+        ($D-B = 9.6$, $A-B = 8.4$, $D-C = 7.4$ y $A-C = 6.2$) y además $E-B = 5.8$. Con el criterio de Tukey, más
+        conservador ($6.58$), sobreviven tres: $D-B$, $A-B$ y $D-C$, esta última con un $p$ ajustado de 0.025; el
+        Bonferroni ($7.08$), aún más exigente, separa los mismos tres. Es el mismo estrechamiento que el capítulo 3
+        medía, agravado aquí porque doce grados de libertad de error son muy pocos.</p>
 
       <div class="derivacion">
         <button type="button" class="derivacion-boton" aria-expanded="false" aria-controls="der-ee-media">
@@ -6859,7 +6861,7 @@ print("p del modelo sin bloquear:", round(float(dca.loc["C(modelo)", "PR(&gt;F)"
         <li>Bloquear es una <strong>apuesta</strong>. Se gana cuando el cuadrado medio del bloqueo supera al $MS_E$ que
           ya había, y se pierde si no: en el problema 4.41 el cuarto factor sube el $MS_E$ de 5.83 a 9.17 y el
           resultado pasa de $p=0.038$ a $p=0.167$; en el conjunto de ingredientes la eficiencia relativa sale
-          <strong>0.982</strong>, por debajo de 1.</li>
+          <strong>0.983</strong>, por debajo de 1.</li>
         <li>Con $p \le 4$ hay muy pocos grados de libertad de error: <strong>replicar el cuadro</strong> es casi
           obligatorio, y hay que saber cuál de los tres casos toca.</li>
         <li>La ortogonalidad tiene un límite duro: <strong>no existe grecolatino de orden 6</strong>, comprobado aquí
@@ -7575,6 +7577,41 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
       });
       return inputs;
     }
+
+    // ================================================================
+    // Cifras con punto decimal
+    //
+    // La prosa, las fórmulas y las salidas de R y Python del curso escriben
+    // «78.5882 %», y todo lo que el motor escribe tiene que decir lo mismo.
+    // No lo decía: la tabla ordenable formateaba con 'es-CO' («92,2248 %»),
+    // los simuladores con 'es' («10.000 réplicas», que con punto decimal se
+    // lee diez) y Chart.js, sin locale fijado, formateaba los ejes con el
+    // idioma del NAVEGADOR — con uno en español, «0,25» en el eje junto a
+    // «0.25» en el texto. Desde un navegador en inglés no se ve nunca.
+    //
+    // Por eso se fija aquí, una vez para todo el documento:
+    //   · Chart.js en 'en-US' y sin agrupar miles en los ejes numéricos ni en
+    //     sus tooltips: «0.25», «12000».
+    //   · formateaEntero() para los enteros que un simulador escribe en la
+    //     prosa, con la regla del texto: juntos hasta cuatro cifras («9408») y
+    //     en grupos de tres desde cinco («10 000», «812 851 200»), con espacio
+    //     duro para que la cifra no se parta al final de la línea.
+    //   · La tabla ordenable, en su formatea(): 'en-US' sin agrupar.
+    //
+    // Lo lleva a todos los documentos ensamblado/retropropaga_cifras.py.
+    // ================================================================
+    if (typeof Chart !== 'undefined') {
+      Chart.defaults.locale = 'en-US';
+      Chart.defaults.scales.linear.ticks.format = { useGrouping: false };
+      Chart.defaults.scales.logarithmic.ticks.format = { useGrouping: false };
+    }
+
+    function formateaEntero(n) {
+      const texto = String(n);
+      if (!/^-?\d{5,}$/.test(texto)) return texto;
+      return texto.replace(/\B(?=(\d{3})+$)/g, '\u00a0');
+    }
+    // — fin de las cifras con punto decimal —
 
     // Paleta y defaults de la casa para gráficos de líneas.
     const COLORES_GRAFICO = {
@@ -8494,8 +8531,10 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
         if (columna.tipo === 'texto') return valor === undefined ? '' : String(valor);
         if (valor === null || valor === undefined || !Number.isFinite(Number(valor))) return '—';
         const d = columna.decimales === undefined ? 2 : columna.decimales;
-        return Number(valor).toLocaleString('es-CO', {
-          minimumFractionDigits: d, maximumFractionDigits: d
+        // Punto decimal y sin agrupar miles (ver «Cifras con punto decimal»).
+        // 'en-US' solo aporta el punto: el redondeo es el mismo que con 'es-CO'.
+        return Number(valor).toLocaleString('en-US', {
+          minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: false
         }) + (columna.sufijo || '');
       }
 
@@ -8989,19 +9028,19 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
         nota.innerHTML = params.vista === 'estandar'
           ? 'Cuadro <strong>cíclico</strong> de orden ' + p + ': la primera fila en ' +
             'orden y cada fila siguiente desplazada una posición. Está en forma ' +
-            'estándar, y es uno de los <strong>' + estandar.toLocaleString('es') +
+            'estándar, y es uno de los <strong>' + formateaEntero(estandar) +
             '</strong> que hay de este orden.'
           : 'El mismo cuadro después de permutar filas (' + al.filas.join(', ') +
             '), columnas (' + al.columnas.join(', ') + ') y la asignación de letras (' +
             al.letras.join(', ') + '). Sigue siendo latino: eso es lo que la receta ' +
             'garantiza. Lo que <strong>no</strong> garantiza es sortear entre los ' +
-            total.toLocaleString('es') + ' cuadros de orden ' + p + '.';
+            formateaEntero(total) + ' cuadros de orden ' + p + '.';
 
         actualizarLectura(raiz.querySelector('.simulador-lectura'), [
           { etiqueta: 'Orden', valor: p + '×' + p },
-          { etiqueta: 'Cuadros estándar', valor: estandar.toLocaleString('es') },
-          { etiqueta: 'Cuadros en total', valor: total.toLocaleString('es') },
-          { etiqueta: 'p!(p−1)!', valor: (total / estandar).toLocaleString('es') }
+          { etiqueta: 'Cuadros estándar', valor: formateaEntero(estandar) },
+          { etiqueta: 'Cuadros en total', valor: formateaEntero(total) },
+          { etiqueta: 'p!(p−1)!', valor: formateaEntero(total / estandar) }
         ]);
       }
 
@@ -9611,14 +9650,14 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
 
         actualizarLectura(raiz.querySelector('.simulador-lectura'), [
           { etiqueta: 'Orden', valor: B.p + '×' + B.p },
-          { etiqueta: 'Cuadros reducidos', valor: B.n_reducidos.toLocaleString('es') },
+          { etiqueta: 'Cuadros reducidos', valor: formateaEntero(B.n_reducidos) },
           { etiqueta: 'Admiten pareja ortogonal', valor: B.con_pareja },
           { etiqueta: 'Sin ninguna transversal', valor: B.sin_transversales },
           { etiqueta: 'Con transversales pero sin pareja',
             valor: B.n_reducidos - B.sin_transversales - B.con_pareja },
           { etiqueta: 'Coste de la búsqueda',
-            valor: D.coste.cuadros_examinados.toLocaleString('es') + ' cuadros, ' +
-                   D.coste.transversales_enumeradas.toLocaleString('es') + ' transversales' }
+            valor: formateaEntero(D.coste.cuadros_examinados) + ' cuadros, ' +
+                   formateaEntero(D.coste.transversales_enumeradas) + ' transversales' }
         ]);
       }
 

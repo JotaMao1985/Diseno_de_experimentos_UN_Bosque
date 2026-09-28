@@ -5790,6 +5790,41 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
       return inputs;
     }
 
+    // ================================================================
+    // Cifras con punto decimal
+    //
+    // La prosa, las fórmulas y las salidas de R y Python del curso escriben
+    // «78.5882 %», y todo lo que el motor escribe tiene que decir lo mismo.
+    // No lo decía: la tabla ordenable formateaba con 'es-CO' («92,2248 %»),
+    // los simuladores con 'es' («10.000 réplicas», que con punto decimal se
+    // lee diez) y Chart.js, sin locale fijado, formateaba los ejes con el
+    // idioma del NAVEGADOR — con uno en español, «0,25» en el eje junto a
+    // «0.25» en el texto. Desde un navegador en inglés no se ve nunca.
+    //
+    // Por eso se fija aquí, una vez para todo el documento:
+    //   · Chart.js en 'en-US' y sin agrupar miles en los ejes numéricos ni en
+    //     sus tooltips: «0.25», «12000».
+    //   · formateaEntero() para los enteros que un simulador escribe en la
+    //     prosa, con la regla del texto: juntos hasta cuatro cifras («9408») y
+    //     en grupos de tres desde cinco («10 000», «812 851 200»), con espacio
+    //     duro para que la cifra no se parta al final de la línea.
+    //   · La tabla ordenable, en su formatea(): 'en-US' sin agrupar.
+    //
+    // Lo lleva a todos los documentos ensamblado/retropropaga_cifras.py.
+    // ================================================================
+    if (typeof Chart !== 'undefined') {
+      Chart.defaults.locale = 'en-US';
+      Chart.defaults.scales.linear.ticks.format = { useGrouping: false };
+      Chart.defaults.scales.logarithmic.ticks.format = { useGrouping: false };
+    }
+
+    function formateaEntero(n) {
+      const texto = String(n);
+      if (!/^-?\d{5,}$/.test(texto)) return texto;
+      return texto.replace(/\B(?=(\d{3})+$)/g, '\u00a0');
+    }
+    // — fin de las cifras con punto decimal —
+
     // Paleta y defaults de la casa para gráficos de líneas.
     const COLORES_GRAFICO = {
       primario: '#012820',
@@ -6708,8 +6743,10 @@ round(tapply(turnos$productivas, turnos$turno, mean), 3)
         if (columna.tipo === 'texto') return valor === undefined ? '' : String(valor);
         if (valor === null || valor === undefined || !Number.isFinite(Number(valor))) return '—';
         const d = columna.decimales === undefined ? 2 : columna.decimales;
-        return Number(valor).toLocaleString('es-CO', {
-          minimumFractionDigits: d, maximumFractionDigits: d
+        // Punto decimal y sin agrupar miles (ver «Cifras con punto decimal»).
+        // 'en-US' solo aporta el punto: el redondeo es el mismo que con 'es-CO'.
+        return Number(valor).toLocaleString('en-US', {
+          minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: false
         }) + (columna.sufijo || '');
       }
 
