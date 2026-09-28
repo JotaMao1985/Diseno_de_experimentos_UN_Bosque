@@ -5963,10 +5963,11 @@ print("correlacion del grafico normal:",
 
       <div class="note">
         <h4><i class="fas fa-circle-info mr-2" aria-hidden="true"></i>Las posiciones de Blom</h4>
-        <p style="margin-bottom:0;">El gráfico normal usa $(i - 3/8)/(n + 1/4)$ para colocar los cuantiles teóricos,
-          que es lo que hace <code>qqnorm()</code> para muestras pequeñas. Conviene decirlo, porque con la convención
-          alternativa $(i - 0.5)/n$ los puntos de los extremos se desplazan a simple vista y dos gráficos del mismo
-          conjunto pueden parecer distintos. Aquí, con esa convención, la correlación bajaría de 0.9828 a 0.9819.</p>
+        <p style="margin-bottom:0;">El gráfico normal usa $(i - 3/8)/(n + 1/4)$ para colocar los cuantiles teóricos.
+          <code>qqnorm()</code> solo la usa con $n \le 10$: con los 24 residuos de aquí usa $(i - 0.5)/n$, así que su
+          gráfico por defecto no es este. Conviene decirlo, porque con esa otra convención los puntos de los extremos se
+          desplazan a simple vista y dos gráficos del mismo conjunto pueden parecer distintos. Aquí, con ella, la
+          correlación bajaría de 0.9828 a 0.9819.</p>
       </div>
 
       <h3>La curvatura que en el capítulo 4 era imposible</h3>
