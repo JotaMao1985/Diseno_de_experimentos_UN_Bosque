@@ -5035,13 +5035,15 @@ muestra({"rango_lotes": np.ptp(todas[:, 0]),
       <div class="note">
         <h4><i class="fas fa-book-open mr-2" aria-hidden="true"></i>Qué se queda aquí y qué está en el anexo A3</h4>
         <p style="margin-top:0;">Los modelos de efectos aleatorios (Montgomery §13.1–13.6) son un tema propio, y el
-          <strong>anexo A3 del curso</strong> los desarrolla entero: la justificación del modelo, la estimación por
+          <a href="anexo-3-efectos-aleatorios.html"><strong>anexo A3 del curso</strong></a> los desarrolla entero: la justificación del modelo, la estimación por
           máxima verosimilitud, el caso desequilibrado y las pruebas alternativas. Ese anexo es material
           complementario y no entra en la evaluación de 2026-II, pero <strong>es el prerrequisito conceptual de este
           capítulo</strong>.</p>
         <p style="margin-bottom:0;">De todo eso, el capítulo 9 se lleva solo la <em>parte operativa</em>, que es la
           que hace falta para trabajar con diseños anidados: el algoritmo de §13.4 para las esperanzas (este módulo),
-          la elección del denominador (9.5), la estimación de componentes (9.6) y sus intervalos de §13.6.1 (9.7).</p>
+          la elección del denominador (9.5), la estimación de componentes (9.6) y sus intervalos de §13.6.1 (9.7).
+          En el anexo, las esperanzas se deducen para un factor en el módulo A3.2, y las mismas reglas se
+          aplican a un factorial cruzado en A3.7 y A3.8.</p>
       </div>
 
       <h3>Las reglas, escritas como algoritmo</h3>
@@ -5428,6 +5430,15 @@ muestra({"F_falso": F_falso, "p_falso": stats.f.sf(F_falso, 3, 12)})
         </div>
         <p class="simulador-lectura"></p>
       </div>
+
+      <div class="note">
+        <h4><i class="fas fa-book-open mr-2" aria-hidden="true"></i>El mismo problema, en el anexo A3</h4>
+        <p style="margin-bottom:0;">Aquí el denominador se elige dentro de un anidado. En un factorial <strong>cruzado</strong>
+          con factores aleatorios pasa lo mismo, y el <a href="anexo-3-efectos-aleatorios.html">anexo A3</a> lo desarrolla en su
+          casa: los dos factores aleatorios del estudio de capacidad (módulo A3.6), el modelo mixto,
+          donde la formulación restringida y la no restringida cambian el denominador (A3.7), y el caso
+          en que ningún cuadrado medio de la tabla sirve (A3.8).</p>
+      </div>
     </div>
   </template>
 
@@ -5666,6 +5677,15 @@ muestra(dict(MS_A=des_msA, MS_B=des_msB, MS_E=des_msE, sigma2=des_msE,
         </div>
         <p class="simulador-lectura"></p>
       </div>
+
+      <div class="note">
+        <h4><i class="fas fa-book-open mr-2" aria-hidden="true"></i>Los componentes, desde el principio, en el anexo A3</h4>
+        <p style="margin-bottom:0;">Aquí los componentes se estiman dentro de un anidado. El <a href="anexo-3-efectos-aleatorios.html">anexo A3</a>
+          desarrolla el método en el modelo de un factor, que es donde nace: los estimadores del ANOVA,
+          la correlación intraclase, el caso desequilibrado y el estimador negativo (módulo A3.3), y la
+          máxima verosimilitud y REML, con la razón de que en el caso balanceado den lo mismo que el
+          ANOVA (A3.5).</p>
+      </div>
     </div>
   </template>
 
@@ -5897,6 +5917,15 @@ muestra({"gl_efectivos": gl_satt,
           cuentas distintas, y con el componente pequeño la diferencia es enorme: <strong>0.708</strong> frente a
           <strong>0.879</strong> con la razón en 0.25. Publicar solo la condicional esconde justo el caso incómodo;
           por eso el simulador lleva las dos curvas.</p>
+      </div>
+
+      <div class="note">
+        <h4><i class="fas fa-book-open mr-2" aria-hidden="true"></i>Los intervalos exactos, en el anexo A3</h4>
+        <p style="margin-bottom:0;">Los tres intervalos de este módulo son los de un componente dentro de un anidado. El
+          <a href="anexo-3-efectos-aleatorios.html">anexo A3</a> trae los intervalos <strong>exactos</strong> del modelo de un
+          factor —el de la varianza del error, el de la correlación intraclase y el de la media global
+          (módulo A3.4)— y Satterthwaite y el método de muestras grandes sobre un factorial cruzado
+          (A3.8).</p>
       </div>
     </div>
   </template>
@@ -7466,10 +7495,10 @@ print(resumen.to_string())
           <li><a href="capitulo-4-supuestos-no-parametrica.html">Capítulo 4 — Supuestos</a>: el diagnóstico del
             módulo 9.8 es el suyo, con el residuo tomado respecto de la celda más pequeña.</li>
         </ul>
-        <p style="margin-top:0.75rem; margin-bottom:0;">Y una pieza que <strong>todavía no está publicada</strong>:
-          el <strong>anexo A3, «Modelos de efectos aleatorios»</strong>, desarrolla §13.1–13.6 completo y es el
-          prerrequisito conceptual de este capítulo. Cuando esté en el sitio, los módulos 9.4 a 9.7 enlazarán a él
-          directamente; mientras tanto, aquí está todo lo que hace falta para trabajar. Hacia adelante, el
+        <p style="margin-top:0.75rem; margin-bottom:0;">Y una pieza complementaria: el
+          <a href="anexo-3-efectos-aleatorios.html"><strong>anexo A3, «Modelos de efectos aleatorios»</strong></a>, desarrolla §3.9 y
+          §13.1–13.6 completos y es el prerrequisito conceptual de este capítulo; los módulos 9.4 a 9.7 remiten
+          cada uno a su parte. Aquí está todo lo que hace falta para trabajar con anidados. Hacia adelante, el
           <strong>capítulo 10</strong> añade la aleatorización restringida de las parcelas divididas y las medidas
           repetidas — que son, como se verá, un anidado disfrazado.</p>
       </div>
