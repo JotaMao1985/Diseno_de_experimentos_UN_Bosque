@@ -3685,6 +3685,12 @@
        .simulacro-numero). Lo usa el módulo 5.13 y lo instala
        ensamblado/retropropaga_simulacro.py, entre este rótulo y el de
        cierre.
+
+       El 6 oct 2026 ganó las piezas del preparcial del módulo 6.13, que
+       SÍ se corrige: el selector de versión, el botón de entregar, el
+       veredicto por pregunta, la retroalimentación y la rejilla de un
+       cuadro latino dentro de una opción. Las usa solo el 6.13, pero van
+       aquí, a los diecinueve documentos, por la misma razón que el resto.
        ------------------------------------------------------------------ */
     .simulacro {
       background-color: #f8fafc;
@@ -3910,6 +3916,144 @@
     .simulacro-numero:focus-visible {
       outline: 2px solid #FF6600;
       outline-offset: 1px;
+    }
+
+    /* --- Las piezas del preparcial (módulo 6.13), que se corrige --------- */
+    .simulacro-versiones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .simulacro-version,
+    .simulacro-entregar {
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .simulacro-version {
+      color: #012820;
+      background: white;
+      border: 1px solid rgba(1, 40, 32, 0.25);
+    }
+
+    .simulacro-version:hover {
+      background: #f1f5f9;
+    }
+
+    .simulacro-version.activa {
+      color: white;
+      background: #012820;
+      border-color: #012820;
+    }
+
+    .simulacro-entregar {
+      color: white;
+      background: #FF6600;
+      border: none;
+    }
+
+    .simulacro-entregar:hover {
+      background: #012820;
+    }
+
+    .simulacro-version:focus-visible,
+    .simulacro-entregar:focus-visible {
+      outline: 2px solid #FF6600;
+      outline-offset: 1px;
+    }
+
+    .simulacro-entregar:disabled,
+    .simulacro-empezar:disabled,
+    .simulacro-opcion:disabled {
+      opacity: 0.65;
+      cursor: default;
+    }
+
+    .simulacro-pregunta.acierto {
+      border-left: 4px solid #10b981;
+    }
+
+    .simulacro-pregunta.fallo {
+      border-left: 4px solid #dc2626;
+    }
+
+    .simulacro-pregunta.vacia {
+      border-left: 4px solid #94a3b8;
+    }
+
+    .simulacro-opcion.correcta {
+      opacity: 1;
+      border-color: #10b981;
+      background: #ecfdf5;
+    }
+
+    .simulacro-opcion.equivocada {
+      opacity: 1;
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .simulacro-retro {
+      margin-top: 0.9rem;
+      padding: 0.8rem 1rem;
+      background: #f8fafc;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: #334155;
+    }
+
+    .simulacro-retro p {
+      margin: 0.35rem 0;
+    }
+
+    .simulacro-veredicto {
+      font-weight: 700;
+      color: #065f46;
+    }
+
+    .simulacro-pregunta.fallo .simulacro-veredicto {
+      color: #b91c1c;
+    }
+
+    .simulacro-pregunta.vacia .simulacro-veredicto {
+      color: #475569;
+    }
+
+    .simulacro-aviso {
+      font-weight: 600;
+      color: #9a3412;
+    }
+
+    .simulacro-errores {
+      font-size: 0.8125rem;
+      color: #475569;
+    }
+
+    .simulacro-nota {
+      font-weight: 700;
+      color: #012820;
+      margin-top: 1rem;
+    }
+
+    .simulacro-nota:empty {
+      display: none;
+    }
+
+    /* Un cuadro latino dentro de una opción: cinco filas de cinco letras.
+       Va como texto con saltos de línea, no como <table>, porque una opción
+       es un <button> y una tabla no cabe en él. */
+    .simulacro-cuadro {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 0.2em;
+      line-height: 1.45;
     }
     /* ------------------- fin del componente .simulacro ------------------- */
 

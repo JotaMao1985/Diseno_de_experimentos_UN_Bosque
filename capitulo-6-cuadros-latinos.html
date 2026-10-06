@@ -3685,6 +3685,12 @@
        .simulacro-numero). Lo usa el módulo 5.13 y lo instala
        ensamblado/retropropaga_simulacro.py, entre este rótulo y el de
        cierre.
+
+       El 6 oct 2026 ganó las piezas del preparcial del módulo 6.13, que
+       SÍ se corrige: el selector de versión, el botón de entregar, el
+       veredicto por pregunta, la retroalimentación y la rejilla de un
+       cuadro latino dentro de una opción. Las usa solo el 6.13, pero van
+       aquí, a los diecinueve documentos, por la misma razón que el resto.
        ------------------------------------------------------------------ */
     .simulacro {
       background-color: #f8fafc;
@@ -3910,6 +3916,144 @@
     .simulacro-numero:focus-visible {
       outline: 2px solid #FF6600;
       outline-offset: 1px;
+    }
+
+    /* --- Las piezas del preparcial (módulo 6.13), que se corrige --------- */
+    .simulacro-versiones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .simulacro-version,
+    .simulacro-entregar {
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .simulacro-version {
+      color: #012820;
+      background: white;
+      border: 1px solid rgba(1, 40, 32, 0.25);
+    }
+
+    .simulacro-version:hover {
+      background: #f1f5f9;
+    }
+
+    .simulacro-version.activa {
+      color: white;
+      background: #012820;
+      border-color: #012820;
+    }
+
+    .simulacro-entregar {
+      color: white;
+      background: #FF6600;
+      border: none;
+    }
+
+    .simulacro-entregar:hover {
+      background: #012820;
+    }
+
+    .simulacro-version:focus-visible,
+    .simulacro-entregar:focus-visible {
+      outline: 2px solid #FF6600;
+      outline-offset: 1px;
+    }
+
+    .simulacro-entregar:disabled,
+    .simulacro-empezar:disabled,
+    .simulacro-opcion:disabled {
+      opacity: 0.65;
+      cursor: default;
+    }
+
+    .simulacro-pregunta.acierto {
+      border-left: 4px solid #10b981;
+    }
+
+    .simulacro-pregunta.fallo {
+      border-left: 4px solid #dc2626;
+    }
+
+    .simulacro-pregunta.vacia {
+      border-left: 4px solid #94a3b8;
+    }
+
+    .simulacro-opcion.correcta {
+      opacity: 1;
+      border-color: #10b981;
+      background: #ecfdf5;
+    }
+
+    .simulacro-opcion.equivocada {
+      opacity: 1;
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .simulacro-retro {
+      margin-top: 0.9rem;
+      padding: 0.8rem 1rem;
+      background: #f8fafc;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: #334155;
+    }
+
+    .simulacro-retro p {
+      margin: 0.35rem 0;
+    }
+
+    .simulacro-veredicto {
+      font-weight: 700;
+      color: #065f46;
+    }
+
+    .simulacro-pregunta.fallo .simulacro-veredicto {
+      color: #b91c1c;
+    }
+
+    .simulacro-pregunta.vacia .simulacro-veredicto {
+      color: #475569;
+    }
+
+    .simulacro-aviso {
+      font-weight: 600;
+      color: #9a3412;
+    }
+
+    .simulacro-errores {
+      font-size: 0.8125rem;
+      color: #475569;
+    }
+
+    .simulacro-nota {
+      font-weight: 700;
+      color: #012820;
+      margin-top: 1rem;
+    }
+
+    .simulacro-nota:empty {
+      display: none;
+    }
+
+    /* Un cuadro latino dentro de una opción: cinco filas de cinco letras.
+       Va como texto con saltos de línea, no como <table>, porque una opción
+       es un <button> y una tabla no cabe en él. */
+    .simulacro-cuadro {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 0.2em;
+      line-height: 1.45;
     }
     /* ------------------- fin del componente .simulacro ------------------- */
 
@@ -7182,6 +7326,91 @@ print("p del modelo sin bloquear:", round(float(dca.loc["C(modelo)", "PR(&gt;F)"
     </div>
   </template>
 
+  <!-- ============================================================ -->
+  <!-- MÓDULO 13 · Preparcial del Corte II                          -->
+  <!-- ============================================================ -->
+  <template id="module-13">
+    <div class="animate-fade-in">
+      <div class="border-b border-gray-100 pb-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
+          <span>Módulo 13</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">6.13 Preparcial del Corte II <span
+            class="text-gray-400 font-normal text-2xl">/ Practice midterm</span></h2>
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
+          <span class="text-xl">🎯</span>
+          <div>
+            <h3 class="font-bold text-gray-800 text-sm" style="margin:0;">Objetivo</h3>
+            <p class="text-gray-600 text-sm" style="margin:0;">Ensayar el Parcial II con el reloj puesto: hacer de
+              corrido las cuentas y las decisiones de los capítulos 5 y 6 que pide un mismo caso, y saber al
+              entregar cuáles salieron bien, cuáles no y por qué.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Este módulo no añade contenido: es un ensayo. El Parcial II evalúa lo mismo que el Taller 2 —el <a
+          href="capitulo-5-bloques-completos.html" class="text-primary underline">capítulo 5</a> entero y este
+        capítulo hasta el módulo 6.7, con lo del Corte I que esos módulos usan: residuos y comparaciones
+        múltiples—, pero no con informes que peritar sino con <strong>un caso que se resuelve con el reloj
+        puesto</strong>, como el quiz de los capítulos 3 a 5. Aquí el caso es una cooperativa cafetera en tres
+        etapas: un diseño en bloques completos al azar, su diagnóstico con una parcela perdida, y un cuadro
+        latino. De ahí salen <strong>veinticuatro preguntas</strong>: dieciocho piden una cifra que se teclea y
+        seis son de selección con una sola respuesta. El tiempo es de <strong>noventa minutos</strong>.</p>
+
+      <p>A diferencia del simulacro del <a href="capitulo-5-bloques-completos.html"
+          class="text-primary underline">módulo 5.13</a>, <strong>este sí se corrige</strong>. Al pulsar
+        <em>Entregar y corregir</em>, cada cifra se compara con la respuesta —con la holgura del redondeo de
+        un paso intermedio—, y si tu cifra coincide con un error frecuente conocido, la corrección lo nombra:
+        olvidar el factor de corrección de la eficiencia relativa, dividir entre los grados de libertad de otro
+        diseño, sumar la media general una vez en vez de dos. En las de selección, la corrección explica la
+        opción que marcaste y la correcta.</p>
+
+      <div class="warning">
+        <p><strong>El Parcial II tendrá esta forma, no estas preguntas.</strong> Como la clave viaja en esta
+          página, que es pública, nada de lo que hay aquí se repite en el parcial: ni el caso, ni los datos, ni
+          las preguntas de selección. Memorizar respuestas no sirve; lo que se repite es la <em>decisión</em>
+          —cuántos grados de libertad le quedan al error cuando bloqueas en una dirección o en dos, qué media
+          entra cuántas veces en un residuo, qué fórmula da el dato que falta— y esa es la que conviene tener
+          automatizada antes de entrar. Y el parcial puede preguntar por cualquier módulo de su alcance,
+          también por los que este ensayo no toca: el 5.1, el 5.2, el 5.5, el 5.11, el 6.1 y el 6.3.</p>
+      </div>
+
+      <div class="simulacro" data-simulador="cap6-preparcial">
+        <h4><i class="fas fa-clipboard-check" aria-hidden="true"></i> Preparcial del Corte II · capítulos 5 y 6
+        </h4>
+        <p class="text-sm" style="margin-bottom:0;">Un caso, veinticuatro preguntas, noventa minutos y tres
+          versiones con las mismas preguntas y otros datos. Se responde, se cronometra y se corrige al
+          entregar.</p>
+        <div class="simulacro-versiones" role="group" aria-label="Versión del preparcial"></div>
+        <div class="simulacro-mandos">
+          <button type="button" class="simulacro-empezar"></button>
+          <span class="simulacro-reloj" role="timer" aria-live="off"></span>
+          <span class="simulacro-conteo"></span>
+          <button type="button" class="simulacro-entregar">Entregar y corregir</button>
+          <button type="button" class="simulacro-borrar">Borrar</button>
+        </div>
+        <div class="simulacro-caso"></div>
+        <div class="simulacro-preguntas"></div>
+        <p class="simulacro-nota" role="status" aria-live="polite"></p>
+        <p class="simulacro-resumen"></p>
+      </div>
+
+      <div class="note">
+        <p><strong>Cómo aprovecharlo.</strong> Haz la versión 1 una vez con el reloj y sin abrir nada, y entrégala:
+          lo que falle ahí es lo que hay que repasar, y la corrección dice en qué módulo está. Repasa, deja pasar
+          un día y haz la versión 2 igual, con el reloj; la 3 queda para la víspera. Las tres hacen las mismas
+          preguntas con otras cifras, y en las de selección las opciones cambian de orden, así que recordar la
+          letra de la vez anterior no sirve: lo que se mide es si la cuenta y la decisión ya salen solas.</p>
+        <p>Teclea las cifras como las teclearías en el parcial: con los decimales que pide cada pregunta, punto o
+          coma como separador decimal, el signo cuando la pregunta lo pide y <strong>sin separador de
+          miles</strong>.</p>
+        <p style="margin-bottom:0;">El reloj sigue corriendo si sales a otro módulo, y lo respondido se conserva
+          mientras no cierres la página; cada versión guarda lo suyo. <strong>Borrar</strong> devuelve al
+          principio solo la versión que tienes abierta.</p>
+      </div>
+    </div>
+  </template>
+
   <script>
     // ================================================================
     // Configuración del capítulo
@@ -7210,7 +7439,8 @@ print("p del modelo sin bloquear:", round(float(dca.loc["C(modelo)", "PR(&gt;F)"
         { id: 9, title: "6.9 El cuadrado grecolatino: tres bloqueos", shortTitle: "Grecolatino", duration: "22 min" },
         { id: 10, title: "6.10 Los límites de la ortogonalidad: el orden 6, los MOLS y el hipercuadrado", shortTitle: "Límites", duration: "22 min" },
         { id: 11, title: "6.11 Ciencia de datos: hipercubos, pruebas A/B y comparación de modelos", shortTitle: "Ciencia de datos", duration: "20 min" },
-        { id: 12, title: "6.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "28 min" }
+        { id: 12, title: "6.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "28 min" },
+        { id: 13, title: "6.13 Preparcial del Corte II", shortTitle: "Preparcial", duration: "90 min" }
       ]
     };
 
@@ -9952,6 +10182,2582 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
         ]
       }
     ];
+
+    // ================================================================
+    // Preparcial del Corte II (Módulo 13)
+    //
+    // Un ensayo del Parcial II con la forma del quiz de los capítulos 3–5:
+    // un caso en etapas, preguntas de cifra y de selección, y un reloj. A
+    // diferencia del simulacro del módulo 5.13, ESTE SÍ SE CORRIGE: al
+    // entregar, cada cifra se compara con su banda de tolerancia y, si cae
+    // en un error frecuente conocido, lo nombra; cada opción trae su
+    // retroalimentación. Por eso la clave viaja en la página (decisión D2 de
+    // PLAN_Preparcial_Corte_II.md), y por eso ninguna de estas preguntas ni
+    // de estos datos puede reaparecer en el Parcial II.
+    //
+    // Hay tres versiones con el mismo enunciado y datos distintos. Cada una
+    // guarda su propio estado —respuestas, reloj y si ya se corrigió— en
+    // ESTADO_PREPARCIAL, fuera del renderizado: salir a otro módulo a
+    // consultar algo y volver no borra nada, y el reloj sigue corriendo,
+    // como el del salón.
+    //
+    // Se engancha al registro SIMULADORES, que loadModule() ya recorre. El
+    // CSS es el del componente .simulacro (ensamblado/cap5/estilos-simulacro.css),
+    // que lleva también las piezas de la corrección. Lo instala
+    // ensamblado/retropropaga_preparcial.py.
+    //
+    // PREPARCIALES['id'] = { minutos, versiones: [{ numero, caso, preguntas:
+    // [{ n, etapa, etiqueta, tipo, enunciado, ... }] }] } lo escribe
+    // preparcial/exporta.py. Una pregunta 'numero' trae { clave: { valor,
+    // tol, texto }, cuenta, rutas: [{ valor, cifra, texto }] }; una 'opcion',
+    // { opciones: [{ texto, retro }], correcta }.
+    // ================================================================
+    const PREPARCIALES = {};
+    const ESTADO_PREPARCIAL = {};
+
+    SIMULADORES['cap6-preparcial'] = function (raiz) {
+      const id = raiz.dataset.simulador;
+      const prep = PREPARCIALES[id];
+      if (!prep) {
+        console.warn(`Preparcial no registrado: ${id}`);
+        return [];
+      }
+      if (!ESTADO_PREPARCIAL[id]) {
+        ESTADO_PREPARCIAL[id] = {
+          actual: 0,
+          versiones: prep.versiones.map(v => estadoNuevoPreparcial(prep, v))
+        };
+      }
+      return pintarPreparcial(raiz, prep, ESTADO_PREPARCIAL[id]);
+    };
+
+    function estadoNuevoPreparcial(prep, version) {
+      return {
+        respuestas: version.preguntas.map(pr => pr.tipo === 'numero' ? '' : []),
+        finAt: null,
+        restante: prep.minutos * 60,
+        corregido: false,
+        usados: 0
+      };
+    }
+
+    // Lo que teclea el estudiante: punto o coma decimal y signo «-» o «−». Un
+    // espacio DENTRO de la cifra es un separador de miles, y en el parcial no
+    // se acepta: aquí tampoco. Con punto Y coma a la vez no se adivina cuál es
+    // el de miles. En los dos casos se devuelve NaN y la corrección lo dice.
+    function leeCifraPreparcial(s) {
+      let t = String(s).trim().replace(/^[−–]/, '-').replace(/^\+/, '');
+      if (t === '') return null;
+      if (t.includes('.') && t.includes(',')) return NaN;
+      t = t.replace(',', '.');
+      if (!/^-?(\d+(\.\d*)?|\.\d+)$/.test(t)) return NaN;
+      return parseFloat(t);
+    }
+
+    function pintarPreparcial(raiz, prep, global) {
+      const selector = raiz.querySelector('.simulacro-versiones');
+      const caso = raiz.querySelector('.simulacro-caso');
+      const contenedor = raiz.querySelector('.simulacro-preguntas');
+      const conteo = raiz.querySelector('.simulacro-conteo');
+      const resumen = raiz.querySelector('.simulacro-resumen');
+      const nota = raiz.querySelector('.simulacro-nota');
+      const reloj = raiz.querySelector('.simulacro-reloj');
+      const empezar = raiz.querySelector('.simulacro-empezar');
+      const entregar = raiz.querySelector('.simulacro-entregar');
+      const borrar = raiz.querySelector('.simulacro-borrar');
+      let listas = [];
+      let casillas = [];
+      let cajas = [];
+      let tic = null;
+
+      const vacia = r => (Array.isArray(r) ? r.length === 0 : r.trim() === '');
+      const version = () => prep.versiones[global.actual];
+      const estado = () => global.versiones[global.actual];
+
+      // --- El selector de versión ---------------------------------------
+      selector.innerHTML = '';
+      const botonesVersion = prep.versiones.map((v, k) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'simulacro-version';
+        b.textContent = `Versión ${v.numero}`;
+        b.onclick = () => {
+          if (k === global.actual) return;
+          para();
+          global.actual = k;
+          pinta();
+        };
+        selector.appendChild(b);
+        return b;
+      });
+
+      // --- Las preguntas ------------------------------------------------
+      function pinta() {
+        const v = version(), est = estado();
+        botonesVersion.forEach((b, k) => {
+          b.classList.toggle('activa', k === global.actual);
+          b.setAttribute('aria-pressed', k === global.actual ? 'true' : 'false');
+        });
+        caso.innerHTML = v.caso;
+        contenedor.innerHTML = '';
+        listas = []; casillas = []; cajas = [];
+
+        v.preguntas.forEach((pr, i) => {
+          const caja = document.createElement('div');
+          caja.className = 'simulacro-pregunta';
+          caja.innerHTML = `<span class="simulacro-etiqueta">${pr.n}. ${pr.etiqueta}</span>` +
+            `<div class="simulacro-enunciado">${pr.enunciado}</div>`;
+          if (pr.tipo === 'numero') {
+            const fila = document.createElement('label');
+            fila.className = 'simulacro-respuesta';
+            fila.innerHTML = '<span>Respuesta</span>';
+            const casilla = document.createElement('input');
+            casilla.type = 'text';
+            casilla.inputMode = 'decimal';
+            casilla.autocomplete = 'off';
+            casilla.spellcheck = false;
+            casilla.className = 'simulacro-numero';
+            casilla.setAttribute('aria-label', `Respuesta de la pregunta ${pr.n}`);
+            casilla.value = est.respuestas[i];
+            casilla.oninput = () => {
+              est.respuestas[i] = casilla.value;
+              pintaConteo();
+            };
+            fila.appendChild(casilla);
+            caja.appendChild(fila);
+            casillas[i] = casilla;
+          } else {
+            const lista = document.createElement('div');
+            lista.className = 'simulacro-opciones';
+            lista.setAttribute('role', 'group');
+            lista.setAttribute('aria-label', `Opciones de la pregunta ${pr.n}`);
+            pr.opciones.forEach((op, j) => {
+              const b = document.createElement('button');
+              b.type = 'button';
+              b.className = 'simulacro-opcion';
+              b.innerHTML = `<span class="simulacro-letra">${LETRAS[j]})</span><span>${op.texto}</span>`;
+              b.onclick = () => {
+                if (est.corregido) return;
+                est.respuestas[i] = est.respuestas[i].includes(j) ? [] : [j];
+                pintaOpciones(i);
+                pintaConteo();
+              };
+              lista.appendChild(b);
+            });
+            caja.appendChild(lista);
+            listas[i] = lista;
+          }
+          contenedor.appendChild(caja);
+          cajas[i] = caja;
+          if (listas[i]) pintaOpciones(i);
+        });
+
+        if (est.corregido) corrige();
+        else nota.textContent = '';
+        if (est.finAt !== null) arranca();
+        pintaReloj();
+        pintaConteo();
+      }
+
+      function pintaOpciones(i) {
+        const est = estado();
+        listas[i].querySelectorAll('.simulacro-opcion').forEach((o, j) => {
+          const marcada = est.respuestas[i].includes(j);
+          o.classList.toggle('marcada', marcada);
+          o.setAttribute('aria-pressed', marcada ? 'true' : 'false');
+        });
+      }
+
+      // Lo tecleado entra en el resumen como TEXTO, nunca como HTML: es lo
+      // único de la página que escribe el estudiante.
+      function pintaConteo() {
+        const v = version(), est = estado();
+        const hechas = est.respuestas.filter(r => !vacia(r)).length;
+        conteo.textContent = `${hechas} de ${v.preguntas.length} respondidas`;
+        resumen.textContent = 'Tus respuestas: ';
+        v.preguntas.forEach((pr, i) => {
+          const r = est.respuestas[i];
+          const b = document.createElement('b');
+          b.textContent = `${pr.n}: ` + (vacia(r) ? '—'
+            : Array.isArray(r) ? r.map(j => LETRAS[j]).join('') : r.trim());
+          if (i) resumen.appendChild(document.createTextNode(' · '));
+          resumen.appendChild(b);
+        });
+        resumen.appendChild(document.createTextNode('.'));
+        entregar.disabled = est.corregido;
+        entregar.textContent = est.corregido ? 'Corregido' : 'Entregar y corregir';
+      }
+
+      // --- La corrección -------------------------------------------------
+      // Devuelve 'acierto', 'fallo' o 'vacia', y escribe la retroalimentación
+      // debajo de la pregunta. Lo que tecleó el estudiante entra como texto.
+      function veredicto(pr, r, caja) {
+        const retro = document.createElement('div');
+        retro.className = 'simulacro-retro';
+        const cabeza = document.createElement('p');
+        cabeza.className = 'simulacro-veredicto';
+        retro.appendChild(cabeza);
+        let resultado;
+
+        if (pr.tipo === 'numero') {
+          const x = leeCifraPreparcial(r);
+          if (x === null) {
+            resultado = 'vacia';
+            cabeza.textContent = `Sin responder. La respuesta es ${pr.clave.texto}.`;
+          } else if (Number.isNaN(x)) {
+            resultado = 'fallo';
+            const crudo = String(r).trim();
+            const miles = /^[−–-]?\d{1,3}([.,\s  ]\d{3})+$/.test(crudo);
+            const seguido = leeCifraPreparcial(crudo.replace(/[.,\s  ]/g, ''));
+            cabeza.textContent = miles
+              ? `«${crudo}» lleva separador de miles, y en el parcial no se acepta: escribe la cifra seguida. ` +
+                (Math.abs(seguido - pr.clave.valor) <= pr.clave.tol ? 'Sin el separador, sería la correcta. ' : '') +
+                `La respuesta es ${pr.clave.texto}.`
+              : `«${crudo}» no se lee como una cifra. La respuesta es ${pr.clave.texto}.`;
+          } else if (Math.abs(x - pr.clave.valor) <= pr.clave.tol) {
+            resultado = 'acierto';
+            cabeza.textContent = `Correcto: ${String(r).trim()}. La respuesta es ${pr.clave.texto}.`;
+          } else {
+            resultado = 'fallo';
+            cabeza.textContent = `Tu respuesta, ${String(r).trim()}, no es la correcta. La respuesta es ${pr.clave.texto}.`;
+            const ruta = pr.rutas.find(rt => Math.abs(x - rt.valor) <= pr.clave.tol);
+            const miles = Math.abs(x * 1000 - pr.clave.valor) <= pr.clave.tol;
+            if (ruta || miles) {
+              // El texto de la ruta es del registro, no del estudiante: lleva
+              // subíndices y entra como HTML.
+              const aviso = document.createElement('p');
+              aviso.className = 'simulacro-aviso';
+              aviso.innerHTML = ruta
+                ? `Tu cifra coincide con un error frecuente: ${ruta.texto}.`
+                : 'Tu cifra es la clave dividida entre mil: parece que usaste un separador de miles.';
+              retro.appendChild(aviso);
+            }
+          }
+          const cuenta = document.createElement('p');
+          cuenta.innerHTML = pr.cuenta;
+          retro.appendChild(cuenta);
+          if (pr.rutas.length) {
+            const errores = document.createElement('p');
+            errores.className = 'simulacro-errores';
+            errores.innerHTML = 'Errores frecuentes: ' +
+              pr.rutas.map(rt => `si obtuviste ${rt.cifra}, ${rt.texto}`).join('; ') + '.';
+            retro.appendChild(errores);
+          }
+        } else {
+          const elegida = r.length ? r[0] : null;
+          if (elegida === null) {
+            resultado = 'vacia';
+            cabeza.textContent = `Sin responder. La correcta es la ${LETRAS[pr.correcta]}).`;
+          } else if (elegida === pr.correcta) {
+            resultado = 'acierto';
+            cabeza.textContent = `Correcto: la ${LETRAS[pr.correcta]}).`;
+          } else {
+            resultado = 'fallo';
+            cabeza.textContent = `Marcaste la ${LETRAS[elegida]}); la correcta es la ${LETRAS[pr.correcta]}).`;
+            const suya = document.createElement('p');
+            suya.innerHTML = `<b>${LETRAS[elegida]})</b> ${pr.opciones[elegida].retro}`;
+            retro.appendChild(suya);
+          }
+          const buena = document.createElement('p');
+          buena.innerHTML = `<b>${LETRAS[pr.correcta]})</b> ${pr.opciones[pr.correcta].retro}`;
+          retro.appendChild(buena);
+        }
+        caja.appendChild(retro);
+        return resultado;
+      }
+
+      function corrige() {
+        const v = version(), est = estado();
+        const cuenta = { acierto: 0, fallo: 0, vacia: 0 };
+        const porEtapa = {};
+        v.preguntas.forEach((pr, i) => {
+          const caja = cajas[i];
+          caja.querySelectorAll('.simulacro-retro').forEach(n => n.remove());
+          const res = veredicto(pr, est.respuestas[i], caja);
+          cuenta[res] += 1;
+          caja.classList.remove('acierto', 'fallo', 'vacia');
+          caja.classList.add(res);
+          porEtapa[pr.etapa] = porEtapa[pr.etapa] || [0, 0];
+          porEtapa[pr.etapa][1] += 1;
+          if (res === 'acierto') porEtapa[pr.etapa][0] += 1;
+          if (casillas[i]) casillas[i].disabled = true;
+          if (listas[i]) {
+            listas[i].querySelectorAll('.simulacro-opcion').forEach((o, j) => {
+              o.disabled = true;
+              o.classList.toggle('correcta', j === pr.correcta);
+              o.classList.toggle('equivocada', est.respuestas[i].includes(j) && j !== pr.correcta);
+            });
+          }
+        });
+        const usados = est.usados;
+        const etapas = Object.keys(porEtapa).sort()
+          .map(e => `etapa ${e}: ${porEtapa[e][0]} de ${porEtapa[e][1]}`).join(' · ');
+        nota.textContent = `Versión ${v.numero}: ${cuenta.acierto} de ${v.preguntas.length} correctas ` +
+          `(${etapas})` + (cuenta.vacia ? `, ${cuenta.vacia} sin responder` : '') +
+          `. Tiempo usado: ${Math.floor(usados / 60)} min ${String(usados % 60).padStart(2, '0')} s.`;
+      }
+
+      entregar.onclick = () => {
+        const est = estado();
+        if (est.corregido) return;
+        if (est.finAt !== null) {
+          est.restante = segundos();
+          est.finAt = null;
+        }
+        para();
+        est.usados = prep.minutos * 60 - est.restante;
+        est.corregido = true;
+        corrige();
+        pintaReloj();
+        pintaConteo();
+        nota.scrollIntoView({ block: 'nearest' });
+      };
+
+      // --- El reloj ------------------------------------------------------
+      // `finAt` es la hora en que se acaba y manda mientras corre;
+      // `restante` solo guarda los segundos cuando está pausado.
+      function para() {
+        if (tic !== null) { clearInterval(tic); tic = null; }
+      }
+      function segundos() {
+        const est = estado();
+        return est.finAt === null
+          ? est.restante
+          : Math.max(0, Math.round((est.finAt - Date.now()) / 1000));
+      }
+      function pintaReloj() {
+        const est = estado();
+        const s = segundos();
+        reloj.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        reloj.classList.toggle('acabado', s === 0);
+        empezar.disabled = est.corregido;
+        empezar.textContent = est.corregido ? 'Reloj detenido'
+          : est.finAt !== null ? 'Pausar'
+          : (s === prep.minutos * 60 ? `Empezar los ${prep.minutos} minutos` : 'Seguir');
+      }
+      function arranca() {
+        para();
+        tic = setInterval(() => {
+          const est = estado();
+          if (segundos() === 0) {
+            est.finAt = null;
+            est.restante = 0;
+            para();
+          }
+          pintaReloj();
+        }, 250);
+      }
+      empezar.onclick = () => {
+        const est = estado();
+        if (est.corregido) return;
+        if (est.finAt !== null) {          // corriendo: se pausa
+          est.restante = segundos();
+          est.finAt = null;
+          para();
+        } else {
+          if (est.restante === 0) est.restante = prep.minutos * 60;
+          est.finAt = Date.now() + est.restante * 1000;
+          arranca();
+        }
+        pintaReloj();
+      };
+      borrar.onclick = () => {
+        para();
+        global.versiones[global.actual] = estadoNuevoPreparcial(prep, version());
+        pinta();
+      };
+
+      pinta();
+      // Lo que devuelve un simulador son los objetos que destruirSimuladores()
+      // apaga al cambiar de módulo. Aquí no hay gráficos: lo que hay que
+      // apagar es el intervalo del reloj.
+      return [{ destroy: para }];
+    }
+
+    // [inicio · registro del preparcial]
+    // ================================================================
+    // Registro del preparcial (Módulo 13) · tres versiones, CON clave
+    //
+    // NO SE EDITA A MANO: lo escribe preparcial/exporta.py desde el
+    // generador de las tres versiones. La clave viaja aquí a propósito
+    // (D2): el preparcial se corrige al entregar. Ninguna de estas
+    // preguntas ni de estos datos puede reaparecer en el Parcial II.
+    // ================================================================
+    PREPARCIALES['cap6-preparcial'] = {
+      "minutos": 90,
+      "titulo": "Preparcial del Corte II · La cooperativa y sus parcelas de café",
+      "versiones": [
+        {
+          "numero": 1,
+          "caso": "<h3>La cooperativa y sus parcelas de café — versión 1</h3>\n<p>Una cooperativa cafetera ensaya cómo mejorar el rendimiento de sus socios. En todo el caso la\nrespuesta es la misma: el <b>rendimiento de una parcela, en kg de café pergamino seco</b>. Hay tres\netapas, en el orden de las preguntas, y <b>cada pregunta trae consigo las cifras que usa</b>:\npuede responderse sin volver aquí. Responda con los decimales que se le piden, con punto o coma\ndecimal y <b>sin separador de miles</b>.</p>\n\n<h4>Etapa 1 — Cuatro planes de fertilización en seis fincas (capítulo 5)</h4>\n<p>La cooperativa compara su plan de fertilización actual (<b>Testigo</b>) con tres alternativas:\n<b>Orgánico</b>, <b>Foliar</b> y <b>Fraccionado</b>. Seis fincas socias prestaron cuatro parcelas\niguales cada una, y dentro de cada finca un sorteo decidió qué plan recibía cada parcela. Las fincas\ndifieren en altitud, suelo y edad del cafetal, y por eso son los bloques: es un DBCA con a = 4\nplanes y b = 6 fincas. A la cooperativa le interesa comparar todos los planes entre sí, no solo cada\nalternativa contra el actual.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plan</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 6</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i.</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Testigo</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.17</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Orgánico</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">49.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">54.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.05</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Foliar</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">51.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">56.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">49.20</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fraccionado</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.47</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ȳ<sub>.j</sub></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.35</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.10</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.75</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.38</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.68</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">51.08</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.72</td></tr></tbody></table>\n<p>Tabla ANOVA del DBCA, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Planes</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">193.66</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">64.55</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fincas (bloques)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">195.72</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.14</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">442.32</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">23</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(4, 15) = 4.08 · F<sub>0.05</sub>(3, 15) = 3.29.</p>\n\n<h4>Etapa 2 — El diagnóstico y la parcela perdida (capítulo 5)</h4>\n<p>Con la tabla ANOVA terminada, el analista pasa al diagnóstico del DBCA. Con un grado de libertad, la no\naditividad de Tukey se lleva <b>SS<sub>N</sub> = 6.70</b> del error; para contrastarla,\nF<sub>0.05</sub>(1, 14) = 4.60. También quiere saber qué habría hecho si una parcela no\nhubiera llegado a la báscula, que en la zona pasa: un deslizamiento puede llevarse una parcela entera\nantes de la cosecha.</p>\n\n<h4>Etapa 3 — Cinco variedades en un cuadro latino (capítulo 6)</h4>\n<p>En su estación experimental, la cooperativa compara <b>cinco variedades (A a E)</b> en un lote de\nladera dividido en 25 parcelas iguales. El lote no es homogéneo en dos direcciones: de arriba abajo\ncambia la <b>altitud</b> (franjas de altitud 1 a 5, la 1 la más alta) y de izquierda a derecha la\n<b>sombra</b> de un bosque vecino (franjas de sombra 1 a 5, la 1 junto al bosque). Para bloquear las\ndos a la vez, el ensayo es un cuadro latino 5 × 5: cada variedad aparece una vez en\ncada franja de altitud y una vez en cada franja de sombra. Cada celda dice qué variedad lleva y\ncuánto rindió.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Altitud \\ Sombra</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Media</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 50.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 44.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 35.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 37.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 42.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.06</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 47.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 42.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 48.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 47.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 42.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.48</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 46.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 39.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 40.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 40.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 39.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.36</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 40.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 41.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 40.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 37.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 43.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.76</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 41.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 42.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 38.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 46.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 45.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.92</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.22</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.14</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.70</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.80</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.72</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.52</td></tr></tbody></table>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Variedad</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">A</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">B</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">C</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">D</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">E</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.78</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.28</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.84</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.96</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.72</td></tr></tbody></table>\n<p>Tabla ANOVA del cuadro latino, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud (filas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">67.88</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">16.97</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Sombra (columnas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">56.53</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">14.13</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Variedades</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">173.31</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.33</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">327.03</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(5, 12) = 4.51 · F<sub>0.05</sub>(4, 12) = 3.26.</p>",
+          "preguntas": [
+            {
+              "n": 1,
+              "id": "N1",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.3 · SS del error",
+              "tipo": "numero",
+              "enunciado": "<p>En el DBCA, SS<sub>T</sub> = 442.32, SS<sub>Planes</sub> = 193.66 y SS<sub>Fincas</sub> = 195.72. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 52.94,
+                "tol": 0.42352,
+                "texto": "52.94"
+              },
+              "cuenta": "SS<sub>E</sub> = SS<sub>T</sub> − SS<sub>Planes</sub> − SS<sub>Fincas</sub> = 442.32 − 193.66 − 195.72 = 52.94. En el DBCA se restan las dos fuentes.",
+              "rutas": [
+                {
+                  "valor": 248.66,
+                  "cifra": "248.66",
+                  "texto": "olvidaste restar SS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 246.6,
+                  "cifra": "246.60",
+                  "texto": "olvidaste restar SS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 389.38,
+                  "cifra": "389.38",
+                  "texto": "sumaste SS<sub>Planes</sub> y SS<sub>Fincas</sub> en vez de restarlas de SS<sub>T</sub>"
+                }
+              ]
+            },
+            {
+              "n": 2,
+              "id": "N2",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · MS del error",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 52.94, a = 4 planes y b = 6 fincas, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.53,
+                "tol": 0.02824,
+                "texto": "3.53"
+              },
+              "cuenta": "MS<sub>E</sub> = SS<sub>E</sub> / [(a − 1)(b − 1)] = 52.94 / 15 = 3.53. Las fincas se llevan b − 1 = 5 de los 20 grados de libertad que tendría el error de un DCA.",
+              "rutas": [
+                {
+                  "valor": 2.647,
+                  "cifra": "2.65",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 2.301739,
+                  "cifra": "2.30",
+                  "texto": "dividiste entre 23, los gl totales"
+                },
+                {
+                  "valor": 2.205833,
+                  "cifra": "2.21",
+                  "texto": "dividiste entre 24, el número de parcelas"
+                }
+              ]
+            },
+            {
+              "n": 3,
+              "id": "N3",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · El F de los planes",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Planes</sub> = 64.55 y MS<sub>E</sub> = 3.53, calcule el estadístico F<sub>0</sub> de los planes. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 18.29,
+                "tol": 0.14632,
+                "texto": "18.29"
+              },
+              "cuenta": "F<sub>0</sub> = MS<sub>Planes</sub> / MS<sub>E</sub> = 64.55 / 3.53 = 18.29, frente a F<sub>0.05</sub>(3, 15) = 3.29: al menos un plan rinde distinto de los demás.",
+              "rutas": [
+                {
+                  "valor": 1.649208,
+                  "cifra": "1.65",
+                  "texto": "dividiste entre MS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 54.86119,
+                  "cifra": "54.86",
+                  "texto": "usaste SS<sub>Planes</sub> en vez de MS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 11.09,
+                  "cifra": "11.09",
+                  "texto": "calculaste el F de las fincas"
+                }
+              ]
+            },
+            {
+              "n": 4,
+              "id": "N4",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Diferencia crítica de Tukey",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 3.53, b = 6 fincas y q<sub>0.05</sub>(4, 15) = 4.08, calcule la diferencia crítica de Tukey para comparar dos planes al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.13,
+                "tol": 0.02504,
+                "texto": "3.13"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/b) = 4.08·√(3.53/6) = 3.13. Es la del capítulo 3 con b en el lugar de n: cada media de plan promedia una parcela de cada finca.",
+              "rutas": [
+                {
+                  "valor": 4.42575,
+                  "cifra": "4.43",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 3.832812,
+                  "cifra": "3.83",
+                  "texto": "dividiste entre a = 4 en vez de b = 6"
+                },
+                {
+                  "valor": 1.564739,
+                  "cifra": "1.56",
+                  "texto": "dividiste entre ab = 24"
+                }
+              ]
+            },
+            {
+              "n": 5,
+              "id": "N5",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Pares que Tukey separa",
+              "tipo": "numero",
+              "enunciado": "<p>Las medias por plan son ȳ<sub>Testigo</sub> = 45.17, ȳ<sub>Orgánico</sub> = 47.05, ȳ<sub>Foliar</sub> = 49.20, ȳ<sub>Fraccionado</sub> = 41.47. Tukey separa dos planes cuando su diferencia supera T = 3.13, al 5 % para la familia. De los 6 pares posibles, ¿en cuántos concluye que los dos planes rinden distinto? Responda con un número entero.</p>",
+              "clave": {
+                "valor": 4.0,
+                "tol": 0.4,
+                "texto": "4"
+              },
+              "cuenta": "Las seis diferencias son Testigo–Orgánico = 1.88; Testigo–Foliar = 4.03 ✔; Testigo–Fraccionado = 3.70 ✔; Orgánico–Foliar = 2.15; Orgánico–Fraccionado = 5.58 ✔; Foliar–Fraccionado = 7.73 ✔. Superan T = 3.13 las 4 marcadas.",
+              "rutas": [
+                {
+                  "valor": 2.0,
+                  "cifra": "2",
+                  "texto": "contaste los pares que NO difieren"
+                },
+                {
+                  "valor": 6.0,
+                  "cifra": "6",
+                  "texto": "declaraste distintos los seis pares"
+                }
+              ]
+            },
+            {
+              "n": 6,
+              "id": "N6",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.6 · Eficiencia relativa",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Fincas</sub> = 39.14, MS<sub>E</sub> = 3.53, a = 4 y b = 6, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó la cooperativa al bloquear por fincas frente a repartir las 24 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [(b − 1)MS<sub>Fincas</sub> + b(a − 1)MS<sub>E</sub>] / (ab − 1) y el factor de corrección (f<sub>b</sub> + 1)(f<sub>r</sub> + 3) / [(f<sub>b</sub> + 3)(f<sub>r</sub> + 1)], con f<sub>b</sub> = (a − 1)(b − 1) y f<sub>r</sub> = a(b − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.11,
+                "tol": 0.02488,
+                "texto": "3.11"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = [5·39.14 + 18·3.53] / 23 = 11.27; el factor vale (16·23) / (18·21) = 0.9735; R = 0.9735·11.27 / 3.53 = 3.11. Un DCA habría necesitado unas 18.7 parcelas por plan, en vez de 6, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 3.193004,
+                  "cifra": "3.19",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 11.087819,
+                  "cifra": "11.09",
+                  "texto": "dividiste MS<sub>Fincas</sub> entre MS<sub>E</sub>"
+                },
+                {
+                  "valor": 10.79449,
+                  "cifra": "10.79",
+                  "texto": "aplicaste el factor a MS<sub>Fincas</sub> / MS<sub>E</sub>"
+                }
+              ]
+            },
+            {
+              "n": 7,
+              "id": "S7",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.10 · Las fincas como factor aleatorio",
+              "tipo": "opcion",
+              "enunciado": "<p>Las seis fincas no interesan por sí mismas: son una muestra de las fincas socias, y la cooperativa quiere que la conclusión valga para todas. Si las fincas se tratan como un factor aleatorio, ¿qué cambia en el análisis de los planes de fertilización?</p>",
+              "opciones": [
+                {
+                  "texto": "El F de los planes pasa a dividirse entre MS<sub>Fincas</sub>, porque el bloque aleatorio se convierte en el término de error de los planes.",
+                  "retro": "Con bloques aleatorios y el modelo aditivo, la esperanza de MS<sub>Planes</sub> sigue comparándose con la de MS<sub>E</sub>, que es σ²: el denominador del F no cambia (módulo 5.10)."
+                },
+                {
+                  "texto": "Cada diferencia entre dos planes gana la varianza de las fincas, 2(σ² + σ²<sub>β</sub>)/b, y la diferencia crítica de Tukey crece.",
+                  "retro": "Eso le pasa a la media de UN plan, cuya varianza sí sube a (σ² + σ²<sub>β</sub>)/b. En una diferencia cada finca aporta a los dos planes y su efecto se cancela: sigue siendo 2σ²/b (módulo 5.7)."
+                },
+                {
+                  "texto": "Nada en la prueba ni en las comparaciones de los planes, pero la conclusión alcanza a todas las fincas y hay una σ²<sub>β</sub> que estimar.",
+                  "retro": "El F, su valor p y las comparaciones entre planes son los mismos en los dos modelos. Lo nuevo es que la conclusión vale para la población de fincas y que se puede estimar σ̂²<sub>β</sub> = (MS<sub>Fincas</sub> − MS<sub>E</sub>)/a (módulo 5.10)."
+                },
+                {
+                  "texto": "Las fincas dejan de restar su suma de cuadrados del error, y el modelo vuelve a ser el de un DCA con veinte grados de libertad de error.",
+                  "retro": "La descomposición es la misma: SS<sub>Fincas</sub> sigue saliendo del error, que conserva sus (a − 1)(b − 1) = 15 grados de libertad. Lo que cambia es qué representa β<sub>j</sub>, no la tabla."
+                }
+              ],
+              "correcta": 2
+            },
+            {
+              "n": 8,
+              "id": "N8",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · Un residuo del DBCA",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela del plan Orgánico en la finca 4 rindió 45.1 kg. Con la media de su plan, ȳ<sub>Orgánico</sub> = 47.05, la de su finca, ȳ<sub>finca 4</sub> = 47.38, y la media general ȳ<sub>..</sub> = 45.72, calcule su residuo en el modelo del DBCA. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": -3.61,
+                "tol": 0.02888,
+                "texto": "−3.61"
+              },
+              "cuenta": "e = y − ȳ<sub>i.</sub> − ȳ<sub>.j</sub> + ȳ<sub>..</sub> = 45.1 − 47.05 − 47.38 + 45.72 = −3.61. El valor ajustado del DBCA es ȳ<sub>i.</sub> + ȳ<sub>.j</sub> − ȳ<sub>..</sub> = 48.71: el plan y la finca a la vez.",
+              "rutas": [
+                {
+                  "valor": -1.95,
+                  "cifra": "−1.95",
+                  "texto": "restaste solo la media de su plan, como en un DCA"
+                },
+                {
+                  "valor": -49.33,
+                  "cifra": "−49.33",
+                  "texto": "olvidaste sumar la media general"
+                },
+                {
+                  "valor": -2.28,
+                  "cifra": "−2.28",
+                  "texto": "restaste solo la media de su finca"
+                }
+              ]
+            },
+            {
+              "n": 9,
+              "id": "N9",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 y 4.1 · Residuo estandarizado",
+              "tipo": "numero",
+              "enunciado": "<p>Con e = −3.61 y MS<sub>E</sub> = 3.53, calcule el residuo estandarizado d = e / √MS<sub>E</sub>. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": -1.92,
+                "tol": 0.01536,
+                "texto": "−1.92"
+              },
+              "cuenta": "d = −3.61 / √3.53 = −1.92. Un |d| menor que 3 no señala por sí solo una parcela atípica.",
+              "rutas": [
+                {
+                  "valor": -1.022663,
+                  "cifra": "−1.02",
+                  "texto": "dividiste entre MS<sub>E</sub> sin sacar la raíz"
+                },
+                {
+                  "valor": -4.706472,
+                  "cifra": "−4.71",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/b), el error estándar de una media"
+                },
+                {
+                  "valor": -3.842818,
+                  "cifra": "−3.84",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/a)"
+                }
+              ]
+            },
+            {
+              "n": 10,
+              "id": "N10",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · La prueba de no aditividad",
+              "tipo": "numero",
+              "enunciado": "<p>Con un grado de libertad, la no aditividad de Tukey se lleva SS<sub>N</sub> = 6.70 del error del DBCA, que es SS<sub>E</sub> = 52.94. Calcule el estadístico F<sub>0</sub> de la prueba, que compara SS<sub>N</sub> con lo que queda del error. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.03,
+                "tol": 0.01624,
+                "texto": "2.03"
+              },
+              "cuenta": "F<sub>0</sub> = SS<sub>N</sub> / [(SS<sub>E</sub> − SS<sub>N</sub>) / ((a − 1)(b − 1) − 1)] = 6.70 / [(52.94 − 6.70) / 14] = 2.03, frente a F<sub>0.05</sub>(1, 14) = 4.60. La prueba toma prestado uno de los 15 grados de libertad del error. Como 2.03 &lt; 4.60, no rechaza la aditividad: el modelo del DBCA es defendible.",
+              "rutas": [
+                {
+                  "valor": 1.898017,
+                  "cifra": "1.90",
+                  "texto": "dividiste entre el MS<sub>E</sub> de 15 gl, sin restar SS<sub>N</sub> del error"
+                },
+                {
+                  "valor": 0.144896,
+                  "cifra": "0.14",
+                  "texto": "restaste SS<sub>N</sub> pero no dividiste entre los gl"
+                },
+                {
+                  "valor": 1.771817,
+                  "cifra": "1.77",
+                  "texto": "no restaste SS<sub>N</sub> del error, pero sí usaste 14 gl"
+                }
+              ]
+            },
+            {
+              "n": 11,
+              "id": "N11",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · La parcela perdida",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela del plan Testigo en la finca 1 se hubiera perdido. Sin ella, el total de su plan es y′<sub>i.</sub> = 229.4, el de su finca y′<sub>.j</sub> = 131.8 y el total general y′<sub>..</sub> = 1055.7. Con a = 4 y b = 6, estime el valor faltante con la fórmula clásica para un dato perdido en el DBCA. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 43.51,
+                "tol": 0.34808,
+                "texto": "43.51"
+              },
+              "cuenta": "x = (a·y′<sub>i.</sub> + b·y′<sub>.j</sub> − y′<sub>..</sub>) / [(a − 1)(b − 1)] = (4·229.4 + 6·131.8 − 1055.7) / 15 = 43.51. La parcela de verdad rindió 41.6 kg: la fórmula da lo que predice el modelo aditivo, no lo que la parcela produjo.",
+              "rutas": [
+                {
+                  "valor": 56.526667,
+                  "cifra": "56.53",
+                  "texto": "intercambiaste a y b"
+                },
+                {
+                  "valor": 46.621429,
+                  "cifra": "46.62",
+                  "texto": "dividiste entre 14, como si el error ya hubiera perdido su grado"
+                },
+                {
+                  "valor": -26.866667,
+                  "cifra": "−26.87",
+                  "texto": "restaste dos veces el total general, como en el cuadro latino"
+                }
+              ]
+            },
+            {
+              "n": 12,
+              "id": "S12",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · Qué es el valor rellenado",
+              "tipo": "opcion",
+              "enunciado": "<p>Al rellenar la parcela perdida con el valor x de la pregunta anterior y repetir el ANOVA, el analista le resta un grado de libertad al error: 14 en vez de 15. ¿Qué describe mejor ese valor x y ese descuento?</p>",
+              "opciones": [
+                {
+                  "texto": "x estima sin sesgo lo que la parcela habría rendido, así que el análisis rellenado reproduce el completo; el grado se resta por convención.",
+                  "retro": "x es la predicción del modelo aditivo para esa parcela, no la parcela: el análisis rellenado no reproduce el completo (en el módulo 5.9, F = 7.62 frente a 8.11 con el dato real). Y el grado no se resta por convención: x no es una observación, así que no informa sobre σ²."
+                },
+                {
+                  "texto": "x es el promedio de la media de su plan y la de su finca, y el grado de libertad se le resta al total, no al error.",
+                  "retro": "La fórmula no promedia dos medias: combina los totales del plan, de la finca y el general con pesos a, b y −1. Y el descuento es del error, y el total también baja, de 23 a 22: es lo que la Tabla 4.8 de Montgomery olvida corregir, la errata que señala el módulo 5.9."
+                },
+                {
+                  "texto": "x es el valor que hace máximo el F de los planes, y el grado se descuenta para compensar ese empujón a favor de los planes.",
+                  "retro": "x hace mínima SS<sub>E</sub>, no máximo el F. El F rellenado sí sale algo más alto que el del análisis exacto, pero no por el error —con el grado descontado, SS<sub>E</sub> y sus grados son los del análisis exacto—, sino porque SS<sub>Planes</sub> sale algo mayor que la ajustada (módulo 5.9)."
+                },
+                {
+                  "texto": "x es lo que el modelo aditivo predice para esa parcela, el valor que hace mínima SS<sub>E</sub>; no es un dato, así que no aporta un grado.",
+                  "retro": "Es la parábola del módulo 5.9: SS<sub>E</sub>(x) tiene su vértice en la fórmula. Un valor elegido por el propio modelo no trae información sobre σ², y por eso el error pierde un grado de libertad."
+                }
+              ],
+              "correcta": 3
+            },
+            {
+              "n": 13,
+              "id": "S13",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · El cuadro de partida",
+              "tipo": "opcion",
+              "enunciado": "<p>Para sortear el plano, el equipo necesita un cuadro latino 5 × 5 en forma estándar como punto de partida. ¿Cuál de estas cuatro rejillas lo es?</p>",
+              "opciones": [
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>D E A B C<br>E C D A B<br>C A B E D<br>B D E C A</span>",
+                  "retro": "Es un cuadro latino —ninguna letra se repite en su fila ni en su columna—, pero su primera columna dice A, D, E, C, B: no está en orden alfabético, así que no está en forma estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B D E C A<br>C A D E B<br>D E A B C<br>E C B A D</span>",
+                  "retro": "Cada letra aparece una vez en cada fila y una vez en cada columna, y la primera fila y la primera columna están en orden alfabético: es un cuadro latino en forma estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B D C E A<br>C E A B D<br>D A E C B<br>E D B A C</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra D aparece dos veces en la columna 2 y la letra C aparece dos veces en la columna 3: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B C E A D<br>C A D E A<br>D E B C B<br>E D A B C</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra A aparece dos veces en la fila 3 y la letra B aparece dos veces en la fila 4: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                }
+              ],
+              "correcta": 1
+            },
+            {
+              "n": 14,
+              "id": "N14",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cuántos cuadros latinos hay",
+              "tipo": "numero",
+              "enunciado": "<p>Hay 4 cuadros latinos estándar de orden p = 4. ¿Cuántos cuadros latinos distintos de orden 4 existen? Responda con un número entero, sin separador de miles.</p>",
+              "clave": {
+                "valor": 576.0,
+                "tol": 0.4,
+                "texto": "576"
+              },
+              "cuenta": "p!·(p − 1)!·4 = 24·6·4 = 576. Cada cuadro estándar da p!·(p − 1)! cuadros distintos al permutar sus p columnas y sus p − 1 últimas filas, y cada cuadro latino sale de exactamente uno de ellos.",
+              "rutas": [
+                {
+                  "valor": 144.0,
+                  "cifra": "144",
+                  "texto": "olvidaste multiplicar por los cuadros estándar"
+                },
+                {
+                  "valor": 96.0,
+                  "cifra": "96",
+                  "texto": "multiplicaste solo por p!"
+                },
+                {
+                  "valor": 2304.0,
+                  "cifra": "2304",
+                  "texto": "multiplicaste por p! dos veces"
+                }
+              ]
+            },
+            {
+              "n": 15,
+              "id": "S15",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cómo se sortea el plano",
+              "tipo": "opcion",
+              "enunciado": "<p>Para el plano de la etapa 3, ¿qué procedimiento produce siempre un cuadro latino y le quita al equipo la decisión de qué variedad va en cada parcela?</p>",
+              "opciones": [
+                {
+                  "texto": "Sortear la variedad de cada una de las 25 parcelas entre las cinco, de forma independiente para cada parcela.",
+                  "retro": "Cada parcela queda al azar, pero nada impide que una variedad caiga dos veces en la misma franja: el resultado casi nunca es un cuadro latino, y el bloqueo se pierde."
+                },
+                {
+                  "texto": "Tomar un cuadro estándar elegido al azar, reordenar al azar sus filas y sus columnas, y sortear qué variedad recibe cada letra.",
+                  "retro": "Cada permutación conserva la propiedad latina y el sorteo decide dónde cae cada variedad. Y como también se sortea el cuadro de partida, todos los cuadros posibles salen con la misma probabilidad. El módulo 6.2 avisa de lo que pasa si se parte siempre del mismo, el cíclico: ahí la receta no alcanza más que una parte de ellos."
+                },
+                {
+                  "texto": "Escribir el cuadro cíclico y asignar las variedades a las letras por su año de liberación, que es un criterio objetivo y reproducible.",
+                  "retro": "Reproducible no es aleatorio: el plano lo decide un criterio del equipo y no un sorteo, que es justo lo que la aleatorización quiere evitar."
+                },
+                {
+                  "texto": "Permutar al azar solo las filas del cuadro cíclico; con eso todos los cuadros latinos 5 × 5 salen con la misma probabilidad.",
+                  "retro": "Permutar las filas da como mucho 5! = 120 cuadros de los 161 280 que existen, y deja las columnas y las letras atadas al cíclico."
+                }
+              ],
+              "correcta": 1
+            },
+            {
+              "n": 16,
+              "id": "N16",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · SS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>En el cuadro latino, SS<sub>T</sub> = 327.03, SS<sub>Altitud</sub> = 67.88, SS<sub>Sombra</sub> = 56.53 y SS<sub>Variedades</sub> = 173.31. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 29.31,
+                "tol": 0.23448,
+                "texto": "29.31"
+              },
+              "cuenta": "SS<sub>E</sub> = 327.03 − 67.88 − 56.53 − 173.31 = 29.31. En el cuadro se restan tres fuentes: las dos direcciones de bloqueo y las variedades.",
+              "rutas": [
+                {
+                  "valor": 85.84,
+                  "cifra": "85.84",
+                  "texto": "olvidaste restar SS<sub>Sombra</sub>"
+                },
+                {
+                  "valor": 97.19,
+                  "cifra": "97.19",
+                  "texto": "olvidaste restar SS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 202.62,
+                  "cifra": "202.62",
+                  "texto": "olvidaste restar SS<sub>Variedades</sub>"
+                }
+              ]
+            },
+            {
+              "n": 17,
+              "id": "N17",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · MS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 29.31 en el cuadro latino 5 × 5, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.44,
+                "tol": 0.01952,
+                "texto": "2.44"
+              },
+              "cuenta": "El error tiene (p − 1)(p − 2) = 12 grados de libertad: MS<sub>E</sub> = 29.31 / 12 = 2.44. De los 24 totales, cada factor se lleva p − 1 = 4.",
+              "rutas": [
+                {
+                  "valor": 1.831875,
+                  "cifra": "1.83",
+                  "texto": "dividiste entre 16, los gl del error de un DBCA con las mismas 25 parcelas"
+                },
+                {
+                  "valor": 1.4655,
+                  "cifra": "1.47",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 1.22125,
+                  "cifra": "1.22",
+                  "texto": "dividiste entre 24, los gl totales"
+                }
+              ]
+            },
+            {
+              "n": 18,
+              "id": "N18",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · El F de las variedades",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Variedades</sub> = 43.33 y MS<sub>E</sub> = 2.44, calcule F<sub>0</sub> para las variedades. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 17.76,
+                "tol": 0.14208,
+                "texto": "17.76"
+              },
+              "cuenta": "F<sub>0</sub> = 43.33 / 2.44 = 17.76, frente a F<sub>0.05</sub>(4, 12) = 3.26: al menos una variedad rinde distinto de las demás.",
+              "rutas": [
+                {
+                  "valor": 71.028689,
+                  "cifra": "71.03",
+                  "texto": "usaste SS<sub>Variedades</sub> en vez de MS<sub>Variedades</sub>"
+                },
+                {
+                  "valor": 2.553329,
+                  "cifra": "2.55",
+                  "texto": "dividiste entre MS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 3.066525,
+                  "cifra": "3.07",
+                  "texto": "dividiste entre MS<sub>Sombra</sub>"
+                }
+              ]
+            },
+            {
+              "n": 19,
+              "id": "S19",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · Otra lectura de los mismos datos",
+              "tipo": "opcion",
+              "enunciado": "<p>Un analista reanaliza los 25 rendimientos como un DBCA que solo bloquea las franjas de altitud y deja la sombra fuera del modelo. Frente al análisis del cuadro latino, ¿qué le pasa a SS<sub>Variedades</sub>, y por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "No cambia, porque cada variedad pasa una vez por cada franja de sombra y esta aporta lo mismo al total de cada variedad.",
+                  "retro": "Es la ortogonalidad del cuadro (módulo 6.4): SS<sub>Variedades</sub> es la misma en las cuatro lecturas. El error absorbe SS<sub>Sombra</sub> y sus 4 grados de libertad, y pasa a tener (p − 1)² = 16."
+                },
+                {
+                  "texto": "Crece, porque la variación de las franjas de sombra que el modelo ya no separa se suma a la que se atribuye a las variedades.",
+                  "retro": "La variación de la sombra no puede ir a las variedades: cada variedad pasa una vez por cada franja de sombra, así que esa variación se reparte por igual entre todas. Va entera al error."
+                },
+                {
+                  "texto": "Baja, porque al quitar un factor de bloqueo el modelo pierde parte de la variación que explicaba las diferencias entre variedades.",
+                  "retro": "En este cuadro, por su ortogonalidad, SS<sub>Variedades</sub> depende solo de las medias de las variedades, y esas medias no cambian al quitar un factor del modelo. Lo que puede bajar es el F, porque el error crece."
+                },
+                {
+                  "texto": "No cambia, porque la suma de cuadrados de un factor nunca depende de qué otros factores entren en el modelo, sea cual sea el diseño.",
+                  "retro": "Aquí no cambia, pero no por esa razón: en un diseño no ortogonal —un cuadro o un DBCA con una parcela perdida, por ejemplo— sí depende, y por eso existe el análisis exacto por mínimos cuadrados de los módulos 5.9 y 6.7."
+                }
+              ],
+              "correcta": 0
+            },
+            {
+              "n": 20,
+              "id": "N20",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.5 · Eficiencia relativa del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Altitud</sub> = 16.97, MS<sub>Sombra</sub> = 14.13, MS<sub>E</sub> = 2.44 y p = 5, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó el ensayo al bloquear la altitud y la sombra a la vez frente a repartir las 25 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [MS<sub>Altitud</sub> + MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>] / (p + 1) y el factor (f<sub>1</sub> + 1)(f<sub>2</sub> + 3) / [(f<sub>1</sub> + 3)(f<sub>2</sub> + 1)], con f<sub>1</sub> = (p − 1)(p − 2) y f<sub>2</sub> = p(p − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.65,
+                "tol": 0.0212,
+                "texto": "2.65"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = (16.97 + 14.13 + 4·2.44) / 6 = 6.81; el factor vale (13·23) / (15·21) = 0.9492; R = 0.9492·6.81 / 2.44 = 2.65. Un DCA habría necesitado unas 66 parcelas, en vez de 25, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 2.790984,
+                  "cifra": "2.79",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 1.896763,
+                  "cifra": "1.90",
+                  "texto": "calculaste R frente a un DBCA que solo bloquea la altitud —σ̂² = [MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>]/p y f<sub>2</sub> = 16—, no frente al DCA"
+                },
+                {
+                  "valor": 3.179063,
+                  "cifra": "3.18",
+                  "texto": "dividiste la suma entre p = 5 en vez de p + 1 = 6"
+                }
+              ]
+            },
+            {
+              "n": 21,
+              "id": "N21",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · Tukey en el cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 2.44, p = 5 y q<sub>0.05</sub>(5, 12) = 4.51, calcule la diferencia crítica de Tukey para comparar dos variedades al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.15,
+                "tol": 0.0252,
+                "texto": "3.15"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/p) = 4.51·√(2.44/5) = 3.15: cada media de variedad promedia sus p = 5 parcelas, una por franja.",
+              "rutas": [
+                {
+                  "valor": 4.455551,
+                  "cifra": "4.46",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 1.408969,
+                  "cifra": "1.41",
+                  "texto": "dividiste entre p² = 25, las parcelas del cuadro"
+                },
+                {
+                  "valor": 2.20088,
+                  "cifra": "2.20",
+                  "texto": "olvidaste la raíz"
+                }
+              ]
+            },
+            {
+              "n": 22,
+              "id": "S22",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · El error estándar en el cuadro",
+              "tipo": "opcion",
+              "enunciado": "<p>En el cuadro, la diferencia entre las medias de dos variedades no arrastra los efectos de las franjas de altitud ni los de las franjas de sombra. ¿Por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "Porque el ANOVA ya restó SS<sub>Altitud</sub> y SS<sub>Sombra</sub> de SS<sub>T</sub>, y lo que sale de la tabla deja de afectar a las medias.",
+                  "retro": "Restar sumas de cuadrados limpia el error, no las medias. Las medias de variedad quedan libres de las franjas por cómo se colocaron las letras: con las variedades mal colocadas, la misma tabla no lo arreglaría."
+                },
+                {
+                  "texto": "Porque las franjas se tratan como aleatorias, y sus efectos se promedian a cero cuando el ensayo tiene suficientes parcelas.",
+                  "retro": "No hace falta ningún supuesto aleatorio ni muchas parcelas: con efectos fijos y cinco parcelas por variedad, la cancelación es exacta, y la da el diseño (módulo 6.6)."
+                },
+                {
+                  "texto": "Porque cada variedad aparece una vez en cada franja de altitud y una en cada franja de sombra, así que esos efectos suman cero en su media.",
+                  "retro": "Es la razón del módulo 6.6: dentro de la media de una variedad, los efectos de fila y de columna aparecen una vez cada uno y su suma es cero por la restricción del modelo. La ortogonalidad del cuadro es lo que hace insesgada la comparación."
+                },
+                {
+                  "texto": "Porque la diferencia se calcula con las 25 parcelas del cuadro, y entre tantas parcelas los efectos de las franjas se diluyen hasta desaparecer.",
+                  "retro": "Cada media de variedad usa solo sus 5 parcelas, no las 25, y nada se diluye: los efectos se cancelan exactamente porque cada variedad pasa una vez por cada franja. Por eso el error estándar de la diferencia es √(2MS<sub>E</sub>/p) y no √(2MS<sub>E</sub>/p²)."
+                }
+              ],
+              "correcta": 2
+            },
+            {
+              "n": 23,
+              "id": "N23",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 y 6.4 · Un residuo del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela de la franja de altitud 1 y la franja de sombra 1 lleva la variedad A y rindió 50.0 kg. Con la media de su franja de altitud (42.06), la de su franja de sombra (45.22), la de su variedad (44.78) y la media general (42.52), calcule su residuo en el modelo del cuadro latino. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": 2.98,
+                "tol": 0.02384,
+                "texto": "2.98"
+              },
+              "cuenta": "e = y − ȳ<sub>altitud</sub> − ȳ<sub>sombra</sub> − ȳ<sub>variedad</sub> + 2ȳ = 50.0 − 42.06 − 45.22 − 44.78 + 2·42.52 = 2.98. La media general entra dos veces: cada una de las tres medias marginales la lleva dentro, y el ajustado solo debe llevarla una.",
+              "rutas": [
+                {
+                  "valor": -39.54,
+                  "cifra": "−39.54",
+                  "texto": "sumaste la media general una vez en vez de dos, como en el DBCA"
+                },
+                {
+                  "valor": 5.68,
+                  "cifra": "5.68",
+                  "texto": "olvidaste la columna, como en un DBCA por franjas de altitud"
+                },
+                {
+                  "valor": 5.22,
+                  "cifra": "5.22",
+                  "texto": "restaste solo la media de su variedad"
+                }
+              ]
+            },
+            {
+              "n": 24,
+              "id": "N24",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 · La parcela perdida del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela de la franja de altitud 2 y la franja de sombra 3 (variedad D) se hubiera perdido. Sin ella, el total de su franja de altitud es 179.2, el de su franja de sombra 155.3, el de su variedad 181.6 y el total general 1014.7. Con p = 5, estime el valor faltante con la fórmula clásica para un dato perdido en el cuadro latino. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 45.93,
+                "tol": 0.36744,
+                "texto": "45.93"
+              },
+              "cuenta": "x = [p(y′<sub>altitud</sub> + y′<sub>sombra</sub> + y′<sub>variedad</sub>) − 2y′<sub>total</sub>] / [(p − 2)(p − 1)] = [5(179.2 + 155.3 + 181.6) − 2·1014.7] / 12 = 45.93. La parcela de verdad rindió 48.2 kg. Con el valor rellenado, el error se queda con 11 grados de libertad.",
+              "rutas": [
+                {
+                  "valor": 130.483333,
+                  "cifra": "130.48",
+                  "texto": "restaste el total general una sola vez"
+                },
+                {
+                  "valor": 34.44375,
+                  "cifra": "34.44",
+                  "texto": "dividiste entre (p − 1)² = 16"
+                },
+                {
+                  "valor": 50.1,
+                  "cifra": "50.10",
+                  "texto": "dividiste entre 11, como si el error ya hubiera perdido su grado"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "caso": "<h3>La cooperativa y sus parcelas de café — versión 2</h3>\n<p>Una cooperativa cafetera ensaya cómo mejorar el rendimiento de sus socios. En todo el caso la\nrespuesta es la misma: el <b>rendimiento de una parcela, en kg de café pergamino seco</b>. Hay tres\netapas, en el orden de las preguntas, y <b>cada pregunta trae consigo las cifras que usa</b>:\npuede responderse sin volver aquí. Responda con los decimales que se le piden, con punto o coma\ndecimal y <b>sin separador de miles</b>.</p>\n\n<h4>Etapa 1 — Cuatro planes de fertilización en seis fincas (capítulo 5)</h4>\n<p>La cooperativa compara su plan de fertilización actual (<b>Testigo</b>) con tres alternativas:\n<b>Orgánico</b>, <b>Foliar</b> y <b>Fraccionado</b>. Seis fincas socias prestaron cuatro parcelas\niguales cada una, y dentro de cada finca un sorteo decidió qué plan recibía cada parcela. Las fincas\ndifieren en altitud, suelo y edad del cafetal, y por eso son los bloques: es un DBCA con a = 4\nplanes y b = 6 fincas. A la cooperativa le interesa comparar todos los planes entre sí, no solo cada\nalternativa contra el actual.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plan</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 6</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i.</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Testigo</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">38.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.63</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Orgánico</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">49.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.58</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Foliar</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">37.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.82</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fraccionado</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">50.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">49.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">52.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.13</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ȳ<sub>.j</sub></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.48</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.33</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.30</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.33</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.25</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.58</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.04</td></tr></tbody></table>\n<p>Tabla ANOVA del DBCA, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Planes</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">100.72</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">33.57</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fincas (bloques)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">216.04</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.21</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">378.66</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">23</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(4, 15) = 4.08 · F<sub>0.05</sub>(3, 15) = 3.29.</p>\n\n<h4>Etapa 2 — El diagnóstico y la parcela perdida (capítulo 5)</h4>\n<p>Con la tabla ANOVA terminada, el analista pasa al diagnóstico del DBCA. Con un grado de libertad, la no\naditividad de Tukey se lleva <b>SS<sub>N</sub> = 9.50</b> del error; para contrastarla,\nF<sub>0.05</sub>(1, 14) = 4.60. También quiere saber qué habría hecho si una parcela no\nhubiera llegado a la báscula, que en la zona pasa: un deslizamiento puede llevarse una parcela entera\nantes de la cosecha.</p>\n\n<h4>Etapa 3 — Cinco variedades en un cuadro latino (capítulo 6)</h4>\n<p>En su estación experimental, la cooperativa compara <b>cinco variedades (A a E)</b> en un lote de\nladera dividido en 25 parcelas iguales. El lote no es homogéneo en dos direcciones: de arriba abajo\ncambia la <b>altitud</b> (franjas de altitud 1 a 5, la 1 la más alta) y de izquierda a derecha la\n<b>sombra</b> de un bosque vecino (franjas de sombra 1 a 5, la 1 junto al bosque). Para bloquear las\ndos a la vez, el ensayo es un cuadro latino 5 × 5: cada variedad aparece una vez en\ncada franja de altitud y una vez en cada franja de sombra. Cada celda dice qué variedad lleva y\ncuánto rindió.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Altitud \\ Sombra</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Media</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 40.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 38.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 42.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 34.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 39.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">38.96</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 40.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 39.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 48.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 43.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 38.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.00</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 38.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 47.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 44.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 46.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 41.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.48</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 38.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 39.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 32.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 34.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 35.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.32</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 44.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 38.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 38.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 37.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 42.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.10</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.26</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.76</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.18</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.42</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.17</td></tr></tbody></table>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Variedad</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">A</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">B</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">C</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">D</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">E</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.82</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">38.90</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.42</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.22</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.50</td></tr></tbody></table>\n<p>Tabla ANOVA del cuadro latino, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud (filas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">152.98</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">38.25</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Sombra (columnas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">15.22</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3.81</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Variedades</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">173.45</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.36</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">372.73</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(5, 12) = 4.51 · F<sub>0.05</sub>(4, 12) = 3.26.</p>",
+          "preguntas": [
+            {
+              "n": 1,
+              "id": "N1",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.3 · SS del error",
+              "tipo": "numero",
+              "enunciado": "<p>En el DBCA, SS<sub>T</sub> = 378.66, SS<sub>Planes</sub> = 100.72 y SS<sub>Fincas</sub> = 216.04. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 61.9,
+                "tol": 0.4952,
+                "texto": "61.90"
+              },
+              "cuenta": "SS<sub>E</sub> = SS<sub>T</sub> − SS<sub>Planes</sub> − SS<sub>Fincas</sub> = 378.66 − 100.72 − 216.04 = 61.90. En el DBCA se restan las dos fuentes.",
+              "rutas": [
+                {
+                  "valor": 277.94,
+                  "cifra": "277.94",
+                  "texto": "olvidaste restar SS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 162.62,
+                  "cifra": "162.62",
+                  "texto": "olvidaste restar SS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 316.76,
+                  "cifra": "316.76",
+                  "texto": "sumaste SS<sub>Planes</sub> y SS<sub>Fincas</sub> en vez de restarlas de SS<sub>T</sub>"
+                }
+              ]
+            },
+            {
+              "n": 2,
+              "id": "N2",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · MS del error",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 61.90, a = 4 planes y b = 6 fincas, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 4.13,
+                "tol": 0.03304,
+                "texto": "4.13"
+              },
+              "cuenta": "MS<sub>E</sub> = SS<sub>E</sub> / [(a − 1)(b − 1)] = 61.90 / 15 = 4.13. Las fincas se llevan b − 1 = 5 de los 20 grados de libertad que tendría el error de un DCA.",
+              "rutas": [
+                {
+                  "valor": 3.095,
+                  "cifra": "3.09",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 2.691304,
+                  "cifra": "2.69",
+                  "texto": "dividiste entre 23, los gl totales"
+                },
+                {
+                  "valor": 2.579167,
+                  "cifra": "2.58",
+                  "texto": "dividiste entre 24, el número de parcelas"
+                }
+              ]
+            },
+            {
+              "n": 3,
+              "id": "N3",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · El F de los planes",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Planes</sub> = 33.57 y MS<sub>E</sub> = 4.13, calcule el estadístico F<sub>0</sub> de los planes. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 8.13,
+                "tol": 0.06504,
+                "texto": "8.13"
+              },
+              "cuenta": "F<sub>0</sub> = MS<sub>Planes</sub> / MS<sub>E</sub> = 33.57 / 4.13 = 8.13, frente a F<sub>0.05</sub>(3, 15) = 3.29: al menos un plan rinde distinto de los demás.",
+              "rutas": [
+                {
+                  "valor": 0.776903,
+                  "cifra": "0.78",
+                  "texto": "dividiste entre MS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 24.387409,
+                  "cifra": "24.39",
+                  "texto": "usaste SS<sub>Planes</sub> en vez de MS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 10.46,
+                  "cifra": "10.46",
+                  "texto": "calculaste el F de las fincas"
+                }
+              ]
+            },
+            {
+              "n": 4,
+              "id": "N4",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Diferencia crítica de Tukey",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 4.13, b = 6 fincas y q<sub>0.05</sub>(4, 15) = 4.08, calcule la diferencia crítica de Tukey para comparar dos planes al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.39,
+                "tol": 0.02712,
+                "texto": "3.39"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/b) = 4.08·√(4.13/6) = 3.39. Es la del capítulo 3 con b en el lugar de n: cada media de plan promedia una parcela de cada finca.",
+              "rutas": [
+                {
+                  "valor": 4.787123,
+                  "cifra": "4.79",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 4.14577,
+                  "cifra": "4.15",
+                  "texto": "dividiste entre a = 4 en vez de b = 6"
+                },
+                {
+                  "valor": 1.692503,
+                  "cifra": "1.69",
+                  "texto": "dividiste entre ab = 24"
+                }
+              ]
+            },
+            {
+              "n": 5,
+              "id": "N5",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Pares que Tukey separa",
+              "tipo": "numero",
+              "enunciado": "<p>Las medias por plan son ȳ<sub>Testigo</sub> = 42.63, ȳ<sub>Orgánico</sub> = 44.58, ȳ<sub>Foliar</sub> = 41.82, ȳ<sub>Fraccionado</sub> = 47.13. Tukey separa dos planes cuando su diferencia supera T = 3.39, al 5 % para la familia. De los 6 pares posibles, ¿en cuántos concluye que los dos planes rinden distinto? Responda con un número entero.</p>",
+              "clave": {
+                "valor": 2.0,
+                "tol": 0.4,
+                "texto": "2"
+              },
+              "cuenta": "Las seis diferencias son Testigo–Orgánico = 1.95; Testigo–Foliar = 0.81; Testigo–Fraccionado = 4.50 ✔; Orgánico–Foliar = 2.76; Orgánico–Fraccionado = 2.55; Foliar–Fraccionado = 5.31 ✔. Superan T = 3.39 las 2 marcadas.",
+              "rutas": [
+                {
+                  "valor": 4.0,
+                  "cifra": "4",
+                  "texto": "contaste los pares que NO difieren"
+                },
+                {
+                  "valor": 6.0,
+                  "cifra": "6",
+                  "texto": "declaraste distintos los seis pares"
+                }
+              ]
+            },
+            {
+              "n": 6,
+              "id": "N6",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.6 · Eficiencia relativa",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Fincas</sub> = 43.21, MS<sub>E</sub> = 4.13, a = 4 y b = 6, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó la cooperativa al bloquear por fincas frente a repartir las 24 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [(b − 1)MS<sub>Fincas</sub> + b(a − 1)MS<sub>E</sub>] / (ab − 1) y el factor de corrección (f<sub>b</sub> + 1)(f<sub>r</sub> + 3) / [(f<sub>b</sub> + 3)(f<sub>r</sub> + 1)], con f<sub>b</sub> = (a − 1)(b − 1) y f<sub>r</sub> = a(b − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.98,
+                "tol": 0.02384,
+                "texto": "2.98"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = [5·43.21 + 18·4.13] / 23 = 12.63; el factor vale (16·23) / (18·21) = 0.9735; R = 0.9735·12.63 / 4.13 = 2.98. Un DCA habría necesitado unas 17.9 parcelas por plan, en vez de 6, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 3.057059,
+                  "cifra": "3.06",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 10.46247,
+                  "cifra": "10.46",
+                  "texto": "dividiste MS<sub>Fincas</sub> entre MS<sub>E</sub>"
+                },
+                {
+                  "valor": 10.185685,
+                  "cifra": "10.19",
+                  "texto": "aplicaste el factor a MS<sub>Fincas</sub> / MS<sub>E</sub>"
+                }
+              ]
+            },
+            {
+              "n": 7,
+              "id": "S7",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.10 · Las fincas como factor aleatorio",
+              "tipo": "opcion",
+              "enunciado": "<p>Las seis fincas no interesan por sí mismas: son una muestra de las fincas socias, y la cooperativa quiere que la conclusión valga para todas. Si las fincas se tratan como un factor aleatorio, ¿qué cambia en el análisis de los planes de fertilización?</p>",
+              "opciones": [
+                {
+                  "texto": "Nada en la prueba ni en las comparaciones de los planes, pero la conclusión alcanza a todas las fincas y hay una σ²<sub>β</sub> que estimar.",
+                  "retro": "El F, su valor p y las comparaciones entre planes son los mismos en los dos modelos. Lo nuevo es que la conclusión vale para la población de fincas y que se puede estimar σ̂²<sub>β</sub> = (MS<sub>Fincas</sub> − MS<sub>E</sub>)/a (módulo 5.10)."
+                },
+                {
+                  "texto": "El F de los planes pasa a dividirse entre MS<sub>Fincas</sub>, porque el bloque aleatorio se convierte en el término de error de los planes.",
+                  "retro": "Con bloques aleatorios y el modelo aditivo, la esperanza de MS<sub>Planes</sub> sigue comparándose con la de MS<sub>E</sub>, que es σ²: el denominador del F no cambia (módulo 5.10)."
+                },
+                {
+                  "texto": "Cada diferencia entre dos planes gana la varianza de las fincas, 2(σ² + σ²<sub>β</sub>)/b, y la diferencia crítica de Tukey crece.",
+                  "retro": "Eso le pasa a la media de UN plan, cuya varianza sí sube a (σ² + σ²<sub>β</sub>)/b. En una diferencia cada finca aporta a los dos planes y su efecto se cancela: sigue siendo 2σ²/b (módulo 5.7)."
+                },
+                {
+                  "texto": "Las fincas dejan de restar su suma de cuadrados del error, y el modelo vuelve a ser el de un DCA con veinte grados de libertad de error.",
+                  "retro": "La descomposición es la misma: SS<sub>Fincas</sub> sigue saliendo del error, que conserva sus (a − 1)(b − 1) = 15 grados de libertad. Lo que cambia es qué representa β<sub>j</sub>, no la tabla."
+                }
+              ],
+              "correcta": 0
+            },
+            {
+              "n": 8,
+              "id": "N8",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · Un residuo del DBCA",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela del plan Foliar en la finca 6 rindió 41.0 kg. Con la media de su plan, ȳ<sub>Foliar</sub> = 41.82, la de su finca, ȳ<sub>finca 6</sub> = 46.58, y la media general ȳ<sub>..</sub> = 44.04, calcule su residuo en el modelo del DBCA. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": -3.36,
+                "tol": 0.02688,
+                "texto": "−3.36"
+              },
+              "cuenta": "e = y − ȳ<sub>i.</sub> − ȳ<sub>.j</sub> + ȳ<sub>..</sub> = 41.0 − 41.82 − 46.58 + 44.04 = −3.36. El valor ajustado del DBCA es ȳ<sub>i.</sub> + ȳ<sub>.j</sub> − ȳ<sub>..</sub> = 44.36: el plan y la finca a la vez.",
+              "rutas": [
+                {
+                  "valor": -0.82,
+                  "cifra": "−0.82",
+                  "texto": "restaste solo la media de su plan, como en un DCA"
+                },
+                {
+                  "valor": -47.4,
+                  "cifra": "−47.40",
+                  "texto": "olvidaste sumar la media general"
+                },
+                {
+                  "valor": -5.58,
+                  "cifra": "−5.58",
+                  "texto": "restaste solo la media de su finca"
+                }
+              ]
+            },
+            {
+              "n": 9,
+              "id": "N9",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 y 4.1 · Residuo estandarizado",
+              "tipo": "numero",
+              "enunciado": "<p>Con e = −3.36 y MS<sub>E</sub> = 4.13, calcule el residuo estandarizado d = e / √MS<sub>E</sub>. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": -1.65,
+                "tol": 0.0132,
+                "texto": "−1.65"
+              },
+              "cuenta": "d = −3.36 / √4.13 = −1.65. Un |d| menor que 3 no señala por sí solo una parcela atípica.",
+              "rutas": [
+                {
+                  "valor": -0.813559,
+                  "cifra": "−0.81",
+                  "texto": "dividiste entre MS<sub>E</sub> sin sacar la raíz"
+                },
+                {
+                  "valor": -4.049859,
+                  "cifra": "−4.05",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/b), el error estándar de una media"
+                },
+                {
+                  "valor": -3.306696,
+                  "cifra": "−3.31",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/a)"
+                }
+              ]
+            },
+            {
+              "n": 10,
+              "id": "N10",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · La prueba de no aditividad",
+              "tipo": "numero",
+              "enunciado": "<p>Con un grado de libertad, la no aditividad de Tukey se lleva SS<sub>N</sub> = 9.50 del error del DBCA, que es SS<sub>E</sub> = 61.90. Calcule el estadístico F<sub>0</sub> de la prueba, que compara SS<sub>N</sub> con lo que queda del error. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.54,
+                "tol": 0.02032,
+                "texto": "2.54"
+              },
+              "cuenta": "F<sub>0</sub> = SS<sub>N</sub> / [(SS<sub>E</sub> − SS<sub>N</sub>) / ((a − 1)(b − 1) − 1)] = 9.50 / [(61.90 − 9.50) / 14] = 2.54, frente a F<sub>0.05</sub>(1, 14) = 4.60. La prueba toma prestado uno de los 15 grados de libertad del error. Como 2.54 &lt; 4.60, no rechaza la aditividad: el modelo del DBCA es defendible.",
+              "rutas": [
+                {
+                  "valor": 2.300242,
+                  "cifra": "2.30",
+                  "texto": "dividiste entre el MS<sub>E</sub> de 15 gl, sin restar SS<sub>N</sub> del error"
+                },
+                {
+                  "valor": 0.181298,
+                  "cifra": "0.18",
+                  "texto": "restaste SS<sub>N</sub> pero no dividiste entre los gl"
+                },
+                {
+                  "valor": 2.148627,
+                  "cifra": "2.15",
+                  "texto": "no restaste SS<sub>N</sub> del error, pero sí usaste 14 gl"
+                }
+              ]
+            },
+            {
+              "n": 11,
+              "id": "N11",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · La parcela perdida",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela del plan Foliar en la finca 3 se hubiera perdido. Sin ella, el total de su plan es y′<sub>i.</sub> = 211.3, el de su finca y′<sub>.j</sub> = 133.6 y el total general y′<sub>..</sub> = 1017.4. Con a = 4 y b = 6, estime el valor faltante con la fórmula clásica para un dato perdido en el DBCA. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 41.96,
+                "tol": 0.33568,
+                "texto": "41.96"
+              },
+              "cuenta": "x = (a·y′<sub>i.</sub> + b·y′<sub>.j</sub> − y′<sub>..</sub>) / [(a − 1)(b − 1)] = (4·211.3 + 6·133.6 − 1017.4) / 15 = 41.96. La parcela de verdad rindió 39.6 kg: la fórmula da lo que predice el modelo aditivo, no lo que la parcela produjo.",
+              "rutas": [
+                {
+                  "valor": 52.32,
+                  "cifra": "52.32",
+                  "texto": "intercambiaste a y b"
+                },
+                {
+                  "valor": 44.957143,
+                  "cifra": "44.96",
+                  "texto": "dividiste entre 14, como si el error ya hubiera perdido su grado"
+                },
+                {
+                  "valor": -25.866667,
+                  "cifra": "−25.87",
+                  "texto": "restaste dos veces el total general, como en el cuadro latino"
+                }
+              ]
+            },
+            {
+              "n": 12,
+              "id": "S12",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · Qué es el valor rellenado",
+              "tipo": "opcion",
+              "enunciado": "<p>Al rellenar la parcela perdida con el valor x de la pregunta anterior y repetir el ANOVA, el analista le resta un grado de libertad al error: 14 en vez de 15. ¿Qué describe mejor ese valor x y ese descuento?</p>",
+              "opciones": [
+                {
+                  "texto": "x estima sin sesgo lo que la parcela habría rendido, así que el análisis rellenado reproduce el completo; el grado se resta por convención.",
+                  "retro": "x es la predicción del modelo aditivo para esa parcela, no la parcela: el análisis rellenado no reproduce el completo (en el módulo 5.9, F = 7.62 frente a 8.11 con el dato real). Y el grado no se resta por convención: x no es una observación, así que no informa sobre σ²."
+                },
+                {
+                  "texto": "x es lo que el modelo aditivo predice para esa parcela, el valor que hace mínima SS<sub>E</sub>; no es un dato, así que no aporta un grado.",
+                  "retro": "Es la parábola del módulo 5.9: SS<sub>E</sub>(x) tiene su vértice en la fórmula. Un valor elegido por el propio modelo no trae información sobre σ², y por eso el error pierde un grado de libertad."
+                },
+                {
+                  "texto": "x es el promedio de la media de su plan y la de su finca, y el grado de libertad se le resta al total, no al error.",
+                  "retro": "La fórmula no promedia dos medias: combina los totales del plan, de la finca y el general con pesos a, b y −1. Y el descuento es del error, y el total también baja, de 23 a 22: es lo que la Tabla 4.8 de Montgomery olvida corregir, la errata que señala el módulo 5.9."
+                },
+                {
+                  "texto": "x es el valor que hace máximo el F de los planes, y el grado se descuenta para compensar ese empujón a favor de los planes.",
+                  "retro": "x hace mínima SS<sub>E</sub>, no máximo el F. El F rellenado sí sale algo más alto que el del análisis exacto, pero no por el error —con el grado descontado, SS<sub>E</sub> y sus grados son los del análisis exacto—, sino porque SS<sub>Planes</sub> sale algo mayor que la ajustada (módulo 5.9)."
+                }
+              ],
+              "correcta": 1
+            },
+            {
+              "n": 13,
+              "id": "S13",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · El cuadro de partida",
+              "tipo": "opcion",
+              "enunciado": "<p>Para sortear el plano, el equipo necesita un cuadro latino 5 × 5 en forma estándar como punto de partida. ¿Cuál de estas cuatro rejillas lo es?</p>",
+              "opciones": [
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>C A E B D<br>D C A E B<br>B E D A C<br>E D B C A</span>",
+                  "retro": "Es un cuadro latino —ninguna letra se repite en su fila ni en su columna—, pero su primera columna dice A, C, D, B, E: no está en orden alfabético, así que no está en forma estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B D A E C<br>C A E B D<br>D E A C B<br>E C D A B</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra A aparece dos veces en la columna 3 y la letra B aparece dos veces en la columna 5: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B C D E A<br>C A E B D<br>D D B A C<br>E E A C B</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra D aparece dos veces en la fila 4 y la letra E aparece dos veces en la fila 5: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B C E A D<br>C A D E B<br>D E B C A<br>E D A B C</span>",
+                  "retro": "Cada letra aparece una vez en cada fila y una vez en cada columna, y la primera fila y la primera columna están en orden alfabético: es un cuadro latino en forma estándar."
+                }
+              ],
+              "correcta": 3
+            },
+            {
+              "n": 14,
+              "id": "N14",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cuántos cuadros latinos hay",
+              "tipo": "numero",
+              "enunciado": "<p>Hay 9408 cuadros latinos estándar de orden p = 6. ¿Cuántos cuadros latinos distintos de orden 6 existen? Responda con un número entero, sin separador de miles.</p>",
+              "clave": {
+                "valor": 812851200.0,
+                "tol": 0.4,
+                "texto": "812851200"
+              },
+              "cuenta": "p!·(p − 1)!·9408 = 720·120·9408 = 812 851 200. Cada cuadro estándar da p!·(p − 1)! cuadros distintos al permutar sus p columnas y sus p − 1 últimas filas, y cada cuadro latino sale de exactamente uno de ellos.",
+              "rutas": [
+                {
+                  "valor": 86400.0,
+                  "cifra": "86 400",
+                  "texto": "olvidaste multiplicar por los cuadros estándar"
+                },
+                {
+                  "valor": 6773760.0,
+                  "cifra": "6 773 760",
+                  "texto": "multiplicaste solo por p!"
+                },
+                {
+                  "valor": 4877107200.0,
+                  "cifra": "4 877 107 200",
+                  "texto": "multiplicaste por p! dos veces"
+                },
+                {
+                  "valor": 818851200.0,
+                  "cifra": "818 851 200",
+                  "texto": "copiaste la cifra de la Tabla 4.13 de Montgomery, que trae una errata (módulo 6.2)"
+                }
+              ]
+            },
+            {
+              "n": 15,
+              "id": "S15",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cómo se sortea el plano",
+              "tipo": "opcion",
+              "enunciado": "<p>Para el plano de la etapa 3, ¿qué procedimiento produce siempre un cuadro latino y le quita al equipo la decisión de qué variedad va en cada parcela?</p>",
+              "opciones": [
+                {
+                  "texto": "Sortear la variedad de cada una de las 25 parcelas entre las cinco, de forma independiente para cada parcela.",
+                  "retro": "Cada parcela queda al azar, pero nada impide que una variedad caiga dos veces en la misma franja: el resultado casi nunca es un cuadro latino, y el bloqueo se pierde."
+                },
+                {
+                  "texto": "Escribir el cuadro cíclico y asignar las variedades a las letras por su año de liberación, que es un criterio objetivo y reproducible.",
+                  "retro": "Reproducible no es aleatorio: el plano lo decide un criterio del equipo y no un sorteo, que es justo lo que la aleatorización quiere evitar."
+                },
+                {
+                  "texto": "Tomar un cuadro estándar elegido al azar, reordenar al azar sus filas y sus columnas, y sortear qué variedad recibe cada letra.",
+                  "retro": "Cada permutación conserva la propiedad latina y el sorteo decide dónde cae cada variedad. Y como también se sortea el cuadro de partida, todos los cuadros posibles salen con la misma probabilidad. El módulo 6.2 avisa de lo que pasa si se parte siempre del mismo, el cíclico: ahí la receta no alcanza más que una parte de ellos."
+                },
+                {
+                  "texto": "Permutar al azar solo las filas del cuadro cíclico; con eso todos los cuadros latinos 5 × 5 salen con la misma probabilidad.",
+                  "retro": "Permutar las filas da como mucho 5! = 120 cuadros de los 161 280 que existen, y deja las columnas y las letras atadas al cíclico."
+                }
+              ],
+              "correcta": 2
+            },
+            {
+              "n": 16,
+              "id": "N16",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · SS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>En el cuadro latino, SS<sub>T</sub> = 372.73, SS<sub>Altitud</sub> = 152.98, SS<sub>Sombra</sub> = 15.22 y SS<sub>Variedades</sub> = 173.45. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 31.08,
+                "tol": 0.24864,
+                "texto": "31.08"
+              },
+              "cuenta": "SS<sub>E</sub> = 372.73 − 152.98 − 15.22 − 173.45 = 31.08. En el cuadro se restan tres fuentes: las dos direcciones de bloqueo y las variedades.",
+              "rutas": [
+                {
+                  "valor": 46.3,
+                  "cifra": "46.30",
+                  "texto": "olvidaste restar SS<sub>Sombra</sub>"
+                },
+                {
+                  "valor": 184.06,
+                  "cifra": "184.06",
+                  "texto": "olvidaste restar SS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 204.53,
+                  "cifra": "204.53",
+                  "texto": "olvidaste restar SS<sub>Variedades</sub>"
+                }
+              ]
+            },
+            {
+              "n": 17,
+              "id": "N17",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · MS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 31.08 en el cuadro latino 5 × 5, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.59,
+                "tol": 0.02072,
+                "texto": "2.59"
+              },
+              "cuenta": "El error tiene (p − 1)(p − 2) = 12 grados de libertad: MS<sub>E</sub> = 31.08 / 12 = 2.59. De los 24 totales, cada factor se lleva p − 1 = 4.",
+              "rutas": [
+                {
+                  "valor": 1.9425,
+                  "cifra": "1.94",
+                  "texto": "dividiste entre 16, los gl del error de un DBCA con las mismas 25 parcelas"
+                },
+                {
+                  "valor": 1.554,
+                  "cifra": "1.55",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 1.295,
+                  "cifra": "1.29",
+                  "texto": "dividiste entre 24, los gl totales"
+                }
+              ]
+            },
+            {
+              "n": 18,
+              "id": "N18",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · El F de las variedades",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Variedades</sub> = 43.36 y MS<sub>E</sub> = 2.59, calcule F<sub>0</sub> para las variedades. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 16.74,
+                "tol": 0.13392,
+                "texto": "16.74"
+              },
+              "cuenta": "F<sub>0</sub> = 43.36 / 2.59 = 16.74, frente a F<sub>0.05</sub>(4, 12) = 3.26: al menos una variedad rinde distinto de las demás.",
+              "rutas": [
+                {
+                  "valor": 66.969112,
+                  "cifra": "66.97",
+                  "texto": "usaste SS<sub>Variedades</sub> en vez de MS<sub>Variedades</sub>"
+                },
+                {
+                  "valor": 1.133595,
+                  "cifra": "1.13",
+                  "texto": "dividiste entre MS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 11.380577,
+                  "cifra": "11.38",
+                  "texto": "dividiste entre MS<sub>Sombra</sub>"
+                }
+              ]
+            },
+            {
+              "n": 19,
+              "id": "S19",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · Otra lectura de los mismos datos",
+              "tipo": "opcion",
+              "enunciado": "<p>Un analista reanaliza los 25 rendimientos como un DBCA que solo bloquea las franjas de altitud y deja la sombra fuera del modelo. Frente al análisis del cuadro latino, ¿qué le pasa a SS<sub>Variedades</sub>, y por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "Crece, porque la variación de las franjas de sombra que el modelo ya no separa se suma a la que se atribuye a las variedades.",
+                  "retro": "La variación de la sombra no puede ir a las variedades: cada variedad pasa una vez por cada franja de sombra, así que esa variación se reparte por igual entre todas. Va entera al error."
+                },
+                {
+                  "texto": "Baja, porque al quitar un factor de bloqueo el modelo pierde parte de la variación que explicaba las diferencias entre variedades.",
+                  "retro": "En este cuadro, por su ortogonalidad, SS<sub>Variedades</sub> depende solo de las medias de las variedades, y esas medias no cambian al quitar un factor del modelo. Lo que puede bajar es el F, porque el error crece."
+                },
+                {
+                  "texto": "No cambia, porque la suma de cuadrados de un factor nunca depende de qué otros factores entren en el modelo, sea cual sea el diseño.",
+                  "retro": "Aquí no cambia, pero no por esa razón: en un diseño no ortogonal —un cuadro o un DBCA con una parcela perdida, por ejemplo— sí depende, y por eso existe el análisis exacto por mínimos cuadrados de los módulos 5.9 y 6.7."
+                },
+                {
+                  "texto": "No cambia, porque cada variedad pasa una vez por cada franja de sombra y esta aporta lo mismo al total de cada variedad.",
+                  "retro": "Es la ortogonalidad del cuadro (módulo 6.4): SS<sub>Variedades</sub> es la misma en las cuatro lecturas. El error absorbe SS<sub>Sombra</sub> y sus 4 grados de libertad, y pasa a tener (p − 1)² = 16."
+                }
+              ],
+              "correcta": 3
+            },
+            {
+              "n": 20,
+              "id": "N20",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.5 · Eficiencia relativa del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Altitud</sub> = 38.25, MS<sub>Sombra</sub> = 3.81, MS<sub>E</sub> = 2.59 y p = 5, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó el ensayo al bloquear la altitud y la sombra a la vez frente a repartir las 25 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [MS<sub>Altitud</sub> + MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>] / (p + 1) y el factor (f<sub>1</sub> + 1)(f<sub>2</sub> + 3) / [(f<sub>1</sub> + 3)(f<sub>2</sub> + 1)], con f<sub>1</sub> = (p − 1)(p − 2) y f<sub>2</sub> = p(p − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.2,
+                "tol": 0.0256,
+                "texto": "3.20"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = (38.25 + 3.81 + 4·2.59) / 6 = 8.74; el factor vale (13·23) / (15·21) = 0.9492; R = 0.9492·8.74 / 2.59 = 3.20. Un DCA habría necesitado unas 80 parcelas, en vez de 25, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 3.37323,
+                  "cifra": "3.37",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 1.05988,
+                  "cifra": "1.06",
+                  "texto": "calculaste R frente a un DBCA que solo bloquea la altitud —σ̂² = [MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>]/p y f<sub>2</sub> = 16—, no frente al DCA"
+                },
+                {
+                  "valor": 3.84227,
+                  "cifra": "3.84",
+                  "texto": "dividiste la suma entre p = 5 en vez de p + 1 = 6"
+                }
+              ]
+            },
+            {
+              "n": 21,
+              "id": "N21",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · Tukey en el cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 2.59, p = 5 y q<sub>0.05</sub>(5, 12) = 4.51, calcule la diferencia crítica de Tukey para comparar dos variedades al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.25,
+                "tol": 0.026,
+                "texto": "3.25"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/p) = 4.51·√(2.59/5) = 3.25: cada media de variedad promedia sus p = 5 parcelas, una por franja.",
+              "rutas": [
+                {
+                  "valor": 4.590462,
+                  "cifra": "4.59",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 1.451632,
+                  "cifra": "1.45",
+                  "texto": "dividiste entre p² = 25, las parcelas del cuadro"
+                },
+                {
+                  "valor": 2.33618,
+                  "cifra": "2.34",
+                  "texto": "olvidaste la raíz"
+                }
+              ]
+            },
+            {
+              "n": 22,
+              "id": "S22",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · El error estándar en el cuadro",
+              "tipo": "opcion",
+              "enunciado": "<p>En el cuadro, la diferencia entre las medias de dos variedades no arrastra los efectos de las franjas de altitud ni los de las franjas de sombra. ¿Por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "Porque cada variedad aparece una vez en cada franja de altitud y una en cada franja de sombra, así que esos efectos suman cero en su media.",
+                  "retro": "Es la razón del módulo 6.6: dentro de la media de una variedad, los efectos de fila y de columna aparecen una vez cada uno y su suma es cero por la restricción del modelo. La ortogonalidad del cuadro es lo que hace insesgada la comparación."
+                },
+                {
+                  "texto": "Porque el ANOVA ya restó SS<sub>Altitud</sub> y SS<sub>Sombra</sub> de SS<sub>T</sub>, y lo que sale de la tabla deja de afectar a las medias.",
+                  "retro": "Restar sumas de cuadrados limpia el error, no las medias. Las medias de variedad quedan libres de las franjas por cómo se colocaron las letras: con las variedades mal colocadas, la misma tabla no lo arreglaría."
+                },
+                {
+                  "texto": "Porque las franjas se tratan como aleatorias, y sus efectos se promedian a cero cuando el ensayo tiene suficientes parcelas.",
+                  "retro": "No hace falta ningún supuesto aleatorio ni muchas parcelas: con efectos fijos y cinco parcelas por variedad, la cancelación es exacta, y la da el diseño (módulo 6.6)."
+                },
+                {
+                  "texto": "Porque la diferencia se calcula con las 25 parcelas del cuadro, y entre tantas parcelas los efectos de las franjas se diluyen hasta desaparecer.",
+                  "retro": "Cada media de variedad usa solo sus 5 parcelas, no las 25, y nada se diluye: los efectos se cancelan exactamente porque cada variedad pasa una vez por cada franja. Por eso el error estándar de la diferencia es √(2MS<sub>E</sub>/p) y no √(2MS<sub>E</sub>/p²)."
+                }
+              ],
+              "correcta": 0
+            },
+            {
+              "n": 23,
+              "id": "N23",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 y 6.4 · Un residuo del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela de la franja de altitud 1 y la franja de sombra 1 lleva la variedad B y rindió 40.3 kg. Con la media de su franja de altitud (38.96), la de su franja de sombra (40.26), la de su variedad (38.90) y la media general (40.17), calcule su residuo en el modelo del cuadro latino. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": 2.52,
+                "tol": 0.02016,
+                "texto": "2.52"
+              },
+              "cuenta": "e = y − ȳ<sub>altitud</sub> − ȳ<sub>sombra</sub> − ȳ<sub>variedad</sub> + 2ȳ = 40.3 − 38.96 − 40.26 − 38.90 + 2·40.17 = 2.52. La media general entra dos veces: cada una de las tres medias marginales la lleva dentro, y el ajustado solo debe llevarla una.",
+              "rutas": [
+                {
+                  "valor": -37.65,
+                  "cifra": "−37.65",
+                  "texto": "sumaste la media general una vez en vez de dos, como en el DBCA"
+                },
+                {
+                  "valor": 2.61,
+                  "cifra": "2.61",
+                  "texto": "olvidaste la columna, como en un DBCA por franjas de altitud"
+                },
+                {
+                  "valor": 1.4,
+                  "cifra": "1.40",
+                  "texto": "restaste solo la media de su variedad"
+                }
+              ]
+            },
+            {
+              "n": 24,
+              "id": "N24",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 · La parcela perdida del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela de la franja de altitud 4 y la franja de sombra 2 (variedad E) se hubiera perdido. Sin ella, el total de su franja de altitud es 141.8, el de su franja de sombra 164.0, el de su variedad 177.7 y el total general 964.5. Con p = 5, estime el valor faltante con la fórmula clásica para un dato perdido en el cuadro latino. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 40.71,
+                "tol": 0.32568,
+                "texto": "40.71"
+              },
+              "cuenta": "x = [p(y′<sub>altitud</sub> + y′<sub>sombra</sub> + y′<sub>variedad</sub>) − 2y′<sub>total</sub>] / [(p − 2)(p − 1)] = [5(141.8 + 164.0 + 177.7) − 2·964.5] / 12 = 40.71. La parcela de verdad rindió 39.8 kg. Con el valor rellenado, el error se queda con 11 grados de libertad.",
+              "rutas": [
+                {
+                  "valor": 121.083333,
+                  "cifra": "121.08",
+                  "texto": "restaste el total general una sola vez"
+                },
+                {
+                  "valor": 30.53125,
+                  "cifra": "30.53",
+                  "texto": "dividiste entre (p − 1)² = 16"
+                },
+                {
+                  "valor": 44.409091,
+                  "cifra": "44.41",
+                  "texto": "dividiste entre 11, como si el error ya hubiera perdido su grado"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "caso": "<h3>La cooperativa y sus parcelas de café — versión 3</h3>\n<p>Una cooperativa cafetera ensaya cómo mejorar el rendimiento de sus socios. En todo el caso la\nrespuesta es la misma: el <b>rendimiento de una parcela, en kg de café pergamino seco</b>. Hay tres\netapas, en el orden de las preguntas, y <b>cada pregunta trae consigo las cifras que usa</b>:\npuede responderse sin volver aquí. Responda con los decimales que se le piden, con punto o coma\ndecimal y <b>sin separador de miles</b>.</p>\n\n<h4>Etapa 1 — Cuatro planes de fertilización en seis fincas (capítulo 5)</h4>\n<p>La cooperativa compara su plan de fertilización actual (<b>Testigo</b>) con tres alternativas:\n<b>Orgánico</b>, <b>Foliar</b> y <b>Fraccionado</b>. Seis fincas socias prestaron cuatro parcelas\niguales cada una, y dentro de cada finca un sorteo decidió qué plan recibía cada parcela. Las fincas\ndifieren en altitud, suelo y edad del cafetal, y por eso son los bloques: es un DBCA con a = 4\nplanes y b = 6 fincas. A la cooperativa le interesa comparar todos los planes entre sí, no solo cada\nalternativa contra el actual.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plan</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Finca 6</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i.</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Testigo</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.10</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Orgánico</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">50.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">49.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.88</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Foliar</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">50.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.95</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fraccionado</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">37.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.22</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ȳ<sub>.j</sub></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">48.28</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.88</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.33</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.50</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.08</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">46.68</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.29</td></tr></tbody></table>\n<p>Tabla ANOVA del DBCA, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Planes</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">122.05</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.68</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Fincas (bloques)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">88.25</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">17.65</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">246.41</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">23</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(4, 15) = 4.08 · F<sub>0.05</sub>(3, 15) = 3.29.</p>\n\n<h4>Etapa 2 — El diagnóstico y la parcela perdida (capítulo 5)</h4>\n<p>Con la tabla ANOVA terminada, el analista pasa al diagnóstico del DBCA. Con un grado de libertad, la no\naditividad de Tukey se lleva <b>SS<sub>N</sub> = 5.49</b> del error; para contrastarla,\nF<sub>0.05</sub>(1, 14) = 4.60. También quiere saber qué habría hecho si una parcela no\nhubiera llegado a la báscula, que en la zona pasa: un deslizamiento puede llevarse una parcela entera\nantes de la cosecha.</p>\n\n<h4>Etapa 3 — Cinco variedades en un cuadro latino (capítulo 6)</h4>\n<p>En su estación experimental, la cooperativa compara <b>cinco variedades (A a E)</b> en un lote de\nladera dividido en 25 parcelas iguales. El lote no es homogéneo en dos direcciones: de arriba abajo\ncambia la <b>altitud</b> (franjas de altitud 1 a 5, la 1 la más alta) y de izquierda a derecha la\n<b>sombra</b> de un bosque vecino (franjas de sombra 1 a 5, la 1 junto al bosque). Para bloquear las\ndos a la vez, el ensayo es un cuadro latino 5 × 5: cada variedad aparece una vez en\ncada franja de altitud y una vez en cada franja de sombra. Cada celda dice qué variedad lleva y\ncuánto rindió.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Altitud \\ Sombra</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 1</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 2</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 3</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 4</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Sombra 5</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Media</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 38.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 45.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 39.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 47.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 44.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">43.10</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 40.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 36.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 41.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 40.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 44.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.60</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 43.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 43.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 40.6</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 41.9</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 42.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.14</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 38.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 32.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 43.3</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 43.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 39.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.54</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud 5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">E · 39.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">D · 43.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">B · 36.2</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">C · 48.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">A · 43.8</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.16</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.02</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.12</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.28</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.88</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.51</td></tr></tbody></table>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Variedad</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">A</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">B</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">C</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">D</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">E</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Media</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.86</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">37.88</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.00</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">42.52</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">39.28</td></tr></tbody></table>\n<p>Tabla ANOVA del cuadro latino, incompleta:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Fuente</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">SS</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">gl</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">MS</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Altitud (filas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.28</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">10.07</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Sombra (columnas)</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">74.97</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">18.74</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Variedades</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">165.86</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.47</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Error</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">?</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Total</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">303.66</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">24</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\"></td></tr></tbody></table>\n<p>Cuantiles: q<sub>0.05</sub>(5, 12) = 4.51 · F<sub>0.05</sub>(4, 12) = 3.26.</p>",
+          "preguntas": [
+            {
+              "n": 1,
+              "id": "N1",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.3 · SS del error",
+              "tipo": "numero",
+              "enunciado": "<p>En el DBCA, SS<sub>T</sub> = 246.41, SS<sub>Planes</sub> = 122.05 y SS<sub>Fincas</sub> = 88.25. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 36.11,
+                "tol": 0.28888,
+                "texto": "36.11"
+              },
+              "cuenta": "SS<sub>E</sub> = SS<sub>T</sub> − SS<sub>Planes</sub> − SS<sub>Fincas</sub> = 246.41 − 122.05 − 88.25 = 36.11. En el DBCA se restan las dos fuentes.",
+              "rutas": [
+                {
+                  "valor": 124.36,
+                  "cifra": "124.36",
+                  "texto": "olvidaste restar SS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 158.16,
+                  "cifra": "158.16",
+                  "texto": "olvidaste restar SS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 210.3,
+                  "cifra": "210.30",
+                  "texto": "sumaste SS<sub>Planes</sub> y SS<sub>Fincas</sub> en vez de restarlas de SS<sub>T</sub>"
+                }
+              ]
+            },
+            {
+              "n": 2,
+              "id": "N2",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · MS del error",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 36.11, a = 4 planes y b = 6 fincas, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.41,
+                "tol": 0.01928,
+                "texto": "2.41"
+              },
+              "cuenta": "MS<sub>E</sub> = SS<sub>E</sub> / [(a − 1)(b − 1)] = 36.11 / 15 = 2.41. Las fincas se llevan b − 1 = 5 de los 20 grados de libertad que tendría el error de un DCA.",
+              "rutas": [
+                {
+                  "valor": 1.8055,
+                  "cifra": "1.81",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 1.57,
+                  "cifra": "1.57",
+                  "texto": "dividiste entre 23, los gl totales"
+                },
+                {
+                  "valor": 1.504583,
+                  "cifra": "1.50",
+                  "texto": "dividiste entre 24, el número de parcelas"
+                }
+              ]
+            },
+            {
+              "n": 3,
+              "id": "N3",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.4 · El F de los planes",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Planes</sub> = 40.68 y MS<sub>E</sub> = 2.41, calcule el estadístico F<sub>0</sub> de los planes. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 16.88,
+                "tol": 0.13504,
+                "texto": "16.88"
+              },
+              "cuenta": "F<sub>0</sub> = MS<sub>Planes</sub> / MS<sub>E</sub> = 40.68 / 2.41 = 16.88, frente a F<sub>0.05</sub>(3, 15) = 3.29: al menos un plan rinde distinto de los demás.",
+              "rutas": [
+                {
+                  "valor": 2.304816,
+                  "cifra": "2.30",
+                  "texto": "dividiste entre MS<sub>Fincas</sub>"
+                },
+                {
+                  "valor": 50.643154,
+                  "cifra": "50.64",
+                  "texto": "usaste SS<sub>Planes</sub> en vez de MS<sub>Planes</sub>"
+                },
+                {
+                  "valor": 7.32,
+                  "cifra": "7.32",
+                  "texto": "calculaste el F de las fincas"
+                }
+              ]
+            },
+            {
+              "n": 4,
+              "id": "N4",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Diferencia crítica de Tukey",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 2.41, b = 6 fincas y q<sub>0.05</sub>(4, 15) = 4.08, calcule la diferencia crítica de Tukey para comparar dos planes al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.59,
+                "tol": 0.02072,
+                "texto": "2.59"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/b) = 4.08·√(2.41/6) = 2.59. Es la del capítulo 3 con b en el lugar de n: cada media de plan promedia una parcela de cada finca.",
+              "rutas": [
+                {
+                  "valor": 3.656858,
+                  "cifra": "3.66",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 3.166932,
+                  "cifra": "3.17",
+                  "texto": "dividiste entre a = 4 en vez de b = 6"
+                },
+                {
+                  "valor": 1.292894,
+                  "cifra": "1.29",
+                  "texto": "dividiste entre ab = 24"
+                }
+              ]
+            },
+            {
+              "n": 5,
+              "id": "N5",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.7 y 3.7 · Pares que Tukey separa",
+              "tipo": "numero",
+              "enunciado": "<p>Las medias por plan son ȳ<sub>Testigo</sub> = 44.10, ȳ<sub>Orgánico</sub> = 47.88, ȳ<sub>Foliar</sub> = 46.95, ȳ<sub>Fraccionado</sub> = 42.22. Tukey separa dos planes cuando su diferencia supera T = 2.59, al 5 % para la familia. De los 6 pares posibles, ¿en cuántos concluye que los dos planes rinden distinto? Responda con un número entero.</p>",
+              "clave": {
+                "valor": 4.0,
+                "tol": 0.4,
+                "texto": "4"
+              },
+              "cuenta": "Las seis diferencias son Testigo–Orgánico = 3.78 ✔; Testigo–Foliar = 2.85 ✔; Testigo–Fraccionado = 1.88; Orgánico–Foliar = 0.93; Orgánico–Fraccionado = 5.66 ✔; Foliar–Fraccionado = 4.73 ✔. Superan T = 2.59 las 4 marcadas.",
+              "rutas": [
+                {
+                  "valor": 2.0,
+                  "cifra": "2",
+                  "texto": "contaste los pares que NO difieren"
+                },
+                {
+                  "valor": 6.0,
+                  "cifra": "6",
+                  "texto": "declaraste distintos los seis pares"
+                }
+              ]
+            },
+            {
+              "n": 6,
+              "id": "N6",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.6 · Eficiencia relativa",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Fincas</sub> = 17.65, MS<sub>E</sub> = 2.41, a = 4 y b = 6, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó la cooperativa al bloquear por fincas frente a repartir las 24 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [(b − 1)MS<sub>Fincas</sub> + b(a − 1)MS<sub>E</sub>] / (ab − 1) y el factor de corrección (f<sub>b</sub> + 1)(f<sub>r</sub> + 3) / [(f<sub>b</sub> + 3)(f<sub>r</sub> + 1)], con f<sub>b</sub> = (a − 1)(b − 1) y f<sub>r</sub> = a(b − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.31,
+                "tol": 0.01848,
+                "texto": "2.31"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = [5·17.65 + 18·2.41] / 23 = 5.72; el factor vale (16·23) / (18·21) = 0.9735; R = 0.9735·5.72 / 2.41 = 2.31. Un DCA habría necesitado unas 13.9 parcelas por plan, en vez de 6, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 2.374707,
+                  "cifra": "2.37",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 7.323651,
+                  "cifra": "7.32",
+                  "texto": "dividiste MS<sub>Fincas</sub> entre MS<sub>E</sub>"
+                },
+                {
+                  "valor": 7.129904,
+                  "cifra": "7.13",
+                  "texto": "aplicaste el factor a MS<sub>Fincas</sub> / MS<sub>E</sub>"
+                }
+              ]
+            },
+            {
+              "n": 7,
+              "id": "S7",
+              "etapa": 1,
+              "etiqueta": "Etapa 1 · cap. 5 · mód. 5.10 · Las fincas como factor aleatorio",
+              "tipo": "opcion",
+              "enunciado": "<p>Las seis fincas no interesan por sí mismas: son una muestra de las fincas socias, y la cooperativa quiere que la conclusión valga para todas. Si las fincas se tratan como un factor aleatorio, ¿qué cambia en el análisis de los planes de fertilización?</p>",
+              "opciones": [
+                {
+                  "texto": "El F de los planes pasa a dividirse entre MS<sub>Fincas</sub>, porque el bloque aleatorio se convierte en el término de error de los planes.",
+                  "retro": "Con bloques aleatorios y el modelo aditivo, la esperanza de MS<sub>Planes</sub> sigue comparándose con la de MS<sub>E</sub>, que es σ²: el denominador del F no cambia (módulo 5.10)."
+                },
+                {
+                  "texto": "Cada diferencia entre dos planes gana la varianza de las fincas, 2(σ² + σ²<sub>β</sub>)/b, y la diferencia crítica de Tukey crece.",
+                  "retro": "Eso le pasa a la media de UN plan, cuya varianza sí sube a (σ² + σ²<sub>β</sub>)/b. En una diferencia cada finca aporta a los dos planes y su efecto se cancela: sigue siendo 2σ²/b (módulo 5.7)."
+                },
+                {
+                  "texto": "Las fincas dejan de restar su suma de cuadrados del error, y el modelo vuelve a ser el de un DCA con veinte grados de libertad de error.",
+                  "retro": "La descomposición es la misma: SS<sub>Fincas</sub> sigue saliendo del error, que conserva sus (a − 1)(b − 1) = 15 grados de libertad. Lo que cambia es qué representa β<sub>j</sub>, no la tabla."
+                },
+                {
+                  "texto": "Nada en la prueba ni en las comparaciones de los planes, pero la conclusión alcanza a todas las fincas y hay una σ²<sub>β</sub> que estimar.",
+                  "retro": "El F, su valor p y las comparaciones entre planes son los mismos en los dos modelos. Lo nuevo es que la conclusión vale para la población de fincas y que se puede estimar σ̂²<sub>β</sub> = (MS<sub>Fincas</sub> − MS<sub>E</sub>)/a (módulo 5.10)."
+                }
+              ],
+              "correcta": 3
+            },
+            {
+              "n": 8,
+              "id": "N8",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · Un residuo del DBCA",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela del plan Orgánico en la finca 5 rindió 49.4 kg. Con la media de su plan, ȳ<sub>Orgánico</sub> = 47.88, la de su finca, ȳ<sub>finca 5</sub> = 44.08, y la media general ȳ<sub>..</sub> = 45.29, calcule su residuo en el modelo del DBCA. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": 2.73,
+                "tol": 0.02184,
+                "texto": "2.73"
+              },
+              "cuenta": "e = y − ȳ<sub>i.</sub> − ȳ<sub>.j</sub> + ȳ<sub>..</sub> = 49.4 − 47.88 − 44.08 + 45.29 = 2.73. El valor ajustado del DBCA es ȳ<sub>i.</sub> + ȳ<sub>.j</sub> − ȳ<sub>..</sub> = 46.67: el plan y la finca a la vez.",
+              "rutas": [
+                {
+                  "valor": 1.52,
+                  "cifra": "1.52",
+                  "texto": "restaste solo la media de su plan, como en un DCA"
+                },
+                {
+                  "valor": -42.56,
+                  "cifra": "−42.56",
+                  "texto": "olvidaste sumar la media general"
+                },
+                {
+                  "valor": 5.32,
+                  "cifra": "5.32",
+                  "texto": "restaste solo la media de su finca"
+                }
+              ]
+            },
+            {
+              "n": 9,
+              "id": "N9",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 y 4.1 · Residuo estandarizado",
+              "tipo": "numero",
+              "enunciado": "<p>Con e = 2.73 y MS<sub>E</sub> = 2.41, calcule el residuo estandarizado d = e / √MS<sub>E</sub>. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": 1.76,
+                "tol": 0.01408,
+                "texto": "1.76"
+              },
+              "cuenta": "d = 2.73 / √2.41 = 1.76. Un |d| menor que 3 no señala por sí solo una parcela atípica.",
+              "rutas": [
+                {
+                  "valor": 1.13278,
+                  "cifra": "1.13",
+                  "texto": "dividiste entre MS<sub>E</sub> sin sacar la raíz"
+                },
+                {
+                  "valor": 4.307544,
+                  "cifra": "4.31",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/b), el error estándar de una media"
+                },
+                {
+                  "valor": 3.517095,
+                  "cifra": "3.52",
+                  "texto": "dividiste entre √(MS<sub>E</sub>/a)"
+                }
+              ]
+            },
+            {
+              "n": 10,
+              "id": "N10",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.8 · La prueba de no aditividad",
+              "tipo": "numero",
+              "enunciado": "<p>Con un grado de libertad, la no aditividad de Tukey se lleva SS<sub>N</sub> = 5.49 del error del DBCA, que es SS<sub>E</sub> = 36.11. Calcule el estadístico F<sub>0</sub> de la prueba, que compara SS<sub>N</sub> con lo que queda del error. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.51,
+                "tol": 0.02008,
+                "texto": "2.51"
+              },
+              "cuenta": "F<sub>0</sub> = SS<sub>N</sub> / [(SS<sub>E</sub> − SS<sub>N</sub>) / ((a − 1)(b − 1) − 1)] = 5.49 / [(36.11 − 5.49) / 14] = 2.51, frente a F<sub>0.05</sub>(1, 14) = 4.60. La prueba toma prestado uno de los 15 grados de libertad del error. Como 2.51 &lt; 4.60, no rechaza la aditividad: el modelo del DBCA es defendible.",
+              "rutas": [
+                {
+                  "valor": 2.278008,
+                  "cifra": "2.28",
+                  "texto": "dividiste entre el MS<sub>E</sub> de 15 gl, sin restar SS<sub>N</sub> del error"
+                },
+                {
+                  "valor": 0.179295,
+                  "cifra": "0.18",
+                  "texto": "restaste SS<sub>N</sub> pero no dividiste entre los gl"
+                },
+                {
+                  "valor": 2.128496,
+                  "cifra": "2.13",
+                  "texto": "no restaste SS<sub>N</sub> del error, pero sí usaste 14 gl"
+                }
+              ]
+            },
+            {
+              "n": 11,
+              "id": "N11",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · La parcela perdida",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela del plan Fraccionado en la finca 4 se hubiera perdido. Sin ella, el total de su plan es y′<sub>i.</sub> = 210.6, el de su finca y′<sub>.j</sub> = 135.3 y el total general y′<sub>..</sub> = 1044.2. Con a = 4 y b = 6, estime el valor faltante con la fórmula clásica para un dato perdido en el DBCA. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 40.67,
+                "tol": 0.32536,
+                "texto": "40.67"
+              },
+              "cuenta": "x = (a·y′<sub>i.</sub> + b·y′<sub>.j</sub> − y′<sub>..</sub>) / [(a − 1)(b − 1)] = (4·210.6 + 6·135.3 − 1044.2) / 15 = 40.67. La parcela de verdad rindió 42.7 kg: la fórmula da lo que predice el modelo aditivo, no lo que la parcela produjo.",
+              "rutas": [
+                {
+                  "valor": 50.706667,
+                  "cifra": "50.71",
+                  "texto": "intercambiaste a y b"
+                },
+                {
+                  "valor": 43.571429,
+                  "cifra": "43.57",
+                  "texto": "dividiste entre 14, como si el error ya hubiera perdido su grado"
+                },
+                {
+                  "valor": -28.946667,
+                  "cifra": "−28.95",
+                  "texto": "restaste dos veces el total general, como en el cuadro latino"
+                }
+              ]
+            },
+            {
+              "n": 12,
+              "id": "S12",
+              "etapa": 2,
+              "etiqueta": "Etapa 2 · cap. 5 · mód. 5.9 · Qué es el valor rellenado",
+              "tipo": "opcion",
+              "enunciado": "<p>Al rellenar la parcela perdida con el valor x de la pregunta anterior y repetir el ANOVA, el analista le resta un grado de libertad al error: 14 en vez de 15. ¿Qué describe mejor ese valor x y ese descuento?</p>",
+              "opciones": [
+                {
+                  "texto": "x es lo que el modelo aditivo predice para esa parcela, el valor que hace mínima SS<sub>E</sub>; no es un dato, así que no aporta un grado.",
+                  "retro": "Es la parábola del módulo 5.9: SS<sub>E</sub>(x) tiene su vértice en la fórmula. Un valor elegido por el propio modelo no trae información sobre σ², y por eso el error pierde un grado de libertad."
+                },
+                {
+                  "texto": "x estima sin sesgo lo que la parcela habría rendido, así que el análisis rellenado reproduce el completo; el grado se resta por convención.",
+                  "retro": "x es la predicción del modelo aditivo para esa parcela, no la parcela: el análisis rellenado no reproduce el completo (en el módulo 5.9, F = 7.62 frente a 8.11 con el dato real). Y el grado no se resta por convención: x no es una observación, así que no informa sobre σ²."
+                },
+                {
+                  "texto": "x es el promedio de la media de su plan y la de su finca, y el grado de libertad se le resta al total, no al error.",
+                  "retro": "La fórmula no promedia dos medias: combina los totales del plan, de la finca y el general con pesos a, b y −1. Y el descuento es del error, y el total también baja, de 23 a 22: es lo que la Tabla 4.8 de Montgomery olvida corregir, la errata que señala el módulo 5.9."
+                },
+                {
+                  "texto": "x es el valor que hace máximo el F de los planes, y el grado se descuenta para compensar ese empujón a favor de los planes.",
+                  "retro": "x hace mínima SS<sub>E</sub>, no máximo el F. El F rellenado sí sale algo más alto que el del análisis exacto, pero no por el error —con el grado descontado, SS<sub>E</sub> y sus grados son los del análisis exacto—, sino porque SS<sub>Planes</sub> sale algo mayor que la ajustada (módulo 5.9)."
+                }
+              ],
+              "correcta": 0
+            },
+            {
+              "n": 13,
+              "id": "S13",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · El cuadro de partida",
+              "tipo": "opcion",
+              "enunciado": "<p>Para sortear el plano, el equipo necesita un cuadro latino 5 × 5 en forma estándar como punto de partida. ¿Cuál de estas cuatro rejillas lo es?</p>",
+              "opciones": [
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B E A C D<br>C D B E A<br>D C E A B<br>E A D B C</span>",
+                  "retro": "Cada letra aparece una vez en cada fila y una vez en cada columna, y la primera fila y la primera columna están en orden alfabético: es un cuadro latino en forma estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>C D B E A<br>B C E A D<br>E A D C B<br>D E A B C</span>",
+                  "retro": "Es un cuadro latino —ninguna letra se repite en su fila ni en su columna—, pero su primera columna dice A, C, B, E, D: no está en orden alfabético, así que no está en forma estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B E D A C<br>C D A E B<br>D C B E A<br>E A B C D</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra B aparece dos veces en la columna 3 y la letra E aparece dos veces en la columna 4: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                },
+                {
+                  "texto": "<span class=\"simulacro-cuadro\">A B C D E<br>B E A C C<br>C A D E B<br>D C E B A<br>E D B A D</span>",
+                  "retro": "La primera fila y la primera columna están en orden, pero la letra C aparece dos veces en la fila 2 y la letra D aparece dos veces en la fila 5: no es un cuadro latino, y una rejilla que no es latina no puede ser estándar."
+                }
+              ],
+              "correcta": 0
+            },
+            {
+              "n": 14,
+              "id": "N14",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cuántos cuadros latinos hay",
+              "tipo": "numero",
+              "enunciado": "<p>Hay 56 cuadros latinos estándar de orden p = 5. ¿Cuántos cuadros latinos distintos de orden 5 existen? Responda con un número entero, sin separador de miles.</p>",
+              "clave": {
+                "valor": 161280.0,
+                "tol": 0.4,
+                "texto": "161280"
+              },
+              "cuenta": "p!·(p − 1)!·56 = 120·24·56 = 161 280. Cada cuadro estándar da p!·(p − 1)! cuadros distintos al permutar sus p columnas y sus p − 1 últimas filas, y cada cuadro latino sale de exactamente uno de ellos.",
+              "rutas": [
+                {
+                  "valor": 2880.0,
+                  "cifra": "2880",
+                  "texto": "olvidaste multiplicar por los cuadros estándar"
+                },
+                {
+                  "valor": 6720.0,
+                  "cifra": "6720",
+                  "texto": "multiplicaste solo por p!"
+                },
+                {
+                  "valor": 806400.0,
+                  "cifra": "806 400",
+                  "texto": "multiplicaste por p! dos veces"
+                }
+              ]
+            },
+            {
+              "n": 15,
+              "id": "S15",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.2 · Cómo se sortea el plano",
+              "tipo": "opcion",
+              "enunciado": "<p>Para el plano de la etapa 3, ¿qué procedimiento produce siempre un cuadro latino y le quita al equipo la decisión de qué variedad va en cada parcela?</p>",
+              "opciones": [
+                {
+                  "texto": "Sortear la variedad de cada una de las 25 parcelas entre las cinco, de forma independiente para cada parcela.",
+                  "retro": "Cada parcela queda al azar, pero nada impide que una variedad caiga dos veces en la misma franja: el resultado casi nunca es un cuadro latino, y el bloqueo se pierde."
+                },
+                {
+                  "texto": "Escribir el cuadro cíclico y asignar las variedades a las letras por su año de liberación, que es un criterio objetivo y reproducible.",
+                  "retro": "Reproducible no es aleatorio: el plano lo decide un criterio del equipo y no un sorteo, que es justo lo que la aleatorización quiere evitar."
+                },
+                {
+                  "texto": "Permutar al azar solo las filas del cuadro cíclico; con eso todos los cuadros latinos 5 × 5 salen con la misma probabilidad.",
+                  "retro": "Permutar las filas da como mucho 5! = 120 cuadros de los 161 280 que existen, y deja las columnas y las letras atadas al cíclico."
+                },
+                {
+                  "texto": "Tomar un cuadro estándar elegido al azar, reordenar al azar sus filas y sus columnas, y sortear qué variedad recibe cada letra.",
+                  "retro": "Cada permutación conserva la propiedad latina y el sorteo decide dónde cae cada variedad. Y como también se sortea el cuadro de partida, todos los cuadros posibles salen con la misma probabilidad. El módulo 6.2 avisa de lo que pasa si se parte siempre del mismo, el cíclico: ahí la receta no alcanza más que una parte de ellos."
+                }
+              ],
+              "correcta": 3
+            },
+            {
+              "n": 16,
+              "id": "N16",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · SS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>En el cuadro latino, SS<sub>T</sub> = 303.66, SS<sub>Altitud</sub> = 40.28, SS<sub>Sombra</sub> = 74.97 y SS<sub>Variedades</sub> = 165.86. Calcule SS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 22.55,
+                "tol": 0.1804,
+                "texto": "22.55"
+              },
+              "cuenta": "SS<sub>E</sub> = 303.66 − 40.28 − 74.97 − 165.86 = 22.55. En el cuadro se restan tres fuentes: las dos direcciones de bloqueo y las variedades.",
+              "rutas": [
+                {
+                  "valor": 97.52,
+                  "cifra": "97.52",
+                  "texto": "olvidaste restar SS<sub>Sombra</sub>"
+                },
+                {
+                  "valor": 62.83,
+                  "cifra": "62.83",
+                  "texto": "olvidaste restar SS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 188.41,
+                  "cifra": "188.41",
+                  "texto": "olvidaste restar SS<sub>Variedades</sub>"
+                }
+              ]
+            },
+            {
+              "n": 17,
+              "id": "N17",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · MS del error del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con SS<sub>E</sub> = 22.55 en el cuadro latino 5 × 5, calcule MS<sub>E</sub>. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 1.88,
+                "tol": 0.01504,
+                "texto": "1.88"
+              },
+              "cuenta": "El error tiene (p − 1)(p − 2) = 12 grados de libertad: MS<sub>E</sub> = 22.55 / 12 = 1.88. De los 24 totales, cada factor se lleva p − 1 = 4.",
+              "rutas": [
+                {
+                  "valor": 1.409375,
+                  "cifra": "1.41",
+                  "texto": "dividiste entre 16, los gl del error de un DBCA con las mismas 25 parcelas"
+                },
+                {
+                  "valor": 1.1275,
+                  "cifra": "1.13",
+                  "texto": "dividiste entre 20, los gl del error de un DCA"
+                },
+                {
+                  "valor": 0.939583,
+                  "cifra": "0.94",
+                  "texto": "dividiste entre 24, los gl totales"
+                }
+              ]
+            },
+            {
+              "n": 18,
+              "id": "N18",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · El F de las variedades",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Variedades</sub> = 41.47 y MS<sub>E</sub> = 1.88, calcule F<sub>0</sub> para las variedades. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 22.06,
+                "tol": 0.17648,
+                "texto": "22.06"
+              },
+              "cuenta": "F<sub>0</sub> = 41.47 / 1.88 = 22.06, frente a F<sub>0.05</sub>(4, 12) = 3.26: al menos una variedad rinde distinto de las demás.",
+              "rutas": [
+                {
+                  "valor": 88.223404,
+                  "cifra": "88.22",
+                  "texto": "usaste SS<sub>Variedades</sub> en vez de MS<sub>Variedades</sub>"
+                },
+                {
+                  "valor": 4.118173,
+                  "cifra": "4.12",
+                  "texto": "dividiste entre MS<sub>Altitud</sub>"
+                },
+                {
+                  "valor": 2.212914,
+                  "cifra": "2.21",
+                  "texto": "dividiste entre MS<sub>Sombra</sub>"
+                }
+              ]
+            },
+            {
+              "n": 19,
+              "id": "S19",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.4 · Otra lectura de los mismos datos",
+              "tipo": "opcion",
+              "enunciado": "<p>Un analista reanaliza los 25 rendimientos como un DBCA que solo bloquea las franjas de altitud y deja la sombra fuera del modelo. Frente al análisis del cuadro latino, ¿qué le pasa a SS<sub>Variedades</sub>, y por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "Crece, porque la variación de las franjas de sombra que el modelo ya no separa se suma a la que se atribuye a las variedades.",
+                  "retro": "La variación de la sombra no puede ir a las variedades: cada variedad pasa una vez por cada franja de sombra, así que esa variación se reparte por igual entre todas. Va entera al error."
+                },
+                {
+                  "texto": "Baja, porque al quitar un factor de bloqueo el modelo pierde parte de la variación que explicaba las diferencias entre variedades.",
+                  "retro": "En este cuadro, por su ortogonalidad, SS<sub>Variedades</sub> depende solo de las medias de las variedades, y esas medias no cambian al quitar un factor del modelo. Lo que puede bajar es el F, porque el error crece."
+                },
+                {
+                  "texto": "No cambia, porque cada variedad pasa una vez por cada franja de sombra y esta aporta lo mismo al total de cada variedad.",
+                  "retro": "Es la ortogonalidad del cuadro (módulo 6.4): SS<sub>Variedades</sub> es la misma en las cuatro lecturas. El error absorbe SS<sub>Sombra</sub> y sus 4 grados de libertad, y pasa a tener (p − 1)² = 16."
+                },
+                {
+                  "texto": "No cambia, porque la suma de cuadrados de un factor nunca depende de qué otros factores entren en el modelo, sea cual sea el diseño.",
+                  "retro": "Aquí no cambia, pero no por esa razón: en un diseño no ortogonal —un cuadro o un DBCA con una parcela perdida, por ejemplo— sí depende, y por eso existe el análisis exacto por mínimos cuadrados de los módulos 5.9 y 6.7."
+                }
+              ],
+              "correcta": 2
+            },
+            {
+              "n": 20,
+              "id": "N20",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.5 · Eficiencia relativa del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>Altitud</sub> = 10.07, MS<sub>Sombra</sub> = 18.74, MS<sub>E</sub> = 1.88 y p = 5, calcule R = factor · σ̂²<sub>DCA</sub> / MS<sub>E</sub>, el cociente que mide cuánto ganó el ensayo al bloquear la altitud y la sombra a la vez frente a repartir las 25 parcelas sin bloques. Use σ̂²<sub>DCA</sub> = [MS<sub>Altitud</sub> + MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>] / (p + 1) y el factor (f<sub>1</sub> + 1)(f<sub>2</sub> + 3) / [(f<sub>1</sub> + 3)(f<sub>2</sub> + 1)], con f<sub>1</sub> = (p − 1)(p − 2) y f<sub>2</sub> = p(p − 1). Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 3.06,
+                "tol": 0.02448,
+                "texto": "3.06"
+              },
+              "cuenta": "σ̂²<sub>DCA</sub> = (10.07 + 18.74 + 4·1.88) / 6 = 6.06; el factor vale (13·23) / (15·21) = 0.9492; R = 0.9492·6.06 / 1.88 = 3.06. Un DCA habría necesitado unas 76 parcelas, en vez de 25, para medir con esta precisión.",
+              "rutas": [
+                {
+                  "valor": 3.220745,
+                  "cifra": "3.22",
+                  "texto": "olvidaste el factor de corrección"
+                },
+                {
+                  "valor": 2.705974,
+                  "cifra": "2.71",
+                  "texto": "calculaste R frente a un DBCA que solo bloquea la altitud —σ̂² = [MS<sub>Sombra</sub> + (p − 1)MS<sub>E</sub>]/p y f<sub>2</sub> = 16—, no frente al DCA"
+                },
+                {
+                  "valor": 3.668582,
+                  "cifra": "3.67",
+                  "texto": "dividiste la suma entre p = 5 en vez de p + 1 = 6"
+                }
+              ]
+            },
+            {
+              "n": 21,
+              "id": "N21",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · Tukey en el cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Con MS<sub>E</sub> = 1.88, p = 5 y q<sub>0.05</sub>(5, 12) = 4.51, calcule la diferencia crítica de Tukey para comparar dos variedades al 5 %. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 2.77,
+                "tol": 0.02216,
+                "texto": "2.77"
+              },
+              "cuenta": "T = q·√(MS<sub>E</sub>/p) = 4.51·√(1.88/5) = 2.77: cada media de variedad promedia sus p = 5 parcelas, una por franja.",
+              "rutas": [
+                {
+                  "valor": 3.910979,
+                  "cifra": "3.91",
+                  "texto": "metiste el 2 de la LSD dentro de la raíz"
+                },
+                {
+                  "valor": 1.23676,
+                  "cifra": "1.24",
+                  "texto": "dividiste entre p² = 25, las parcelas del cuadro"
+                },
+                {
+                  "valor": 1.69576,
+                  "cifra": "1.70",
+                  "texto": "olvidaste la raíz"
+                }
+              ]
+            },
+            {
+              "n": 22,
+              "id": "S22",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.6 · El error estándar en el cuadro",
+              "tipo": "opcion",
+              "enunciado": "<p>En el cuadro, la diferencia entre las medias de dos variedades no arrastra los efectos de las franjas de altitud ni los de las franjas de sombra. ¿Por qué?</p>",
+              "opciones": [
+                {
+                  "texto": "Porque el ANOVA ya restó SS<sub>Altitud</sub> y SS<sub>Sombra</sub> de SS<sub>T</sub>, y lo que sale de la tabla deja de afectar a las medias.",
+                  "retro": "Restar sumas de cuadrados limpia el error, no las medias. Las medias de variedad quedan libres de las franjas por cómo se colocaron las letras: con las variedades mal colocadas, la misma tabla no lo arreglaría."
+                },
+                {
+                  "texto": "Porque cada variedad aparece una vez en cada franja de altitud y una en cada franja de sombra, así que esos efectos suman cero en su media.",
+                  "retro": "Es la razón del módulo 6.6: dentro de la media de una variedad, los efectos de fila y de columna aparecen una vez cada uno y su suma es cero por la restricción del modelo. La ortogonalidad del cuadro es lo que hace insesgada la comparación."
+                },
+                {
+                  "texto": "Porque las franjas se tratan como aleatorias, y sus efectos se promedian a cero cuando el ensayo tiene suficientes parcelas.",
+                  "retro": "No hace falta ningún supuesto aleatorio ni muchas parcelas: con efectos fijos y cinco parcelas por variedad, la cancelación es exacta, y la da el diseño (módulo 6.6)."
+                },
+                {
+                  "texto": "Porque la diferencia se calcula con las 25 parcelas del cuadro, y entre tantas parcelas los efectos de las franjas se diluyen hasta desaparecer.",
+                  "retro": "Cada media de variedad usa solo sus 5 parcelas, no las 25, y nada se diluye: los efectos se cancelan exactamente porque cada variedad pasa una vez por cada franja. Por eso el error estándar de la diferencia es √(2MS<sub>E</sub>/p) y no √(2MS<sub>E</sub>/p²)."
+                }
+              ],
+              "correcta": 1
+            },
+            {
+              "n": 23,
+              "id": "N23",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 y 6.4 · Un residuo del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>La parcela de la franja de altitud 3 y la franja de sombra 5 lleva la variedad B y rindió 42.0 kg. Con la media de su franja de altitud (42.14), la de su franja de sombra (42.88), la de su variedad (37.88) y la media general (41.51), calcule su residuo en el modelo del cuadro latino. Responda con dos decimales y con signo.</p>",
+              "clave": {
+                "valor": 2.12,
+                "tol": 0.01696,
+                "texto": "2.12"
+              },
+              "cuenta": "e = y − ȳ<sub>altitud</sub> − ȳ<sub>sombra</sub> − ȳ<sub>variedad</sub> + 2ȳ = 42.0 − 42.14 − 42.88 − 37.88 + 2·41.51 = 2.12. La media general entra dos veces: cada una de las tres medias marginales la lleva dentro, y el ajustado solo debe llevarla una.",
+              "rutas": [
+                {
+                  "valor": -39.39,
+                  "cifra": "−39.39",
+                  "texto": "sumaste la media general una vez en vez de dos, como en el DBCA"
+                },
+                {
+                  "valor": 3.49,
+                  "cifra": "3.49",
+                  "texto": "olvidaste la columna, como en un DBCA por franjas de altitud"
+                },
+                {
+                  "valor": 4.12,
+                  "cifra": "4.12",
+                  "texto": "restaste solo la media de su variedad"
+                }
+              ]
+            },
+            {
+              "n": 24,
+              "id": "N24",
+              "etapa": 3,
+              "etiqueta": "Etapa 3 · cap. 6 · mód. 6.7 · La parcela perdida del cuadro",
+              "tipo": "numero",
+              "enunciado": "<p>Suponga que la parcela de la franja de altitud 2 y la franja de sombra 2 (variedad E) se hubiera perdido. Sin ella, el total de su franja de altitud es 166.8, el de su franja de sombra 164.4, el de su variedad 160.2 y el total general 1001.5. Con p = 5, estime el valor faltante con la fórmula clásica para un dato perdido en el cuadro latino. Responda con dos decimales.</p>",
+              "clave": {
+                "valor": 37.83,
+                "tol": 0.30264,
+                "texto": "37.83"
+              },
+              "cuenta": "x = [p(y′<sub>altitud</sub> + y′<sub>sombra</sub> + y′<sub>variedad</sub>) − 2y′<sub>total</sub>] / [(p − 2)(p − 1)] = [5(166.8 + 164.4 + 160.2) − 2·1001.5] / 12 = 37.83. La parcela de verdad rindió 36.2 kg. Con el valor rellenado, el error se queda con 11 grados de libertad.",
+              "rutas": [
+                {
+                  "valor": 121.291667,
+                  "cifra": "121.29",
+                  "texto": "restaste el total general una sola vez"
+                },
+                {
+                  "valor": 28.375,
+                  "cifra": "28.38",
+                  "texto": "dividiste entre (p − 1)² = 16"
+                },
+                {
+                  "valor": 41.272727,
+                  "cifra": "41.27",
+                  "texto": "dividiste entre 11, como si el error ya hubiera perdido su grado"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+    // [fin · registro del preparcial]
 
   </script>
 
