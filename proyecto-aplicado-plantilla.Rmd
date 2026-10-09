@@ -1,0 +1,139 @@
+---
+title: "Título del proyecto"
+author: "Nombre Apellido y Nombre Apellido"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+---
+
+<!--
+  Plantilla del informe del proyecto aplicado — Diseño de Experimentos (20920),
+  Universidad El Bosque, 2026-II. La guía del proyecto explica cada sección.
+
+  CÓMO USARLA
+  1. Pon tus datos en un archivo `datos.csv` junto a este .Rmd, en formato
+     largo: una fila por corrida, con columnas `tratamiento`, `bloque`,
+     `orden` y `respuesta` (cambia los nombres a los tuyos).
+  2. Borra el bloque «DATOS DE EJEMPLO» de abajo: está solo para que la
+     plantilla se pueda renderizar desde el primer día.
+  3. Cambia el modelo por el de TU diseño, el que escribiste en el preregistro.
+  4. Pulsa Knit. Si no corre de principio a fin en un R recién abierto, no
+     está terminado.
+-->
+
+```{r configuracion, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(agricolae)
+set.seed(2026)
+```
+
+# Resumen
+
+Cinco líneas: qué se preguntó, cómo se respondió y qué salió.
+
+# La pregunta y el experimento
+
+Por qué importa la pregunta, qué se midió y con qué instrumento, en qué unidad y con qué
+resolución.
+
+# El diseño, planeado y corrido
+
+## Lo que decía el preregistro
+
+Factores y niveles, bloque, unidad experimental, réplicas y su justificación. La tabla de
+corridas se generó así (la misma semilla del preregistro):
+
+```{r tabla-de-corridas}
+tratamientos <- c("A", "B", "C", "D")
+plan <- design.rcbd(tratamientos, r = 5, seed = 2026, serie = 0)
+head(plan$book)
+```
+
+## Lo que pasó de verdad
+
+Cada desviación del preregistro, con lo que cambia en el análisis. Si no hubo ninguna, dilo.
+
+# El análisis confirmatorio
+
+Lo preregistrado, en el orden preregistrado.
+
+```{r datos}
+# ---- DATOS DE EJEMPLO: BORRA ESTE BLOQUE CUANDO TENGAS LOS TUYOS ----
+if (!file.exists("datos.csv")) {
+  datos_ejemplo <- plan$book
+  names(datos_ejemplo) <- c("orden", "bloque", "tratamiento")
+  efecto <- c(A = 0, B = 1, C = 1.5, D = 0.5)
+  datos_ejemplo$respuesta <- round(10 + efecto[datos_ejemplo$tratamiento] +
+                                     0.8 * as.numeric(datos_ejemplo$bloque) +
+                                     rnorm(nrow(datos_ejemplo), sd = 0.6), 2)
+  write.csv(datos_ejemplo, "datos.csv", row.names = FALSE)
+}
+# ---- FIN DE LOS DATOS DE EJEMPLO ----
+
+datos <- read.csv("datos.csv")
+datos$tratamiento <- factor(datos$tratamiento)
+datos$bloque      <- factor(datos$bloque)   # un bloque guardado como número sale mal
+str(datos)
+```
+
+## El modelo y la tabla ANOVA
+
+```{r modelo}
+modelo <- aov(respuesta ~ bloque + tratamiento, data = datos)
+tabla  <- summary(modelo)[[1]]
+tabla
+```
+
+El F de los tratamientos es `r round(tabla[["F value"]][2], 2)`, con
+`r tabla[["Df"]][2]` y `r tabla[["Df"]][3]` grados de libertad. (Las cifras del texto se
+escriben así, con R en línea, nunca copiadas a mano de la salida.)
+
+## Los supuestos
+
+```{r supuestos, fig.height = 4}
+par(mfrow = c(1, 3))
+qqnorm(residuals(modelo)); qqline(residuals(modelo))
+plot(fitted(modelo), residuals(modelo), xlab = "Ajustados", ylab = "Residuos")
+abline(h = 0, lty = 2)
+plot(datos$orden, residuals(modelo), xlab = "Orden de corrida", ylab = "Residuos")
+abline(h = 0, lty = 2)
+```
+
+Qué se ve en cada gráfico, y qué se hizo con eso.
+
+## Las comparaciones
+
+Solo las que se eligieron en el preregistro.
+
+```{r comparaciones}
+TukeyHSD(modelo, "tratamiento")
+```
+
+# El análisis exploratorio
+
+Lo que se te ocurrió después de ver los datos, marcado como tal. Puede sugerir una hipótesis
+para otro experimento; no puede confirmar nada. Si no lo hay, borra esta sección.
+
+# Conclusión
+
+En el lenguaje del problema: qué se encontró, de qué tamaño son los efectos, con qué
+incertidumbre, y qué **no** permite concluir este experimento.
+
+# Declaración de uso de IA
+
+Qué herramienta usaste, para qué, qué te devolvió y qué verificaste o corregiste, con al menos
+un ejemplo concreto. Si no usaste ninguna, escríbelo.
+
+# Anexos
+
+## La tabla de corridas completa
+
+```{r anexo-corridas}
+plan$book
+```
+
+## La bitácora de ejecución
+
+Fecha de cada sesión, el orden real frente al planeado y cada incidente.
