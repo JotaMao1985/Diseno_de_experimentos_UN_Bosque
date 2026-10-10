@@ -4113,7 +4113,7 @@
             <h1 class="text-xl font-bold text-white leading-tight tracking-tight" style="margin:0;">Diseño de Experimentos
             </h1>
             <p class="text-xs text-white/70 font-medium tracking-wide" style="margin:0; text-align:left;">PROYECTO APLICADO • CORTE III •
-              CAPÍTULOS 1 A 10 • 20&nbsp;% DE LA NOTA DEL CORTE • UNBOSQUE 2026-II</p>
+              CAPÍTULOS 1 A 10 • 50&nbsp;% DE LA NOTA DEL CORTE • UNBOSQUE 2026-II</p>
           </div>
         </div>
         <a href="index.html" data-volver-portada
@@ -4293,24 +4293,53 @@
           <tr>
             <td>5</td><td><strong>Exposición</strong></td>
             <td>10 minutos por equipo y 5 de preguntas, en clase</td>
-            <td>en clase</td><td>16</td><td>30 %</td>
+            <td>se acuerda en clase</td><td>16</td><td>30 %</td>
           </tr>
         </tbody>
       </table>
 
       <div class="warning">
         <p style="margin:0;"><strong>Cuándo y dónde.</strong> Todas las entregas cierran a las
-          <strong>11:00</strong> del día que dice la tabla y se envían
-          <strong>por el medio que se te indique</strong>. Las dudas se preguntan <strong>en clase o en las horas de tutoría</strong>
+          <strong>11:00</strong> del día que dice la tabla y se entregan
+          <strong>como una release del repositorio del proyecto en GitHub</strong>, que es privado y donde vive todo el proyecto: el módulo
+          3 explica cómo se monta. Las dudas se preguntan <strong>en clase o en las horas de tutoría</strong>
           —<strong>martes y viernes de 11:00 a 13:00</strong> y <strong>jueves de 14:00 a 16:00</strong>—. La exposición es <strong>en clase, en la semana 16</strong>
-          (del lunes 23 al sábado 28 de noviembre).</p>
+          (del lunes 23 al sábado 28 de noviembre); el día exacto se acuerda en clase.</p>
       </div>
+
+      <h3>Si una entrega llega tarde</h3>
+
+      <p>Por cada sesión de retraso se descuenta el <strong>15 %</strong> de la nota que
+        habría tenido la entrega a tiempo. La primera sesión cuenta desde el cierre —una release
+        publicada cinco minutos tarde ya lleva el primer descuento— y cada clase que empiece sin
+        que la hayas publicado suma otro. El descuento es siempre <strong>sobre la nota
+        original</strong>, no sobre lo que va quedando:</p>
+
+      <table>
+        <caption>El descuento por entrega tardía, sobre una entrega que a tiempo habría sacado
+          4,0.</caption>
+        <thead>
+          <tr><th scope="col">Sesiones de retraso</th><th scope="col">Descuento</th>
+            <th scope="col">La nota queda en</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>0 %</td><td>4,0</td></tr>
+          <tr><td>1</td><td>15 %</td><td>3,4</td></tr>
+          <tr><td>2</td><td>30 %</td><td>2,8</td></tr>
+          <tr><td>3</td><td>45 %</td><td>2,2</td></tr>
+        </tbody>
+      </table>
+
+      <p>Se aplica al preregistro, al avance y al informe, a la nota de cada uno y antes del tope
+        de las preguntas que explica este mismo módulo. La ficha no tiene nota, así que no tiene
+        descuento, pero si llega tarde la respuesta también llega tarde. La exposición no se puede
+        atrasar: es en clase.</p>
 
       <h3>Cuánto pesa cada cosa</h3>
 
-      <p>El proyecto vale el <strong>20 %</strong> de la nota del Corte III, y
+      <p>El proyecto vale el <strong>50 %</strong> de la nota del Corte III, y
         el Corte III es el 40 % del curso: en total, el
-        <strong>8 %</strong> de tu nota final. Dentro del proyecto, cada hito
+        <strong>20 %</strong> de tu nota final. Dentro del proyecto, cada hito
         pesa esto:</p>
 
       <table>
@@ -4322,19 +4351,19 @@
         <tbody>
           <tr>
             <td>Preregistro</td><td>P1, P2, P3</td><td>15 %</td>
-            <td><strong>3 %</strong></td>
+            <td><strong>7.5 %</strong></td>
           </tr>
           <tr>
             <td>Avance</td><td>A1, A2</td><td>10 %</td>
-            <td><strong>2 %</strong></td>
+            <td><strong>5 %</strong></td>
           </tr>
           <tr>
             <td>Informe y código</td><td>I1, I2, I3, I4, I5, I6</td><td>45 %</td>
-            <td><strong>9 %</strong></td>
+            <td><strong>22.5 %</strong></td>
           </tr>
           <tr>
             <td>Exposición</td><td>E1, E2</td><td>30 %</td>
-            <td><strong>6 %</strong></td>
+            <td><strong>15 %</strong></td>
           </tr>
         </tbody>
       </table>
@@ -4522,13 +4551,140 @@
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 3 · Hito 1 · Ficha del tema
+  <!-- MÓDULO 3 · El repositorio en GitHub
   <!-- ============================================================ -->
   <template id="module-3">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
           <span>Módulo 3</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">El repositorio en GitHub</h2>
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
+          <span class="text-xl">🎯</span>
+          <div>
+            <h3 class="font-bold text-gray-800 text-sm" style="margin:0;">Objetivo</h3>
+            <p class="text-gray-600 text-sm" style="margin:0;">Montar el repositorio donde vive todo el proyecto y saber qué cuenta como entrega.</p>
+          </div>
+        </div>
+      </div>
+      <p>Todo el proyecto vive en un <strong>repositorio privado de GitHub</strong>, uno por equipo:
+        la ficha, el preregistro, la tabla de corridas, los datos, la bitácora, el código y el
+        informe. No se entrega nada por otro lado. El repositorio es a la vez el canal de entrega y
+        la documentación del caso: quien lo abra tiene que poder entender qué hiciste y
+        reproducirlo sin preguntarte nada.</p>
+
+      <h3>Crearlo, antes de la ficha</h3>
+
+      <div class="diagram">
+        <ol>
+          <li><strong>Créalo privado</strong>, con el nombre <code>proyecto-dde-apellido1-apellido2</code> —tu
+            apellido, o los de los dos— y con un <code>README.md</code>.</li>
+          <li><strong>En pareja</strong>, quien lo crea invita al otro como colaborador, y cada uno
+            trabaja con su propia cuenta: el historial dice quién hizo qué.</li>
+          <li><strong>Invita al docente</strong> como colaborador: el usuario
+            <code>JotaMao1985</code>, en <em>Settings → Collaborators → Add people</em>. Sin
+            esa invitación el docente no ve tu repositorio, y lo que no se ve no está
+            entregado.</li>
+        </ol>
+      </div>
+
+      <p>Es privado a propósito: los otros equipos no ven tu trabajo, y los datos que tomes de
+        personas no quedan a la vista de cualquiera. La ficha es la primera entrega, así que el
+        repositorio tiene que existir, con el docente invitado, antes del
+        <strong>viernes 16 de octubre a las 11:00</strong>.</p>
+
+      <h3>Cómo se organiza</h3>
+
+      <p>Usa esta estructura: es la que espera la plantilla del informe y la que el docente va a
+        buscar. Abre la carpeta como proyecto de RStudio, con su archivo <code>.Rproj</code>, y
+        todas las rutas quedan relativas a la raíz.</p>
+
+      <table>
+        <caption>Qué va en el repositorio y dónde.</caption>
+        <thead>
+          <tr><th scope="col">Archivo o carpeta</th><th scope="col">Qué es</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>README.md</code></td><td>Qué se pregunta, quiénes son y cómo se reproduce todo</td></tr>
+          <tr><td><code>ficha.md</code></td><td>Hito 1</td></tr>
+          <tr><td><code>preregistro.md</code></td><td>Hito 2: el plan, escrito antes de tener datos</td></tr>
+          <tr><td><code>avance.md</code></td><td>Hito 3: las desviaciones y el primer gráfico</td></tr>
+          <tr><td><code>informe.Rmd</code></td><td>Hito 4, a partir de la plantilla</td></tr>
+          <tr><td><code>informe.html</code></td><td>El informe ya renderizado</td></tr>
+          <tr><td><code>R/tabla-corridas.R</code></td><td>El guion que genera la tabla de corridas, con la semilla del preregistro</td></tr>
+          <tr><td><code>datos/tabla-corridas.csv</code></td><td>La tabla que escribió ese guion</td></tr>
+          <tr><td><code>datos/datos.csv</code></td><td>Los datos crudos, tal como se midieron</td></tr>
+          <tr><td><code>datos/bitacora.md</code></td><td>Cada sesión de trabajo y cada incidente</td></tr>
+          <tr><td><code>figuras/</code></td><td>Los gráficos que enlazan los <code>.md</code></td></tr>
+          <tr><td><code>proyecto-dde-apellido1-apellido2.Rproj</code></td><td>El proyecto de RStudio</td></tr>
+          <tr><td><code>.gitignore</code></td><td>Lo que no se sube</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Las buenas prácticas</h3>
+
+      <p>Las tres primeras entran en la rúbrica, en el criterio de reproducibilidad del informe; las
+        demás son las que hacen que las tres primeras se cumplan sin esfuerzo.</p>
+
+      <ul>
+        <li><strong>El README es la puerta.</strong> Dice qué se pregunta, quiénes son, qué hay en
+          cada carpeta y cómo se reproduce el informe, paso a paso. Alguien que no te conoce tiene
+          que poder clonar el repositorio, seguir el README y obtener tu informe.</li>
+        <li><strong>Los datos crudos no se tocan a mano.</strong> <code>datos/datos.csv</code> es lo
+          que se midió. Si hay que corregir algo —un valor mal digitado—, se corrige con código y se
+          anota en la bitácora: así se ve qué cambió y por qué.</li>
+        <li><strong>Lo exploratorio va aparte</strong>, marcado como tal, como explica el módulo del
+          preregistro.</li>
+        <li><strong>Rutas relativas.</strong> Nada de <code>C:/Users/...</code>: con el proyecto de
+          RStudio abierto, los datos son <code>"datos/datos.csv"</code> en cualquier
+          computador.</li>
+        <li><strong>Commits pequeños, con un mensaje que diga qué cambió.</strong> «Añade las
+          corridas del bloque 2» sirve; «cambios» o «final final», no. El historial también es
+          documentación: muestra, entre otras cosas, que el preregistro existió antes que los
+          datos.</li>
+        <li><strong>Nada de datos personales.</strong> Ni nombres, ni documentos de identidad, ni
+          los consentimientos firmados: esos se guardan fuera del repositorio. En los datos, cada
+          participante es un código.</li>
+        <li><strong>Lo que R genera solo no se sube</strong>: <code>.Rhistory</code>,
+          <code>.RData</code> y <code>.Rproj.user/</code> van en el <code>.gitignore</code>. La
+          excepción es el informe renderizado, que sí se sube: es lo que se lee sin instalar
+          nada.</li>
+      </ul>
+
+      <h3>Cómo se entrega: una release por hito</h3>
+
+      <p>Hacer commits no es entregar. Cada hito se entrega publicando una <strong>release</strong>
+        del repositorio con su etiqueta: <code>ficha</code>, <code>preregistro</code>, <code>avance</code> e <code>informe</code>. En GitHub es <em>Releases → Draft a new
+        release</em>: escribes la etiqueta, eliges <em>Create new tag</em> y pulsas <em>Publish
+        release</em>.</p>
+
+      <p>La hora de la entrega es la hora en que GitHub publica la release, no la de tus commits, y
+        tiene que ser antes de las <strong>11:00</strong> del día de cierre. Si después
+        sigues haciendo commits, la release no cambia: lo entregado es lo que había en ese momento.
+        Si antes del cierre ves un error, lo corriges y publicas otra release con un número, como
+        <code>preregistro-2</code>: se califica la última que llegó a tiempo. Si no
+        llegó ninguna a tiempo, se califica la primera que llegó, con el descuento por entrega
+        tardía que explica el primer módulo.</p>
+
+      <div class="note">
+        <p style="margin:0;"><strong>La release congela el preregistro.</strong> Después de publicar
+          la release <code>preregistro</code>, el archivo <code>preregistro.md</code> no
+          se vuelve a editar: si algo cambia al correr el experimento, va como desviación en el
+          avance. GitHub guarda la versión de cada release y cualquiera puede compararla con la del
+          informe. Un preregistro reescrito después de ver los datos no se esconde: se nota.</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- ============================================================ -->
+  <!-- MÓDULO 4 · Hito 1 · Ficha del tema
+  <!-- ============================================================ -->
+  <template id="module-4">
+    <div class="animate-fade-in">
+      <div class="border-b border-gray-100 pb-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
+          <span>Módulo 4</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">Hito 1 · Ficha del tema</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -4543,6 +4699,10 @@
         10. <strong>No tiene nota.</strong> Sirve para una sola cosa: que el docente vea
         tu tema a tiempo y lo frene si no da para un proyecto, antes de que gastes una semana en un
         preregistro que no va a funcionar.</p>
+
+      <p>Va en <code>ficha.md</code>, en la raíz del repositorio, y se entrega con la release
+        <code>ficha</code>. Es la primera, así que para entonces el repositorio ya
+        existe y el docente ya está invitado, como explica el módulo 3.</p>
 
       <p>Son unas <strong>150 palabras</strong> en total, con estos campos y en este
         orden:</p>
@@ -4591,13 +4751,13 @@
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 4 · Hito 2 · Preregistro
+  <!-- MÓDULO 5 · Hito 2 · Preregistro
   <!-- ============================================================ -->
-  <template id="module-4">
+  <template id="module-5">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
-          <span>Módulo 4</span>
+          <span>Módulo 5</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">Hito 2 · Preregistro</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -4613,6 +4773,11 @@
         hasta <strong>2 páginas</strong>, más la tabla de corridas como anexo,
         que no cuenta para el límite. Se escribe <strong>antes de tener un solo dato</strong>, y esa
         es toda su gracia.</p>
+
+      <p>Va en <code>preregistro.md</code>, con el guion que genera la tabla de corridas en
+        <code>R/</code> y la tabla en <code>datos/</code>, y se entrega con la release
+        <code>preregistro</code>. Desde ese momento <strong>no se edita</strong>: lo que
+        cambie al correr el experimento va al avance como desviación.</p>
 
       <h3>Por qué se preregistra</h3>
 
@@ -4713,13 +4878,13 @@ power.anova.test(groups = 4, between.var = var(medias),
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 5 · Hito 3 · Avance
+  <!-- MÓDULO 6 · Hito 3 · Avance
   <!-- ============================================================ -->
-  <template id="module-5">
+  <template id="module-6">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
-          <span>Módulo 5</span>
+          <span>Módulo 6</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">Hito 3 · Avance</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -4733,23 +4898,24 @@ power.anova.test(groups = 4, between.var = var(medias),
       <p>El avance cierra el <strong>viernes 6 de noviembre a las 11:00</strong>, en la semana 13, y
         vale el <strong>10 %</strong> del proyecto. Llega a mitad de camino a propósito:
         es el momento en que un dato perdido o una corrida que salió mal todavía se pueden
-        arreglar, y no la víspera del informe.</p>
+        arreglar, y no la víspera del informe. Se entrega con la release
+        <code>avance</code>.</p>
 
       <h3>Qué se entrega</h3>
 
       <div class="diagram">
         <ol>
-          <li><strong>Los datos crudos</strong>, en un <code>.csv</code> en formato largo: una fila
+          <li><strong>Los datos crudos</strong>, en <code>datos/datos.csv</code>, en formato largo: una fila
             por corrida, una columna por factor, una para el bloque si lo hay, una para el
             <strong>orden en que se corrió de verdad</strong>, la respuesta y una columna de
             observaciones.</li>
-          <li><strong>La bitácora de ejecución.</strong> Fecha de cada sesión, el orden real frente
+          <li><strong>La bitácora de ejecución</strong>, en <code>datos/bitacora.md</code>. Fecha de cada sesión, el orden real frente
             al planeado y cada incidente: una corrida repetida, un instrumento que se cambió, un
             participante que se retiró.</li>
-          <li><strong>Las desviaciones del preregistro</strong>, cada una con lo que cambia en el
-            análisis.</li>
-          <li><strong>Un primer gráfico</strong> descriptivo de la respuesta por tratamiento. Todavía
-            sin pruebas.</li>
+          <li><strong>Las desviaciones del preregistro</strong>, en <code>avance.md</code>, cada una
+            con lo que cambia en el análisis.</li>
+          <li><strong>Un primer gráfico</strong> descriptivo de la respuesta por tratamiento, en
+            <code>figuras/</code> y enlazado desde <code>avance.md</code>. Todavía sin pruebas.</li>
         </ol>
       </div>
 
@@ -4757,11 +4923,14 @@ power.anova.test(groups = 4, between.var = var(medias),
         di cuándo terminas: un avance honesto con la mitad de los datos vale más que uno completo
         que esconde que el orden no se respetó.</p>
 
-<pre><code class="language-r">datos &lt;- read.csv("datos.csv")
+<pre><code class="language-r">datos &lt;- read.csv("datos/datos.csv")
 str(datos)                          # los factores tienen que ser factor, no números
 datos$tratamiento &lt;- factor(datos$tratamiento)
 datos$bloque      &lt;- factor(datos$bloque)
-boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
+dir.create("figuras", showWarnings = FALSE)
+png("figuras/primer-grafico.png", width = 800, height = 500)
+boxplot(respuesta ~ tratamiento, data = datos)
+dev.off()</code></pre>
 
       <div class="warning">
         <p style="margin:0;"><strong>Un bloque guardado como número es el error más barato de
@@ -4782,13 +4951,13 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 6 · Hito 4 · Informe y código
+  <!-- MÓDULO 7 · Hito 4 · Informe y código
   <!-- ============================================================ -->
-  <template id="module-6">
+  <template id="module-7">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
-          <span>Módulo 6</span>
+          <span>Módulo 7</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">Hito 4 · Informe y código</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -4800,10 +4969,11 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
         </div>
       </div>
       <p>El informe cierra el <strong>lunes 23 de noviembre a las 11:00</strong>, en la semana 16,
-        y vale el <strong>45 %</strong> del proyecto: es lo que más pesa. Se entregan
-        tres cosas juntas: el archivo <code>.Rmd</code> que lo produce, los datos en
-        <code>.csv</code> y el informe ya renderizado, en HTML o en PDF. Son hasta
-        <strong>10 páginas</strong> sin contar los anexos.</p>
+        y vale el <strong>45 %</strong> del proyecto: es lo que más pesa. Se entrega
+        con la release <code>informe</code>, y en ella tienen que estar tres cosas:
+        <code>informe.Rmd</code>, los datos en <code>datos/</code> y el informe ya renderizado, en
+        HTML o en PDF. Son hasta <strong>10 páginas</strong> sin contar los
+        anexos.</p>
 
       <h3>La estructura</h3>
 
@@ -4826,15 +4996,17 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
 
       <h3>Que corra de principio a fin</h3>
 
-      <p>El informe tiene que salir entero de pulsar <em>Knit</em> en un R recién abierto: rutas
-        relativas, la semilla puesta, ningún objeto que exista solo en tu sesión. Y las cifras del
+      <p>El informe tiene que salir entero de clonar el repositorio, abrir
+        <code>informe.Rmd</code> en un R recién abierto y pulsar <em>Knit</em>: rutas relativas, la
+        semilla puesta, ningún objeto que exista solo en tu sesión. Y las cifras del
         texto no se copian a mano de la salida: se escriben con R en línea, como
         <code>`r round(tabla$F[1], 2)`</code>, para que si cambia un dato cambie también el texto.
         Es la misma regla con la que se escribe este material.</p>
 
       <div class="tip-box">
         <p style="margin:0;"><strong>Hay una plantilla.</strong>
-          <a href="proyecto-aplicado-plantilla.Rmd" download>Descarga <code>proyecto-aplicado-plantilla.Rmd</code></a>: trae la
+          <a href="proyecto-aplicado-plantilla.Rmd" download>Descarga <code>proyecto-aplicado-plantilla.Rmd</code></a> y
+          guárdala como <code>informe.Rmd</code> en la raíz del repositorio: trae la
           estructura de arriba, los bloques de R para la tabla de corridas, el modelo y el
           diagnóstico de residuos, y la sección de la declaración de IA. Viene con datos de ejemplo
           para que la puedas renderizar desde el primer día; bórralos cuando tengas los tuyos.</p>
@@ -4867,13 +5039,13 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 7 · La exposición
+  <!-- MÓDULO 8 · La exposición
   <!-- ============================================================ -->
-  <template id="module-7">
+  <template id="module-8">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
-          <span>Módulo 7</span>
+          <span>Módulo 8</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">La exposición</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -4885,7 +5057,8 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
         </div>
       </div>
       <p>La exposición es <strong>en clase, en la semana 16</strong>
-        (del lunes 23 al sábado 28 de noviembre), y vale el <strong>30 %</strong> del proyecto.
+        (del lunes 23 al sábado 28 de noviembre; el día exacto se acuerda en clase), y vale el
+        <strong>30 %</strong> del proyecto.
         Cada equipo tiene <strong>10 minutos</strong> para contar su experimento y
         <strong>5 de preguntas</strong>. El orden de los equipos se sortea al
         empezar la sesión: prepárate para ir el primero.</p>
@@ -4936,13 +5109,13 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
   </template>
 
   <!-- ============================================================ -->
-  <!-- MÓDULO 8 · La rúbrica
+  <!-- MÓDULO 9 · La rúbrica
   <!-- ============================================================ -->
-  <template id="module-8">
+  <template id="module-9">
     <div class="animate-fade-in">
       <div class="border-b border-gray-100 pb-6 mb-6">
         <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
-          <span>Módulo 8</span>
+          <span>Módulo 9</span>
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">La rúbrica</h2>
         <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
@@ -5093,9 +5266,9 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
           <tr><th scope="col">Nivel</th><th scope="col">Qué se ve</th></tr>
         </thead>
         <tbody>
-          <tr><td>Insuficiente</td><td>El código no corre, o el análisis cambia respecto al preregistro sin decirlo.</td></tr>
-          <tr><td>Aceptable</td><td>El código corre, pero lo exploratorio y lo confirmatorio van mezclados.</td></tr>
-          <tr><td>Sólido</td><td>El código corre de principio a fin y lo exploratorio va aparte, marcado como tal.</td></tr>
+          <tr><td>Insuficiente</td><td>El informe no se reproduce desde el repositorio —faltan los datos, hay rutas absolutas— o el análisis cambia respecto al preregistro sin decirlo.</td></tr>
+          <tr><td>Aceptable</td><td>El informe se reproduce, pero el README no dice cómo, los datos crudos se editaron a mano o lo exploratorio va mezclado con lo confirmatorio.</td></tr>
+          <tr><td>Sólido</td><td>Se clona el repositorio, se sigue el README y el informe sale entero; los datos crudos están intactos y lo exploratorio va aparte, marcado como tal.</td></tr>
         </tbody>
       </table>
 
@@ -5163,12 +5336,13 @@ boxplot(respuesta ~ tratamiento, data = datos)</code></pre>
       modules: [
         { id: 1, title: "Cómo funciona el proyecto", shortTitle: "Cómo funciona", duration: "10 min" },
         { id: 2, title: "Qué experimento vale", shortTitle: "Qué vale", duration: "12 min" },
-        { id: 3, title: "Hito 1 · Ficha del tema", shortTitle: "Ficha", duration: "5 min" },
-        { id: 4, title: "Hito 2 · Preregistro", shortTitle: "Preregistro", duration: "15 min" },
-        { id: 5, title: "Hito 3 · Avance", shortTitle: "Avance", duration: "6 min" },
-        { id: 6, title: "Hito 4 · Informe y código", shortTitle: "Informe", duration: "10 min" },
-        { id: 7, title: "La exposición", shortTitle: "Exposición", duration: "6 min" },
-        { id: 8, title: "La rúbrica", shortTitle: "Rúbrica", duration: "10 min" }
+        { id: 3, title: "El repositorio en GitHub", shortTitle: "Repositorio", duration: "8 min" },
+        { id: 4, title: "Hito 1 · Ficha del tema", shortTitle: "Ficha", duration: "5 min" },
+        { id: 5, title: "Hito 2 · Preregistro", shortTitle: "Preregistro", duration: "15 min" },
+        { id: 6, title: "Hito 3 · Avance", shortTitle: "Avance", duration: "6 min" },
+        { id: 7, title: "Hito 4 · Informe y código", shortTitle: "Informe", duration: "10 min" },
+        { id: 8, title: "La exposición", shortTitle: "Exposición", duration: "6 min" },
+        { id: 9, title: "La rúbrica", shortTitle: "Rúbrica", duration: "10 min" }
       ]
     };
 
