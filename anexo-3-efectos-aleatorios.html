@@ -4542,7 +4542,7 @@ print(f"2026-I    : a = {gl['a']} telares, n = {gl['n']} medidas, N = {gl['N']}"
         <p style="margin-bottom:0;">El capítulo 9 desarrolla §13.4, §13.5 y §13.6.1 <strong>en el anidado</strong>;
           este anexo los desarrolla <strong>en el cruzado</strong>, que es donde Montgomery los presenta y donde las
           dos versiones del modelo mixto de verdad se separan. No es un reparto de conveniencia: en un anidado puro
-          el modelo restringido y el no restringido dan siempre lo mismo —es la <strong>regla 55</strong> del
+          el modelo restringido y el no restringido dan siempre lo mismo —lo explica el módulo 9.10 del
           capítulo 9— y por eso allí la distinción no se puede enseñar. Aquí sí. Si algo de lo que buscas está en la
           mitad derecha de la tabla de arriba, ve allí: aquí no lo vas a encontrar repetido.</p>
       </div>
@@ -6545,9 +6545,9 @@ print(f"la misma tabla, dos F: {f_res:.2f} y {f_nor:.2f}")
         <h4><i class="fas fa-circle-info mr-2" aria-hidden="true"></i>Por qué esto se enseña aquí y no en el
           capítulo 9</h4>
         <p style="margin-bottom:0;">Porque en un diseño <strong>anidado puro</strong> las dos formulaciones dan
-          siempre el mismo resultado —es la <strong>regla 55</strong> del
-          <a href="capitulo-9-anidados.html">capítulo 9</a>, y la razón es que un término anidado no tiene índices
-          «muertos» sobre los que sumar—. Allí la distinción existe pero no se puede ver. En el
+          siempre el mismo resultado —lo explica el módulo 9.10 del
+          <a href="capitulo-9-anidados.html">capítulo 9</a>, y la razón es que en un término anidado el subíndice del
+          padre va «muerto»: no hay ningún subíndice vivo de un factor fijo sobre el que sumar—. Allí la distinción existe pero no se puede ver. En el
           <strong>cruzado</strong> sí, y estos dos números son la demostración. Es la aplicación exacta de la
           frontera que fijó el módulo A3.1.</p>
       </div>
@@ -9773,7 +9773,7 @@ const DATOS_ANEXO3 = {"telar_montgomery":{"fuente":"Montgomery (2017), Tabla 3.1
           { texto: 'El error estándar de la media de un operario se construye con $MS_E$, porque el operario es fijo.', correcta: false,
             retro: 'Falso. La media de un operario lleva dentro su interacción con las veinte piezas muestreadas, así que el error estándar correcto es $\\sqrt{MS_{AB}/bn}$. Es la misma regla del denominador aplicada a una comparación en vez de a una prueba $F$, y usar $MS_E$ da intervalos demasiado estrechos — el mismo error que el módulo A3.4 cometía con la media global. Vuelve al módulo <strong>A3.7</strong>.' },
           { texto: 'En un diseño <strong>anidado puro</strong> las dos formulaciones dan siempre el mismo resultado.', correcta: true,
-            retro: 'Cierto: es la regla 55 del capítulo 9, y la razón es que un término anidado no tiene índices «muertos» sobre los que sumar, así que la restricción no restringe nada. Por eso esta distinción se enseña <strong>aquí</strong>, sobre el factorial cruzado, y no allí: en el anidado existe pero no se puede ver.' },
+            retro: 'Cierto: lo explica el módulo 9.10 del capítulo 9, y la razón es que en un término anidado el subíndice del padre va «muerto»: no hay ningún subíndice vivo de un factor fijo sobre el que sumar, así que la restricción no restringe nada. Por eso esta distinción se enseña <strong>aquí</strong>, sobre el factorial cruzado, y no allí: en el anidado existe pero no se puede ver.' },
           { texto: 'La igualdad $\\sigma^2_\\gamma = \\sigma^2_\\beta + \\sigma^2_{\\alpha\\gamma}/a$ de la p. 600 relaciona correctamente los dos modelos.', correcta: false,
             retro: 'Falso: va con signo <strong>menos</strong>. De la definición del propio libro, $\\beta_j = \\gamma_j + (\\alpha\\gamma)_{\\cdot j}$, sale $\\sigma^2_\\beta = \\sigma^2_\\gamma + \\sigma^2_{\\alpha\\gamma}/a$, o sea la impresa con $\\beta$ y $\\gamma$ intercambiadas. Lo zanjan sus propios estimadores: con la forma correcta sale $\\mathbf{10.279825}$, que es el $10.2798$ de su Tabla 13.6, y con la impresa $\\mathbf{10.186550}$, que no aparece en ninguna página. Es la errata <strong>E7</strong>, en el módulo <strong>A3.7</strong>.' }
         ]
