@@ -1,7 +1,7 @@
 ---
 title: "Título del proyecto"
 author: "Nombre Apellido y Nombre Apellido"
-date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+date: "`r hoy <- Sys.Date(); meses <- c('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'); paste(as.integer(format(hoy, '%d')), 'de', meses[as.integer(format(hoy, '%m'))], 'de', format(hoy, '%Y'))`"
 output:
   html_document:
     toc: true
@@ -15,10 +15,12 @@ output:
   CÓMO USARLA
   1. Guárdala como `informe.Rmd` en la raíz del repositorio del proyecto.
   2. Pon tus datos en `datos/datos.csv`, en formato largo: una fila por
-     corrida, con columnas `tratamiento`, `bloque`, `orden` y `respuesta`
-     (cambia los nombres a los tuyos).
-  3. Borra el bloque «DATOS DE EJEMPLO» de abajo: está solo para que la
-     plantilla se pueda renderizar desde el primer día.
+     corrida, con columnas `tratamiento`, `bloque`, `orden` (el orden en que
+     se corrió de verdad) y `respuesta` (cambia los nombres a los tuyos).
+  3. Mientras no exista `datos/datos.csv`, la plantilla usa datos de ejemplo
+     que viven solo en la memoria de R: no escribe nada en `datos/`, y el
+     informe lo avisa en grande. Cuando tengas tus datos, borra el bloque
+     «DATOS DE EJEMPLO».
   4. Cambia el modelo por el de TU diseño, el que escribiste en el preregistro.
   5. Pulsa Knit. Si no corre de principio a fin en un R recién abierto, no
      está terminado. Sube también el `informe.html` que sale.
@@ -61,36 +63,44 @@ Cada desviación del preregistro, con lo que cambia en el análisis. Si no hubo 
 Lo preregistrado, en el orden preregistrado.
 
 ```{r datos}
-# ---- DATOS DE EJEMPLO: BORRA ESTE BLOQUE CUANDO TENGAS LOS TUYOS ----
-if (!file.exists("datos/datos.csv")) {
-  datos_ejemplo <- plan$book
-  names(datos_ejemplo) <- c("orden", "bloque", "tratamiento")
+de_ejemplo <- !file.exists("datos/datos.csv")
+if (!de_ejemplo) {
+  datos <- read.csv("datos/datos.csv")
+} else {
+  # ---- DATOS DE EJEMPLO: BORRA ESTE BLOQUE CUANDO TENGAS LOS TUYOS ----
+  # Solo en memoria: no se escribe nada en datos/, que es para lo medido.
+  datos <- plan$book
+  names(datos) <- c("parcela", "bloque", "tratamiento")
+  datos$orden <- seq_len(nrow(datos))      # el orden de corrida, no el código de parcela
   efecto <- c(A = 0, B = 1, C = 1.5, D = 0.5)
-  datos_ejemplo$respuesta <- round(10 + efecto[datos_ejemplo$tratamiento] +
-                                     0.8 * as.numeric(datos_ejemplo$bloque) +
-                                     rnorm(nrow(datos_ejemplo), sd = 0.6), 2)
-  dir.create("datos", showWarnings = FALSE)
-  write.csv(datos_ejemplo, "datos/datos.csv", row.names = FALSE)
+  datos$respuesta <- round(10 + efecto[as.character(datos$tratamiento)] +
+                             0.8 * as.numeric(datos$bloque) +
+                             rnorm(nrow(datos), sd = 0.6), 2)
+  # ---- FIN DE LOS DATOS DE EJEMPLO ----
 }
-# ---- FIN DE LOS DATOS DE EJEMPLO ----
-
-datos <- read.csv("datos/datos.csv")
 datos$tratamiento <- factor(datos$tratamiento)
 datos$bloque      <- factor(datos$bloque)   # un bloque guardado como número sale mal
 str(datos)
 ```
 
+```{r aviso-ejemplo, echo = FALSE, results = "asis"}
+if (de_ejemplo) cat("**Este informe usa datos de ejemplo simulados, no medidos: falta `datos/datos.csv`.**")
+```
+
 ## El modelo y la tabla ANOVA
 
 ```{r modelo}
-modelo <- aov(respuesta ~ bloque + tratamiento, data = datos)
+# na.exclude: una corrida perdida queda como NA, sin borrarla de los datos.
+modelo <- aov(respuesta ~ bloque + tratamiento, data = datos, na.action = na.exclude)
 tabla  <- summary(modelo)[[1]]
+rownames(tabla) <- trimws(rownames(tabla))   # R rellena los nombres con espacios
 tabla
 ```
 
-El F de los tratamientos es `r round(tabla[["F value"]][2], 2)`, con
-`r tabla[["Df"]][2]` y `r tabla[["Df"]][3]` grados de libertad. (Las cifras del texto se
-escriben así, con R en línea, nunca copiadas a mano de la salida.)
+El F de los tratamientos es `r round(tabla["tratamiento", "F value"], 2)`, con
+`r tabla["tratamiento", "Df"]` y `r tabla["Residuals", "Df"]` grados de libertad. (Las cifras
+del texto se escriben así, con R en línea, nunca copiadas a mano de la salida. Las filas se
+piden por su nombre, no por su posición: si cambias el modelo, cambia el nombre.)
 
 ## Los supuestos
 

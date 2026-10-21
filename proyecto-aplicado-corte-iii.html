@@ -4386,33 +4386,33 @@
       </div>
 
       <table>
-        <caption>Qué cambia el tope. Lo escrito pesa el 70 % del proyecto, la exposición el
-          30 %; todo en la escala de 5.</caption>
+        <caption>Qué cambia el tope. Lo escrito vale 70 puntos del proyecto, la exposición
+          (E1) 12 y las preguntas (E2) 18; todo en la escala de 5.</caption>
         <thead>
-          <tr><th scope="col">Situación</th><th scope="col">Escrito</th><th scope="col">Exposición</th>
-            <th scope="col">Preguntas</th><th scope="col">Sin tope</th><th scope="col">Con tope</th></tr>
+          <tr><th scope="col">Situación</th><th scope="col">Escrito</th><th scope="col">Exposición (E1)</th>
+            <th scope="col">Preguntas (E2)</th><th scope="col">Sin tope</th><th scope="col">Con tope</th></tr>
         </thead>
         <tbody>
           <tr>
             <td>Proyecto impecable que no sabe defender</td><td>5,0</td>
-            <td>4,5</td><td>1,0</td>
-            <td>4,22</td><td><strong>1,89</strong></td>
+            <td>5,0</td><td>1,0</td>
+            <td>4,28</td><td><strong>1,95</strong></td>
           </tr>
           <tr>
-            <td>Responde una de dos, justo por debajo del umbral</td><td>4,5</td>
-            <td>4,0</td><td>2,25</td>
-            <td>4,04</td><td><strong>3,25</strong></td>
+            <td>Una pregunta aceptable y otra insuficiente: justo por debajo del umbral</td><td>4,25</td>
+            <td>3,5</td><td>2,25</td>
+            <td>3,8</td><td><strong>3,06</strong></td>
           </tr>
           <tr>
             <td>Proyecto flojo, pero lo defiende bien</td><td>3,0</td>
-            <td>3,5</td><td>4,25</td>
-            <td>3,29</td><td><strong>3,29</strong></td>
+            <td>3,5</td><td>5,0</td>
+            <td>3,42</td><td><strong>3,42</strong></td>
           </tr>
         </tbody>
       </table>
 
       <p><strong>Fíjate en la primera fila.</strong> Un proyecto impecable que no sabes defender
-        pasa de <strong>4,22</strong> a <strong>1,89</strong>. En pareja, el tope es
+        pasa de <strong>4,28</strong> a <strong>1,95</strong>. En pareja, el tope es
         de cada uno: si tu compañero contesta bien y tú no, a él no se le toca nada.</p>
 
       <div class="tip-box">
@@ -4455,7 +4455,10 @@
         <ol style="margin-bottom:0;">
           <li><strong>Lo corres tú.</strong> Los datos se generan después del preregistro, y los
             generas tú. No valen datos de Kaggle, de un artículo o de un experimento que ya tenías
-            hecho: el diseño y la ejecución son la mitad de lo que se evalúa.</li>
+            hecho: el diseño y la ejecución son la mitad de lo que se evalúa. La única excepción es un
+            <strong>piloto</strong> de pocas corridas para estimar el ruido o probar el
+            instrumento: se declara en el preregistro y sus datos no entran en el análisis
+            confirmatorio (módulo 5).</li>
           <li><strong>Dos factores, o un factor y un bloque, como mínimo.</strong> Un diseño
             completamente al azar de un solo factor es el capítulo 2, y el proyecto está para lo que
             vino después.</li>
@@ -4464,7 +4467,10 @@
             Medir cinco veces la misma planta da cinco datos y una sola réplica.</li>
           <li><strong>Aleatorización real.</strong> La asignación o el orden de las corridas sale
             de R con una semilla, y se respeta. Si un factor es tan difícil de cambiar que no puedes
-            aleatorizarlo en cada corrida, tu diseño es de parcelas divididas y se analiza como tal.</li>
+            aleatorizarlo en cada corrida, organízalo como parcelas divididas: cada nivel del factor
+            difícil se fija al menos dos veces, en orden aleatorio, y dentro de cada vez se
+            aleatoriza el otro factor. Si cada nivel se fija una sola vez, el factor difícil se queda
+            sin error con qué probarlo (capítulo 10).</li>
           <li><strong>Una respuesta medible, y ruido real.</strong> Hace falta un instrumento
             declarado y que repetir la misma corrida dé números distintos. Si sale siempre el mismo
             número, no hay error experimental que estimar.</li>
@@ -4492,7 +4498,7 @@
           <tr><td>Anidado</td><td>Las unidades vienen en grupos que no se repiten entre tratamientos</td>
             <td><a href="capitulo-9-anidados.html">Capítulo 9</a></td></tr>
           <tr><td>Parcelas divididas o medidas repetidas</td><td>Un factor es difícil de cambiar, o
-            mides a la misma unidad varias veces</td><td><a href="capitulo-10-parcelas-divididas.html">Capítulo 10</a></td></tr>
+            mides a la misma unidad en varios momentos y el momento es un factor</td><td><a href="capitulo-10-parcelas-divididas.html">Capítulo 10</a></td></tr>
         </tbody>
       </table>
 
@@ -4505,10 +4511,15 @@
           del cuerpo y si lleva clip. Es un 2<sup>3</sup> clásico, y quien lanza o el día pueden
           ser el bloque.</li>
         <li><strong>Pastilla efervescente.</strong> Tiempo de disolución según la temperatura del
-          agua y si se agita. El vaso o la tanda de agua pueden ser el bloque.</li>
-        <li><strong>Germinación.</strong> Porcentaje de semillas germinadas según el riego y la luz,
-          con la bandeja como bloque. Ojo: la unidad experimental es la bandeja o la maceta, no
-          cada semilla.</li>
+          agua y si se agita, con una pastilla por vaso. El lote de pastillas o la sesión pueden ser
+          el bloque; una tanda de agua solo lo es si de ella salen vasos a todas las temperaturas.
+          Si cada tanda se calienta a una sola temperatura, la tanda es la unidad de la temperatura:
+          parcelas divididas.</li>
+        <li><strong>Germinación.</strong> Porcentaje de semillas germinadas en cada maceta según el
+          riego y la luz. Cada bandeja lleva una maceta por combinación y hace de bloque, así que la
+          unidad experimental es la maceta, no cada semilla. Ojo: si la luz se aplica a la bandeja
+          entera, la bandeja deja de ser bloque y pasa a ser la unidad de la luz, y el diseño es de
+          parcelas divididas.</li>
         <li><strong>Absorción.</strong> Agua que retiene una toalla de papel según la marca y el
           número de hojas, con la tanda de medición como bloque.</li>
         <li><strong>Hiperparámetros de un modelo.</strong> Error de validación de un bosque
@@ -4522,9 +4533,13 @@
           la semilla, la partición de los datos y todo lo demás, correr dos veces la misma
           combinación de hiperparámetros da exactamente el mismo número: no hay ruido, no hay
           error experimental y la ANOVA no tiene con qué comparar. El ruido tiene que salir de algo
-          que de verdad varía —la semilla del algoritmo, la partición, el pliegue—, y eso que varía
-          es tu réplica o tu bloque. Y una simulación en la que <em>tú</em> eliges la distribución
-          de los datos no es un experimento: estarías analizando tus propios supuestos.</p>
+          que de verdad varía, y no todo lo que varía sirve igual. La semilla del algoritmo sola,
+          con la misma partición, no da réplicas: todas las configuraciones comparten el mismo error
+          (módulo 2.11 del capítulo 2). Cada corrida necesita su propia partición, o el pliegue de
+          una sola validación cruzada hace de bloque. Y lo que concluyas vale para ese conjunto de
+          datos: para decir algo más general, el bloque es el conjunto de datos (módulo 10.11 del
+          capítulo 10). Una simulación en la que <em>tú</em> eliges la distribución de los datos
+          no vale para este proyecto: su resultado lo fijan los supuestos que elegiste.</p>
       </div>
 
       <h3>Con personas: solo con consentimiento</h3>
@@ -4536,8 +4551,10 @@
         menor de edad. Si tienes dudas sobre tu caso, pregúntalo en tutoría antes de entregar la
         ficha.</p>
 
-      <p>Hay además una razón estadística para no usar más participantes de los necesarios: cada
-        persona que expones sin necesidad es un costo, y la potencia te dice cuántas bastan. Por eso
+      <p>Hay además una razón ética para no usar más participantes de los necesarios, y la
+        estadística ayuda a cumplirla: cada persona que expones sin necesidad es un costo, y la
+        potencia te dice cuántas bastan. Un experimento sin potencia suficiente también es un costo:
+        expone a las personas para no poder concluir nada. Por eso
         el preregistro pide justificar el número de réplicas.</p>
 
       <h3>Qué no vale</h3>
@@ -4626,8 +4643,8 @@
 
       <h3>Las buenas prácticas</h3>
 
-      <p>Las tres primeras entran en la rúbrica, en el criterio de reproducibilidad del informe; las
-        demás son las que hacen que las tres primeras se cumplan sin esfuerzo.</p>
+      <p>Las cuatro primeras entran en la rúbrica, en el criterio de reproducibilidad del informe;
+        las demás son las que hacen que las cuatro primeras se cumplan sin esfuerzo.</p>
 
       <ul>
         <li><strong>El README es la puerta.</strong> Dice qué se pregunta, quiénes son, qué hay en
@@ -4643,8 +4660,9 @@
           computador.</li>
         <li><strong>Commits pequeños, con un mensaje que diga qué cambió.</strong> «Añade las
           corridas del bloque 2» sirve; «cambios» o «final final», no. El historial también es
-          documentación: muestra, entre otras cosas, que el preregistro existió antes que los
-          datos.</li>
+          documentación: cuenta cómo se hizo el proyecto. Lo que prueba que el preregistro existió
+          antes que los datos no son las fechas de los commits, que las pone tu computador, sino la
+          hora en que GitHub publicó su release.</li>
         <li><strong>Nada de datos personales.</strong> Ni nombres, ni documentos de identidad, ni
           los consentimientos firmados: esos se guardan fuera del repositorio. En los datos, cada
           participante es un código.</li>
@@ -4659,11 +4677,13 @@
       <p>Hacer commits no es entregar. Cada hito se entrega publicando una <strong>release</strong>
         del repositorio con su etiqueta: <code>ficha</code>, <code>preregistro</code>, <code>avance</code> e <code>informe</code>. En GitHub es <em>Releases → Draft a new
         release</em>: escribes la etiqueta, eliges <em>Create new tag</em> y pulsas <em>Publish
-        release</em>.</p>
+        release</em>. Antes, haz <em>Push</em>: la release toma lo que está en GitHub, no lo que
+        tienes en tu computador, y un commit que no subiste no está entregado.</p>
 
       <p>La hora de la entrega es la hora en que GitHub publica la release, no la de tus commits, y
         tiene que ser antes de las <strong>11:00</strong> del día de cierre. Si después
-        sigues haciendo commits, la release no cambia: lo entregado es lo que había en ese momento.
+        sigues haciendo commits, la release no cambia: lo entregado es lo que había en GitHub en ese
+        momento.
         Si antes del cierre ves un error, lo corriges y publicas otra release con un número, como
         <code>preregistro-2</code>: se califica la última que llegó a tiempo. Si no
         llegó ninguna a tiempo, se califica la primera que llegó, con el descuento por entrega
@@ -4673,8 +4693,9 @@
         <p style="margin:0;"><strong>La release congela el preregistro.</strong> Después de publicar
           la release <code>preregistro</code>, el archivo <code>preregistro.md</code> no
           se vuelve a editar: si algo cambia al correr el experimento, va como desviación en el
-          avance. GitHub guarda la versión de cada release y cualquiera puede compararla con la del
-          informe. Un preregistro reescrito después de ver los datos no se esconde: se nota.</p>
+          avance. Tampoco se mueve su etiqueta ni se borra la release para volver a crearla: una
+          etiqueta se puede cambiar de commit, y hacerlo después del cierre es reescribir lo
+          entregado.</p>
       </div>
     </div>
   </template>
@@ -4746,8 +4767,9 @@
         <p style="margin:0;"><strong>Lo que más se frena en una ficha</strong> es la unidad
           experimental mal identificada. Si riegas una bandeja con dos litros y cuentas las cincuenta
           semillas que tiene, tienes una unidad experimental y cincuenta observaciones, no cincuenta
-          réplicas. El <a href="capitulo-9-anidados.html">capítulo 9</a> (módulos 9.1 y 9.3) explica
-          qué pasa cuando se confunden.</p>
+          réplicas. El módulo 1.3 del <a href="capitulo-1-introduccion-comparativos.html">capítulo
+          1</a> explica la diferencia, y el 9.2 del <a href="capitulo-9-anidados.html">capítulo 9</a>
+          muestra qué pasa cuando se confunden.</p>
       </div>
     </div>
   </template>
@@ -4795,7 +4817,8 @@
         <p style="margin:0;"><strong>No es un contrato.</strong> Si al correr el experimento algo
           cambia —se pierde una corrida, el instrumento no da la resolución que esperabas—, cambias
           el plan y lo dices. Lo que el preregistro impide no es cambiar: es cambiar sin que se
-          note. Una desviación declarada no baja la nota; una escondida, sí.</p>
+          note. Declarar una desviación no te quita puntos por sí mismo; esconderla, sí. Lo que la
+          desviación le haga al experimento se ve en el análisis.</p>
       </div>
 
       <h3>Los diez campos</h3>
@@ -4810,8 +4833,10 @@
             <a href="anexo-3-efectos-aleatorios.html">anexo A3</a> explica la diferencia); cuáles se
             cruzan y cuáles se anidan.</li>
           <li><strong>Unidad experimental y unidad de observación.</strong> A qué se le asigna el
-            tratamiento y qué se mide. Si mides varias veces la misma unidad, eso es submuestreo, y
-            las submuestras no son réplicas.</li>
+            tratamiento y qué se mide. Si mides varias veces la misma unidad en las mismas
+            condiciones, eso es submuestreo, y las submuestras no son réplicas. Si la mides en
+            momentos que quieres comparar, el momento es un factor y el diseño es de medidas
+            repetidas (capítulo 10).</li>
           <li><strong>El diseño, y por qué ese.</strong> Qué ruido controla el bloque, o por qué
             hace falta un factorial y no dos experimentos de un factor.</li>
           <li><strong>La aleatorización.</strong> La tabla de corridas, generada en R con semilla,
@@ -4831,14 +4856,21 @@
       <h3>La aleatorización, con R</h3>
 
       <p>La tabla de corridas no se hace a mano ni «más o menos al azar»: la genera R, con una
-        semilla que va en el preregistro para que cualquiera pueda reproducirla. Con
-        <code>agricolae</code>, un diseño en bloques completos de cuatro tratamientos y cinco bloques
-        es una línea:</p>
+        semilla que va en el preregistro para que cualquiera pueda reproducirla. El guion va en
+        <code>R/tabla-corridas.R</code> y se corre en un <strong>R recién abierto</strong>
+        (<em>Session → Restart R</em>): las funciones de <code>agricolae</code> cambian el
+        generador de números aleatorios de la sesión, y después la misma semilla da otra tabla en
+        <code>FrF2</code>. Con <code>agricolae</code>, un diseño en bloques completos de cuatro
+        tratamientos y cinco bloques es una línea, y dos más la guardan:</p>
 
 <pre><code class="language-r">library(agricolae)
 tratamientos &lt;- c("A", "B", "C", "D")
 plan &lt;- design.rcbd(tratamientos, r = 5, seed = 2026, serie = 0)
-plan$book          # una fila por corrida: bloque y tratamiento, ya aleatorizados</code></pre>
+plan$book          # una fila por corrida: bloque y tratamiento, ya aleatorizados
+tabla &lt;- data.frame(orden = seq_len(nrow(plan$book)), plan$book)
+names(tabla) &lt;- c("orden", "parcela", "bloque", "tratamiento")
+dir.create("datos", showWarnings = FALSE)
+write.csv(tabla, "datos/tabla-corridas.csv", row.names = FALSE)</code></pre>
 
       <p>Los demás diseños del curso tienen su función: <code>design.ab()</code> para un factorial,
         <code>design.lsd()</code> para un cuadro latino y <code>design.split()</code> para parcelas
@@ -4847,14 +4879,22 @@ plan$book          # una fila por corrida: bloque y tratamiento, ya aleatorizado
 <pre><code class="language-r">library(FrF2)
 plan &lt;- FrF2(nruns = 8, nfactors = 3, replications = 2, seed = 2026,
              factor.names = list(ala = c(6, 9), cuerpo = c(2, 3), clip = c("no", "si")))
-plan               # 16 corridas: dos réplicas completas, cada una en orden aleatorio</code></pre>
+plan               # 16 corridas: dos réplicas completas, cada una en orden aleatorio
+# write.csv(plan) falla con un diseño de FrF2: se pasa antes a data.frame.
+tabla &lt;- data.frame(orden = seq_len(nrow(plan)), as.data.frame(plan))
+names(tabla)[names(tabla) == "Blocks"] &lt;- "bloque"   # la réplica: si la corre un lanzador, es el bloque
+tabla$bloque &lt;- as.integer(tabla$bloque)           # 1 y 2, no «.1» y «.2»
+dir.create("datos", showWarnings = FALSE)
+write.csv(tabla, "datos/tabla-corridas.csv", row.names = FALSE)</code></pre>
 
       <h3>Las réplicas, con la potencia</h3>
 
       <p>Cuántas réplicas hacen falta depende de tres cosas: qué diferencia entre tratamientos te
         importa detectar, cuánto ruido tiene la respuesta y con qué potencia quieres detectarla. El
         ruido no lo sabes antes de empezar; lo estimas con un <strong>piloto</strong> de pocas
-        corridas o con un experimento parecido. Para un factor con <code>power.anova.test()</code>,
+        corridas o con un experimento parecido. El piloto es la única excepción a «antes de tener
+        un solo dato»: se corre antes del preregistro, se declara en él —cuántas corridas y qué
+        desviación estándar dio— y sus datos no entran en el análisis confirmatorio. Para un factor con <code>power.anova.test()</code>,
         que es lo que desarrolla el <a href="capitulo-2-dca-anova.html">capítulo 2</a> en el módulo
         2.10:</p>
 
@@ -4927,11 +4967,11 @@ power.anova.test(groups = 4, between.var = var(medias),
 
 <pre><code class="language-r">datos &lt;- read.csv("datos/datos.csv")
 str(datos)                          # los factores tienen que ser factor, no números
-datos$tratamiento &lt;- factor(datos$tratamiento)
-datos$bloque      &lt;- factor(datos$bloque)
+factores &lt;- c("tratamiento", "bloque")   # TUS columnas: en el helicóptero, c("ala", "cuerpo", "clip", "bloque")
+datos[factores] &lt;- lapply(datos[factores], factor)
 dir.create("figuras", showWarnings = FALSE)
 png("figuras/primer-grafico.png", width = 800, height = 500)
-boxplot(respuesta ~ tratamiento, data = datos)
+boxplot(respuesta ~ tratamiento, data = datos)   # en un factorial: respuesta ~ ala + cuerpo + clip
 dev.off()</code></pre>
 
       <div class="warning">
@@ -4947,8 +4987,11 @@ dev.off()</code></pre>
       <p>Se pierde una corrida y no se puede repetir: no la inventes ni la borres en silencio.
         Anótala en la bitácora y mira qué dice el material para tu diseño: en un bloque completo, el
         módulo 5.9 del <a href="capitulo-5-bloques-completos.html">capítulo 5</a>; en un cuadro
-        latino, el 6.7 del <a href="capitulo-6-cuadros-latinos.html">capítulo 6</a>. A veces lo más
-        limpio es repetir la corrida en otra sesión y declarar la sesión como bloque.</p>
+        latino, el 6.7 del <a href="capitulo-6-cuadros-latinos.html">capítulo 6</a>. Repetir la corrida en otra sesión
+        y declarar esa sesión como un bloque nuevo no sirve: un bloque con una sola corrida se la
+        queda entera y no aporta nada a los tratamientos. Si temes que la sesión cambie la
+        respuesta, corre en ella un bloque completo, o deja la corrida en su bloque original y
+        declara el cambio de sesión como desviación.</p>
     </div>
   </template>
 
@@ -5002,7 +5045,9 @@ dev.off()</code></pre>
         <code>informe.Rmd</code> en un R recién abierto y pulsar <em>Knit</em>: rutas relativas, la
         semilla puesta, ningún objeto que exista solo en tu sesión. Y las cifras del
         texto no se copian a mano de la salida: se escriben con R en línea, como
-        <code>`r round(tabla$F[1], 2)`</code>, para que si cambia un dato cambie también el texto.
+        <code>`r round(tabla["tratamiento", "F value"], 2)`</code>, para que si cambia un dato cambie
+        también el texto. La fila se pide por su nombre y no por su posición: en el modelo
+        <code>bloque + tratamiento</code>, la primera fila es la del bloque.
         Es la misma regla con la que se escribe este material.</p>
 
       <div class="tip-box">
@@ -5026,10 +5071,11 @@ dev.off()</code></pre>
 
       <ul>
         <li><strong>Analizar unas parcelas divididas como un factorial.</strong> El factor difícil
-          de cambiar se prueba contra el error equivocado y sale significativo sin serlo: módulo
-          10.5 del <a href="capitulo-10-parcelas-divididas.html">capítulo 10</a>.</li>
+          de cambiar se prueba contra el error equivocado y puede salir significativo sin serlo,
+          mientras el fácil de cambiar pierde potencia: módulo 10.5 del <a href="capitulo-10-parcelas-divididas.html">capítulo 10</a>.</li>
         <li><strong>Tomar submuestras por réplicas.</strong> Los grados de libertad del error se
-          inflan y el F se dispara: módulo 9.3 del <a href="capitulo-9-anidados.html">capítulo 9</a>.</li>
+          inflan y el F se dispara: módulos 9.2 y 9.5 del <a href="capitulo-9-anidados.html">capítulo
+          9</a>.</li>
         <li><strong>Olvidar el bloque en el modelo</strong>, o meterlo como número.</li>
         <li><strong>Leer los efectos principales con una interacción significativa</strong> sin
           mirar antes la interacción: módulo 7.1 del <a href="capitulo-7-factoriales.html">capítulo 7</a>.</li>
@@ -5088,9 +5134,9 @@ dev.off()</code></pre>
 
       <p>Las preguntas no van al equipo: van a una persona. En pareja, <strong>el dado decide quién
         contesta cada pregunta</strong> —del 1 al 3 contesta quien va primero en la ficha, del 4 al
-        6 el otro—, y <strong>cada integrante contesta al menos una</strong>: si el dado elige dos
-        veces a la misma persona, la siguiente va a la otra. Son preguntas sobre tu proyecto, y
-        ninguna pide memoria:</p>
+        6 el otro—, y <strong>cada integrante contesta al menos una</strong>: si al llegar a la
+        última pregunta uno de los dos todavía no ha contestado ninguna, esa es suya, sin dado.
+        Son preguntas sobre tu proyecto, y ninguna pide memoria:</p>
 
       <ul>
         <li>¿Cuál es la unidad experimental, y por qué esa y no otra?</li>
@@ -5168,7 +5214,7 @@ dev.off()</code></pre>
           <tr><th scope="col">Nivel</th><th scope="col">Qué se ve</th></tr>
         </thead>
         <tbody>
-          <tr><td>Insuficiente</td><td>El diseño no cumple el mínimo, no hay tabla de corridas o las réplicas son mediciones repetidas de la misma unidad.</td></tr>
+          <tr><td>Insuficiente</td><td>El diseño no cumple el mínimo, no hay tabla de corridas o las réplicas son submuestras de la misma unidad.</td></tr>
           <tr><td>Aceptable</td><td>Diseño válido y tabla de corridas con semilla, pero sin decir por qué ese diseño y no uno más simple, o con réplicas sin justificar.</td></tr>
           <tr><td>Sólido</td><td>Diseño justificado frente a uno más simple, tabla de corridas aleatorizada con semilla y réplicas justificadas por potencia o por un piloto.</td></tr>
         </tbody>
