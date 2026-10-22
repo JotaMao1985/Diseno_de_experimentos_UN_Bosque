@@ -5411,8 +5411,37 @@ dev.off()</code></pre>
 
     document.addEventListener('DOMContentLoaded', () => {
       renderNavigation();
-      loadModule(1);
+      loadModule(moduloDelEnlace() ?? 1);
       setupEventListeners();
+    });
+
+    // ================================================================
+    // Enlaces directos a un módulo:  capitulo-N.html#modulo-K
+    //
+    // Así enlazan las diapositivas cada sección con su módulo. Sin ancla, o
+    // con una que no es de un módulo, se abre el 1; y esa otra ancla —la del
+    // «Saltar al contenido»— no mueve nada.
+    // ================================================================
+    function moduloDelEnlace() {
+      const m = /^#modulo-(\d+)$/.exec(window.location.hash);
+      const id = m ? Number(m[1]) : null;
+      return courseData.modules.some(mod => mod.id === id) ? id : null;
+    }
+
+    function fijarModuloEnLaBarra(id) {
+      // La barra sigue al módulo en pantalla: recargar o copiar la dirección
+      // da el que se lee, y Atrás no devuelve al de llegada. `replaceState` y
+      // no `location.hash`, para no llenar el historial con una entrada por
+      // módulo. Sobre file:// puede lanzar, y que falle no es grave.
+      try {
+        window.history.replaceState(null, '', `#modulo-${id}`);
+      } catch (e) { /* file:// sin permisos de historial */ }
+    }
+
+    // Con el documento ya abierto, cambiar el ancla no lo recarga.
+    window.addEventListener('hashchange', () => {
+      const id = moduloDelEnlace();
+      if (id !== null && id !== currentModuleId) loadModule(id);
     });
 
     // ================================================================
@@ -5430,6 +5459,7 @@ dev.off()</code></pre>
 
     function loadModule(id) {
       currentModuleId = id;
+      fijarModuloEnLaBarra(id);
 
       if (!completedModules.has(id)) {
         completedModules.add(id);
