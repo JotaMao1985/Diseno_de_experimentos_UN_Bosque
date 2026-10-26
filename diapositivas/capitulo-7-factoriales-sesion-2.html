@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="elbosque">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Presentación de clase: Capítulo 7 (Diseños factoriales), Diseño de Experimentos.">
+    <meta name="generator" content="diapositivas-clase · construir.py">
+    <title>Diapositivas · Capítulo 7 — Diseños factoriales · Diseño de Experimentos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Prism, las mismas gramáticas que carga LP-CORE. `manual` antes del
+         núcleo: el resaltado lo dispara el visor cuando el mazo ya existe. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script>window.Prism = window.Prism || {}; window.Prism.manual = true;</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-r.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-basic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-visual-basic.min.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, svg: { fontCache: 'global', mtextInheritFont: true } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+    <script>
+        /* Gráfico animado (scripts/animado.py). Con ?todo, ?revisar o «reducir movimiento»
+           del sistema, sin movimiento; con «reducir movimiento», además, el gráfico sale
+           terminado y sus etapas dejan de contar como pasos. */
+        (function () {
+            var q = new URLSearchParams(location.search), raiz = document.documentElement;
+            var reducir = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+            if (q.has('todo') || q.has('revisar') || reducir) raiz.classList.add('ga-quieto');
+            if (reducir) {
+                raiz.classList.add('ga-final');
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelectorAll('.ga .ga-etapa').forEach(function (g) { g.classList.remove('paso'); });
+                });
+            }
+        })();
+    </script>
+    <style>
+        /* ============================================================
+           PALETA LP-CORE — la misma del material del curso
+        ============================================================ */
+        :root {
+            --primary: #3D008D;
+            --primary-rgb: 61, 0, 141;
+            --secondary: #ED1E79;
+            --secondary-rgb: 237, 30, 121;
+            --secondary-texto: #ED1E79;   /* el secundario como texto sobre blanco */
+            --navy: #001A4D;
+            --navy-2: #002868;
+            --gold: #FDB913;
+            --teal: #0E7490;
+            --bg: #F8FAFC;
+            --texto: #1E293B;
+            --tinta: #0F172A;
+            --gris: #64748B;
+            --gris-claro: #94A3B8;
+            --borde: #E2E8F0;
+            --lila: #F5F0FA;
+            --grad: linear-gradient(140deg, #3D008D 0%, #ED1E79 100%);
+            --grad-navy: linear-gradient(180deg, #001A4D 0%, #002868 100%);
+            --sombra: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --fuente: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --W: 1280px;
+            --H: 720px;
+        }
+
+        /* ============================================================
+           TEMA EL BOSQUE — verde #012820 y naranja #FF6600, como el
+           material de Series de tiempo, Muestreo y Estadística espacial.
+           Mismas tipografías y mismos degradados; solo cambian los colores.
+        ============================================================ */
+        :root[data-tema="elbosque"] {
+            --primary: #012820;
+            --primary-rgb: 1, 40, 32;
+            --secondary: #FF6600;
+            --secondary-rgb: 255, 102, 0;
+            --secondary-texto: #C2410C;   /* #FF6600 sobre blanco no llega a 4.5:1 */
+            --navy: #012820;
+            --navy-2: #001F18;
+            --gold: #FFC24B;
+            --lila: #F0FDF4;
+            --grad: linear-gradient(140deg, #012820 0%, #FF6600 100%);
+            --grad-navy: linear-gradient(180deg, #012820 0%, #001F18 100%);
+        }
+        /* El degradado se reparte en la caja del número: a lo ancho de la
+           diapositiva, a los dígitos solo les tocaría el verde casi negro. */
+        :root[data-tema="elbosque"] .numero-grande { width: fit-content; padding-right: 0.04em; }
+
+        /* ============================================================
+           TEMA UCOMPENSAR — morado #691E7A y naranja #F46201, como el
+           material de Procesamiento de Datos (Esp. Big Data). El ámbar
+           #FAA012 solo sobre morado; el naranja como texto, #B84A00.
+           Su material usa Roboto: la presentación también.
+        ============================================================ */
+        :root[data-tema="ucompensar"] {
+            --primary: #691E7A;
+            --primary-rgb: 105, 30, 122;
+            --secondary: #F46201;
+            --secondary-rgb: 244, 98, 1;
+            --secondary-texto: #B84A00;   /* #F46201 sobre blanco da 3,2:1 */
+            --navy: #3A0F47;
+            --navy-2: #4B1558;
+            --gold: #FAA012;
+            --lila: #F7F0FA;
+            --grad: linear-gradient(140deg, #691E7A 0%, #F46201 100%);
+            --grad-navy: linear-gradient(180deg, #3A0F47 0%, #4B1558 100%);
+            --fuente: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        /* Contraste (WCAG 2.1) e identidad del material de UCompensar: pie en
+           pizarra, etiquetas más opacas, degradado de texto naranja (#B84A00)
+           donde va texto blanco encima, ítem activo morado con filete naranja
+           y títulos en 700 (Roboto no carga el 800). */
+        :root[data-tema="ucompensar"] .numero-grande { width: fit-content; padding-right: 0.04em; }
+        :root[data-tema="ucompensar"] .idea .etq-idea,
+        :root[data-tema="ucompensar"] .ra-caja .etq { color: rgba(var(--primary-rgb), 0.85); }
+        :root[data-tema="ucompensar"] .pie { color: #566B7F; }
+        :root[data-tema="ucompensar"] .cierre .pie { color: rgba(255, 255, 255, 0.62); }
+        :root[data-tema="ucompensar"] .item-seccion.hecha { color: rgba(255, 255, 255, 0.6); }
+        :root[data-tema="ucompensar"] .item-seccion.actual,
+        :root[data-tema="ucompensar"] #indice .item-seccion.actual,
+        :root[data-tema="ucompensar"] #indice .item-seccion.actual:hover {
+            background: linear-gradient(135deg, #691E7A, #8A2E9E);
+            box-shadow: inset 4px 0 0 #F46201, 0 8px 18px rgba(105, 30, 122, 0.3);
+        }
+        :root[data-tema="ucompensar"] .portada .chip-semana,
+        :root[data-tema="ucompensar"] .btn-nav.sig { background: linear-gradient(140deg, #691E7A 0%, #B84A00 100%); }
+        :root[data-tema="ucompensar"] .codigo.con-foco .linea.foco { background: rgba(var(--secondary-rgb), 0.10); }
+        :root[data-tema="ucompensar"] .diapo.idea { background: linear-gradient(135deg, rgba(105, 30, 122, 0.06), rgba(244, 98, 1, 0.08)), #fff; }
+        :root[data-tema="ucompensar"] .portada h1,
+        :root[data-tema="ucompensar"] .principal h2 { font-weight: 700; }
+        :root[data-tema="ucompensar"] .cierre .cuerpo h3 { color: var(--gold); }
+        :root[data-tema="ucompensar"] .caja.warn { border-color: #B84A00; background: #FFF7ED; }
+        :root[data-tema="ucompensar"] .caja.warn .caja-etiqueta { background: #B84A00; }
+        /* Contrastes AA medidos en la auditoría de octubre de 2026: líneas de código no
+           resaltadas (la opacidad 0,42 las dejaba en 2,0–3,6:1), número de página sobre
+           .idea y capítulo de la barra lateral. Símbolos sueltos de MathJax en tablas,
+           al tamaño del texto. */
+        :root[data-tema="ucompensar"] .codigo.con-foco .linea { opacity: 0.85; }
+        :root[data-tema="ucompensar"] .codigo.con-foco .linea.foco { opacity: 1; }
+        :root[data-tema="ucompensar"] .pie .num { color: #566B7F; }
+        :root[data-tema="ucompensar"] .cierre .pie .num { color: rgba(255, 255, 255, 0.7); }
+        :root[data-tema="ucompensar"] .lateral .capitulo span { color: var(--gold); }
+        :root[data-tema="ucompensar"] td mjx-container:not([display="true"]) { font-size: 125%; }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--fuente);
+            color: var(--texto);
+            background: #E9EDF3;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sin ligaduras: Fira Code dibuja `<=` como «≤» y `!=` como «≠», y un
+           estudiante que copia a mano lo proyectado escribe un carácter que
+           Python no acepta. */
+        code, pre, kbd { font-family: 'Fira Code', monospace; font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+
+        button { font-family: inherit; }
+
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 4px; }
+
+        .lp-gradient { background: var(--grad); }
+        .lp-header { background: var(--grad-navy); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================================
+           ESCENARIO — un lienzo fijo de 1280 × 720 que se escala
+        ============================================================ */
+        #escenario { position: fixed; inset: 0; }
+
+        #mazo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: var(--W);
+            height: var(--H);
+            transform-origin: center center;
+            box-shadow: 0 20px 60px rgba(0, 26, 77, 0.18);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .diapo {
+            position: absolute;
+            inset: 0;
+            background: #fff;
+            visibility: hidden;
+            opacity: 0;
+            --k: 1;
+        }
+
+        .diapo.activa {
+            visibility: visible;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .diapo.activa > .marco { animation: fadeIn 0.4s ease-out both; }
+
+        .marco {
+            position: absolute;
+            inset: 0;
+            padding: 42px 72px 58px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Cabecera: la de `SectionHeader` del material ------------- */
+        .cabecera {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--borde);
+            flex-shrink: 0;
+        }
+
+        .ficha-icono {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background: var(--grad);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+            flex-shrink: 0;
+        }
+
+        .ficha-icono svg { width: 26px; height: 26px; }
+
+        .antetitulo {
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--secondary-texto);
+            margin-bottom: 4px;
+        }
+
+        .cabecera h2 {
+            margin: 0;
+            font-size: 33px;
+            line-height: 1.18;
+            font-weight: 700;
+            color: var(--tinta);
+            letter-spacing: -0.01em;
+        }
+
+        /* --- Cuerpo ---------------------------------------------------- */
+        /* El cuerpo centra en vertical lo que lleva: una diapositiva corta no
+           se queda colgada del título. El margen negativo con su relleno deja
+           sitio a las sombras de tarjetas y bloques, que `overflow: hidden`
+           cortaría en el borde. */
+        .cuerpo {
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-content: safe center;
+            padding: 10px 14px 14px;
+            margin: -10px -14px -14px;
+            font-size: calc(23px * var(--k));
+            line-height: 1.5;
+            color: var(--texto);
+        }
+
+        .diapo.arriba .cuerpo { justify-content: flex-start; }
+
+        /* Ningún bloque cede altura: si no cabe, que desborde y lo vea el
+           ajuste. Con el encogimiento por defecto de flex, un bloque de código
+           se recortaba por abajo en silencio y el cuerpo «cabía». */
+        .cuerpo > * { flex-shrink: 0; }
+
+        .cuerpo > :first-child, .col > :first-child, .caja-cuerpo > :first-child { margin-top: 0; }
+        .cuerpo > :last-child, .col > :last-child, .caja-cuerpo > :last-child { margin-bottom: 0; }
+
+        .cuerpo p { margin: 0 0 0.65em; }
+        .cuerpo strong { color: var(--tinta); font-weight: 700; }
+        .cuerpo em { font-style: italic; }
+        .cuerpo a { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(var(--secondary-rgb), 0.5); text-underline-offset: 3px; }
+
+        .cuerpo h3 {
+            color: var(--secondary-texto);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0.9em 0 0.35em;
+            line-height: 1.25;
+        }
+
+        .cuerpo h4 {
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.98em;
+            margin: 0.8em 0 0.3em;
+        }
+
+        .cuerpo ul, .cuerpo ol { margin: 0 0 0.7em; padding-left: 1.25em; }
+        .cuerpo li { margin: 0 0 0.38em; padding-left: 0.2em; }
+        .cuerpo li::marker { color: var(--secondary); font-weight: 700; }
+        .cuerpo li > ul, .cuerpo li > ol { margin: 0.3em 0 0.2em; font-size: 0.9em; }
+
+        .cuerpo code:not(pre code) {
+            background: #F1F5F9;
+            color: var(--tinta);
+            padding: 0.08em 0.36em;
+            border-radius: 5px;
+            font-size: 0.86em;
+        }
+
+        .cuerpo kbd {
+            display: inline-block;
+            padding: 0.05em 0.45em;
+            border: 1px solid #CBD5E1;
+            border-bottom-width: 3px;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 0.8em;
+            color: var(--tinta);
+        }
+
+        .cuerpo mark { background: rgba(253, 185, 19, 0.35); color: inherit; padding: 0 0.15em; border-radius: 3px; }
+
+        .cita {
+            margin: 0.4em 0 0.8em;
+            padding: 0.1em 0 0.1em 0.9em;
+            border-left: 4px solid var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.08em;
+            line-height: 1.4;
+        }
+
+        .cita p { margin: 0 0 0.3em; }
+
+        /* --- Tablas: las de `prose-lp` -------------------------------- */
+        .cuerpo table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82em;
+            margin: 0.2em 0 0.8em;
+            background: #fff;
+        }
+
+        .cuerpo th {
+            background: var(--lila);
+            color: var(--navy);
+            text-align: left;
+            padding: 0.5em 0.75em;
+            border: 1px solid var(--borde);
+            font-weight: 700;
+        }
+
+        .cuerpo td {
+            padding: 0.5em 0.75em;
+            border: 1px solid var(--borde);
+            vertical-align: top;
+        }
+
+        /* --- Columnas -------------------------------------------------- */
+        .columnas {
+            display: grid;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .columnas.centradas { align-items: center; }
+        .col { min-width: 0; }
+
+        /* --- Cajas: `Box` de LP-CORE ----------------------------------- */
+        .caja {
+            border-left: 5px solid var(--primary);
+            background: var(--lila);
+            border-radius: 14px;
+            padding: 0.7em 1em 0.75em;
+            margin: 0.3em 0 0.8em;
+            font-size: 0.9em;
+        }
+
+        .caja-etiqueta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+            font-size: 0.6em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            color: #fff;
+            background: var(--primary);
+            border-radius: 5px;
+            padding: 0.25em 0.7em;
+            margin-bottom: 0.55em;
+        }
+
+        .caja.tip { border-color: #15803D; background: #F0FDF4; }
+        .caja.tip .caja-etiqueta { background: #15803D; }
+        .caja.warn { border-color: #B45309; background: #FFFBEB; }
+        .caja.warn .caja-etiqueta { background: #B45309; }
+        .caja.danger { border-color: #B91C1C; background: #FEF2F2; }
+        .caja.danger .caja-etiqueta { background: #B91C1C; }
+        /* Una fórmula en bloque suele ser la idea de la diapositiva: más grande
+           que el texto, para que se lea desde el fondo del aula. */
+        .cuerpo mjx-container[display="true"] { font-size: 138%; margin: 0.5em 0 !important; }
+        .caja mjx-container[display="true"], .tarjeta mjx-container[display="true"], td mjx-container[display="true"] { font-size: 112%; }
+        .caja.definicion { border-color: var(--primary); background: var(--lila); }
+        .caja.definicion .caja-etiqueta { background: var(--primary); }
+        .caja.ejemplo { border-color: var(--teal); background: #F0F9FF; }
+        .caja.ejemplo .caja-etiqueta { background: var(--teal); }
+        .caja p { margin-bottom: 0.4em; }
+
+        /* --- La motivación del material, en pequeño --------------------- */
+        .idea-caja {
+            border-radius: 18px;
+            border: 1px solid rgba(var(--primary-rgb), 0.15);
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.055) 0%, rgba(14, 116, 144, 0.05) 45%, rgba(var(--secondary-rgb), 0.10) 100%);
+            padding: 0.8em 1.1em;
+            margin: 0.3em 0 0.8em;
+            display: flex;
+            gap: 0.8em;
+        }
+
+        .idea-caja .punto {
+            width: 1.7em;
+            height: 1.7em;
+            border-radius: 999px;
+            background: var(--grad);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+            margin-top: 0.1em;
+        }
+
+        .idea-caja .texto { color: var(--primary); font-weight: 600; line-height: 1.4; }
+        .idea-caja .texto p { margin: 0 0 0.3em; }
+
+        /* --- Tarjetas (`lp-card`) y flujo (`Pipeline`) ------------------ */
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+            gap: 22px;
+            margin: 0.2em 0 0.8em;
+        }
+
+        .tarjeta {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--sombra);
+            border: 1px solid #EEF2F7;
+            border-top: 4px solid var(--primary);
+            padding: 0.8em 1em 0.7em;
+            font-size: 0.86em;
+            transition: all 0.3s ease;
+        }
+
+        .tarjeta:nth-child(even) { border-top-color: var(--secondary); }
+        .tarjeta:hover { box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12); transform: translateY(-4px); }
+
+        .tarjeta h3 {
+            color: var(--navy);
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 0 0 0.45em;
+        }
+
+        .tarjeta ul { padding-left: 1.1em; }
+
+        .flujo {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+            margin: 0.3em 0 0.9em;
+        }
+
+        .paso-flujo {
+            flex: 1;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid var(--borde);
+            border-top: 4px solid var(--primary);
+            border-radius: 14px;
+            padding: 0.75em 0.7em 0.7em;
+            text-align: center;
+            font-size: 0.74em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .paso-flujo .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.7em;
+            height: 1.7em;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85em;
+            margin-bottom: 0.35em;
+        }
+
+        .paso-flujo .t { display: block; font-weight: 700; color: var(--navy); margin-bottom: 0.25em; font-size: 1.08em; line-height: 1.25; }
+        .paso-flujo .d { color: #475569; line-height: 1.35; display: block; }
+        .flecha-flujo { align-self: center; color: var(--secondary); font-weight: 800; font-size: 1.1em; }
+
+        /* --- Bloques de código: `lp-code-wrapper` ----------------------- */
+        .codigo {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.25);
+            margin: 0.2em 0 0.8em;
+            background: #1E293B;
+            font-size: calc(18px * var(--k) * var(--kc, 1));
+        }
+
+        .codigo-cabecera {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 9px 16px;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-bottom: 1px solid #334155;
+        }
+
+        .codigo-cabecera.flotante {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            padding: 0;
+            background: none;
+            border: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .codigo:hover .codigo-cabecera.flotante { opacity: 1; }
+
+        .codigo-titulo {
+            font-family: var(--fuente);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gris-claro);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .codigo-titulo i { margin-right: 8px; }
+        .codigo-titulo .fa-python { color: #FACC15; }
+        .codigo-titulo .fa-terminal { color: #4ADE80; }
+        .codigo-titulo .fa-docker { color: #60A5FA; }
+
+        .btn-copiar {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #CBD5E1;
+            padding: 5px 11px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .btn-copiar:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+        .btn-copiar.copiado { background: rgba(34, 197, 94, 0.3); color: #4ADE80; }
+
+        .codigo pre {
+            margin: 0;
+            padding: 16px 20px;
+            background: #1E293B !important;
+            color: #F3F4F6;
+            font-size: 1em;
+            line-height: 1.55;
+            overflow: hidden;
+            white-space: pre;
+            tab-size: 4;
+        }
+
+        .codigo pre code { font-size: inherit; background: none; padding: 0; color: inherit; text-shadow: none; }
+        .codigo .token { display: inline; }
+        .codigo .linea { display: inline-block; min-width: 100%; }
+        .codigo.con-foco .linea { opacity: 0.42; transition: opacity 0.3s; }
+
+        .codigo.con-foco .linea.foco {
+            opacity: 1;
+            background: rgba(var(--secondary-rgb), 0.16);
+            box-shadow: inset 3px 0 0 var(--secondary);
+            margin: 0 -20px;
+            padding: 0 20px;
+            min-width: calc(100% + 40px);
+        }
+
+        /* Salida dentro del código (`#>`), como en LP-CORE */
+        .lp-salida, .lp-salida .token { color: #7DD3FC !important; font-style: normal !important; }
+        .lp-salida { background: rgba(125, 211, 252, 0.07); }
+
+        /* --- Figuras: diagramas, imágenes y gráficas -------------------- */
+        .figura { margin: 0.1em 0 0.6em; text-align: center; }
+
+        .figura .lienzo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 14px;
+        }
+
+        /* El alto de una figura también se encoge con el ajuste (`--k`): si no,
+           una diapositiva con figura no cabría nunca y el ajuste no podría hacer
+           nada por ella. */
+        .figura svg, .figura img { max-width: 100%; height: auto; max-height: calc(var(--alto, 470px) * var(--k)); }
+        .figura .grafica { width: 100%; height: calc(var(--alto, 440px) * var(--k)); }
+
+        .figura figcaption {
+            margin-top: 0.5em;
+            font-size: 0.66em;
+            color: var(--gris);
+            font-style: italic;
+        }
+
+        /* --- Revelado paso a paso --------------------------------------- */
+        .paso { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+        .paso.visto { opacity: 1; transform: none; }
+
+        .respuesta { border-left-color: #15803D; background: #F0FDF4; }
+        .respuesta .caja-etiqueta { background: #15803D; }
+
+        /* --- Pie de cada diapositiva ------------------------------------- */
+        .pie {
+            position: absolute;
+            left: 72px;
+            right: 72px;
+            bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+            color: var(--gris-claro);
+            letter-spacing: 0.02em;
+        }
+
+        .pie .num { font-weight: 700; color: var(--gris); font-variant-numeric: tabular-nums; }
+        .pie .sello { display: inline-flex; align-items: center; gap: 10px; }
+        .pie .sello::before { content: ''; width: 22px; height: 3px; border-radius: 3px; background: var(--grad); }
+
+        /* ============================================================
+           PORTADA
+        ============================================================ */
+        .diapo.portada { background: var(--grad-navy); color: #fff; }
+
+        .portada .brillo {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(640px 420px at 100% 0%, rgba(var(--secondary-rgb), 0.30), transparent 70%),
+                radial-gradient(560px 480px at 0% 100%, rgba(var(--primary-rgb), 0.55), transparent 70%);
+            pointer-events: none;
+        }
+
+        .portada .marco { padding: 58px 84px 64px; justify-content: space-between; }
+        .portada .institucion { font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+        .portada .asignatura { font-size: 17px; color: rgba(255, 255, 255, 0.72); margin-top: 6px; font-weight: 500; }
+
+        .portada .chip-semana {
+            display: inline-block;
+            background: var(--grad);
+            color: #fff;
+            font-weight: 700;
+            font-size: 13.5px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 999px;
+            box-shadow: 0 6px 18px rgba(var(--secondary-rgb), 0.35);
+        }
+
+        .portada h1 {
+            margin: 22px 0 14px;
+            font-size: 62px;
+            line-height: 1.06;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            max-width: 980px;
+        }
+
+        .portada .subtitulo { font-size: 25px; font-weight: 300; color: rgba(255, 255, 255, 0.82); max-width: 900px; }
+        .portada .temas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+
+        .portada .temas span {
+            font-size: 14.5px;
+            padding: 6px 15px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .portada .base { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+
+        .portada .lema {
+            max-width: 640px;
+            font-size: 17px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.78);
+            border-left: 3px solid var(--secondary);
+            padding-left: 16px;
+            line-height: 1.45;
+        }
+
+        .portada .firma { text-align: right; font-size: 14px; color: rgba(255, 255, 255, 0.62); line-height: 1.5; }
+        .portada .firma strong { color: #fff; font-weight: 600; display: block; font-size: 15.5px; }
+
+        .barra-grad { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: var(--grad); }
+
+        /* ============================================================
+           HOJA DE RUTA y DIVISOR DE SECCIÓN — la barra lateral del material
+        ============================================================ */
+        .dividida .marco { padding: 0; flex-direction: row; }
+
+        .dividida .lateral {
+            width: 410px;
+            flex-shrink: 0;
+            background: var(--grad-navy);
+            color: #fff;
+            padding: 44px 26px 30px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lateral .institucion { font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+        .lateral .asignatura { font-size: 16px; font-weight: 700; margin-top: 4px; line-height: 1.25; }
+        .lateral .capitulo { font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px; }
+        .lateral .capitulo span { color: var(--secondary); font-weight: 600; }
+        .lateral hr { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px -26px 14px -30px; }
+
+        .lista-secciones { display: flex; flex-direction: column; gap: 5px; flex: 1; min-height: 0; }
+        /* Más de 14 secciones (p. ej., una sesión de 17 módulos): filas más bajas para que quepan todas */
+        .lista-secciones.compacta { gap: 2px; }
+        .lista-secciones.compacta .item-seccion { padding: 4px 11px; font-size: 12.5px; }
+
+        .item-seccion {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 8px 11px;
+            border-radius: 9px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13.5px;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        .item-seccion svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+        .item-seccion.hecha { color: rgba(255, 255, 255, 0.38); }
+        .item-seccion.actual { background: var(--grad); color: #fff; box-shadow: 0 8px 18px rgba(var(--secondary-rgb), 0.28); }
+
+        .dividida .principal { flex: 1; position: relative; padding: 64px 72px 60px; display: flex; flex-direction: column; justify-content: center; }
+
+        .numero-grande {
+            font-size: 128px;
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 18px;
+        }
+
+        .principal h2 { margin: 0; font-size: 46px; line-height: 1.1; font-weight: 800; color: var(--tinta); letter-spacing: -0.015em; }
+        .principal .gancho { margin-top: 26px; font-size: 22px; line-height: 1.45; color: var(--primary); font-weight: 600; border-left: 3px solid var(--secondary); padding-left: 16px; }
+        .principal .gancho p { margin: 0 0 0.3em; }
+
+        .enlace-material {
+            position: absolute;
+            left: 72px;
+            bottom: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gris);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            margin-left: -12px;
+            border-radius: 999px;
+            transition: all 0.2s;
+        }
+
+        .enlace-material:hover { background: var(--lila); color: var(--primary); }
+
+        .ra-caja { margin-top: 8px; }
+        .ra-caja .etq { font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; color: rgba(var(--primary-rgb), 0.62); margin-bottom: 8px; }
+        .ra-caja .ra { font-size: 26px; line-height: 1.35; color: var(--primary); font-weight: 600; border-left: 3px solid var(--secondary); padding-left: 16px; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+        .chips span { font-size: 14px; padding: 5px 13px; border-radius: 999px; background: rgba(var(--primary-rgb), 0.08); color: var(--primary); font-weight: 500; }
+
+        /* ============================================================
+           IDEA CLAVE, PREGUNTA y CIERRE
+        ============================================================ */
+        .diapo.idea {
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.055) 0%, rgba(14, 116, 144, 0.05) 45%, rgba(var(--secondary-rgb), 0.10) 100%), #fff;
+        }
+
+        .idea .marco { justify-content: center; padding: 60px 110px 70px; }
+        .idea .etq-idea { display: flex; align-items: center; gap: 12px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 700; color: rgba(var(--primary-rgb), 0.62); margin-bottom: 26px; }
+        .idea .etq-idea .punto { width: 38px; height: 38px; border-radius: 999px; background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25); }
+        .idea h2 { margin: 0; font-size: 46px; line-height: 1.2; font-weight: 700; color: var(--primary); border-left: 6px solid var(--secondary); padding-left: 30px; letter-spacing: -0.01em; }
+        .idea .cuerpo { flex: 0 1 auto; margin-top: 28px; padding-left: 36px; color: #475569; font-size: calc(24px * var(--k)); }
+
+        .chip-ejercicio {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            color: #fff;
+            border-radius: 6px;
+            padding: 5px 11px;
+            background: var(--primary);
+            margin-bottom: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .pregunta .cabecera h2 { font-size: 31px; }
+
+        .diapo.cierre { background: var(--grad-navy); color: #fff; }
+        .cierre .brillo { position: absolute; inset: 0; background: radial-gradient(700px 400px at 100% 100%, rgba(var(--secondary-rgb), 0.22), transparent 70%); pointer-events: none; }
+        .cierre .cabecera { border-bottom-color: rgba(255, 255, 255, 0.12); }
+        .cierre .cabecera h2 { color: #fff; }
+        .cierre .antetitulo { color: var(--gold); }
+        .cierre .cuerpo { color: rgba(255, 255, 255, 0.88); }
+        .cierre .cuerpo strong { color: #fff; }
+        .cierre .cuerpo h3 { color: #F472B6; }
+        .cierre .cuerpo code:not(pre code) { background: rgba(255, 255, 255, 0.12); color: #fff; }
+        .cierre .cuerpo ul { list-style: none; padding-left: 0; }
+        .cierre .cuerpo ul > li { position: relative; padding-left: 1.7em; margin-bottom: 0.55em; }
+        .cierre .cuerpo ul > li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.2em;
+            width: 1.15em;
+            height: 1.15em;
+            border-radius: 999px;
+            background: var(--grad);
+            color: #fff;
+            font-size: 0.72em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cierre .caja { color: var(--texto); }
+        .cierre .pie { color: rgba(255, 255, 255, 0.45); }
+        .cierre .pie .num { color: rgba(255, 255, 255, 0.7); }
+
+        .cierre .firma-cierre { margin-top: auto; padding-top: 18px; font-size: 13.5px; color: rgba(255, 255, 255, 0.6); font-style: italic; flex-shrink: 0; }
+
+        /* Variantes de maquetación que se piden desde la fuente */
+        .diapo.centro .cuerpo { text-align: center; align-items: center; }
+        .diapo.denso .cuerpo { font-size: calc(20px * var(--k)); }
+        .diapo.codigo-grande .codigo { --kc: 1.18; }
+
+        /* ============================================================
+           CONTROLES — los del material: progreso, menú, anterior/siguiente
+        ============================================================ */
+        #progreso { position: fixed; top: 0; left: 0; right: 0; height: 6px; background: rgba(226, 232, 240, 0.7); z-index: 20; }
+        #progreso > div { height: 100%; background: var(--grad); transition: width 0.5s ease; width: 0; }
+
+        .btn-redondo {
+            position: fixed;
+            z-index: 60;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.3);
+            transition: transform 0.2s, opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .btn-redondo:hover { transform: scale(1.1); }
+        #btn-menu { top: 16px; left: 16px; }
+
+        #controles {
+            position: fixed;
+            right: 18px;
+            bottom: 16px;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+            padding: 6px 6px 6px 16px;
+            border-radius: 999px;
+            box-shadow: 0 6px 22px rgba(0, 26, 77, 0.16);
+            transition: opacity 0.35s;
+        }
+
+        #contador { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary-texto); margin-right: 6px; white-space: nowrap; }
+        #contador span { color: var(--gris); font-weight: 600; }
+
+        .btn-nav {
+            border: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 999px;
+            transition: all 0.2s;
+        }
+
+        .btn-nav.ant { background: transparent; color: var(--navy); }
+        .btn-nav.ant:hover { background: #F1F5F9; }
+        .btn-nav.sig { background: var(--grad); color: #fff; }
+        .btn-nav.sig:hover { opacity: 0.9; }
+        .btn-nav:disabled { opacity: 0.3; cursor: default; }
+
+        body.quieto #controles, body.quieto #btn-menu { opacity: 0; pointer-events: none; }
+        body.quieto { cursor: none; }
+        body.quieto #controles:focus-within, body.quieto #btn-menu:focus-visible { opacity: 1; pointer-events: auto; }
+
+        /* Índice: la barra lateral del material, como panel */
+        #velo { position: fixed; inset: 0; background: rgba(0, 10, 30, 0.35); z-index: 40; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        #indice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 21rem;
+            z-index: 50;
+            transform: translateX(-100%);
+            visibility: hidden;
+            transition: transform 0.3s ease, visibility 0s linear 0.3s;
+            overflow-y: auto;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.con-indice #indice { transform: none; visibility: visible; transition: transform 0.3s ease; }
+        body.con-indice #velo { opacity: 1; pointer-events: auto; }
+        #indice .cab { padding: 72px 24px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        #indice nav { padding: 14px; flex: 1; }
+        #indice .item-seccion { cursor: pointer; margin-bottom: 4px; border: 0; background: transparent; width: 100%; text-align: left; font-family: inherit; }
+        #indice .item-seccion:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
+        #indice .item-seccion.actual, #indice .item-seccion.actual:hover { background: var(--grad); color: #fff; box-shadow: 0 8px 18px rgba(var(--secondary-rgb), 0.28); }
+        body.con-indice #btn-menu { opacity: 1; pointer-events: auto; }
+        #indice .sub { margin: 2px 0 10px 38px; display: flex; flex-direction: column; gap: 1px; }
+        #indice .sub button { background: none; border: 0; color: rgba(255, 255, 255, 0.55); text-align: left; font-size: 12.5px; padding: 5px 8px; border-radius: 6px; cursor: pointer; line-height: 1.3; }
+        #indice .sub button:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        #indice .sub button.actual { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--secondary); }
+        #indice .pie-indice { padding: 16px 24px; font-size: 10.5px; color: rgba(255, 255, 255, 0.42); border-top: 1px solid rgba(255, 255, 255, 0.1); line-height: 1.5; }
+
+        /* Notas del presentador */
+        #notas {
+            position: fixed;
+            left: 50%;
+            bottom: 74px;
+            transform: translate(-50%, 20px);
+            width: min(900px, calc(100vw - 40px));
+            max-height: 34vh;
+            overflow-y: auto;
+            z-index: 35;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            box-shadow: 0 16px 50px rgba(0, 26, 77, 0.25);
+            border-top: 4px solid var(--secondary);
+            padding: 16px 22px;
+            font-size: 15.5px;
+            line-height: 1.55;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        #notas { visibility: hidden; }
+        body.con-notas #notas { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; visibility: visible; }
+        .etq-notas { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: var(--secondary-texto); margin-bottom: 6px; }
+        .notas-vacias { color: var(--gris-claro); font-style: italic; }
+        #notas p, .notas p { margin: 0 0 0.55em; }
+        #notas ul, .notas ul { margin: 0 0 0.55em; padding-left: 1.2em; }
+
+        /* Ayuda y pantalla en negro */
+        #ayuda { position: fixed; inset: 0; z-index: 70; background: rgba(0, 10, 30, 0.55); display: none; align-items: center; justify-content: center; }
+        body.con-ayuda #ayuda { display: flex; }
+        #ayuda .tarjeta-ayuda { background: #fff; border-radius: 18px; padding: 26px 30px; width: min(560px, calc(100vw - 32px)); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); border-top: 5px solid var(--primary); }
+        #ayuda h3 { margin: 0 0 14px; color: var(--navy); font-size: 18px; }
+        #ayuda table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        #ayuda td { padding: 6px 4px; border-bottom: 1px solid #F1F5F9; }
+        #ayuda td:first-child { white-space: nowrap; width: 42%; }
+        #ayuda kbd { font-family: 'Fira Code', monospace; font-size: 12px; background: #F1F5F9; border: 1px solid #CBD5E1; border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; margin-right: 3px; }
+
+        #negro { position: fixed; inset: 0; z-index: 80; background: #000; display: none; }
+        body.en-negro #negro { display: block; }
+
+        #ir-a {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 65;
+            background: var(--navy); color: #fff; font-weight: 700; font-size: 15px; padding: 8px 18px;
+            border-radius: 999px; display: none; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        body.revision #controles, body.revision #btn-menu { display: none; }
+        body.revision .paso { transition: none; }
+        body.revision .diapo.activa > .marco { animation: none; }
+
+        /* Revisión: diapositivas que no caben */
+        .aviso-revision {
+            position: absolute; top: 10px; right: 10px; z-index: 5;
+            background: #B91C1C; color: #fff; font-size: 12px; font-weight: 700;
+            padding: 4px 10px; border-radius: 6px;
+        }
+
+        /* ============================================================
+           VISTA DEL PRESENTADOR (?presentador)
+        ============================================================ */
+        body.presentador { background: #0B1330; }
+        body.presentador #btn-menu, body.presentador #controles, body.presentador #notas, body.presentador #progreso { display: none; }
+        #panel-presentador { display: none; }
+        body.presentador #panel-presentador {
+            display: grid;
+            position: fixed;
+            inset: 0;
+            grid-template-columns: 1.55fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 18px;
+            padding: 18px;
+            color: #fff;
+            z-index: 10;
+            pointer-events: none;
+        }
+        #panel-presentador .barra { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(255, 255, 255, 0.7); }
+        #panel-presentador .reloj { font-size: 30px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+        #panel-presentador .reloj small { font-size: 13px; color: var(--gold); font-weight: 600; margin-left: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+        #panel-presentador .hueco { border-radius: 10px; }
+        #panel-presentador .derecha { display: flex; flex-direction: column; gap: 14px; min-height: 0; pointer-events: auto; }
+        #panel-presentador .etq { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+        #vista-siguiente { position: relative; aspect-ratio: 16 / 9; background: #fff; border-radius: 10px; overflow: hidden; }
+        #vista-siguiente .diapo { visibility: visible; opacity: 1; transform-origin: top left; width: 1280px; height: 720px; }
+        #vista-siguiente .paso { opacity: 1; transform: none; }
+        #notas-presentador { flex: 1; min-height: 0; overflow-y: auto; background: #fff; color: var(--texto); border-radius: 12px; padding: 16px 20px; font-size: 20px; line-height: 1.5; }
+
+        /* ============================================================
+           IMPRESIÓN — una diapositiva por página, con todo revelado
+        ============================================================ */
+        @media print {
+            @page { size: 1280px 720px; margin: 0; }
+            html, body { overflow: visible; height: auto; background: #fff; }
+            #escenario { position: static; }
+            #mazo { position: static; transform: none !important; box-shadow: none; width: 1280px; height: auto; overflow: visible; }
+            .diapo { position: relative; visibility: visible; opacity: 1; width: 1280px; height: 720px; page-break-after: always; break-after: page; overflow: hidden; }
+            .diapo.activa > .marco { animation: none; }
+            .paso { opacity: 1; transform: none; }
+            #progreso, #btn-menu, #controles, #indice, #velo, #notas, #ayuda, #negro, #ir-a, #panel-presentador, .btn-copiar, .enlace-material, .aviso-revision { display: none !important; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* --- Gráfico animado (scripts/animado.py): SVG en línea; cada etapa es un .paso --- */
+        .figura.ga .lienzo { background: transparent; }
+        .ga-svg { overflow: visible; font-family: var(--fuente); }
+        .ga .s0 { --c: var(--texto); }
+        .ga .s1 { --c: var(--primary); }
+        .ga .s2 { --c: var(--secondary); --ct: var(--secondary-texto); }
+        .ga .s3 { --c: var(--teal); }
+        .ga .s4 { --c: var(--gold); --ct: #B45309; }
+        .ga .s5 { --c: var(--gris); }
+        .ga .s6 { --c: #B91C1C; }
+        .ga .ga-rejilla { stroke: var(--borde); stroke-width: 1.5; }
+        .ga .ga-eje { stroke: var(--gris-claro); stroke-width: 2; }
+        .ga .ga-marca-eje { fill: var(--gris); font-size: 19px; font-weight: 500; }
+        .ga .ga-titulo-eje { fill: var(--gris); font-size: 20px; font-weight: 600; }
+        .ga .ga-titulo-panel { fill: var(--texto); font-size: 22px; font-weight: 700; }
+        .ga .ga-sub { font-size: 0.75em; }
+        .ga .ga-trazo { fill: none; stroke: var(--c); stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+        .ga .ga-anillo { stroke-width: 4; }
+        .ga .ga-discontinua { stroke-width: 3; }
+        .ga .ga-pto, .ga .ga-punta { fill: var(--c); stroke: #fff; stroke-width: 2.5; }
+        .ga .ga-barra { fill: var(--c); }
+        .ga .ga-rotulo { fill: var(--ct, var(--c)); font-size: 21px; font-weight: 700; }
+        .ga .ga-etiqueta { fill: var(--ct, var(--c)); font-size: 18px; font-weight: 600; }
+        .ga .ga-valor { font-size: 21px; font-weight: 700; }
+        .ga .ga-nota { fill: var(--ct, var(--c)); font-size: 20px; font-weight: 700; }
+        /* El movimiento: la etapa entra sin el desplazamiento del .paso genérico; la línea se traza,
+           la barra crece desde la base y los rótulos aparecen cuando el trazo ya llegó. */
+        .ga .ga-etapa.paso, .ga .ga-etapa.paso.visto { transform: none; }
+        .ga .ga-etapa .ga-trazo { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s ease-in-out; }
+        .ga .ga-etapa .ga-trazo.ga-discontinua { stroke-dasharray: 0.012 0.012; stroke-dashoffset: 0; transition: none; }
+        .ga .ga-etapa.visto .ga-trazo { stroke-dashoffset: 0; }
+        .ga .ga-etapa .ga-barra { transform: scaleY(0); transform-box: fill-box; transform-origin: 50% 100%; transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .ga .ga-etapa.visto .ga-barra { transform: none; }
+        .ga .ga-etapa .ga-retardo { opacity: 0; transition: opacity 0.3s ease-out; }
+        .ga .ga-etapa.visto .ga-retardo { opacity: 1; transition: opacity 0.4s ease-out 0.85s; }
+        .ga .ga-trazo.ga-discontinua { stroke-dasharray: 0.012 0.012; }
+        /* Sin movimiento: ?todo, ?revisar, «reducir movimiento», la vista siguiente y la impresión */
+        html.ga-quieto .ga *, #vista-siguiente .ga * { transition: none !important; }
+        html.ga-final .ga .ga-etapa, #vista-siguiente .ga .ga-etapa { opacity: 1; }
+        html.ga-final .ga .ga-trazo, #vista-siguiente .ga .ga-trazo { stroke-dashoffset: 0; }
+        html.ga-final .ga .ga-barra, #vista-siguiente .ga .ga-barra { transform: none; }
+        html.ga-final .ga .ga-retardo, #vista-siguiente .ga .ga-retardo { opacity: 1; }
+        @media print {
+            .ga * { transition: none !important; }
+            .ga .ga-trazo { stroke-dashoffset: 0 !important; }
+            .ga .ga-barra { transform: none !important; }
+            .ga .ga-retardo { opacity: 1 !important; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="progreso"><div></div></div>
+
+    <button id="btn-menu" class="btn-redondo lp-gradient" title="Índice (M)" aria-label="Mostrar el índice">
+        <i aria-hidden="true" class="fas fa-bars"></i>
+    </button>
+
+    <div id="velo"></div>
+    <aside id="indice" class="lp-header" aria-label="Índice de la presentación"></aside>
+
+    <main id="escenario">
+        <div id="mazo">
+<section class="diapo portada" data-tipo="portada">
+    <div class="brillo"></div>
+    <div class="marco">
+        <div>
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+        </div>
+        <div>
+            <span class="chip-semana">Sesión 2 de 2 · 90 min</span>
+            <h1>Diseños factoriales</h1>
+            <div class="subtitulo">Sin interacción y sin réplicas, tres factores, curvas y superficies, bloqueo y ciencia de datos</div>
+            <div class="temas"><span>Modelo aditivo</span><span>Prueba de Tukey</span><span>Factorial general</span><span>Curvas de respuesta</span><span>Punto estacionario</span><span>Bloqueo</span><span>Cuadro latino</span><span>Ciencia de datos</span></div>
+        </div>
+        <div class="base">
+            <div></div>
+            <div class="firma"><strong>Javier Mauricio Sierra</strong></div>
+        </div>
+    </div>
+    <div class="barra-grad"></div>
+</section>
+<section class="diapo dividida" data-tipo="agenda">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="antetitulo">Hoja de ruta</div>
+            <h2 style="margin-bottom:34px">Lo que vamos a construir hoy</h2>
+            <div class="ra-caja"><div class="etq">Objetivo de la sesión</div><div class="ra">Medir lo que cuesta quitar la interacción, probar la no aditividad con una observación por celda, leer una tabla de tres factores, partir un factor cuantitativo en curvas y una superficie, y bloquear un factorial sin tocar el análisis de los tratamientos.</div></div>
+            <div class="chips"><span>Modelo aditivo</span><span>Prueba de Tukey</span><span>Factorial general</span><span>Curvas de respuesta</span><span>Punto estacionario</span><span>Bloqueo</span><span>Cuadro latino</span><span>Ciencia de datos</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">2 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">01</div>
+            <h2>Sin interacción y sin réplicas</h2>
+            <div class="gancho"><p>¿Qué cuesta quitar la interacción, y qué hacer cuando no hay réplicas?</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-7" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.7 Sin interacción y con una observación por celda <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">3 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>Quitar la interacción cuando sí la hay infla el error: \(MS_E\) pasa de 675.21 a 898.21</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 3fr) minmax(0, 2fr)">
+<div class="col"><div class="codigo" data-lang="r" data-foco=""><div class="codigo-cabecera"><span class="codigo-titulo"><i aria-hidden="true" class="fas fa-chart-line"></i>El modelo aditivo sobre la batería</span><button class="btn-copiar" title="Copiar"><i aria-hidden="true" class="fas fa-copy"></i> Copiar</button></div><pre><code>aditivo &lt;- aov(y ~ material + temperatura, data = bateria)
+summary(aditivo)
+#&gt;             Df Sum Sq Mean Sq F value   Pr(&gt;F)
+#&gt; material     2  10684    5342   5.947  0.00651 **
+#&gt; temperatura  2  39119   19559  21.776 1.24e-06 ***
+#&gt; Residuals   31  27845     898</code></pre></div></div>
+<div class="col"><ul>
+<li>Error: \(18\,230.75 + 9613.78 = 27\,844.53\) con \(27 + 4 = 31\) gl</li>
+<li>\(27\,844.53/31 = 898.21\)</li>
+<li>Material: \(F\) de 7.911 a 5.947; temperatura: de 28.968 a 21.776</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Se mete en el error algo con cuadrado medio 2403.44, mucho mayor que 675.21: lo infla.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.8, p. 198; código R del módulo 7.7</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">4 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>Con una observación por celda, la interacción se supone o se prueba</h2></div>
+        </div>
+        <div class="cuerpo"><ul>
+<li>Con \(n = 1\) el modelo completo tiene tantos parámetros como datos: no queda error</li>
+<li><strong>Suponer</strong> que no hay interacción y usar \(SS_{AB}\) como error</li>
+<li><strong>Probar</strong> una forma concreta de interacción: la prueba de Tukey (1949)</li>
+</ul>
+<div class="caja info"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-circle-info"></i>Interpretación · la guía de la UGR dice otra cosa</span><div class="caja-cuerpo"><p>La Práctica 7 de la UGR (§21) dice que sin replicación «no puede haber interacción». Puede haberla: lo que no se puede es separarla del error sin suponer algo.</p></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> Suponer sale caro si el supuesto falla, como acabamos de ver con la batería.</p></div>
+<p><small>Fuente: módulo 7.7; Montgomery (2017), §5.3.7, p. 198; UGR, Práctica 7, §21</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">5 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>En la impureza, con una corrida por combinación, el residuo mezcla interacción y error</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 1fr) minmax(0, 1fr)">
+<div class="col"><table><thead><tr><th>Temp. \ presión</th><th>25</th><th>30</th><th>35</th><th>40</th><th>45</th></tr></thead><tbody>
+<tr><td><strong>100</strong></td><td>5</td><td>4</td><td>6</td><td>3</td><td>5</td></tr>
+<tr><td><strong>125</strong></td><td>3</td><td>1</td><td>4</td><td>2</td><td>3</td></tr>
+<tr><td><strong>150</strong></td><td>1</td><td>1</td><td>3</td><td>1</td><td>2</td></tr>
+</tbody></table></div>
+<div class="col"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Montgomery (2017), ejemplo 5.2</span><div class="caja-cuerpo"><p>Impureza de un producto químico: temperatura en °F; la presión, sin unidad en el libro.</p>
+<ul>
+<li>Temperatura: \(SS = 23.33\), 2 gl</li>
+<li>Presión: \(SS = 11.60\), 4 gl</li>
+<li>Residuo: \(SS = 2.00\), 8 gl</li>
+</ul></div></div>
+<div class="cita"><p><strong>Dato.</strong> \(23.33 + 11.60 + 2.00 = 36.93\), y el residuo tiene \((3-1)(5-1) = 8\) gl.</p></div>
+<p><small>Fuente: Montgomery (2017), ejemplo 5.2 y Tabla 5.10, pp. 199–200; código R del módulo 7.7</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">6 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>La prueba de no aditividad de Tukey compra un solo grado de libertad</h2></div>
+        </div>
+        <div class="cuerpo"><p>$$SS_N = \frac{\Big[\sum_i\sum_j y_{ij}\,y_{i\cdot}\,y_{\cdot j} - y_{\cdot\cdot}\big(SS_A + SS_B + \tfrac{y_{\cdot\cdot}^2}{ab}\big)\Big]^2}{ab\,SS_A\,SS_B}$$</p>
+<div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · errata de Montgomery (2017), ec. 5.20, p. 199</span><div class="caja-cuerpo"><p>El libro eleva al cuadrado el paréntesis interior. Su propio ejemplo 5.2 usa la versión sin ese exponente: \([7236 - 7216]^2 = [20.00]^2\).</p></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> La interacción se postula como \(\gamma\,\tau_i\beta_j\): un solo parámetro, \(\gamma\), y un grado de libertad que se saca del residuo.</p></div>
+<p><small>Fuente: Montgomery (2017), ec. 5.20 y ejemplo 5.2, pp. 199–200 · módulo 7.7</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">7 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>En la impureza, la prueba de no aditividad da \(F_0 = 0.363\), \(p = 0.566\)</h2></div>
+        </div>
+        <div class="cuerpo"><div class="paso"><p>Cruzado: \(\sum\sum y_{ij}\,y_{i\cdot}\,y_{\cdot j} = 7236\). Resta: \(44\,(23.33 + 11.60 + 129.07) = 7216\). Numerador: 20</p></div>
+<div class="paso"><p>\(SS_N = 20^2/(15 \cdot 23.333 \cdot 11.6) = 400/4060 = 0.0985\)</p></div>
+<div class="paso"><p>Error: \(2.0000 - 0.0985 = 1.9015\) con 7 gl. \(F_0 = 0.0985/(1.9015/7) = 0.363\), con \(p = 0.566\)</p></div>
+<div class="cita"><p><strong>Dato.</strong> \(F_0 = 0.363\) queda muy lejos del crítico al 5 % con 1 y 7 gl, 5.591.</p></div>
+<p><small>Fuente: Montgomery (2017), ejemplo 5.2 y Tabla 5.11, p. 200; código R del módulo 7.7</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">8 / 41</span></div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>La prueba de no aditividad no rechaza: ¿qué se puede concluir?</h2></div>
+        </div>
+        <div class="cuerpo"><p>Factorial \(3 \times 5\), una observación por celda: \(SS_N = 0.0985\) con 1 gl, \(F_0 = 0.363\), \(p = 0.566\).</p>
+<ol>
+<li>No hay ninguna interacción entre los dos factores.</li>
+<li>No hay evidencia de interacción de la forma \(\gamma\tau_i\beta_j\).</li>
+<li>El experimento no vale: sin réplicas no se estima \(\sigma^2\).</li>
+<li>Hay que subir \(\alpha\) a 0.10 para ganar potencia.</li>
+</ol>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>2</span><div class="caja-cuerpo"><p>Y el modelo aditivo se puede usar. Pero la prueba solo ve la interacción proporcional a \(\tau_i\beta_j\): otra forma se le escapa entera. Es el precio de no replicar.</p></div></div></div>
+<p><small>Fuente: autoevaluación del módulo 7.12, pregunta 5 · módulo 7.7</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">9 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>Con \(n = 1\), el factorial de dos factores tiene el modelo del DBCA del capítulo 5</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 3fr) minmax(0, 2fr)">
+<div class="col"><div class="codigo" data-lang="r" data-foco=""><div class="codigo-cabecera"><span class="codigo-titulo"><i aria-hidden="true" class="fas fa-chart-line"></i>La misma tabla como DBCA</span><button class="btn-copiar" title="Copiar"><i aria-hidden="true" class="fas fa-copy"></i> Copiar</button></div><pre><code>anova(aov(y ~ temperatura + presion, data = largo))
+#&gt;             Df Sum Sq Mean Sq F value    Pr(&gt;F)
+#&gt; temperatura  2 23.333  11.667  46.667 3.885e-05 ***
+#&gt; presion      4 11.600   2.900  11.600  0.002063 **
+#&gt; Residuals    8  2.000   0.250</code></pre></div></div>
+<div class="col"><ul>
+<li>\(11.667/0.250 = 46.67\) y \(2.900/0.250 = 11.60\)</li>
+<li>Misma aritmética: cambia <strong>cómo se aleatorizó</strong></li>
+<li>Factorial: las 15 corridas al azar. DBCA: el azar, solo dentro del bloque</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> No cambia un número, pero sí a qué población se extiende la conclusión.</p></div>
+<p><small>Fuente: código R del módulo 7.7; capítulo 5 del curso</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">10 / 41</span></div>
+</section>
+<section class="diapo idea">
+    <div class="marco">
+        <div class="etq-idea"><span class="punto"><i aria-hidden="true" class="fas fa-compass"></i></span>Idea clave · Interpretación</div>
+        <h2>Con una observación por celda, la interacción no se separa del error</h2>
+        <div class="cuerpo"><p>O se supone que no existe, o se prueba una forma concreta. La prueba de Tukey no ve las demás.</p>
+<p><small>Fuente: módulo 7.7 y módulo 7.12, «Lo que hay que llevarse», punto 4</small></p></div>
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">11 / 41</span></div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">02</div>
+            <h2>Tres factores y más</h2>
+            <div class="gancho"><p>No son tres análisis: es el mismo.</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-8" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.8 El factorial general: tres factores y más <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">12 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Tres factores y más</div><h2>Con \(k\) factores, cada efecto es lo que queda tras descontar sus subconjuntos</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja definicion"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-book"></i>Un solo principio para todos los órdenes</span><div class="caja-cuerpo"><p>El efecto de un conjunto \(S\) de factores es lo que le queda a la media de sus celdas después de descontar los efectos de sus subconjuntos propios: \(\theta_S = \sum_{R \subseteq S} (-1)^{|S|-|R|}\,\bar y_R\).</p></div></div>
+<ul>
+<li>Su suma de cuadrados: (observaciones por combinación de \(S\)) × \(\sum \theta_S^2\)</li>
+<li>Sus grados de libertad: \(\prod_{f \in S} (a_f - 1)\)</li>
+<li>Con \(k\) factores hay \(2^k - 1\) efectos</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Con \(S = \{A, B\}\) sale la interacción de la sesión 1: no hay nada nuevo que aprender.</p></div>
+<p><small>Fuente: módulo 7.8; Montgomery (2017), §5.4, p. 201</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">13 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Tres factores y más</div><h2>La embotelladora cruza tres factores en 24 corridas, y la guía de la UGR usa otros datos</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Montgomery (2017), ejemplo 5.3</span><div class="caja-cuerpo"><p>Desviación de la altura de llenado respecto de la nominal. Carbonatación de 10, 12 y 14 %; presión de 25 y 30 psi; velocidad de 200 y 250 botellas por minuto: \(3 \cdot 2 \cdot 2 \cdot 2 = 24\) corridas.</p></div></div>
+<div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · la guía de la UGR usa otros datos</span><div class="caja-cuerpo"><p>La Práctica 7 de la UGR (supuestos 10 y 11) trae esta misma embotelladora con <strong>otros números</strong> —en la celda de 10 %, 25 psi y 200 bpm, 10 y 20 donde Montgomery tiene −3 y −1— y llega a otra conclusión. Aquí van los de Montgomery.</p></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> Si alguien compara las dos fuentes, no es un error de copia: son dos conjuntos de datos distintos.</p></div>
+<p><small>Fuente: Montgomery (2017), ejemplo 5.3 y Tabla 5.13, p. 203; UGR, Práctica 7, §24 y §25</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">14 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Tres factores y más</div><h2>R lee los siete efectos con una sola fórmula: <code>carbonatacion * presion * velocidad</code></h2></div>
+        </div>
+        <div class="cuerpo"><div class="codigo" data-lang="r" data-foco="10"><div class="codigo-cabecera"><span class="codigo-titulo"><i aria-hidden="true" class="fas fa-chart-line"></i>El factorial de tres factores</span><button class="btn-copiar" title="Copiar"><i aria-hidden="true" class="fas fa-copy"></i> Copiar</button></div><pre><code>mod3 &lt;- aov(y ~ carbonatacion * presion * velocidad, data = bebida)
+summary(mod3)
+#&gt;                                 Df Sum Sq Mean Sq F value   Pr(&gt;F)
+#&gt; carbonatacion                    2 252.75  126.38 178.412 1.19e-09 ***
+#&gt; presion                          1  45.37   45.37  64.059 3.74e-06 ***
+#&gt; velocidad                        1  22.04   22.04  31.118  0.00012 ***
+#&gt; carbonatacion:presion            2   5.25    2.62   3.706  0.05581 .
+#&gt; carbonatacion:velocidad          2   0.58    0.29   0.412  0.67149
+#&gt; presion:velocidad                1   1.04    1.04   1.471  0.24859
+#&gt; carbonatacion:presion:velocidad  2   1.08    0.54   0.765  0.48687
+#&gt; Residuals                       12   8.50    0.71</code></pre></div>
+<div class="cita"><p><strong>Dato.</strong> Siete efectos y un error de 12 gl: \(2 + 1 + 1 + 2 + 2 + 1 + 2 + 12 = 23\).</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.14, p. 205; código R del módulo 7.8</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">15 / 41</span></div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>¿Cuáles de estas lecturas de la embotelladora son correctas?</h2></div>
+        </div>
+        <div class="cuerpo"><ol>
+<li>Como la triple no es significativa, las dobles se pueden interpretar por separado.</li>
+<li>Que los tres principales tengan \(p &lt; 0.0002\) no dice cuánto pesa cada uno.</li>
+<li>Si la triple fuera significativa, las dobles se podrían leer igual.</li>
+</ol>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>1 y 2</span><div class="caja-cuerpo"><p>La 3 no: si la triple fuera significativa, el efecto de cada pareja dependería del nivel del tercer factor. Y la 2: la carbonatación se lleva el 75.08 % de \(SS_T\), la presión el 13.48 % y la velocidad el 6.55 %.</p></div></div></div>
+<p><small>Fuente: autoevaluación del módulo 7.12, pregunta 7 (adaptada) · módulos 7.8 y 7.11</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">16 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Tres factores y más</div><h2>Se lee por orden de interacción: la triple, las dobles y al final los principales</h2></div>
+        </div>
+        <div class="cuerpo"><div class="flujo">
+<div class="paso-flujo paso"><span class="num">1</span><span class="t">La triple</span><span class="d">\(p = 0.4869\): no es significativa, así que las dobles se pueden leer solas</span></div>
+<div class="flecha-flujo paso">→</div>
+<div class="paso-flujo paso"><span class="num">2</span><span class="t">Las dobles</span><span class="d">\(p = 0.0558\), 0.6715 y 0.2486: la más cercana, carbonatación × presión, se lleva el 1.56 % de \(SS_T\)</span></div>
+<div class="flecha-flujo paso">→</div>
+<div class="paso-flujo paso"><span class="num">3</span><span class="t">Los principales</span><span class="d">\(F = 178.41\), 64.06 y 31.12: los tres contundentes</span></div>
+</div>
+<div class="cita"><p><strong>Interpretación.</strong> El modelo aditivo describe bien la embotelladora: sus medias marginales sí se pueden leer, al revés que en la batería.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.14 (los \(p\), de la salida de R); módulo 7.8 y precálculo (proporciones del módulo 7.11)</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">17 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Tres factores y más</div><h2>Con dos niveles, cada efecto es un número; pero al 12 % la carbonatación se curva</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · el \(2^3\) con la carbonatación extrema (10 y 14 %)</span><div class="caja-cuerpo"><p>Efectos: carbonatación 7.875, presión 2.625 y velocidad 1.875.</p></div></div>
+<ul>
+<li>Medias de la carbonatación: \(-4/8 = -0.50\), \(20/8 = 2.50\) y \(59/8 = 7.375\)</li>
+<li>Punto medio entre 10 y 14 %: \((-0.50 + 7.375)/2 = 3.44\); el 12 % da 2.50</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Con dos niveles esa curvatura no se ve: el capítulo 8 la mide con puntos centrales.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.13; código R del módulo 7.8 y totales del precálculo</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">18 / 41</span></div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">03</div>
+            <h2>Curvas de respuesta y superficies</h2>
+            <div class="gancho"><p>Cuando un factor es un número, su efecto se puede partir.</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-9" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.9 Curvas de respuesta y superficies <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">19 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Curvas de respuesta y superficies</div><h2>Casi todo el efecto de la temperatura es lineal; la interacción está en la curvatura</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 3fr) minmax(0, 2fr)">
+<div class="col"><table><thead><tr><th>Componente</th><th>\(SS\)</th><th>gl</th><th>\(p\)</th></tr></thead><tbody>
+<tr><td>Temperatura lineal</td><td>39 042.67</td><td>1</td><td>\(3.5 \times 10^{-8}\)</td></tr>
+<tr><td>Temperatura cuadrática</td><td>76.06</td><td>1</td><td>0.740</td></tr>
+<tr><td>Material × lineal</td><td>2315.08</td><td>2</td><td>0.199</td></tr>
+<tr><td>Material × cuadrática</td><td>7298.69</td><td>2</td><td>0.0106</td></tr>
+</tbody></table></div>
+<div class="col"><ul>
+<li>\(39\,042.67\) de los \(39\,118.72\) de la temperatura</li>
+<li>\(2315.08 + 7298.69 = 9613.78\): la interacción entera</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Los tres materiales bajan de forma parecida: en lo que difieren es en la <strong>curvatura</strong>.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.15, p. 207; código R del módulo 7.9</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">20 / 41</span></div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>El independiente y el lineal coinciden con el libro, y el cuadrático no. ¿Qué se afirma?</h2></div>
+        </div>
+        <div class="cuerpo"><p>Se ajusta una parábola a las tres medias de un material y se compara con la tabla del libro: el cuadrático no coincide, ni siquiera en el signo.</p>
+<ol>
+<li>El libro usó otro método de ajuste, por ejemplo mínimos cuadrados ponderados.</li>
+<li>El libro centró la variable, y eso cambia el cuadrático.</li>
+<li>Es redondeo: hay que recalcular con más decimales.</li>
+<li>La tabla tiene una errata.</li>
+</ol>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>4</span><div class="caja-cuerpo"><p>Con tres puntos y tres parámetros los coeficientes están determinados: por tres puntos con abscisas distintas pasa una sola parábola. Centrar cambia el independiente y el lineal, no el cuadrático; y un redondeo no cambia el signo.</p></div></div></div>
+<p><small>Fuente: autoevaluación del módulo 7.12, pregunta 8 · módulo 7.9</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">21 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Curvas de respuesta y superficies</div><h2>La parábola del material 1 se curva hacia arriba; las del 2 y el 3, hacia abajo</h2></div>
+        </div>
+        <div class="cuerpo"><figure class="figura ga" style="--alto:330px"><div class="lienzo"><svg class="ga-svg" viewBox="0 0 1000 440" width="1000" height="440" role="img" aria-label="Curvas de respuesta de la batería: la del material 1 se curva hacia arriba y las de los materiales 2 y 3, hacia abajo"><title>Curvas de respuesta de la batería: la del material 1 se curva hacia arriba y las de los materiales 2 y 3, hacia abajo</title><g class="ga-ejes"><line class="ga-rejilla" x1="92" y1="356" x2="850" y2="356"/><text class="ga-marca-eje" x="82" y="356" text-anchor="end" dominant-baseline="middle">40</text><line class="ga-rejilla" x1="92" y1="299.67" x2="850" y2="299.67"/><text class="ga-marca-eje" x="82" y="299.67" text-anchor="end" dominant-baseline="middle">60</text><line class="ga-rejilla" x1="92" y1="243.33" x2="850" y2="243.33"/><text class="ga-marca-eje" x="82" y="243.33" text-anchor="end" dominant-baseline="middle">80</text><line class="ga-rejilla" x1="92" y1="187" x2="850" y2="187"/><text class="ga-marca-eje" x="82" y="187" text-anchor="end" dominant-baseline="middle">100</text><line class="ga-rejilla" x1="92" y1="130.67" x2="850" y2="130.67"/><text class="ga-marca-eje" x="82" y="130.67" text-anchor="end" dominant-baseline="middle">120</text><line class="ga-rejilla" x1="92" y1="74.33" x2="850" y2="74.33"/><text class="ga-marca-eje" x="82" y="74.33" text-anchor="end" dominant-baseline="middle">140</text><line class="ga-rejilla" x1="92" y1="18" x2="850" y2="18"/><text class="ga-marca-eje" x="82" y="18" text-anchor="end" dominant-baseline="middle">160</text><line class="ga-eje" x1="92" y1="356" x2="850" y2="356"/><line class="ga-eje" x1="92" y1="18" x2="92" y2="356"/><line class="ga-eje" x1="150.31" y1="356" x2="150.31" y2="363"/><text class="ga-marca-eje" x="150.31" y="386" text-anchor="middle">15</text><line class="ga-eje" x1="471" y1="356" x2="471" y2="363"/><text class="ga-marca-eje" x="471" y="386" text-anchor="middle">70</text><line class="ga-eje" x1="791.69" y1="356" x2="791.69" y2="363"/><text class="ga-marca-eje" x="791.69" y="386" text-anchor="middle">125</text><text class="ga-titulo-eje" x="471" y="418" text-anchor="middle">Temperatura (°F)</text><text class="ga-titulo-eje" x="30" y="187" text-anchor="middle" transform="rotate(-90 30 187)">Vida media (horas)</text></g><g class="ga-base"><g class="ga-el ga-puntos s1"><circle class="ga-pto ga-aparece" cx="150.31" cy="89.12" r="8"/><circle class="ga-pto ga-aparece" cx="471" cy="307.41" r="8"/><circle class="ga-pto ga-aparece" cx="791.69" cy="306.71" r="8"/></g><g class="ga-el ga-puntos s2"><circle class="ga-pto ga-aparece" cx="150.31" cy="29.97" r="8"/><circle class="ga-pto ga-aparece" cx="471" cy="131.37" r="8"/><circle class="ga-pto ga-aparece" cx="791.69" cy="329.24" r="8"/></g><g class="ga-el ga-puntos s3"><circle class="ga-pto ga-aparece" cx="150.31" cy="63.07" r="8"/><circle class="ga-pto ga-aparece" cx="471" cy="58.14" r="8"/><circle class="ga-pto ga-aparece" cx="791.69" cy="227.84" r="8"/></g></g><g class="ga-etapa paso" data-etapa="1"><g class="ga-el ga-curva s1"><path class="ga-trazo" d="M150.31 89.12 L161 99.93 L171.69 110.49 L182.38 120.8 L193.07 130.88 L203.76 140.71 L214.45 150.3 L225.14 159.64 L235.83 168.74 L246.52 177.6 L257.21 186.22 L267.89 194.59 L278.58 202.72 L289.27 210.6 L299.96 218.24 L310.65 225.64 L321.34 232.8 L332.03 239.71 L342.72 246.38 L353.41 252.8 L364.1 258.98 L374.79 264.92 L385.48 270.61 L396.17 276.07 L406.86 281.27 L417.55 286.24 L428.24 290.96 L438.93 295.44 L449.62 299.67 L460.31 303.66 L471 307.41 L481.69 310.92 L492.38 314.18 L503.07 317.2 L513.76 319.97 L524.45 322.5 L535.14 324.79 L545.83 326.84 L556.52 328.64 L567.21 330.2 L577.9 331.51 L588.59 332.58 L599.28 333.41 L609.97 334 L620.66 334.34 L631.35 334.43 L642.04 334.29 L652.73 333.9 L663.42 333.27 L674.11 332.39 L684.79 331.28 L695.48 329.91 L706.17 328.31 L716.86 326.46 L727.55 324.37 L738.24 322.03 L748.93 319.46 L759.62 316.63 L770.31 313.57 L781 310.26 L791.69 306.71" pathLength="1"/><text class="ga-rotulo ga-retardo" x="805.69" y="295.71" dominant-baseline="middle">Material 1</text></g></g><g class="ga-etapa paso" data-etapa="2"><g class="ga-el ga-curva s2"><path class="ga-trazo" d="M150.31 29.97 L161 31.8 L171.69 33.73 L182.38 35.77 L193.07 37.92 L203.76 40.17 L214.45 42.53 L225.14 45 L235.83 47.58 L246.52 50.26 L257.21 53.05 L267.89 55.95 L278.58 58.95 L289.27 62.07 L299.96 65.29 L310.65 68.61 L321.34 72.05 L332.03 75.59 L342.72 79.23 L353.41 82.99 L364.1 86.85 L374.79 90.82 L385.48 94.9 L396.17 99.08 L406.86 103.37 L417.55 107.77 L428.24 112.28 L438.93 116.89 L449.62 121.61 L460.31 126.44 L471 131.37 L481.69 136.41 L492.38 141.56 L503.07 146.82 L513.76 152.18 L524.45 157.65 L535.14 163.23 L545.83 168.91 L556.52 174.7 L567.21 180.6 L577.9 186.61 L588.59 192.72 L599.28 198.94 L609.97 205.27 L620.66 211.71 L631.35 218.25 L642.04 224.9 L652.73 231.65 L663.42 238.52 L674.11 245.49 L684.79 252.57 L695.48 259.75 L706.17 267.04 L716.86 274.44 L727.55 281.95 L738.24 289.56 L748.93 297.29 L759.62 305.11 L770.31 313.05 L781 321.09 L791.69 329.24" pathLength="1"/><text class="ga-rotulo ga-retardo" x="805.69" y="341.24" dominant-baseline="middle">Material 2</text></g><g class="ga-el ga-curva s3"><path class="ga-trazo" d="M150.31 63.07 L161 60.09 L171.69 57.31 L182.38 54.72 L193.07 52.32 L203.76 50.12 L214.45 48.11 L225.14 46.3 L235.83 44.68 L246.52 43.25 L257.21 42.02 L267.89 40.98 L278.58 40.14 L289.27 39.49 L299.96 39.03 L310.65 38.77 L321.34 38.71 L332.03 38.83 L342.72 39.15 L353.41 39.67 L364.1 40.38 L374.79 41.28 L385.48 42.38 L396.17 43.67 L406.86 45.15 L417.55 46.83 L428.24 48.7 L438.93 50.77 L449.62 53.03 L460.31 55.49 L471 58.14 L481.69 60.98 L492.38 64.02 L503.07 67.25 L513.76 70.67 L524.45 74.29 L535.14 78.11 L545.83 82.12 L556.52 86.32 L567.21 90.71 L577.9 95.3 L588.59 100.09 L599.28 105.06 L609.97 110.23 L620.66 115.6 L631.35 121.16 L642.04 126.91 L652.73 132.86 L663.42 139 L674.11 145.34 L684.79 151.87 L695.48 158.59 L706.17 165.51 L716.86 172.62 L727.55 179.93 L738.24 187.43 L748.93 195.12 L759.62 203.01 L770.31 211.09 L781 219.37 L791.69 227.84" pathLength="1"/><text class="ga-rotulo ga-retardo" x="805.69" y="227.84" dominant-baseline="middle">Material 3</text></g></g></svg></div><figcaption>Curvas de respuesta de la batería: una parábola por material</figcaption></figure>
+<div class="paso"><p>Material 1 a 70 °F: \(169.38 - 2.50145 \cdot 70 + 0.012851 \cdot 70^2 = 57.25\), su media de celda.</p>
+<div class="cita"><p><strong>Interpretación.</strong> Signos opuestos del cuadrático: es la interacción material × cuadrática, \(p = 0.0106\).</p></div></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.15 y figura 5.18, pp. 207–208; coeficientes del precálculo · módulo 7.9</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">22 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Curvas de respuesta y superficies</div><h2>La Tabla 5.15 imprime mal dos cuadráticos: con el suyo, el material 2 daría 6642 horas</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · errata de Montgomery (2017), Tabla 5.15, p. 208</span><div class="caja-cuerpo"><p>Imprime <strong>+0.41627</strong> para el material 2 y <strong>−0.01248</strong> para el 3; los valores son <strong>−0.0056612</strong> y <strong>−0.0102479</strong>.</p></div></div>
+<ul>
+<li>Con el impreso, a 125 °F: \(159.62 - 0.17335 \cdot 125 + 0.41627 \cdot 125^2 = 6642\) horas</li>
+<li>La media observada es 49.5, y la figura 5.18 del propio libro dibuja la curva bajando</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Como el modelo es saturado, discrepar del libro no es opinión: es aritmética.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.15 y figura 5.18, p. 208; precálculo · módulo 7.9</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">23 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Curvas de respuesta y superficies</div><h2>Con los dos factores cuantitativos, el modelo es una superficie: la herramienta de corte</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Montgomery (2017), ejemplo 5.5</span><div class="caja-cuerpo"><p>Vida de una herramienta de corte, en datos <strong>codificados</strong>: tres ángulos (15, 20 y 25°) por tres velocidades (125, 150 y 175 in/min), dos réplicas.</p></div></div>
+<ul>
+<li>Interacción: \(SS = 61.3333\) de \(SS_T = 124\), el 49.5 %; \(p = 0.0018\)</li>
+<li>Más que los dos efectos principales juntos: \(24.3333 + 25.3333 = 49.6667\)</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Es el conjunto del capítulo donde la interacción manda.</p></div>
+<p><small>Fuente: Montgomery (2017), ejemplo 5.5, Tablas 5.16 y 5.17, pp. 209–210; código R del módulo 7.9</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">24 / 41</span></div>
+</section>
+<section class="diapo denso">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Curvas de respuesta y superficies</div><h2>El segundo orden tiene un máximo, pero se queda corto: falta de ajuste con \(F = 12.31\)</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · módulo 7.9 y Montgomery (2017), Tabla 5.18</span><div class="caja-cuerpo"><ul>
+<li>\(R^2 = 0.4651\) frente a 0.8952 del ANOVA; \(MS_E = 5.5278\) con 12 gl frente a 1.4444 con 9</li>
+<li>Falta de ajuste: \([(5.5278 \cdot 12 - 13)/3]/1.4444 = 12.31\), con 3 y 9 gl</li>
+<li>\(\mathbf{x}_s = -\tfrac12\mathbf{B}^{-1}\mathbf{b}\): ángulo 20.24°, velocidad 166.07 in/min</li>
+<li>Valores propios de \(\mathbf{B}\): \(-0.0014\) y \(-0.0802\), los dos negativos</li>
+<li>Respuesta media en \(\mathbf{x}_s\): \(3.78 \pm 2.38\)</li>
+</ul></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> El modelo explica menos de la mitad de la variación: su máximo no es de fiar, y la respuesta en él es imprecisa.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.18, pp. 211–212; código R del módulo 7.9</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">25 / 41</span></div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">04</div>
+            <h2>Bloqueo en un factorial</h2>
+            <div class="gancho"><p>El mismo experimento, leído de tres maneras.</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-10" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.10 Bloqueo en un diseño factorial <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">26 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>El bloque se suma al modelo sin interactuar con los tratamientos</h2></div>
+        </div>
+        <div class="cuerpo"><p>$$y_{ijk} = \mu + \tau_i + \beta_j + (\tau\beta)_{ij} + \delta_k + \varepsilon_{ijk}$$</p>
+<div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Montgomery (2017), ejemplo 5.6</span><div class="caja-cuerpo"><p>Intensidad de detección en un radar: <em>clutter</em> (bajo, medio, alto) × filtro (dos). Cuatro operadores, cada uno con las seis combinaciones en orden aleatorio: el operador es el bloque.</p></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> Cada réplica completa se corre en un bloque: con \(n\) bloques hay \(n\) observaciones por celda.</p></div>
+<p><small>Fuente: Montgomery (2017), §5.6 y ejemplo 5.6, Tabla 5.21, pp. 215–216 · módulo 7.10</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">27 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>Bloquear no cambia ninguna suma de cuadrados de tratamiento: parte el error</h2></div>
+        </div>
+        <div class="cuerpo"><div class="tarjetas" style="--n:2">
+<div class="tarjeta paso"><h3>Sin bloquear</h3><p>Error: \(568.50\) con 18 gl<br>\(MS_E = 568.50/18 = 31.58\)</p></div>
+<div class="tarjeta paso"><h3>En bloques por operador</h3><p>Operadores: 402.17 con 3 gl<br>Error: \(166.33\) con 15 gl, \(MS_E = 166.33/15 = 11.09\)</p></div>
+</div>
+<p>Clutter 335.58, filtro 1066.67 e interacción 77.08 son <strong>idénticas</strong> en las dos tablas: \(402.17 + 166.33 = 568.50\).</p>
+<div class="cita"><p><strong>Interpretación.</strong> Bloquear cambia contra qué se comparan los tratamientos, no lo que se estima de ellos.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.22, p. 217; código R del módulo 7.10</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">28 / 41</span></div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>¿Cuánto vale la varianza del operador, \(\hat\sigma^2_\delta\)?</h2></div>
+        </div>
+        <div class="cuerpo"><p>Factorial \(3 \times 2\) en 4 bloques: \(SS_{\text{bloques}} = 402.1667\) con 3 gl y \(SS_E = 166.3333\) con 15. El operador es aleatorio: \(E(MS_{\text{bloques}}) = \sigma^2 + ab\,\sigma^2_\delta\).</p>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>20.4944</span><div class="caja-cuerpo"><p>\(MS_{\text{bloques}} = 402.1667/3 = 134.0556\) y \(MS_E = 166.3333/15 = 11.0889\). Con \(ab = 6\) observaciones por bloque: \((134.0556 - 11.0889)/6 = 20.4944\).</p></div></div></div>
+<p><small>Fuente: autoevaluación del módulo 7.12, pregunta 6 · módulo 7.10</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">29 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>El operador es la mayor fuente de ruido: 20.49 de 31.58, el 64.89 %</h2></div>
+        </div>
+        <div class="cuerpo"><ul>
+<li>Varianza total sin tratamientos: \(20.4944 + 11.0889 = 31.5833\)</li>
+<li>Es el \(MS_E\) del análisis <strong>sin</strong> bloques: no bloquear es meter esa varianza en el error</li>
+<li>Parte del operador: \(20.4944/31.5833 = 64.89\,\%\)</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> No es casualidad: con un bloque por réplica, \(\hat\sigma^2_\delta + MS_E\) es siempre el error de la tabla sin bloques.</p></div>
+<p><small>Fuente: módulo 7.10 (derivación y código R); Montgomery (2017), Tabla 5.23, pp. 217–218</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">30 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>El radar como cuadro latino \(6 \times 6\): los operadores 1 a 4 son los mismos</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Montgomery (2017), Tabla 5.24, p. 219</span><div class="caja-cuerpo"><p>Seis operadores, seis días y las seis combinaciones como letras: el capítulo 6 con un factorial dentro de las letras. Totales de los operadores 1 a 4: <strong>572, 579, 597 y 530</strong>, los mismos de la Tabla 5.21.</p></div></div>
+<div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · errata de Montgomery (2017), Tabla 5.24, p. 219</span><div class="caja-cuerpo"><p>La fila 3, columna 3 imprime \(G(f_2g_3 = 95)\). Es la \(F\): con la G, la fila 3 se queda sin F y el arreglo deja de ser un cuadro latino.</p></div></div>
+<div class="cita"><p><strong>Dato.</strong> Es este experimento con dos operadores más y los días como segunda restricción.</p></div>
+<p><small>Fuente: Montgomery (2017), Tablas 5.21 y 5.24, pp. 216 y 219 · módulo 7.10</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">31 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>Tres lecturas del mismo radar: el error baja y el \(F\) de la interacción sube</h2></div>
+        </div>
+        <div class="cuerpo"><figure class="figura ga" style="--alto:290px"><div class="lienzo"><svg class="ga-svg" viewBox="0 0 1100 440" width="1100" height="440" role="img" aria-label="Radar: el cuadrado medio del error y el F de la interacción en las tres lecturas del mismo experimento"><title>Radar: el cuadrado medio del error y el F de la interacción en las tres lecturas del mismo experimento</title><g class="ga-ejes"><line class="ga-rejilla" x1="92" y1="356" x2="516" y2="356"/><text class="ga-marca-eje" x="82" y="356" text-anchor="end" dominant-baseline="middle">0</text><line class="ga-rejilla" x1="92" y1="269.14" x2="516" y2="269.14"/><text class="ga-marca-eje" x="82" y="269.14" text-anchor="end" dominant-baseline="middle">10</text><line class="ga-rejilla" x1="92" y1="182.29" x2="516" y2="182.29"/><text class="ga-marca-eje" x="82" y="182.29" text-anchor="end" dominant-baseline="middle">20</text><line class="ga-rejilla" x1="92" y1="95.43" x2="516" y2="95.43"/><text class="ga-marca-eje" x="82" y="95.43" text-anchor="end" dominant-baseline="middle">30</text><line class="ga-eje" x1="92" y1="356" x2="516" y2="356"/><line class="ga-eje" x1="92" y1="52" x2="92" y2="356"/><line class="ga-eje" x1="162.67" y1="356" x2="162.67" y2="363"/><text class="ga-marca-eje" x="162.67" y="386" text-anchor="middle">Sin bloquear</text><line class="ga-eje" x1="304" y1="356" x2="304" y2="363"/><text class="ga-marca-eje" x="304" y="386" text-anchor="middle">En bloques</text><line class="ga-eje" x1="445.33" y1="356" x2="445.33" y2="363"/><text class="ga-marca-eje" x="445.33" y="386" text-anchor="middle">Latino 6×6</text><text class="ga-titulo-eje" x="304" y="418" text-anchor="middle">Datos: 24 · 24 · 36</text><text class="ga-titulo-panel" x="304" y="30" text-anchor="middle">MS<tspan class="ga-sub" dy="0.3em">E</tspan><tspan dy="-0.3em">&#8203;</tspan></text></g><g class="ga-ejes"><line class="ga-rejilla" x1="636" y1="356" x2="1060" y2="356"/><text class="ga-marca-eje" x="626" y="356" text-anchor="end" dominant-baseline="middle">0</text><line class="ga-rejilla" x1="636" y1="312.57" x2="1060" y2="312.57"/><text class="ga-marca-eje" x="626" y="312.57" text-anchor="end" dominant-baseline="middle">1</text><line class="ga-rejilla" x1="636" y1="269.14" x2="1060" y2="269.14"/><text class="ga-marca-eje" x="626" y="269.14" text-anchor="end" dominant-baseline="middle">2</text><line class="ga-rejilla" x1="636" y1="225.71" x2="1060" y2="225.71"/><text class="ga-marca-eje" x="626" y="225.71" text-anchor="end" dominant-baseline="middle">3</text><line class="ga-rejilla" x1="636" y1="182.29" x2="1060" y2="182.29"/><text class="ga-marca-eje" x="626" y="182.29" text-anchor="end" dominant-baseline="middle">4</text><line class="ga-rejilla" x1="636" y1="138.86" x2="1060" y2="138.86"/><text class="ga-marca-eje" x="626" y="138.86" text-anchor="end" dominant-baseline="middle">5</text><line class="ga-rejilla" x1="636" y1="95.43" x2="1060" y2="95.43"/><text class="ga-marca-eje" x="626" y="95.43" text-anchor="end" dominant-baseline="middle">6</text><line class="ga-rejilla" x1="636" y1="52" x2="1060" y2="52"/><text class="ga-marca-eje" x="626" y="52" text-anchor="end" dominant-baseline="middle">7</text><line class="ga-eje" x1="636" y1="356" x2="1060" y2="356"/><line class="ga-eje" x1="636" y1="52" x2="636" y2="356"/><line class="ga-eje" x1="706.67" y1="356" x2="706.67" y2="363"/><text class="ga-marca-eje" x="706.67" y="386" text-anchor="middle">Sin bloquear</text><line class="ga-eje" x1="848" y1="356" x2="848" y2="363"/><text class="ga-marca-eje" x="848" y="386" text-anchor="middle">En bloques</text><line class="ga-eje" x1="989.33" y1="356" x2="989.33" y2="363"/><text class="ga-marca-eje" x="989.33" y="386" text-anchor="middle">Latino 6×6</text><text class="ga-titulo-eje" x="848" y="418" text-anchor="middle">Datos: 24 · 24 · 36</text><text class="ga-titulo-panel" x="848" y="30" text-anchor="middle">F de la interacción</text></g><g class="ga-etapa paso" data-etapa="1"><g class="ga-el ga-barra s5"><rect class="ga-barra" x="127.33" y="81.68" width="70.67" height="274.32" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="162.67" y="69.68" text-anchor="middle">31.58</text></g><g class="ga-el ga-barra s5"><rect class="ga-barra" x="671.33" y="303" width="70.67" height="53" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="706.67" y="291" text-anchor="middle">1.22</text></g></g><g class="ga-etapa paso" data-etapa="2"><g class="ga-el ga-barra s3"><rect class="ga-barra" x="268.67" y="259.68" width="70.67" height="96.32" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="304" y="247.68" text-anchor="middle">11.09</text></g><g class="ga-el ga-barra s3"><rect class="ga-barra" x="812.67" y="205.06" width="70.67" height="150.94" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="848" y="193.06" text-anchor="middle">3.48</text></g></g><g class="ga-etapa paso" data-etapa="3"><g class="ga-el ga-barra s2"><rect class="ga-barra" x="410" y="270.01" width="70.67" height="85.99" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="445.33" y="258.01" text-anchor="middle">9.90</text></g><g class="ga-el ga-barra s2"><rect class="ga-barra" x="954" y="78.05" width="70.67" height="277.95" rx="4"/><text class="ga-etiqueta ga-valor ga-retardo" x="989.33" y="66.05" text-anchor="middle">6.40</text></g></g></svg></div><figcaption>El cuadrado medio del error y el F de la interacción en las tres lecturas del radar</figcaption></figure>
+<div class="paso"><ul>
+<li>Mismos 24 datos: \(38.54/31.58 = 1.22\) (\(p = 0.318\)) y \(38.54/11.09 = 3.48\) (\(p = 0.058\))</li>
+<li>El latino tiene <strong>36 datos</strong>: \(63.36/9.90 = 6.40\) (\(p = 0.0071\))</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> El 6.40 no sale solo de bloquear: \(MS_{AB}\) sube de 38.54 a 63.36 con los datos nuevos.</p></div></div>
+<p><small>Fuente: Montgomery (2017), Tablas 5.22 y 5.25, pp. 217 y 220 (los \(p\), de R); precálculo (tres lecturas del simulador del módulo 7.10)</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">32 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Bloqueo en un factorial</div><h2>El día no vale nada y los operadores sí: la regla del capítulo 6</h2></div>
+        </div>
+        <div class="cuerpo"><ul>
+<li>Días: \(SS = 4.33\) con 5 gl, \(MS = 4.33/5 = 0.87\), muy por debajo de \(MS_E = 9.90\)</li>
+<li>Operadores: \(SS = 428.00\) con 5 gl, \(MS = 428.00/5 = 85.6\)</li>
+<li>Sin el día, el error del latino sería \((198 + 4.33)/25 = 8.09\)</li>
+</ul>
+<div class="cita"><p><strong>Interpretación.</strong> Un bloque compensa si su cuadrado medio supera al \(MS_E\) (<a href="../capitulo-6-cuadros-latinos.html" target="_blank" rel="noopener">capítulo 6</a>): el día se lleva 5 gl del error y no da nada a cambio.</p></div>
+<p><small>Fuente: Montgomery (2017), Tabla 5.25, p. 220; precálculo · módulo 7.10 y capítulo 6</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">33 / 41</span></div>
+</section>
+<section class="diapo idea">
+    <div class="marco">
+        <div class="etq-idea"><span class="punto"><i aria-hidden="true" class="fas fa-compass"></i></span>Idea clave · Interpretación</div>
+        <h2>Bloquear no cambia lo que se estima: cambia contra qué se compara</h2>
+        <div class="cuerpo"><p>Y solo compensa si el cuadrado medio del bloque supera al \(MS_E\) que ya había.</p>
+<p><small>Fuente: módulo 7.10 y capítulo 6</small></p></div>
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">34 / 41</span></div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion "><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">05</div>
+            <h2>Ciencia de datos</h2>
+            <div class="gancho"><p>El diseño factorial con otros nombres.</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-11" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.11 Ciencia de datos: hiperparámetros, sensibilidad y A/B <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">35 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>OFAT parte del centro de la rejilla: ¿dónde termina, y cuál es la mejor de las nueve?</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 1fr) minmax(0, 1fr)">
+<div class="col"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · construcción del capítulo, módulo 7.11</span><div class="caja-cuerpo"><p>Acierto en validación con dos hiperparámetros codificados en \([-1, 1]\):</p>
+<table><thead><tr><th>lr \ reg</th><th>−1</th><th>0</th><th>1</th></tr></thead><tbody>
+<tr><td><strong>−1</strong></td><td>0.730</td><td>0.785</td><td>0.790</td></tr>
+<tr><td><strong>0</strong></td><td>0.855</td><td>0.860</td><td>0.815</td></tr>
+<tr><td><strong>1</strong></td><td>0.890</td><td>0.845</td><td>0.750</td></tr>
+</tbody></table></div></div></div>
+<div class="col"><p>OFAT mueve primero \(lr\) con \(reg = 0\) y después \(reg\) con el mejor \(lr\).</p>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>Se queda en el centro, 0.86; la mejor es \((1, -1)\), 0.89</span><div class="caja-cuerpo"><p>Con ruido (\(\sigma = 0.012\), 2000 réplicas, semillas 20001 a 22000), la rejilla de 9 corridas acierta la mejor celda el 94.85 % de las veces; OFAT, con 5, el 17.1 %: simulación del curso.</p></div></div></div>
+<p><small>Fuente: módulo 7.11 y precálculo (genera_cap7.R, set.seed(20000 + i)); no son datos de Montgomery</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">36 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Ciencia de datos</div><h2>Dos pruebas A/B contra la misma base no son una prueba de dos factores</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · construcción del capítulo, módulo 7.11</span><div class="caja-cuerpo"><p>\(y = 10 + 1.0\,a + 0.6\,b + \lambda\,ab\), con \(a, b \in \{0, 1\}\). Cada cambio se prueba contra la misma base \((0,0)\) y se lanzan los dos ganadores. Con \(\lambda = -3\) ganan los dos y se lanza \((1,1)\): \(10 + 1 + 0.6 - 3 = 8.6\); la mejor celda es \((1, 0)\), con 11.0.</p></div></div>
+<div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · simulación del curso, 3000 réplicas de 200 usuarios por celda</span><div class="caja-cuerpo"><p>El acierto de lanzar los dos ganadores cae de 0.974 sin interacción a 0.0213 con \(\lambda = -3\); la prueba de las cuatro celdas da 0.8997.</p></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> Es OFAT otra vez: el vértice que no se observó es el que sale a producción.</p></div>
+<p><small>Fuente: módulo 7.11 y precálculo (set.seed(30000 + 10·|λ|)); no son datos de Montgomery</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">37 / 41</span></div>
+</section>
+<section class="diapo dividida seccion" data-tipo="seccion">
+    <div class="marco">
+        <div class="lateral">
+            <div class="institucion">Universidad El Bosque</div>
+            <div class="asignatura">Diseño de Experimentos</div>
+            <div class="capitulo">Capítulo 7 · <span>Diseños factoriales</span></div>
+            <hr>
+            <div class="lista-secciones"><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Sin interacción y sin réplicas</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Tres factores y más</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Curvas de respuesta y superficies</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Bloqueo en un factorial</span></div><div class="item-seccion hecha"><i aria-hidden="true" class="fas fa-book-open"></i><span>Ciencia de datos</span></div><div class="item-seccion actual"><i aria-hidden="true" class="fas fa-award"></i><span>Cierre y práctica</span></div></div>
+        </div>
+        <div class="principal">
+            <div class="numero-grande">06</div>
+            <h2>Cierre y práctica</h2>
+            
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-12" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.12 Resumen, autoevaluación y lecturas <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">38 / 41</span></div>
+        </div>
+    </div>
+</section>
+<section class="diapo cierre">
+    <div class="brillo"></div>
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-award"></i></div>
+            <div><div class="antetitulo">Cierre y práctica</div><h2>Lo que se llevan hoy</h2></div>
+        </div>
+        <div class="cuerpo"><ul>
+<li>Quitar una interacción que existe infla el error: 675.21 pasa a 898.21</li>
+<li>Con una observación por celda, la interacción se supone o se prueba, y Tukey solo ve una forma</li>
+<li>Con \(k\) factores, el mismo análisis, leído por orden de interacción</li>
+<li>Un factor cuantitativo se parte en curvas: en la batería, la interacción es de curvatura</li>
+<li>Bloquear parte el error sin tocar los tratamientos; el radar lo enseña con los mismos 24 datos</li>
+</ul>
+<p><small>Fuente: módulos 7.7 a 7.10; Montgomery (2017), Tablas 5.8 y 5.22</small></p></div>
+        <div class="firma-cierre">Javier Mauricio Sierra</div>
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">39 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-award"></i></div>
+            <div><div class="antetitulo">Cierre y práctica</div><h2>Práctica en R: el tubo de televisión en clase, el papel en casa</h2></div>
+        </div>
+        <div class="cuerpo"><div class="tarjetas" style="--n:2">
+<div class="tarjeta"><h3>En clase · EG-28 (a) a (d)</h3><p>Brillo de un tubo de televisión: corriente necesaria según el vidrio y el fósforo. ¿Interactúan? ¿Y en bloques? (la primera de cada celda, bloque 1)</p></div>
+<div class="tarjeta"><h3>En casa · EG-27 y EG-25 (c)</h3><p>Papel: tres factores, con y sin bloques (datos en la diapositiva siguiente). Y la superficie del proceso químico.</p></div>
+</div>
+<table><thead><tr><th></th><th>Fósforo 1</th><th>Fósforo 2</th><th>Fósforo 3</th></tr></thead><tbody>
+<tr><td><strong>Vidrio 1</strong></td><td>280 · 290 · 285</td><td>300 · 310 · 295</td><td>290 · 285 · 290</td></tr>
+<tr><td><strong>Vidrio 2</strong></td><td>230 · 235 · 240</td><td>260 · 240 · 235</td><td>220 · 225 · 230</td></tr>
+</tbody></table>
+<div class="cita"><p><strong>Criterio del curso.</strong> Antes del valor \(p\) de la interacción, el gráfico de interacción.</p></div>
+<p><small>Fuente: Montgomery (2017), problemas 5.11 y 5.40 · módulo 7.12, EG-28</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">40 / 41</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-award"></i></div>
+            <div><div class="antetitulo">Cierre y práctica</div><h2>Datos del EG-27: resistencia del papel según madera, presión y tiempo de cocción</h2></div>
+        </div>
+        <div class="cuerpo"><table><thead><tr><th>Madera · tiempo</th><th>400 psi</th><th>500 psi</th><th>650 psi</th></tr></thead><tbody>
+<tr><td><strong>2 % · 3 h</strong></td><td>196.6 · 196.0</td><td>197.7 · 196.0</td><td>199.8 · 199.4</td></tr>
+<tr><td><strong>4 % · 3 h</strong></td><td>198.5 · 197.2</td><td>196.0 · 196.9</td><td>198.4 · 197.6</td></tr>
+<tr><td><strong>8 % · 3 h</strong></td><td>197.5 · 196.6</td><td>195.6 · 196.2</td><td>197.4 · 198.1</td></tr>
+<tr><td><strong>2 % · 4 h</strong></td><td>198.4 · 198.6</td><td>199.6 · 200.4</td><td>200.6 · 200.9</td></tr>
+<tr><td><strong>4 % · 4 h</strong></td><td>197.5 · 198.1</td><td>198.7 · 198.0</td><td>199.6 · 199.0</td></tr>
+<tr><td><strong>8 % · 4 h</strong></td><td>197.6 · 198.4</td><td>197.0 · 197.8</td><td>198.5 · 199.8</td></tr>
+</tbody></table>
+<div class="cita"><p><strong>Dato.</strong> Factorial \(3 \times 3 \times 2\) con dos réplicas: 36 hojas. Para el (d), la primera de cada celda es el bloque 1.</p></div>
+<p><small>Fuente: Montgomery (2017), problema 5.23, p. 224 · módulo 7.12, EG-27</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">41 / 41</span></div>
+</section>
+        </div>
+    </main>
+
+    <nav id="controles" aria-label="Navegación">
+        <span id="contador"></span>
+        <button class="btn-nav ant" id="btn-ant" aria-label="Anterior"><i aria-hidden="true" class="fas fa-chevron-left"></i> Anterior</button>
+        <button class="btn-nav sig" id="btn-sig" aria-label="Siguiente">Siguiente <i aria-hidden="true" class="fas fa-chevron-right"></i></button>
+    </nav>
+
+    <aside id="notas" aria-live="polite"></aside>
+    <div id="ir-a"></div>
+    <div id="negro"></div>
+
+    <div id="ayuda">
+        <div class="tarjeta-ayuda">
+            <h3>Atajos del teclado</h3>
+            <table>
+                <tr><td><kbd>→</kbd><kbd>Espacio</kbd><kbd>AvPág</kbd></td><td>Siguiente (y revela lo pendiente)</td></tr>
+                <tr><td><kbd>←</kbd><kbd>RePág</kbd></td><td>Anterior</td></tr>
+                <tr><td><kbd>Inicio</kbd><kbd>Fin</kbd></td><td>Primera · última</td></tr>
+                <tr><td><kbd>12</kbd><kbd>Enter</kbd></td><td>Ir a la diapositiva 12</td></tr>
+                <tr><td><kbd>M</kbd></td><td>Índice por secciones</td></tr>
+                <tr><td><kbd>N</kbd></td><td>Notas del presentador</td></tr>
+                <tr><td><kbd>P</kbd></td><td>Vista del presentador (otra ventana)</td></tr>
+                <tr><td><kbd>F</kbd></td><td>Pantalla completa</td></tr>
+                <tr><td><kbd>B</kbd><kbd>.</kbd></td><td>Pantalla en negro</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>Cerrar paneles</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="panel-presentador">
+        <div class="barra">
+            <div><span id="p-contador"></span> · <span id="p-titulo"></span></div>
+            <div class="reloj"><span id="p-cronometro">00:00</span><small id="p-hora"></small></div>
+        </div>
+        <div class="hueco" id="p-hueco"></div>
+        <div class="derecha">
+            <div>
+                <div class="etq">A continuación</div>
+                <div id="vista-siguiente"></div>
+            </div>
+            <div class="etq" style="margin-bottom:-8px">Notas</div>
+            <div id="notas-presentador" class="notas"></div>
+        </div>
+    </div>
+
+    <script id="datos-mazo" type="application/json">{"config": {"asignatura": "Diseño de Experimentos", "numero": "7", "titulo": "Diseños factoriales", "ra": "", "horas": "", "stack": [], "institucion": "Universidad El Bosque", "sigla": "UnBosque", "unidad": "Capítulo", "storageKey": "unbosque_diseño_de_experimentos_7"}, "diapos": [{"titulo": "Portada", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Hoja de ruta", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Sin interacción y sin réplicas", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>El simulador de esta sección («Lo que la prueba de Tukey puede y no puede ver») añade a la impureza una interacción multiplicativa. Arranca en γ añadido = 0, que son los datos reales (F₀ = 0.363), y los F de los efectos principales no cambian con γ: todo lo añadido va a SS_N.<\/p>"}, {"titulo": "Quitar la interacción cuando sí la hay infla el error: \\(MS_E\\) pasa de 675.21 a 898.21", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «El modelo aditivo sobre la batería» del módulo 7.7. Es la misma regla que el bloqueo de los capítulos 5 y 6: juntar dos fuentes solo baja el error si lo que se añade tiene un cuadrado medio menor que el que ya había. Las nueve discrepancias del modelo aditivo (media de celda menos ajustado) son exactamente las (τβ) estimadas de la sesión 1: la interacción se define como lo que le falta al modelo aditivo, y contra los ajustados dibujan la curvatura de la figura 5.15 (Montgomery, p. 198: «positive to negative to positive to negative again»).<\/p>"}, {"titulo": "Con una observación por celda, la interacción se supone o se prueba", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Es el arranque de «Cuando hay una sola observación por celda» del módulo 7.7. La guía de SPSS de la Universidad de Granada es fuente de contraste del curso, y el estudiante puede tenerla delante: su frase («no puede haber interacción») confunde «no se puede estimar» con «no existe». La guía, además, elimina las interacciones no significativas del modelo paso a paso (§22, §24 y §25); el capítulo trata eso con la misma regla de la diapositiva anterior.<\/p>"}, {"titulo": "En la impureza, con una corrida por combinación, el residuo mezcla interacción y error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Datos del bloque «Datos de la impureza» del módulo 7.7 (Tabla 5.10 del libro). Sumas de cuadrados con la corrección y²../ab = 44²/15 = 129.07. El residuo tiene (a − 1)(b − 1) = 8 gl y, sin réplicas, no se puede partir en interacción y error sin un supuesto.<\/p>"}, {"titulo": "La prueba de no aditividad de Tukey compra un solo grado de libertad", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Fórmula del módulo 7.7, ya corregida (la errata está declarada en el módulo). La idea: no pedir una interacción cualquiera, que necesitaría 8 gl, sino una de forma multiplicativa, que solo necesita uno. Con el exponente de más, SS_N saldría del orden de 10^8. No hace falta decirlo en clase.<\/p>"}, {"titulo": "En la impureza, la prueba de no aditividad da \\(F_0 = 0.363\\), \\(p = 0.566\\)", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Las cifras salen del bloque «La prueba de no aditividad» del módulo 7.7 (SS_N = 0.098522, F₀ = 0.362694, p = 0.566003). La Tabla 5.11 del libro imprime p = 0.5674: es el valor p del F redondeado a 0.36 (pf(0.36, 1, 7)); con el exacto da 0.5660. No es errata. El crítico al 5 % con 1 y 7 gl es 5.591.<\/p>"}, {"titulo": "La prueba de no aditividad no rechaza: ¿qué se puede concluir?", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Pregunta 5 de la autoevaluación, con las opciones abreviadas. La 3: el experimento es válido con un supuesto extra; es justo el modelo del DBCA (diapositiva siguiente). La 4: subir α no arregla la falta de réplicas, y con p = 0.566 tampoco cambiaría nada.<\/p>"}, {"titulo": "Con \\(n = 1\\), el factorial de dos factores tiene el modelo del DBCA del capítulo 5", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «La misma tabla como DBCA» del módulo 7.7, recortado (sin las dos líneas de cabecera de anova). Las sumas de cuadrados son las que da el DBCA del capítulo 5 sobre estos datos (el capítulo 5 no analizó la impureza). Y una cosa más que conviene saber: después de la prueba de Tukey, la Tabla 5.11 prueba los efectos contra el error de 7 gl (imprime F = 42.97 y 10.68; el exacto es 42.95), no contra el de 8 de esta tabla.<\/p>"}, {"titulo": "Con una observación por celda, la interacción no se separa del error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Cuarta de «Lo que hay que llevarse» del módulo 7.12. Transición: de dos factores a tres, sin aprender nada nuevo.<\/p>"}, {"titulo": "Tres factores y más", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El simulador de esta sección («El cubo del factorial de tres factores») dibuja los ocho vértices del 2³ que queda con la carbonatación extrema, con cada factor rotulado en una de sus aristas; el interruptor añade el plano del 12 %, y la lectura da la curvatura (2.50 frente a 3.44).<\/p>"}, {"titulo": "Con \\(k\\) factores, cada efecto es lo que queda tras descontar sus subconjuntos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Definición y derivación del módulo 7.8. Con S = {A}, θ es τ̂; con S = {A, B}, los cuatro signos alternos de la interacción doble; con S = {A, B, C}, ocho términos que no hace falta memorizar. Con tres factores, 2³ − 1 = 7 efectos.<\/p>"}, {"titulo": "La embotelladora cruza tres factores en 24 corridas, y la guía de la UGR usa otros datos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El contexto es el de Montgomery (ejemplo 5.3, «The Soft Drink Bottling Problem»). La guía de la UGR lo usa con datos propios: en la celda de 10 %, 25 psi y 200 bpm tiene 10 y 20, y concluye que la interacción carbonatación × velocidad es significativa, eliminando antes las demás paso a paso. El capítulo no avisa de esto (mejora 4 del informe).<\/p>"}, {"titulo": "R lee los siete efectos con una sola fórmula: carbonatacion  presion  velocidad", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Bloque «El factorial de tres factores» del módulo 7.8, recortado: falta la construcción de los datos (bebida). Resaltada, la interacción triple: es la primera que se lee. Los gl de los efectos son productos de (niveles − 1): carbonatación × presión × velocidad, 2 · 1 · 1 = 2.<\/p>"}, {"titulo": "¿Cuáles de estas lecturas de la embotelladora son correctas?", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Adaptada de la pregunta 7 de la autoevaluación: la 1 y la 2 son sus opciones 1 y 3; la 3 es lo que dice la retroalimentación de su opción 1, en negativo. Se quitaron tres opciones: la 2 del capítulo, correcta, que justifica leer las marginales con el umbral del 5 % (mejora 18 del informe), y dos distractores cuya retroalimentación es discutible (la multiplicidad de los siete F, y llamar sesgo de selección a reducir el modelo, que la guía de la UGR hace en tres apartados). Va antes del flujo, que la responde.<\/p>"}, {"titulo": "Se lee por orden de interacción: la triple, las dobles y al final los principales", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Es el ejercicio «Cómo se lee una tabla de siete efectos» del módulo 7.8. Se lee empezando por la interacción de mayor orden, como la de la batería. El 1.56 % viene de la descomposición del módulo 7.11 (5.25/336.625): pesa poco, que es mejor razón que «no llega al 5 %». Montgomery (p. 204) lee ese p = 0.0558 como «some interaction», y la dibuja en la figura 5.16 (d), p. 205. Los p de la Tabla 5.14 (0.4867, 0.6713, 0.2485) salen del F redondeado; los de R, del exacto: mismo caso que el 0.5674 de la Tabla 5.11.<\/p>"}, {"titulo": "Con dos niveles, cada efecto es un número; pero al 12 % la carbonatación se curva", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Diapositiva opcional si falta tiempo. Los efectos son la salida del bloque «Los efectos del diseño de dos niveles» del módulo 7.8 (7.875 = 7.375 − (−0.50)). Las medias por carbonatación son aritmética de los totales de la Tabla 5.13 (−4, 20 y 59, ocho botellas cada uno). El capítulo dice que «el plano no cae a media altura» y que «eso es curvatura», sin medirla; un contraste cuadrático la da significativa (F = 6.62 con 1 y 12 gl, p = 0.024; cuenta de la auditoría, no del capítulo).<\/p>"}, {"titulo": "Curvas de respuesta y superficies", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>El simulador de esta sección («De tres curvas a una superficie») tiene dos vistas; en «curvas», el interruptor dibuja la curva del material 2 con el coeficiente que imprime la Tabla 5.15, que se sale del gráfico.<\/p>"}, {"titulo": "Casi todo el efecto de la temperatura es lineal; la interacción está en la curvatura", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Salida del bloque «Partición polinómica» del módulo 7.9 (contrastes ortogonales de contr.poly). La interacción de cuatro grados de libertad (p = 0.0186) se reparte muy desigual. Aviso del capítulo: que las dos partes sumen la interacción no comprueba el reparto (2315.08 y 7298.69 frente a, digamos, 4806.89 y 4806.89, que también suman lo mismo): cada componente se recalcula desde su propio contraste.<\/p>"}, {"titulo": "El independiente y el lineal coinciden con el libro, y el cuadrático no. ¿Qué se afirma?", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Pregunta 8 de la autoevaluación, con la clave abreviada (en el capítulo es la más larga). Va antes del gráfico de las curvas, que la responde. Que coincidan justo el independiente y el lineal descarta otra parametrización. El centrado sí explica otra cosa del capítulo: el intercepto codificado de la Tabla 5.15 (107.58) no es la gran media (105.53).<\/p>"}, {"titulo": "La parábola del material 1 se curva hacia arriba; las del 2 y el 3, hacia abajo", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Gráfico animado: las nueve medias están desde el principio; la primera pulsación dibuja la parábola del material 1 (cóncava hacia arriba) y la segunda, las de los materiales 2 y 3 (hacia abajo); la tercera revela la cuenta y la lectura. Coeficientes del bloque «Las tres curvas de respuesta» del módulo 7.9. Ojo: entre las medias la curva es pura interpolación; el mínimo del material 1 (≈ 47.7 h hacia 97 °F) y el máximo del 3 (≈ 152.6 h hacia 44 °F) nunca se observaron. Con tres puntos y tres coeficientes el ajuste es saturado: no es un ajuste, es una interpolación. La cuenta: 2.50145 · 70 = 175.10 y 0.012851 · 4900 = 62.97, y 169.38 − 175.10 + 62.97 = 57.25.<\/p>"}, {"titulo": "La Tabla 5.15 imprime mal dos cuadráticos: con el suyo, el material 2 daría 6642 horas", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Errata declarada en el módulo 7.9 (la «más consecuente» del capítulo). La cuenta: 0.17335 · 125 = 21.67; 0.41627 · 15 625 = 6504.22; 159.62 − 21.67 + 6504.22 = 6642.17. En el simulador, el interruptor dibuja esa curva.<\/p>"}, {"titulo": "Con los dos factores cuantitativos, el modelo es una superficie: la herramienta de corte", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Montgomery dice «the coded data»: por eso hay vidas negativas. ANOVA del bloque «La vida de una herramienta» del módulo 7.9: ángulo 24.33, velocidad 25.33, interacción 61.33 y error 13.00 con 9 gl. 61.33/124 = 0.495.<\/p>"}, {"titulo": "El segundo orden tiene un máximo, pero se queda corto: falta de ajuste con \\(F = 12.31\\)", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Cifras del bloque «La superficie de segundo orden» y de la nota «El modelo de segundo orden se queda corto» del módulo 7.9; Montgomery publica el punto estacionario (20.2381, 166.0714) y la respuesta 3.781746 ± 2.384705 en la Tabla 5.18 (JMP). Se proyecta en este orden a propósito: primero lo que explica el modelo y después el óptimo. La falta de ajuste es aritmética de cifras del capítulo (SS de falta de ajuste 66.33 − 13 = 53.33 con 3 gl, contra el error puro 1.4444; p ≈ 0.0015): el capítulo no la calcula (mejora 8 del informe). Con los tres términos que faltan, la regresión vuelve a ser el ANOVA (R² = 0.8952). La razón entre valores propios, 57.43 en grados e in/min, depende de las unidades: con la región codificada a ±1 son −0.79 y −2.21 (razón 2.78), un máximo bien definido; lo impreciso es su altura (±2.38).<\/p>"}, {"titulo": "Bloqueo en un factorial", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El simulador de esta sección («Tres lecturas del mismo experimento») tiene las tres tablas ANOVA y, en la segunda vista, la potencia de la prueba del clutter según cuánto difieran los operadores.<\/p>"}, {"titulo": "El bloque se suma al modelo sin interactuar con los tratamientos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Modelo del módulo 7.10: δ_k es el efecto del bloque k, que se supone sin interacción con los tratamientos (Montgomery, §5.6). Con n bloques hay n observaciones por celda (b es el número de niveles del filtro).<\/p>"}, {"titulo": "Bloquear no cambia ninguna suma de cuadrados de tratamiento: parte el error", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Es la advertencia «Ninguna suma de cuadrados de tratamiento cambió» del módulo 7.10, con las dos tablas del bloque «El radar, con y sin bloques». Dos pulsaciones. Lo mismo que el capítulo 5 decía del DBCA, visto sin necesidad de creérselo. (El capítulo dice que bloquear «no explica más la respuesta»; el R² sí sube, de 0.722 a 0.919: lo que no cambia son las sumas de los tratamientos.)<\/p>"}, {"titulo": "¿Cuánto vale la varianza del operador, \\(\\hat\\sigma^2_\\delta\\)?", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Pregunta 6 de la autoevaluación (numérica). El error típico es dividir entre 4 (los bloques) en lugar de entre 6 (las observaciones dentro de cada bloque). Montgomery publica en la Tabla 5.23 el ajuste REML de JMP, que coincide porque el diseño es balanceado.<\/p>"}, {"titulo": "El operador es la mayor fuente de ruido: 20.49 de 31.58, el 64.89 %", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Paso 4 de la derivación del módulo 7.10. La identidad es exacta: (MS_bl + (ab − 1)MS_E)/ab es lo que da juntar las dos filas, porque el error tiene (ab − 1) veces los gl de los bloques. JMP publica un intervalo de Wald (−15.28, 56.27) que se va a negativo por abajo: un intervalo simétrico no sirve para una varianza.<\/p>"}, {"titulo": "El radar como cuadro latino \\(6 \\times 6\\): los operadores 1 a 4 son los mismos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Ejercicio «Y son los mismos operadores» del módulo 7.10, que el capítulo pide comprobar en vez de creer: la columna del operador 1 del cuadro latino es 90, 114, 102, 87, 93 y 86, que suman 572. Es el puente con el capítulo 6. La errata de la G está declarada en el módulo 7.10 y en la tabla del 7.12.<\/p>"}, {"titulo": "Tres lecturas del mismo radar: el error baja y el \\(F\\) de la interacción sube", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Gráfico animado, tres pulsaciones: cada una añade la lectura siguiente en los dos paneles; la cuarta revela las viñetas y la lectura. El eje dice cuántos datos tiene cada lectura: que no se lea la tercera barra como efecto del bloqueo solo. Los F son cuentas de los cuadrados medios publicados: 38.5417/31.5833 = 1.22, 38.5417/11.0889 = 3.48 y 63.3611/9.9 = 6.40 (la Tabla 5.25 imprime 63.37: SS 126.73 entre 2; el F es el mismo). Con los mismos 24 datos, bloquear la deja en p = 0.058, que no llega al 5 %. Del bloqueo al latino, lo que más pesa son los datos nuevos: con el MS_AB del latino y el error de bloques el F sería 5.71; con el MS_AB de bloques y el error del latino, 3.89.<\/p>"}, {"titulo": "El día no vale nada y los operadores sí: la regla del capítulo 6", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El último párrafo del módulo 7.10 cierra con la regla del capítulo 6: un bloqueo mejora el error solo si su cuadrado medio supera al MS_E que ya había. Aquí se ven las dos caras en la misma tabla. El 8.09 es aritmética de la Tabla 5.25 (no está en el capítulo): quitar los días le devuelve 5 gl al error.<\/p>"}, {"titulo": "Bloquear no cambia lo que se estima: cambia contra qué se compara", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Séptima de «Lo que hay que llevarse» del módulo 7.12, sin su final («falla en dos de los cuatro ejercicios guiados»), que adelanta el resultado de la práctica.<\/p>"}, {"titulo": "Ciencia de datos", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Este módulo no tiene simulador. Dos diapositivas: rejilla de hiperparámetros y pruebas A/B.<\/p>"}, {"titulo": "OFAT parte del centro de la rejilla: ¿dónde termina, y cuál es la mejor de las nueve?", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Pregunta hecha con la rejilla del módulo 7.11 (no es de la autoevaluación). La superficie la construye el capítulo: 0.86 + 0.03·lr − 0.02·reg − 0.045·lr² − 0.025·reg² − 0.05·lr·reg; no es un experimento real. OFAT: con reg = 0, el mejor lr es 0 (0.860 frente a 0.855 y 0.845); con lr = 0, el mejor reg es 0, y se queda ahí. El término lr × reg es la interacción del módulo 7.1 con otro nombre. Las cifras del Monte Carlo salen del precálculo con una semilla por réplica; el capítulo no publica ese código.<\/p>"}, {"titulo": "Dos pruebas A/B contra la misma base no son una prueba de dos factores", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>0.0213 es peor que elegir al azar entre cuatro (0.25): con interacción negativa fuerte, los dos cambios ganan por separado y se lanza casi siempre la celda mala (el capítulo dice «siempre»). El capítulo llama a esto «dos pruebas A/B seguidas» y «estrategia secuencial»; lo que simula son dos A/B contra la misma base. Si la segunda se corriera con el ganador de la primera ya puesto, compararía 11.0 con 8.6 y acertaría. La prueba de las cuatro celdas no se mantiene en 0.90 en todo el rango: con λ = −0.5 baja a 0.604, porque las dos mejores celdas quedan muy cerca. El apartado 2 del módulo, que no se proyecta, reparte la suma de cuadrados de la embotelladora como un análisis de sensibilidad: esos sí son datos reales de Montgomery.<\/p>"}, {"titulo": "Cierre y práctica", "seccion": "Cierre y práctica", "k": 5, "notas": ""}, {"titulo": "Lo que se llevan hoy", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>El capítulo 8 se queda con el caso de todos los factores a dos niveles; el 9 rompe el supuesto de que los factores son fijos.<\/p>"}, {"titulo": "Práctica en R: el tubo de televisión en clase, el papel en casa", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>EG-28 del módulo 7.12, con pista y solución en el material; nada de él se proyectó en las dos sesiones. Ojo: el resumen del 7.12 (punto 8) y la pregunta 4 de la autoevaluación adelantan su apartado (b), y la propia pista dice que «la prueba no rechaza» (mejora 14 del informe): pedir que lo hagan sin mirar el resumen. La respuesta es la corriente necesaria para un brillo dado (menos es mejor). Unos 20 minutos; lo que no alcance, para casa. El EG-27 va a casa.<\/p>"}, {"titulo": "Datos del EG-27: resistencia del papel según madera, presión y tiempo de cocción", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>Datos del problema 5.23, cotejados con el libro (p. 224) y con la tabla que el EG-27 trae en el capítulo. En el (c), las marginales que engañan son las de la madera (a 400 psi el 2 % es el peor), y bajar la madera compensa a 500 y a 650 psi.<\/p>"}], "secciones": [{"titulo": "Sin interacción y sin réplicas", "icono": "fa-book-open", "primera": 2, "diapos": [2, 3, 4, 5, 6, 7, 8, 9, 10]}, {"titulo": "Tres factores y más", "icono": "fa-book-open", "primera": 11, "diapos": [11, 12, 13, 14, 15, 16, 17]}, {"titulo": "Curvas de respuesta y superficies", "icono": "fa-book-open", "primera": 18, "diapos": [18, 19, 20, 21, 22, 23, 24]}, {"titulo": "Bloqueo en un factorial", "icono": "fa-book-open", "primera": 25, "diapos": [25, 26, 27, 28, 29, 30, 31, 32, 33]}, {"titulo": "Ciencia de datos", "icono": "fa-book-open", "primera": 34, "diapos": [34, 35, 36]}, {"titulo": "Cierre y práctica", "icono": "fa-award", "primera": 37, "diapos": [37, 38, 39, 40]}], "iconos": {}, "graficas": {}}</script>
+
+    <script>
+    (() => {
+        'use strict';
+        const DATOS = JSON.parse(document.getElementById('datos-mazo').textContent);
+        const CFG = DATOS.config;
+        const params = new URLSearchParams(location.search);
+        const MODO_PRESENTADOR = params.has('presentador');
+        const MODO_REVISION = params.has('revisar');
+        const TODO_VISIBLE = params.has('todo');   // revela todos los pasos (capturas)
+        const CLAVE = (CFG.storageKey || 'lpcore') + '_diapositivas';
+
+        const mazo = document.getElementById('mazo');
+        const diapos = Array.from(mazo.querySelectorAll(':scope > .diapo'));
+        const N = diapos.length;
+        const $ = (id) => document.getElementById(id);
+
+        const leer = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+        const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { } };
+
+        /* ---------- Resaltado de código, como `resaltar` de LP-CORE ------- */
+        // Sin cdnjs (sin red, o bloqueado), `window.Prism` es solo el `{ manual: true }`
+        // de la cabecera, sin gramáticas: el código sale sin color y el visor arranca igual.
+        const hayPrism = !!(window.Prism && Prism.languages);
+        // El pseudocódigo de Lógica de Programación Financiera: la misma gramática
+        // que registra el capítulo (Prism no la trae).
+        if (hayPrism && !Prism.languages.pseudo) {
+            Prism.languages.pseudo = {
+                'comment': { pattern: /\/\/.*/, greedy: true },
+                'string': { pattern: /"(?:[^"\\\n]|\\.)*"/, greedy: true },
+                'keyword': /\b(?:FinSi|FinMientras|FinPara|FinSegun|FinFuncion|FinProcedimiento|FinRepita|Inicio|Fin|Si|Entonces|SinoSi|Sino|Segun|Caso|DeOtroModo|Mientras|Hacer|Para|Repita|Hasta|Con|Paso|Leer|Escribir|Funcion|Procedimiento|Retornar|Llamar)\b/,
+                'builtin': /\b(?:Entero|Real|Cadena|Caracter|Logico|Arreglo|Matriz|Constante|Verdadero|Falso)\b/,
+                'function': /\b(?:Y|O|NO|MOD|DIV|abs|raiz|redondear|potencia|longitud)\b/,
+                'number': /\b\d+(?:\.\d+)?\b/,
+                'operator': /<-|←|>=|<=|<>|[+\-*\/=<>]/,
+                'punctuation': /[(),;\[\]]/,
+            };
+        }
+        const GRAMATICA = { pseudo: 'pseudo', pseudocodigo: 'pseudo', python: 'python', py: 'python', shell: 'bash', bash: 'bash', sh: 'bash', docker: 'docker', dockerfile: 'docker', yaml: 'yaml', yml: 'yaml', sql: 'sql', toml: 'toml', json: 'json', r: 'r', vba: 'visual-basic', js: 'javascript', javascript: 'javascript' };
+        const PREFIJO_SALIDA = { python: '#>', py: '#>', r: '#>', shell: '#>', bash: '#>', vba: "'>", pseudo: '//>', pseudocodigo: '//>' };
+        const escaparHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        const resaltarBloques = () => {
+            document.querySelectorAll('.codigo').forEach((bloque) => {
+                const code = bloque.querySelector('pre code');
+                if (!code || code.dataset.hecho) return;
+                const fuente = code.textContent;
+                bloque._fuente = fuente;
+                const lang = bloque.dataset.lang || 'text';
+                const nombre = GRAMATICA[lang];
+                const gram = nombre && hayPrism && Prism.languages[nombre];
+                let html = gram ? Prism.highlight(fuente, gram, nombre) : escaparHtml(fuente);
+                const pref = PREFIJO_SALIDA[lang];
+                const foco = new Set((bloque.dataset.foco || '').split(',').filter(Boolean).flatMap((r) => {
+                    const [a, b] = r.split('-').map(Number);
+                    return Array.from({ length: (b || a) - a + 1 }, (_, i) => a + i);
+                }));
+                // Un token de varias líneas (una cadena """…""", un comentario /* … */) llega como un
+                // solo <span>: se cierra al final de cada línea y se reabre en la siguiente, para que
+                // cada .linea quede bien anidada.
+                let abiertas = [];
+                html = html.split('\n').map((linea) => {
+                    const prefijo = abiertas.join('');
+                    for (const m of linea.matchAll(/<(\/?)span\b[^>]*>/g)) {
+                        if (m[1]) abiertas.pop(); else abiertas.push(m[0]);
+                    }
+                    return prefijo + linea + '</span>'.repeat(abiertas.length);
+                }).map((linea, i) => {
+                    const plano = linea.replace(/<[^>]*>/g, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').trimStart();
+                    const clases = ['linea'];
+                    if (pref && plano.startsWith(pref)) clases.push('lp-salida');
+                    if (foco.has(i + 1)) clases.push('foco');
+                    return `<span class="${clases.join(' ')}">${linea}${plano ? '' : ' '}</span>`;
+                }).join('\n');
+                code.innerHTML = html;
+                code.dataset.hecho = '1';
+                if (foco.size) bloque.classList.add('con-foco');
+            });
+        };
+
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-copiar');
+            if (!btn) return;
+            const bloque = btn.closest('.codigo');
+            const texto = bloque._fuente ?? bloque.querySelector('code').textContent;
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.classList.add('copiado');
+                btn.innerHTML = '<i aria-hidden="true" class="fas fa-check"></i> Copiado';
+                setTimeout(() => { btn.classList.remove('copiado'); btn.innerHTML = '<i aria-hidden="true" class="fas fa-copy"></i> Copiar'; }, 2000);
+            }).catch(() => { });
+        });
+
+        /* ---------- Gráficas de Plotly (solo si el mazo trae alguna) ---------- */
+        const dibujarGraficas = () => {
+            const nodos = document.querySelectorAll('.grafica[data-fuente]');
+            if (!nodos.length || !window.Plotly) return;
+            nodos.forEach((el) => {
+                if (el.dataset.hecha) return;
+                const g = DATOS.graficas[el.dataset.fuente];
+                if (!g) return;
+                const layout = Object.assign({}, g.layout || {}, {
+                    autosize: true,
+                    font: Object.assign({ size: 14, color: '#1E293B' }, (g.layout || {}).font || {}, { family: getComputedStyle(document.documentElement).getPropertyValue('--fuente').trim() || 'Montserrat, sans-serif' }),
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                });
+                delete layout.width; delete layout.height;
+                // Con la tipografía del curso las etiquetas miden otra cosa que
+                // en el material: que cada eje reserve su propio margen.
+                Object.keys(layout).filter((k) => /^[xy]axis\d*$/.test(k)).forEach((k) => {
+                    layout[k] = Object.assign({}, layout[k], { automargin: true });
+                });
+                Plotly.newPlot(el, g.data, layout, { displayModeBar: false, responsive: true });
+                el.dataset.hecha = '1';
+            });
+        };
+
+        /* ---------- Ajuste: lo que no cabe se encoge, hasta un límite ---------- */
+        const K_MIN = 0.7;
+        const desborda = (d) => {
+            const c = d.querySelector('.cuerpo');
+            if (!c) return false;
+            if (c.scrollHeight > c.clientHeight + 2) return true;
+            if (Array.from(c.querySelectorAll('pre')).some((el) => el.scrollHeight > el.clientHeight + 2)) return true;
+            if (Array.from(c.querySelectorAll('pre, table, .tarjetas, .flujo, .columnas')).some((el) => el.scrollWidth > el.clientWidth + 2)) return true;
+            // Una fórmula, una imagen o un diagrama más anchos que su columna no
+            // agrandan la rejilla: invaden la columna de al lado. Se mide contra
+            // la caja que los contiene.
+            return Array.from(c.querySelectorAll('mjx-container, img, svg, .grafica')).some((el) => {
+                if (el.closest('.codigo')) return false;
+                if (el.tagName.toLowerCase() === 'svg' && el.parentElement && el.parentElement.closest('mjx-container, .grafica, svg')) return false;
+                const marco = el.closest('.columnas > *, .tarjeta, .caja, td, th') || c;
+                const m = marco.getBoundingClientRect();
+                // MathJax deja el contenedor del ancho de la columna y desborda por dentro.
+                const r = (el.querySelector(':scope > svg, :scope > mjx-math') || el).getBoundingClientRect();
+                return r.width > 0 && (r.right > m.right + 2 || r.left < m.left - 2);
+            });
+        };
+
+        const ajustar = () => {
+            const informe = [];
+            diapos.forEach((d, i) => {
+                d.querySelectorAll(':scope > .aviso-revision').forEach((a) => a.remove());
+                let k = parseFloat(d.dataset.k || '1');
+                d.style.setProperty('--k', k);
+                while (desborda(d) && k > K_MIN + 1e-6) {
+                    k = Math.max(K_MIN, +(k - 0.03).toFixed(3));
+                    d.style.setProperty('--k', k);
+                }
+                const sigue = desborda(d);
+                if (sigue || k < 0.88) informe.push({ n: i + 1, titulo: DATOS.diapos[i].titulo, escala: k, desborda: sigue });
+                if (MODO_REVISION && (sigue || k < 0.88)) {
+                    const a = document.createElement('div');
+                    a.className = 'aviso-revision';
+                    a.textContent = sigue ? 'NO CABE' : `encogida a ${Math.round(k * 100)} %`;
+                    d.appendChild(a);
+                }
+            });
+            return informe;
+        };
+
+        /* ---------- Escala del lienzo ---------- */
+        const escalar = () => {
+            if (MODO_PRESENTADOR) return escalarPresentador();
+            const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+            mazo.style.transform = `translate(-50%, -50%) scale(${s})`;
+        };
+
+        /* ---------- Estado ---------- */
+        const inicial = () => {
+            const h = parseInt(location.hash.replace('#', ''), 10);
+            if (Number.isInteger(h) && h >= 1 && h <= N) return h - 1;
+            const g = parseInt(leer(CLAVE), 10);
+            return Number.isInteger(g) && g >= 0 && g < N ? g : 0;
+        };
+
+        let actual = -1;
+        let paso = 0;
+        const pasosDe = (i) => Array.from(diapos[i].querySelectorAll('.paso'));
+
+        const canal = ('BroadcastChannel' in window) ? new BroadcastChannel('diapositivas-' + CLAVE) : null;
+        let silencio = false;
+
+        const mostrar = (i, p = 0, emitir = true) => {
+            i = Math.max(0, Math.min(N - 1, i));
+            if (i !== actual) {
+                diapos.forEach((d, j) => d.classList.toggle('activa', j === i));
+                actual = i;
+            }
+            const pasos = pasosDe(i);
+            paso = (p < 0 || TODO_VISIBLE) ? pasos.length : Math.min(p, pasos.length);
+            pasos.forEach((el, j) => el.classList.toggle('visto', j < paso));
+            const meta = DATOS.diapos[i];
+            $('progreso').firstElementChild.style.width = `${((i + 1) / N) * 100}%`;
+            $('contador').innerHTML = `${i + 1} / ${N}${meta.seccion ? ` <span>· ${meta.seccion}</span>` : ''}`;
+            $('btn-ant').disabled = i === 0 && paso === 0;
+            $('btn-sig').disabled = i === N - 1 && paso >= pasos.length;
+            $('notas').innerHTML = `<div class="etq-notas">Notas · ${i + 1}. ${meta.titulo || ''}</div>` + (meta.notas || '<p class="notas-vacias">Esta diapositiva no tiene notas.</p>');
+            if (!MODO_PRESENTADOR) {
+                if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+                guardar(CLAVE, String(i));
+            }
+            pintarIndice();
+            if (MODO_PRESENTADOR) pintarPresentador();
+            if (emitir && canal && !silencio) canal.postMessage({ tipo: 'ir', i, paso });
+        };
+
+        const siguiente = () => {
+            const pasos = pasosDe(actual);
+            if (paso < pasos.length) return mostrar(actual, paso + 1);
+            if (actual < N - 1) mostrar(actual + 1, 0);
+        };
+
+        const anterior = () => {
+            if (paso > 0) return mostrar(actual, paso - 1);
+            if (actual > 0) mostrar(actual - 1, -1);
+        };
+
+        if (canal) {
+            canal.onmessage = (e) => {
+                const m = e.data || {};
+                silencio = true;
+                if (m.tipo === 'ir') mostrar(m.i, m.paso, false);
+                if (m.tipo === 'sig') siguiente();
+                if (m.tipo === 'ant') anterior();
+                silencio = false;
+                if ((m.tipo === 'sig' || m.tipo === 'ant') && canal) canal.postMessage({ tipo: 'ir', i: actual, paso });
+            };
+        }
+
+        /* ---------- Índice: la barra lateral del material ---------- */
+        const iconoSvg = (nombre) => (nombre && nombre.startsWith('fa-')) ? `<i aria-hidden="true" class="fas ${nombre}"></i>`
+            : (DATOS.iconos[nombre] || DATOS.iconos.BookOpen || '<i aria-hidden="true" class="fas fa-book-open"></i>');
+
+        const construirIndice = () => {
+            const ind = $('indice');
+            const secciones = DATOS.secciones;
+            let html = `<div class="cab">
+                <div class="institucion" style="font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">${CFG.institucion || ''}</div>
+                <div style="font-size:18px;font-weight:700;margin-top:4px;line-height:1.25">${CFG.asignatura || ''}</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:5px">${CFG.unidad || 'Semana'} ${CFG.numero || ''} · <span style="color:var(--secondary);font-weight:600">${CFG.titulo || ''}</span></div>
+            </div><nav>`;
+            html += `<button class="item-seccion" data-ir="0">${iconoSvg('BookOpen')}<span>Portada</span></button>`;
+            secciones.forEach((s, k) => {
+                html += `<button class="item-seccion" data-seccion="${k}" data-ir="${s.primera}">${iconoSvg(s.icono)}<span>${s.titulo}</span></button>`;
+                html += `<div class="sub" data-sub="${k}">` + s.diapos.map((j) => `<button data-ir="${j}">${j + 1}. ${DATOS.diapos[j].titulo || '—'}</button>`).join('') + `</div>`;
+            });
+            html += `</nav><div class="pie-indice"><p style="margin:0">${CFG.ra || ''}${CFG.horas ? ' · ' + CFG.horas + ' horas' : ''}</p><p style="margin:4px 0 0">${Array.isArray(CFG.stack) ? CFG.stack.join(' · ') : (CFG.stack || '')}</p></div>`;
+            ind.innerHTML = html;
+            ind.addEventListener('click', (e) => {
+                const b = e.target.closest('[data-ir]');
+                if (!b) return;
+                mostrar(parseInt(b.dataset.ir, 10), 0);
+                document.body.classList.remove('con-indice');
+            });
+        };
+
+        const pintarIndice = () => {
+            const k = DATOS.diapos[actual].k;
+            document.querySelectorAll('#indice [data-seccion]').forEach((b) => b.classList.toggle('actual', +b.dataset.seccion === k));
+            document.querySelectorAll('#indice [data-sub]').forEach((s) => { s.style.display = +s.dataset.sub === k ? '' : 'none'; });
+            document.querySelectorAll('#indice .sub button').forEach((b) => b.classList.toggle('actual', +b.dataset.ir === actual));
+            const portada = document.querySelector('#indice [data-ir="0"].item-seccion');
+            if (portada) portada.classList.toggle('actual', k === -1);
+        };
+
+        /* ---------- Vista del presentador ---------- */
+        const t0 = Date.now();
+        const escalarPresentador = () => {
+            const hueco = $('p-hueco').getBoundingClientRect();
+            const s = Math.min(hueco.width / 1280, hueco.height / 720);
+            mazo.style.transform = `translate(-50%, -50%) scale(${s})`;
+            mazo.style.left = `${hueco.left + hueco.width / 2}px`;
+            mazo.style.top = `${hueco.top + hueco.height / 2}px`;
+            const vs = $('vista-siguiente');
+            const d = vs.firstElementChild;
+            if (d) d.style.transform = `scale(${vs.clientWidth / 1280})`;
+        };
+
+        const pintarPresentador = () => {
+            const meta = DATOS.diapos[actual];
+            $('p-contador').textContent = `${actual + 1} / ${N}`;
+            $('p-titulo').textContent = meta.titulo || '';
+            $('notas-presentador').innerHTML = meta.notas || '<p class="notas-vacias">Sin notas.</p>';
+            const vs = $('vista-siguiente');
+            vs.innerHTML = '';
+            const pasos = pasosDe(actual);
+            const fuente = paso < pasos.length ? diapos[actual] : diapos[actual + 1];
+            if (fuente) {
+                const copia = fuente.cloneNode(true);
+                copia.classList.add('activa');
+                copia.querySelectorAll('.grafica').forEach((g) => { g.innerHTML = ''; });
+                vs.appendChild(copia);
+            } else {
+                vs.innerHTML = '<div style="display:flex;height:100%;align-items:center;justify-content:center;color:#64748B;font-weight:600">Fin de la presentación</div>';
+            }
+            escalarPresentador();
+        };
+
+        if (MODO_PRESENTADOR) {
+            document.body.classList.add('presentador');
+            setInterval(() => {
+                const s = Math.floor((Date.now() - t0) / 1000);
+                $('p-cronometro').textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+                $('p-hora').textContent = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+            }, 1000);
+            mazo.style.boxShadow = 'none';
+            mazo.style.borderRadius = '10px';
+        }
+
+        /* ---------- Teclado, ratón y tacto ---------- */
+        let numero = '';
+        let tNumero = null;
+        const irA = $('ir-a');
+
+        const alternar = (clase, forzar) => {
+            const r = document.body.classList.toggle(clase, forzar);
+            const abierto = document.body.classList.contains('con-indice');
+            $('btn-menu').innerHTML = `<i aria-hidden="true" class="fas ${abierto ? 'fa-times' : 'fa-bars'}"></i>`;
+            $('btn-menu').title = abierto ? 'Ocultar el índice (M)' : 'Índice (M)';
+            return r;
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+            const t = e.key;
+            // Enter o Espacio sobre un enlace o botón enfocado lo activan: no pasan diapositiva
+            if ((t === 'Enter' || t === ' ') && !numero && e.target.closest && e.target.closest('a[href], button')) return;
+            if (/^[0-9]$/.test(t)) {
+                numero += t;
+                irA.textContent = `Ir a ${numero}`;
+                irA.style.display = 'block';
+                clearTimeout(tNumero);
+                tNumero = setTimeout(() => { numero = ''; irA.style.display = 'none'; }, 2500);
+                return;
+            }
+            if (t === 'Enter' && numero) {
+                mostrar(parseInt(numero, 10) - 1, 0);
+                numero = ''; irA.style.display = 'none';
+                e.preventDefault();
+                return;
+            }
+            switch (t) {
+                case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter':
+                    e.preventDefault(); siguiente(); break;
+                case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace':
+                    e.preventDefault(); anterior(); break;
+                case 'Home': e.preventDefault(); mostrar(0, 0); break;
+                case 'End': e.preventDefault(); mostrar(N - 1, 0); break;
+                case 'm': case 'M': alternar('con-indice'); break;
+                case 'n': case 'N': alternar('con-notas'); break;
+                case 'b': case 'B': case '.': alternar('en-negro'); break;
+                case '?': case 'h': case 'H': alternar('con-ayuda'); break;
+                case 'f': case 'F':
+                    if (document.fullscreenElement) document.exitFullscreen();
+                    else document.documentElement.requestFullscreen().catch(() => { });
+                    break;
+                case 'p': case 'P':
+                    if (!MODO_PRESENTADOR) {
+                        const u = new URL(location.href);
+                        u.searchParams.set('presentador', '1');
+                        u.hash = '#' + (actual + 1);
+                        window.open(u.toString(), 'presentador-' + CLAVE, 'width=1280,height=760');
+                    }
+                    break;
+                case 'Escape':
+                    ['con-notas', 'con-ayuda', 'en-negro'].forEach((c) => document.body.classList.remove(c));
+                    alternar('con-indice', false);
+                    break;
+            }
+        });
+
+        $('btn-sig').addEventListener('click', siguiente);
+        $('btn-ant').addEventListener('click', anterior);
+        $('btn-menu').addEventListener('click', () => alternar('con-indice'));
+        $('velo').addEventListener('click', () => alternar('con-indice', false));
+        $('ayuda').addEventListener('click', () => alternar('con-ayuda', false));
+        $('negro').addEventListener('click', () => alternar('en-negro', false));
+
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest('.enlace-material');
+            if (!a) return;
+            // El material guarda la lección abierta en su `storageKey`: se deja
+            // apuntando a la sección y se abre. Así el enlace aterriza en ella.
+            if (a.dataset.indice && CFG.storageKey) guardar(CFG.storageKey, a.dataset.indice);
+        });
+
+        let tQuieto = null;
+        const despertar = () => {
+            document.body.classList.remove('quieto');
+            clearTimeout(tQuieto);
+            tQuieto = setTimeout(() => {
+                if (!document.body.classList.contains('con-indice')) document.body.classList.add('quieto');
+            }, 2800);
+        };
+        document.addEventListener('mousemove', despertar);
+        document.addEventListener('mousedown', despertar);
+
+        let x0 = null;
+        document.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+        document.addEventListener('touchend', (e) => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) (dx < 0 ? siguiente : anterior)();
+            x0 = null;
+        });
+
+        window.addEventListener('resize', escalar);
+        window.addEventListener('hashchange', () => {
+            const h = parseInt(location.hash.replace('#', ''), 10);
+            if (Number.isInteger(h) && h - 1 !== actual) mostrar(h - 1, 0);
+        });
+
+        /* ---------- Arranque ---------- */
+        if (MODO_REVISION) document.body.classList.add('revision');
+        construirIndice();
+        resaltarBloques();
+        escalar();
+        mostrar(inicial(), 0, false);
+        despertar();
+
+        // Se mide cuando todo tiene ya su tamaño final. MathJax llega `async`:
+        // aquí casi nunca ha cargado, y con las fuentes en caché `fonts.ready`
+        // se resolvía antes que él, así que las fórmulas se medían como una
+        // línea de TeX sin componer y el texto de debajo se salía al
+        // componerlas. En Chrome sin ventana, con las fuentes por descargar,
+        // salía bien por casualidad: `revisar.py` no lo veía. El `load` de la
+        // ventana espera al guion de MathJax (llegue o falle) y a las imágenes;
+        // después se espera a que MathJax componga.
+        const cargada = new Promise((r) => {
+            if (document.readyState === 'complete') r();
+            else window.addEventListener('load', r, { once: true });
+        });
+        const listo = cargada.then(() => Promise.all([
+            document.fonts ? document.fonts.ready : null,
+            window.MathJax && MathJax.startup ? MathJax.startup.promise.then(() => MathJax.typesetPromise ? MathJax.typesetPromise() : null).catch(() => { }) : null,
+        ]));
+        // Si algo tarda más que el plazo, se ajusta con lo que haya y se
+        // vuelve a ajustar al terminar; mientras tanto el informe es provisional.
+        const PLAZO_CARGA = 5000;
+        let completo = false;
+        const ajustarYInformar = () => {
+            dibujarGraficas();
+            const informe = ajustar();
+            if (window.Plotly) document.querySelectorAll('.grafica[data-hecha]').forEach((g) => { try { Plotly.Plots.resize(g); } catch (e) { } });
+            if (MODO_PRESENTADOR) pintarPresentador();
+            let pre = $('informe-revision');
+            if (!pre) {
+                pre = document.createElement('pre');
+                pre.id = 'informe-revision';
+                pre.hidden = true;
+                document.body.appendChild(pre);
+            }
+            pre.textContent = JSON.stringify(Object.assign({ total: N, avisos: informe }, completo ? {} : { provisional: true }));
+            if (MODO_REVISION) console.log('[revisión]', JSON.stringify(informe));
+        };
+        const plazo = setTimeout(ajustarYInformar, PLAZO_CARGA);
+        listo.then(() => {
+            clearTimeout(plazo);
+            completo = true;
+            ajustarYInformar();
+        });
+    })();
+    </script>
+</body>
+
+</html>

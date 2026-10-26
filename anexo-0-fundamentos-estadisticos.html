@@ -8627,6 +8627,10 @@ const DATOS_ANEXO0 = {"cemento":{"fuente":"Montgomery (2017), Tabla 2.1 (p. 24):
       elemento.innerHTML = campos
         .map(c => `<span><b>${c.etiqueta}</b> ${c.valor}</span>`)
         .join('');
+      // Lo que entra por innerHTML no pasa por KaTeX: sin esto, las etiquetas
+      // con $…$ quedaban en LaTeX crudo a la primera interacción (E45 del
+      // capítulo 7, 22 oct 2026).
+      katexEn(elemento);
     }
 
     // ================================================================

@@ -8311,6 +8311,10 @@ const SOLUCIONES_CAP4 = {"capitulo":4,"fecha_corte":"2026-08-01","semilla":2026,
       elemento.innerHTML = campos
         .map(c => `<span><b>${c.etiqueta}</b> ${c.valor}</span>`)
         .join('');
+      // Lo que entra por innerHTML no pasa por KaTeX: sin esto, las etiquetas
+      // con $…$ quedaban en LaTeX crudo a la primera interacción (E45 del
+      // capítulo 7, 22 oct 2026).
+      katexEn(elemento);
     }
 
     // ================================================================
