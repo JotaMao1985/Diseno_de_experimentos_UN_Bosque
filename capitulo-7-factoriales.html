@@ -4253,6 +4253,23 @@
         pero un bloque es ruido con nombre: no se estudia, se descuenta. A partir de aquí hay <strong>dos o más
         factores que interesan a la vez</strong>, y todos sus niveles se combinan entre sí.</p>
 
+      <div class="note">
+        <h4><i class="fas fa-circle-info mr-2" aria-hidden="true"></i>Tres palabras que vienen del capítulo 1</h4>
+        <ul style="margin-bottom:0;">
+          <li><strong>Corrida</strong> (<em>run</em>): una ejecución del experimento en una combinación de niveles. En
+            el ejemplo de este capítulo, una batería de un material probada a una temperatura.</li>
+          <li><strong>Réplica</strong> (<em>replicate</em>): volver a hacer esa corrida completa, con otra unidad
+            experimental; otra batería, no la misma medida dos veces (módulo 1.1). Con $n$ réplicas, cada combinación
+            se observa $n$ veces: de lo que varían entre sí sale la estimación de $\sigma^2$, y su media tiene varianza
+            $\sigma^2/n$. Una <em>réplica completa</em> del experimento es una pasada por todas las combinaciones, una
+            corrida en cada una.</li>
+          <li><strong>Un factor a la vez</strong> (<em>one-factor-at-a-time</em>, <strong>OFAT</strong>): se fijan
+            todos los factores en una combinación de referencia, la <em>línea base</em>; se mueve uno solo, se deja en
+            su mejor nivel y se pasa al siguiente (módulo 1.2). Es lo que casi todo el mundo hace por instinto, y este
+            módulo le pone cuentas: cuánto cuesta y cuándo se equivoca.</li>
+        </ul>
+      </div>
+
       <div class="definition">
         <h4><i class="fas fa-book mr-2" aria-hidden="true"></i>Diseño factorial</h4>
         <p style="margin-top:0;">En cada réplica completa del experimento se investigan <strong>todas las combinaciones
@@ -4388,9 +4405,10 @@ print(efectos_2x2(con_int).to_string())
       <h3>Primera razón para el factorial: eficiencia</h3>
 
       <p>Supón por un momento que <strong>no</strong> hay interacción. El factorial estima el efecto de cada factor con
-        <em>todas</em> las observaciones, porque cada mitad del diseño es un promedio sobre el otro factor. Mover un
-        factor cada vez —lo que en la literatura anglosajona se llama <em>one-factor-at-a-time</em>, OFAT— tiene que
-        replicar para igualar esa precisión.</p>
+        <em>todas</em> las observaciones, porque cada mitad del diseño es un promedio sobre el otro factor. OFAT, en
+        cambio, gasta cada comparación en un solo factor: para estimarlo con la misma precisión no le queda más remedio
+        que <strong>replicar</strong>, correr varias veces cada combinación que prueba. Cuántas veces, y cuánto le cuesta
+        en total, es la cuenta que sigue.</p>
 
       <div class="derivacion">
         <button class="derivacion-boton" aria-expanded="false" aria-controls="der-7-1-ofat">
@@ -4400,17 +4418,32 @@ print(efectos_2x2(con_int).to_string())
         </button>
         <div class="derivacion-panel" id="der-7-1-ofat" hidden>
           <ol class="derivacion-pasos">
-            <li>En un factorial $2^k$ con una réplica, el efecto de cualquier factor es la media de las $2^{k-1}$
-              corridas del lado alto menos la media de las $2^{k-1}$ del lado bajo. Su varianza es
-              $2\sigma^2/2^{k-1} = \sigma^2/2^{k-2}$.</li>
-            <li>OFAT fija todos los factores menos uno y compara dos condiciones. Para que la diferencia tenga esa misma
-              varianza hacen falta $2^{k-1}$ réplicas de cada condición.</li>
-            <li>OFAT necesita $k+1$ combinaciones distintas: la de referencia más una por cada factor que se mueve.
-              Total: $(k+1)\,2^{k-1}$ corridas.</li>
+            <li>Las cuentas son para $k$ factores, cada uno a dos niveles: bajo ($-$) y alto ($+$). El factorial $2^k$
+              corre sus $2^k$ combinaciones una vez cada una, es decir, una réplica. OFAT corre la línea base y, por cada
+              factor, la combinación que solo cambia ese factor. Sin interacción, la pregunta es cuántas corridas
+              necesita cada estrategia para estimar cada efecto principal con la <em>misma</em> precisión, o sea, con la
+              misma varianza. La <strong>eficiencia</strong> es el cociente entre las dos cuentas.</li>
+            <li>En el factorial, el efecto de cualquier factor es la media de las $2^{k-1}$ corridas del lado alto menos
+              la media de las $2^{k-1}$ del lado bajo. Cada media tiene varianza $\sigma^2/2^{k-1}$, y la diferencia de
+              dos medias independientes, la suma de las dos: $2\sigma^2/2^{k-1} = \sigma^2/2^{k-2}$. Las mismas $2^k$
+              corridas, partidas según otro factor, dan los otros efectos: todas sirven para todos.</li>
+            <li>En OFAT, el efecto de un factor es la diferencia entre la combinación que lo mueve y la línea base. Con
+              $r$ réplicas de cada una, esa diferencia tiene varianza $2\sigma^2/r$. Para igualar la del factorial,
+              $2\sigma^2/r = 2\sigma^2/2^{k-1}$, hacen falta $r = 2^{k-1}$ réplicas de cada combinación.</li>
+            <li>OFAT necesita $k+1$ combinaciones distintas: la línea base, que comparten las $k$ comparaciones, más una
+              por cada factor que se mueve. Total: $(k+1)\,2^{k-1}$ corridas.</li>
             <li>La razón entre los dos costes es
               $\dfrac{(k+1)2^{k-1}}{2^k} = \dfrac{k+1}{2}$.</li>
+            <li>Con $k = 2$ se ve corrida a corrida. El factorial corre $(-,-)$, $(+,-)$, $(-,+)$ y $(+,+)$: cuatro
+              corridas, y cada efecto compara dos contra dos. OFAT corre la línea base $(-,-)$, $(+,-)$ y $(-,+)$, y
+              para comparar también dos contra dos necesita dos réplicas de cada una: seis corridas. Es el
+              $6/4 = 1.5 = (2+1)/2$ de Montgomery (§5.2).</li>
             <li>Con $k = 2$ el factorial cuesta un 33 % menos; con $k = 5$, la tercera parte; con $k = 8$, dos novenas partes.
               <strong>Y todo esto suponiendo que OFAT acierta</strong>, que es lo que el resto del módulo desmonta.</li>
+            <li>Ojo con el nombre: la tabla del módulo 1.2 llama <em>eficiencia relativa</em> a otro cociente,
+              $2^{k-1}$, el de cuántas observaciones entran en cada efecto con una sola corrida por combinación: las
+              $2^k$ del factorial frente a las 2 de OFAT. Aquí se iguala la precisión y se cuentan corridas. Las dos
+              cuentas dicen que el factorial gana, pero sus números no se comparan entre sí.</li>
           </ol>
         </div>
       </div>
