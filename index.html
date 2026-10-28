@@ -170,6 +170,24 @@
     .tarjeta-extra:hover { color: #012820; border-bottom-color: #FF6600; }
     .tarjeta-extra:focus-visible { outline: 3px solid rgba(255, 102, 0, 0.6); outline-offset: 3px; }
 
+    /* Las diapositivas de clase, en una línea propia debajo de «Abrir el
+       capítulo» (28 oct 2026). Cada sesión es un `.tarjeta-extra`, por encima
+       del `::after` del título; el rótulo no, así que pulsarlo abre el
+       capítulo, como el resto de la tarjeta. */
+    .tarjeta-diapositivas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed #E2E8F0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94A3B8;
+    }
+
+    .tarjeta-diapositivas .tarjeta-extra { margin-left: 0; }
+
     /* La tarjeta de un anexo que TODAVÍA NO EXISTE. No es un enlace roto ni
        un enlace a ninguna parte: es texto, y lo dice. */
     .tarjeta-pendiente {
@@ -336,7 +354,7 @@
       <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/75">
         <span><i class="fas fa-book-open text-secondary mr-2" aria-hidden="true"></i>10 capítulos</span>
         <span><i class="fas fa-sliders text-secondary mr-2" aria-hidden="true"></i>106 simuladores</span>
-        <span><i class="fas fa-code text-secondary mr-2" aria-hidden="true"></i>271 bloques en R y Python</span>
+        <span><i class="fas fa-code text-secondary mr-2" aria-hidden="true"></i>275 bloques en R y Python</span>
         <span><i class="fas fa-list-check text-secondary mr-2" aria-hidden="true"></i>122 módulos</span>
       </div>
     </div>
@@ -542,6 +560,11 @@
         </div>
         <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
               aria-hidden="true"></i></span></p>
+        <p class="tarjeta-diapositivas mt-3">
+          <span><i class="fas fa-chalkboard-user mr-1" aria-hidden="true"></i>Diapositivas de clase</span>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-5-bloques-completos-sesion-1.html" aria-label="Sesión 1: diapositivas del capítulo 5">Sesión 1</a>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-5-bloques-completos-sesion-2.html" aria-label="Sesión 2: diapositivas del capítulo 5">Sesión 2</a>
+        </p>
       </article>
       <article class="tarjeta p-5">
         <div class="flex items-start gap-4">
@@ -565,6 +588,11 @@
         </div>
         <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
               aria-hidden="true"></i></span></p>
+        <p class="tarjeta-diapositivas mt-3">
+          <span><i class="fas fa-chalkboard-user mr-1" aria-hidden="true"></i>Diapositivas de clase</span>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-6-cuadros-latinos-sesion-1.html" aria-label="Sesión 1: diapositivas del capítulo 6">Sesión 1</a>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-6-cuadros-latinos-sesion-2.html" aria-label="Sesión 2: diapositivas del capítulo 6">Sesión 2</a>
+        </p>
       </article>
       <article class="tarjeta tarjeta-taller p-5">
         <div class="flex items-start gap-4">
@@ -615,11 +643,16 @@
         <div class="tarjeta-meta mt-4">
           <span><i class="fas fa-list-ul mr-1" aria-hidden="true"></i>12 módulos</span>
           <span><i class="fas fa-sliders mr-1" aria-hidden="true"></i>11 simuladores</span>
-          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>27 bloques R/Python</span>
-          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>272 min</span>
+          <span><i class="fas fa-code mr-1" aria-hidden="true"></i>31 bloques R/Python</span>
+          <span><i class="fas fa-clock mr-1" aria-hidden="true"></i>292 min</span>
         </div>
         <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
               aria-hidden="true"></i></span></p>
+        <p class="tarjeta-diapositivas mt-3">
+          <span><i class="fas fa-chalkboard-user mr-1" aria-hidden="true"></i>Diapositivas de clase</span>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-7-factoriales-sesion-1.html" aria-label="Sesión 1: diapositivas del capítulo 7">Sesión 1</a>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-7-factoriales-sesion-2.html" aria-label="Sesión 2: diapositivas del capítulo 7">Sesión 2</a>
+        </p>
       </article>
       <article class="tarjeta p-5">
         <div class="flex items-start gap-4">
@@ -666,6 +699,11 @@
         </div>
         <p class="mt-4"><span class="tarjeta-abrir">Abrir el capítulo <i class="fas fa-arrow-right"
               aria-hidden="true"></i></span></p>
+        <p class="tarjeta-diapositivas mt-3">
+          <span><i class="fas fa-chalkboard-user mr-1" aria-hidden="true"></i>Diapositivas de clase</span>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-9-anidados-sesion-1.html" aria-label="Sesión 1: diapositivas del capítulo 9">Sesión 1</a>
+          <a class="tarjeta-extra" href="diapositivas/capitulo-9-anidados-sesion-2.html" aria-label="Sesión 2: diapositivas del capítulo 9">Sesión 2</a>
+        </p>
       </article>
       <article class="tarjeta p-5">
         <div class="flex items-start gap-4">
