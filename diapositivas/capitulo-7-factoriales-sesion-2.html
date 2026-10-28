@@ -1209,9 +1209,9 @@
         <div class="principal">
             <div class="antetitulo">Hoja de ruta</div>
             <h2 style="margin-bottom:34px">Lo que vamos a construir hoy</h2>
-            <div class="ra-caja"><div class="etq">Objetivo de la sesión</div><div class="ra">Medir lo que cuesta quitar la interacción, probar la no aditividad con una observación por celda, leer una tabla de tres factores, partir un factor cuantitativo en curvas y una superficie, y bloquear un factorial sin tocar el análisis de los tratamientos.</div></div>
+            <div class="ra-caja"><div class="etq">Objetivo de la sesión</div><div class="ra">Medir lo que cuesta quitar la interacción, probar la no aditividad con una observación por celda, leer una tabla de tres factores, partir un factor cuantitativo en curvas y una superficie, bloquear un factorial sin tocar el análisis de los tratamientos, y ver qué se pierde cuando el 2×2 no sale de un experimento.</div></div>
             <div class="chips"><span>Modelo aditivo</span><span>Prueba de Tukey</span><span>Factorial general</span><span>Curvas de respuesta</span><span>Punto estacionario</span><span>Bloqueo</span><span>Cuadro latino</span><span>Ciencia de datos</span></div>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">2 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">2 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1229,7 +1229,7 @@
             <h2>Sin interacción y sin réplicas</h2>
             <div class="gancho"><p>¿Qué cuesta quitar la interacción, y qué hacer cuando no hay réplicas?</p></div>
             <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-7" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.7 Sin interacción y con una observación por celda <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">3 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">3 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1257,7 +1257,7 @@ summary(aditivo)
 </div></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">4 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">4 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1276,7 +1276,7 @@ summary(aditivo)
 <p><small>Fuente: módulo 7.7; Montgomery (2017), §5.3.7, p. 198; UGR, Práctica 7, §21</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">5 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">5 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1302,7 +1302,7 @@ summary(aditivo)
 </div></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">6 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">6 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1312,12 +1312,12 @@ summary(aditivo)
             <div><div class="antetitulo">Sin interacción y sin réplicas</div><h2>La prueba de no aditividad de Tukey compra un solo grado de libertad</h2></div>
         </div>
         <div class="cuerpo"><p>$$SS_N = \frac{\Big[\sum_i\sum_j y_{ij}\,y_{i\cdot}\,y_{\cdot j} - y_{\cdot\cdot}\big(SS_A + SS_B + \tfrac{y_{\cdot\cdot}^2}{ab}\big)\Big]^2}{ab\,SS_A\,SS_B}$$</p>
-<div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · errata de Montgomery (2017), ec. 5.20, p. 199</span><div class="caja-cuerpo"><p>El libro eleva al cuadrado el paréntesis interior. Su propio ejemplo 5.2 usa la versión sin ese exponente: \([7236 - 7216]^2 = [20.00]^2\).</p></div></div>
+<div class="caja warn"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-triangle-exclamation"></i>Dato · errata de Montgomery (2017), ec. 5.20, p. 199</span><div class="caja-cuerpo"><p>El libro eleva al cuadrado el paréntesis interior. Su propio ejemplo 5.2 usa la versión sin ese exponente: \([7236 - (44)(23.33 + 11.60 + 129.07)]^2 = [20.00]^2\).</p></div></div>
 <div class="cita"><p><strong>Interpretación.</strong> La interacción se postula como \(\gamma\,\tau_i\beta_j\): un solo parámetro, \(\gamma\), y un grado de libertad que se saca del residuo.</p></div>
 <p><small>Fuente: Montgomery (2017), ec. 5.20 y ejemplo 5.2, pp. 199–200 · módulo 7.7</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">7 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">7 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1333,7 +1333,7 @@ summary(aditivo)
 <p><small>Fuente: Montgomery (2017), ejemplo 5.2 y Tabla 5.11, p. 200; código R del módulo 7.7</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">8 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">8 / 44</span></div>
 </section>
 <section class="diapo pregunta">
     
@@ -1353,7 +1353,7 @@ summary(aditivo)
 <p><small>Fuente: autoevaluación del módulo 7.12, pregunta 5 · módulo 7.7</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">9 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">9 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1378,7 +1378,7 @@ summary(aditivo)
 </div></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">10 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">10 / 44</span></div>
 </section>
 <section class="diapo idea">
     <div class="marco">
@@ -1387,7 +1387,7 @@ summary(aditivo)
         <div class="cuerpo"><p>O se supone que no existe, o se prueba una forma concreta. La prueba de Tukey no ve las demás.</p>
 <p><small>Fuente: módulo 7.7 y módulo 7.12, «Lo que hay que llevarse», punto 4</small></p></div>
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">11 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">11 / 44</span></div>
 </section>
 <section class="diapo dividida seccion" data-tipo="seccion">
     <div class="marco">
@@ -1403,7 +1403,7 @@ summary(aditivo)
             <h2>Tres factores y más</h2>
             <div class="gancho"><p>No son tres análisis: es el mismo.</p></div>
             <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-8" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.8 El factorial general: tres factores y más <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">12 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">12 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1424,7 +1424,7 @@ summary(aditivo)
 <p><small>Fuente: módulo 7.8; Montgomery (2017), §5.4, p. 201</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">13 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">13 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1439,7 +1439,7 @@ summary(aditivo)
 <p><small>Fuente: Montgomery (2017), ejemplo 5.3 y Tabla 5.13, p. 203; UGR, Práctica 7, §24 y §25</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">14 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">14 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1463,7 +1463,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.14, p. 205; código R del módulo 7.8</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">15 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">15 / 44</span></div>
 </section>
 <section class="diapo pregunta">
     
@@ -1481,7 +1481,7 @@ summary(mod3)
 <p><small>Fuente: autoevaluación del módulo 7.12, pregunta 7 (adaptada) · módulos 7.8 y 7.11</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">16 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">16 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1501,7 +1501,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.14 (los \(p\), de la salida de R); módulo 7.8 y precálculo (proporciones del módulo 7.11)</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">17 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">17 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1519,7 +1519,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.13; código R del módulo 7.8 y totales del precálculo</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">18 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">18 / 44</span></div>
 </section>
 <section class="diapo dividida seccion" data-tipo="seccion">
     <div class="marco">
@@ -1535,7 +1535,7 @@ summary(mod3)
             <h2>Curvas de respuesta y superficies</h2>
             <div class="gancho"><p>Cuando un factor es un número, su efecto se puede partir.</p></div>
             <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-9" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.9 Curvas de respuesta y superficies <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">19 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">19 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1555,14 +1555,14 @@ summary(mod3)
 </tbody></table></div>
 <div class="col"><ul>
 <li>\(39\,042.67\) de los \(39\,118.72\) de la temperatura</li>
-<li>\(2315.08 + 7298.69 = 9613.78\): la interacción entera</li>
+<li>\(2315.08 + 7298.69 \approx 9613.78\): la interacción entera</li>
 </ul>
 <div class="cita"><p><strong>Interpretación.</strong> Los tres materiales bajan de forma parecida: en lo que difieren es en la <strong>curvatura</strong>.</p></div>
 <p><small>Fuente: Montgomery (2017), Tabla 5.15, p. 207; código R del módulo 7.9</small></p></div>
 </div></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">20 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">20 / 44</span></div>
 </section>
 <section class="diapo pregunta">
     
@@ -1582,7 +1582,7 @@ summary(mod3)
 <p><small>Fuente: autoevaluación del módulo 7.12, pregunta 8 · módulo 7.9</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">21 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">21 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1597,7 +1597,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.15 y figura 5.18, pp. 207–208; coeficientes del precálculo · módulo 7.9</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">22 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">22 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1615,7 +1615,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.15 y figura 5.18, p. 208; precálculo · módulo 7.9</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">23 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">23 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1633,7 +1633,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), ejemplo 5.5, Tablas 5.16 y 5.17, pp. 209–210; código R del módulo 7.9</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">24 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">24 / 44</span></div>
 </section>
 <section class="diapo denso">
     
@@ -1653,7 +1653,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.18, pp. 211–212; código R del módulo 7.9</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">25 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">25 / 44</span></div>
 </section>
 <section class="diapo dividida seccion" data-tipo="seccion">
     <div class="marco">
@@ -1669,7 +1669,7 @@ summary(mod3)
             <h2>Bloqueo en un factorial</h2>
             <div class="gancho"><p>El mismo experimento, leído de tres maneras.</p></div>
             <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-10" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.10 Bloqueo en un diseño factorial <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">26 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">26 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1686,7 +1686,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), §5.6 y ejemplo 5.6, Tabla 5.21, pp. 215–216 · módulo 7.10</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">27 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">27 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1704,7 +1704,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.22, p. 217; código R del módulo 7.10</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">28 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">28 / 44</span></div>
 </section>
 <section class="diapo pregunta">
     
@@ -1718,7 +1718,7 @@ summary(mod3)
 <p><small>Fuente: autoevaluación del módulo 7.12, pregunta 6 · módulo 7.10</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">29 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">29 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1736,7 +1736,7 @@ summary(mod3)
 <p><small>Fuente: módulo 7.10 (derivación y código R); Montgomery (2017), Tabla 5.23, pp. 217–218</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">30 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">30 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1751,7 +1751,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tablas 5.21 y 5.24, pp. 216 y 219 · módulo 7.10</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">31 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">31 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1769,7 +1769,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tablas 5.22 y 5.25, pp. 217 y 220 (los \(p\), de R); precálculo (tres lecturas del simulador del módulo 7.10)</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">32 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">32 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1787,7 +1787,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), Tabla 5.25, p. 220; precálculo · módulo 7.10 y capítulo 6</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">33 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">33 / 44</span></div>
 </section>
 <section class="diapo idea">
     <div class="marco">
@@ -1796,7 +1796,7 @@ summary(mod3)
         <div class="cuerpo"><p>Y solo compensa si el cuadrado medio del bloque supera al \(MS_E\) que ya había.</p>
 <p><small>Fuente: módulo 7.10 y capítulo 6</small></p></div>
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">34 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">34 / 44</span></div>
 </section>
 <section class="diapo dividida seccion" data-tipo="seccion">
     <div class="marco">
@@ -1810,9 +1810,9 @@ summary(mod3)
         <div class="principal">
             <div class="numero-grande">05</div>
             <h2>Ciencia de datos</h2>
-            <div class="gancho"><p>El diseño factorial con otros nombres.</p></div>
-            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-11" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.11 Ciencia de datos: hiperparámetros, sensibilidad y A/B <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">35 / 41</span></div>
+            <div class="gancho"><p>El diseño factorial con otros nombres, y un 2×2 sin diseño.</p></div>
+            <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-11" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.11 Ciencia de datos: hiperparámetros, sensibilidad, A/B y datos observacionales <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">35 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1836,7 +1836,7 @@ summary(mod3)
 </div></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">36 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">36 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1851,7 +1851,63 @@ summary(mod3)
 <p><small>Fuente: módulo 7.11 y precálculo (set.seed(30000 + 10·|λ|)); no son datos de Montgomery</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">37 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">37 / 44</span></div>
+</section>
+<section class="diapo pregunta">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div><span class="chip-ejercicio" style="background:var(--primary)"><i aria-hidden="true" class="fas fa-circle-question"></i>Pregunta para la clase</span></div><h2>En 5951 autos usados, la interacción da \(F = 166.55\): ¿qué dice de la transmisión?</h2></div>
+        </div>
+        <div class="cuerpo"><div class="columnas centradas" style="grid-template-columns:minmax(0, 1fr) minmax(0, 1fr)">
+<div class="col"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · Kaggle «Cars4u» (Bedi, 2021), módulo 7.11</span><div class="caja-cuerpo"><p>Media del logaritmo del precio; entre paréntesis, cuántos autos:</p>
+<table><thead><tr><th></th><th>Automático</th><th>Manual</th></tr></thead><tbody>
+<tr><td><strong>Diésel</strong></td><td>3.017 (1108)</td><td>1.738 (2097)</td></tr>
+<tr><td><strong>Gasolina</strong></td><td>2.060 (610)</td><td>1.246 (2136)</td></tr>
+</tbody></table></div></div></div>
+<div class="col"><p>Como experimento, el automático costaría \(e^{3.017 - 1.738} \approx 3.59\) veces el manual en diésel y \(e^{2.060 - 1.246} \approx 2.26\) en gasolina. ¿Se lee así?</p>
+<div class="paso"><div class="caja respuesta"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-check"></i>No: nadie asignó la transmisión</span><div class="caja-cuerpo"><p>El 61.6 % de los diésel automáticos son Mercedes-Benz, BMW o Audi; de los diésel manuales, el 0.6 %: la celda mide, en buena parte, marcas. Y con celdas desiguales, la suma de cuadrados del combustible vale 840.06 o 554.93 según el orden.</p></div></div></div>
+<p><small>Fuente: módulo 7.11, apartado 4; precálculo genera_cap7_autos.R sobre used_cars_data.csv de Kaggle «Cars4u» (Bedi, 2021)</small></p></div>
+</div></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">38 / 44</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Ciencia de datos</div><h2>Entre modelos comparables, la interacción se encoge</h2></div>
+        </div>
+        <div class="cuerpo"><figure class="figura ga" style="--alto:330px"><div class="lienzo"><svg class="ga-svg" viewBox="0 0 1100 440" width="1100" height="440" role="img" aria-label="Autos usados: media del logaritmo del precio por combustible y transmisión, con todos los autos (3.017 y 1.738 en diésel, 2.060 y 1.246 en gasolina) y con los cuatro modelos comparables (2.126 y 1.830 en diésel, 1.958 y 1.775 en gasolina)"><title>Autos usados: media del logaritmo del precio por combustible y transmisión, con todos los autos (3.017 y 1.738 en diésel, 2.060 y 1.246 en gasolina) y con los cuatro modelos comparables (2.126 y 1.830 en diésel, 1.958 y 1.775 en gasolina)</title><g class="ga-ejes"><line class="ga-rejilla" x1="92" y1="356" x2="466" y2="356"/><text class="ga-marca-eje" x="82" y="356" text-anchor="end" dominant-baseline="middle">1</text><line class="ga-rejilla" x1="92" y1="286.91" x2="466" y2="286.91"/><text class="ga-marca-eje" x="82" y="286.91" text-anchor="end" dominant-baseline="middle">1.5</text><line class="ga-rejilla" x1="92" y1="217.82" x2="466" y2="217.82"/><text class="ga-marca-eje" x="82" y="217.82" text-anchor="end" dominant-baseline="middle">2</text><line class="ga-rejilla" x1="92" y1="148.73" x2="466" y2="148.73"/><text class="ga-marca-eje" x="82" y="148.73" text-anchor="end" dominant-baseline="middle">2.5</text><line class="ga-rejilla" x1="92" y1="79.64" x2="466" y2="79.64"/><text class="ga-marca-eje" x="82" y="79.64" text-anchor="end" dominant-baseline="middle">3</text><line class="ga-eje" x1="92" y1="356" x2="466" y2="356"/><line class="ga-eje" x1="92" y1="52" x2="92" y2="356"/><line class="ga-eje" x1="185.5" y1="356" x2="185.5" y2="363"/><text class="ga-marca-eje" x="185.5" y="386" text-anchor="middle">Automático</text><line class="ga-eje" x1="372.5" y1="356" x2="372.5" y2="363"/><text class="ga-marca-eje" x="372.5" y="386" text-anchor="middle">Manual</text><text class="ga-titulo-eje" x="279" y="418" text-anchor="middle">Transmisión</text><text class="ga-titulo-eje" x="30" y="204" text-anchor="middle" transform="rotate(-90 30 204)">Media del log del precio</text><text class="ga-titulo-panel" x="279" y="30" text-anchor="middle">Todos los autos (5951)</text></g><g class="ga-ejes"><line class="ga-rejilla" x1="616" y1="356" x2="990" y2="356"/><text class="ga-marca-eje" x="606" y="356" text-anchor="end" dominant-baseline="middle">1</text><line class="ga-rejilla" x1="616" y1="286.91" x2="990" y2="286.91"/><text class="ga-marca-eje" x="606" y="286.91" text-anchor="end" dominant-baseline="middle">1.5</text><line class="ga-rejilla" x1="616" y1="217.82" x2="990" y2="217.82"/><text class="ga-marca-eje" x="606" y="217.82" text-anchor="end" dominant-baseline="middle">2</text><line class="ga-rejilla" x1="616" y1="148.73" x2="990" y2="148.73"/><text class="ga-marca-eje" x="606" y="148.73" text-anchor="end" dominant-baseline="middle">2.5</text><line class="ga-rejilla" x1="616" y1="79.64" x2="990" y2="79.64"/><text class="ga-marca-eje" x="606" y="79.64" text-anchor="end" dominant-baseline="middle">3</text><line class="ga-eje" x1="616" y1="356" x2="990" y2="356"/><line class="ga-eje" x1="616" y1="52" x2="616" y2="356"/><line class="ga-eje" x1="709.5" y1="356" x2="709.5" y2="363"/><text class="ga-marca-eje" x="709.5" y="386" text-anchor="middle">Automático</text><line class="ga-eje" x1="896.5" y1="356" x2="896.5" y2="363"/><text class="ga-marca-eje" x="896.5" y="386" text-anchor="middle">Manual</text><text class="ga-titulo-eje" x="803" y="418" text-anchor="middle">Transmisión</text><text class="ga-titulo-panel" x="803" y="30" text-anchor="middle">Cuatro modelos comparables (417)</text></g><g class="ga-etapa paso" data-etapa="1"><g class="ga-el ga-linea s1"><path class="ga-trazo" d="M185.5 77.29 L372.5 254.02" pathLength="1"/><circle class="ga-pto ga-retardo" cx="185.5" cy="77.29" r="8"/><circle class="ga-pto ga-retardo" cx="372.5" cy="254.02" r="8"/><text class="ga-rotulo ga-retardo" x="386.5" y="254.02" dominant-baseline="middle">Diésel</text></g></g><g class="ga-etapa paso" data-etapa="2"><g class="ga-el ga-linea s2"><path class="ga-trazo" d="M185.5 209.53 L372.5 322.01" pathLength="1"/><circle class="ga-pto ga-retardo" cx="185.5" cy="209.53" r="8"/><circle class="ga-pto ga-retardo" cx="372.5" cy="322.01" r="8"/><text class="ga-rotulo ga-retardo" x="386.5" y="322.01" dominant-baseline="middle">Gasolina</text></g></g><g class="ga-etapa paso" data-etapa="3"><g class="ga-el ga-linea s1"><path class="ga-trazo" d="M709.5 200.41 L896.5 241.31" pathLength="1"/><circle class="ga-pto ga-retardo" cx="709.5" cy="200.41" r="8"/><circle class="ga-pto ga-retardo" cx="896.5" cy="241.31" r="8"/><text class="ga-rotulo ga-retardo" x="910.5" y="227.31" dominant-baseline="middle">Diésel</text></g><g class="ga-el ga-linea s2"><path class="ga-trazo" d="M709.5 223.62 L896.5 248.91" pathLength="1"/><circle class="ga-pto ga-retardo" cx="709.5" cy="223.62" r="8"/><circle class="ga-pto ga-retardo" cx="896.5" cy="248.91" r="8"/><text class="ga-rotulo ga-retardo" x="910.5" y="264.91" dominant-baseline="middle">Gasolina</text></g></g></svg></div><figcaption>Medias de celda, en la misma escala</figcaption></figure>
+<div class="paso"><p>La diferencia entre las dos caídas, que es la interacción, pasa de 0.465 a 0.114 (\(F = 1.15\), \(p = 0.285\)); con el modelo como bloque, \(F = 1.82\), \(p = 0.179\). Dato.</p>
+<div class="cita"><p><strong>Interpretación.</strong> Buena parte de la interacción del 2×2 crudo era quién estaba en cada celda.</p></div></div>
+<p><small>Fuente: módulo 7.11, apartado 4; precálculo genera_cap7_autos.R</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">39 / 44</span></div>
+</section>
+<section class="diapo ">
+    
+    <div class="marco">
+        <div class="cabecera">
+            <div class="ficha-icono"><i aria-hidden="true" class="fas fa-book-open"></i></div>
+            <div><div class="antetitulo">Ciencia de datos</div><h2>El veredicto depende del umbral y del bloque; la interacción siempre baja</h2></div>
+        </div>
+        <div class="cuerpo"><div class="caja ejemplo"><span class="caja-etiqueta"><i aria-hidden="true" class="fas fa-flask"></i>Dato · precálculo, módulo 7.11: el modelo como bloque, de dos maneras</span><div class="caja-cuerpo"><table><thead><tr><th>Mínimo por celda</th><th>Modelos</th><th>Bloque sumado</th><th>\(p\)</th><th>Primas por modelo</th><th>\(p\)</th></tr></thead><tbody>
+<tr><td>1</td><td>12</td><td>0.239</td><td>\(1.75 \times 10^{-5}\)</td><td>0.177</td><td>0.019</td></tr>
+<tr><td>2</td><td>8</td><td>0.233</td><td>\(7.58 \times 10^{-5}\)</td><td>0.171</td><td>0.013</td></tr>
+<tr><td>3</td><td>6</td><td>0.221</td><td>0.000754</td><td>0.091</td><td>0.214</td></tr>
+<tr><td>4 a 8</td><td>4</td><td>0.099</td><td>0.179</td><td>0.103</td><td>0.162</td></tr>
+<tr><td>9 y 10</td><td>3</td><td>0.118</td><td>0.140</td><td>0.110</td><td>0.168</td></tr>
+</tbody></table></div></div>
+<div class="cita"><p><strong>Interpretación.</strong> Sumado, el corte cae entre 3 y 4 autos por celda; con primas por modelo, entre 2 y 3, y los datos rechazan el sumado (\(F = 2.59\), \(p = 0.0066\)). Un factorial aleatorizado fija esas decisiones antes de ver los datos.</p></div>
+<p><small>Fuente: módulo 7.11, apartado 4; precálculo genera_cap7_autos.R</small></p></div>
+        
+    </div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">40 / 44</span></div>
 </section>
 <section class="diapo dividida seccion" data-tipo="seccion">
     <div class="marco">
@@ -1867,7 +1923,7 @@ summary(mod3)
             <h2>Cierre y práctica</h2>
             
             <a class="enlace-material" href="../capitulo-7-factoriales.html#modulo-12" target="_blank" rel="noopener"><i aria-hidden="true" class="fas fa-book-open"></i> Leer en el material: 7.12 Resumen, autoevaluación y lecturas <i aria-hidden="true" class="fas fa-arrow-right"></i></a>
-            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">38 / 41</span></div>
+            <div class="pie" style="left:72px;right:72px"><span></span><span></span><span class="num">41 / 44</span></div>
         </div>
     </div>
 </section>
@@ -1888,7 +1944,7 @@ summary(mod3)
 <p><small>Fuente: módulos 7.7 a 7.10; Montgomery (2017), Tablas 5.8 y 5.22</small></p></div>
         <div class="firma-cierre">Javier Mauricio Sierra</div>
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">39 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">42 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1909,7 +1965,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), problemas 5.11 y 5.40 · módulo 7.12, EG-28</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">40 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">43 / 44</span></div>
 </section>
 <section class="diapo ">
     
@@ -1930,7 +1986,7 @@ summary(mod3)
 <p><small>Fuente: Montgomery (2017), problema 5.23, p. 224 · módulo 7.12, EG-27</small></p></div>
         
     </div>
-    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">41 / 41</span></div>
+    <div class="pie"><span class="sello">Capítulo 7 · Diseños factoriales</span><span>Diseño de Experimentos · UnBosque</span><span class="num">44 / 44</span></div>
 </section>
         </div>
     </main>
@@ -1979,7 +2035,7 @@ summary(mod3)
         </div>
     </div>
 
-    <script id="datos-mazo" type="application/json">{"config": {"asignatura": "Diseño de Experimentos", "numero": "7", "titulo": "Diseños factoriales", "ra": "", "horas": "", "stack": [], "institucion": "Universidad El Bosque", "sigla": "UnBosque", "unidad": "Capítulo", "storageKey": "unbosque_diseño_de_experimentos_7"}, "diapos": [{"titulo": "Portada", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Hoja de ruta", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Sin interacción y sin réplicas", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>El simulador de esta sección («Lo que la prueba de Tukey puede y no puede ver») añade a la impureza una interacción multiplicativa. Arranca en γ añadido = 0, que son los datos reales (F₀ = 0.363), y los F de los efectos principales no cambian con γ: todo lo añadido va a SS_N.<\/p>"}, {"titulo": "Quitar la interacción cuando sí la hay infla el error: \\(MS_E\\) pasa de 675.21 a 898.21", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «El modelo aditivo sobre la batería» del módulo 7.7. Es la misma regla que el bloqueo de los capítulos 5 y 6: juntar dos fuentes solo baja el error si lo que se añade tiene un cuadrado medio menor que el que ya había. Las nueve discrepancias del modelo aditivo (media de celda menos ajustado) son exactamente las (τβ) estimadas de la sesión 1: la interacción se define como lo que le falta al modelo aditivo, y contra los ajustados dibujan la curvatura de la figura 5.15 (Montgomery, p. 198: «positive to negative to positive to negative again»).<\/p>"}, {"titulo": "Con una observación por celda, la interacción se supone o se prueba", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Es el arranque de «Cuando hay una sola observación por celda» del módulo 7.7. La guía de SPSS de la Universidad de Granada es fuente de contraste del curso, y el estudiante puede tenerla delante: su frase («no puede haber interacción») confunde «no se puede estimar» con «no existe». La guía, además, elimina las interacciones no significativas del modelo paso a paso (§22, §24 y §25); el capítulo trata eso con la misma regla de la diapositiva anterior.<\/p>"}, {"titulo": "En la impureza, con una corrida por combinación, el residuo mezcla interacción y error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Datos del bloque «Datos de la impureza» del módulo 7.7 (Tabla 5.10 del libro). Sumas de cuadrados con la corrección y²../ab = 44²/15 = 129.07. El residuo tiene (a − 1)(b − 1) = 8 gl y, sin réplicas, no se puede partir en interacción y error sin un supuesto.<\/p>"}, {"titulo": "La prueba de no aditividad de Tukey compra un solo grado de libertad", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Fórmula del módulo 7.7, ya corregida (la errata está declarada en el módulo). La idea: no pedir una interacción cualquiera, que necesitaría 8 gl, sino una de forma multiplicativa, que solo necesita uno. Con el exponente de más, SS_N saldría del orden de 10^8. No hace falta decirlo en clase.<\/p>"}, {"titulo": "En la impureza, la prueba de no aditividad da \\(F_0 = 0.363\\), \\(p = 0.566\\)", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Las cifras salen del bloque «La prueba de no aditividad» del módulo 7.7 (SS_N = 0.098522, F₀ = 0.362694, p = 0.566003). La Tabla 5.11 del libro imprime p = 0.5674: es el valor p del F redondeado a 0.36 (pf(0.36, 1, 7)); con el exacto da 0.5660. No es errata. El crítico al 5 % con 1 y 7 gl es 5.591.<\/p>"}, {"titulo": "La prueba de no aditividad no rechaza: ¿qué se puede concluir?", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Pregunta 5 de la autoevaluación, con las opciones abreviadas. La 3: el experimento es válido con un supuesto extra; es justo el modelo del DBCA (diapositiva siguiente). La 4: subir α no arregla la falta de réplicas, y con p = 0.566 tampoco cambiaría nada.<\/p>"}, {"titulo": "Con \\(n = 1\\), el factorial de dos factores tiene el modelo del DBCA del capítulo 5", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «La misma tabla como DBCA» del módulo 7.7, recortado (sin las dos líneas de cabecera de anova). Las sumas de cuadrados son las que da el DBCA del capítulo 5 sobre estos datos (el capítulo 5 no analizó la impureza). Y una cosa más que conviene saber: después de la prueba de Tukey, la Tabla 5.11 prueba los efectos contra el error de 7 gl (imprime F = 42.97 y 10.68; el exacto es 42.95), no contra el de 8 de esta tabla.<\/p>"}, {"titulo": "Con una observación por celda, la interacción no se separa del error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Cuarta de «Lo que hay que llevarse» del módulo 7.12. Transición: de dos factores a tres, sin aprender nada nuevo.<\/p>"}, {"titulo": "Tres factores y más", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El simulador de esta sección («El cubo del factorial de tres factores») dibuja los ocho vértices del 2³ que queda con la carbonatación extrema, con cada factor rotulado en una de sus aristas; el interruptor añade el plano del 12 %, y la lectura da la curvatura (2.50 frente a 3.44).<\/p>"}, {"titulo": "Con \\(k\\) factores, cada efecto es lo que queda tras descontar sus subconjuntos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Definición y derivación del módulo 7.8. Con S = {A}, θ es τ̂; con S = {A, B}, los cuatro signos alternos de la interacción doble; con S = {A, B, C}, ocho términos que no hace falta memorizar. Con tres factores, 2³ − 1 = 7 efectos.<\/p>"}, {"titulo": "La embotelladora cruza tres factores en 24 corridas, y la guía de la UGR usa otros datos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El contexto es el de Montgomery (ejemplo 5.3, «The Soft Drink Bottling Problem»). La guía de la UGR lo usa con datos propios: en la celda de 10 %, 25 psi y 200 bpm tiene 10 y 20, y concluye que la interacción carbonatación × velocidad es significativa, eliminando antes las demás paso a paso. El capítulo no avisa de esto (mejora 4 del informe).<\/p>"}, {"titulo": "R lee los siete efectos con una sola fórmula: carbonatacion  presion  velocidad", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Bloque «El factorial de tres factores» del módulo 7.8, recortado: falta la construcción de los datos (bebida). Resaltada, la interacción triple: es la primera que se lee. Los gl de los efectos son productos de (niveles − 1): carbonatación × presión × velocidad, 2 · 1 · 1 = 2.<\/p>"}, {"titulo": "¿Cuáles de estas lecturas de la embotelladora son correctas?", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Adaptada de la pregunta 7 de la autoevaluación: la 1 y la 2 son sus opciones 1 y 3; la 3 es lo que dice la retroalimentación de su opción 1, en negativo. Se quitaron tres opciones: la 2 del capítulo, correcta, que justifica leer las marginales con el umbral del 5 % (mejora 18 del informe), y dos distractores cuya retroalimentación es discutible (la multiplicidad de los siete F, y llamar sesgo de selección a reducir el modelo, que la guía de la UGR hace en tres apartados). Va antes del flujo, que la responde.<\/p>"}, {"titulo": "Se lee por orden de interacción: la triple, las dobles y al final los principales", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Es el ejercicio «Cómo se lee una tabla de siete efectos» del módulo 7.8. Se lee empezando por la interacción de mayor orden, como la de la batería. El 1.56 % viene de la descomposición del módulo 7.11 (5.25/336.625): pesa poco, que es mejor razón que «no llega al 5 %». Montgomery (p. 204) lee ese p = 0.0558 como «some interaction», y la dibuja en la figura 5.16 (d), p. 205. Los p de la Tabla 5.14 (0.4867, 0.6713, 0.2485) salen del F redondeado; los de R, del exacto: mismo caso que el 0.5674 de la Tabla 5.11.<\/p>"}, {"titulo": "Con dos niveles, cada efecto es un número; pero al 12 % la carbonatación se curva", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Diapositiva opcional si falta tiempo. Los efectos son la salida del bloque «Los efectos del diseño de dos niveles» del módulo 7.8 (7.875 = 7.375 − (−0.50)). Las medias por carbonatación son aritmética de los totales de la Tabla 5.13 (−4, 20 y 59, ocho botellas cada uno). El capítulo dice que «el plano no cae a media altura» y que «eso es curvatura», sin medirla; un contraste cuadrático la da significativa (F = 6.62 con 1 y 12 gl, p = 0.024; cuenta de la auditoría, no del capítulo).<\/p>"}, {"titulo": "Curvas de respuesta y superficies", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>El simulador de esta sección («De tres curvas a una superficie») tiene dos vistas; en «curvas», el interruptor dibuja la curva del material 2 con el coeficiente que imprime la Tabla 5.15, que se sale del gráfico.<\/p>"}, {"titulo": "Casi todo el efecto de la temperatura es lineal; la interacción está en la curvatura", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Salida del bloque «Partición polinómica» del módulo 7.9 (contrastes ortogonales de contr.poly). La interacción de cuatro grados de libertad (p = 0.0186) se reparte muy desigual. Aviso del capítulo: que las dos partes sumen la interacción no comprueba el reparto (2315.08 y 7298.69 frente a, digamos, 4806.89 y 4806.89, que también suman lo mismo): cada componente se recalcula desde su propio contraste.<\/p>"}, {"titulo": "El independiente y el lineal coinciden con el libro, y el cuadrático no. ¿Qué se afirma?", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Pregunta 8 de la autoevaluación, con la clave abreviada (en el capítulo es la más larga). Va antes del gráfico de las curvas, que la responde. Que coincidan justo el independiente y el lineal descarta otra parametrización. El centrado sí explica otra cosa del capítulo: el intercepto codificado de la Tabla 5.15 (107.58) no es la gran media (105.53).<\/p>"}, {"titulo": "La parábola del material 1 se curva hacia arriba; las del 2 y el 3, hacia abajo", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Gráfico animado: las nueve medias están desde el principio; la primera pulsación dibuja la parábola del material 1 (cóncava hacia arriba) y la segunda, las de los materiales 2 y 3 (hacia abajo); la tercera revela la cuenta y la lectura. Coeficientes del bloque «Las tres curvas de respuesta» del módulo 7.9. Ojo: entre las medias la curva es pura interpolación; el mínimo del material 1 (≈ 47.7 h hacia 97 °F) y el máximo del 3 (≈ 152.6 h hacia 44 °F) nunca se observaron. Con tres puntos y tres coeficientes el ajuste es saturado: no es un ajuste, es una interpolación. La cuenta: 2.50145 · 70 = 175.10 y 0.012851 · 4900 = 62.97, y 169.38 − 175.10 + 62.97 = 57.25.<\/p>"}, {"titulo": "La Tabla 5.15 imprime mal dos cuadráticos: con el suyo, el material 2 daría 6642 horas", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Errata declarada en el módulo 7.9 (la «más consecuente» del capítulo). La cuenta: 0.17335 · 125 = 21.67; 0.41627 · 15 625 = 6504.22; 159.62 − 21.67 + 6504.22 = 6642.17. En el simulador, el interruptor dibuja esa curva.<\/p>"}, {"titulo": "Con los dos factores cuantitativos, el modelo es una superficie: la herramienta de corte", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Montgomery dice «the coded data»: por eso hay vidas negativas. ANOVA del bloque «La vida de una herramienta» del módulo 7.9: ángulo 24.33, velocidad 25.33, interacción 61.33 y error 13.00 con 9 gl. 61.33/124 = 0.495.<\/p>"}, {"titulo": "El segundo orden tiene un máximo, pero se queda corto: falta de ajuste con \\(F = 12.31\\)", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Cifras del bloque «La superficie de segundo orden» y de la nota «El modelo de segundo orden se queda corto» del módulo 7.9; Montgomery publica el punto estacionario (20.2381, 166.0714) y la respuesta 3.781746 ± 2.384705 en la Tabla 5.18 (JMP). Se proyecta en este orden a propósito: primero lo que explica el modelo y después el óptimo. La falta de ajuste es aritmética de cifras del capítulo (SS de falta de ajuste 66.33 − 13 = 53.33 con 3 gl, contra el error puro 1.4444; p ≈ 0.0015): el capítulo no la calcula (mejora 8 del informe). Con los tres términos que faltan, la regresión vuelve a ser el ANOVA (R² = 0.8952). La razón entre valores propios, 57.43 en grados e in/min, depende de las unidades: con la región codificada a ±1 son −0.79 y −2.21 (razón 2.78), un máximo bien definido; lo impreciso es su altura (±2.38).<\/p>"}, {"titulo": "Bloqueo en un factorial", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El simulador de esta sección («Tres lecturas del mismo experimento») tiene las tres tablas ANOVA y, en la segunda vista, la potencia de la prueba del clutter según cuánto difieran los operadores.<\/p>"}, {"titulo": "El bloque se suma al modelo sin interactuar con los tratamientos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Modelo del módulo 7.10: δ_k es el efecto del bloque k, que se supone sin interacción con los tratamientos (Montgomery, §5.6). Con n bloques hay n observaciones por celda (b es el número de niveles del filtro).<\/p>"}, {"titulo": "Bloquear no cambia ninguna suma de cuadrados de tratamiento: parte el error", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Es la advertencia «Ninguna suma de cuadrados de tratamiento cambió» del módulo 7.10, con las dos tablas del bloque «El radar, con y sin bloques». Dos pulsaciones. Lo mismo que el capítulo 5 decía del DBCA, visto sin necesidad de creérselo. (El capítulo dice que bloquear «no explica más la respuesta»; el R² sí sube, de 0.722 a 0.919: lo que no cambia son las sumas de los tratamientos.)<\/p>"}, {"titulo": "¿Cuánto vale la varianza del operador, \\(\\hat\\sigma^2_\\delta\\)?", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Pregunta 6 de la autoevaluación (numérica). El error típico es dividir entre 4 (los bloques) en lugar de entre 6 (las observaciones dentro de cada bloque). Montgomery publica en la Tabla 5.23 el ajuste REML de JMP, que coincide porque el diseño es balanceado.<\/p>"}, {"titulo": "El operador es la mayor fuente de ruido: 20.49 de 31.58, el 64.89 %", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Paso 4 de la derivación del módulo 7.10. La identidad es exacta: (MS_bl + (ab − 1)MS_E)/ab es lo que da juntar las dos filas, porque el error tiene (ab − 1) veces los gl de los bloques. JMP publica un intervalo de Wald (−15.28, 56.27) que se va a negativo por abajo: un intervalo simétrico no sirve para una varianza.<\/p>"}, {"titulo": "El radar como cuadro latino \\(6 \\times 6\\): los operadores 1 a 4 son los mismos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Ejercicio «Y son los mismos operadores» del módulo 7.10, que el capítulo pide comprobar en vez de creer: la columna del operador 1 del cuadro latino es 90, 114, 102, 87, 93 y 86, que suman 572. Es el puente con el capítulo 6. La errata de la G está declarada en el módulo 7.10 y en la tabla del 7.12.<\/p>"}, {"titulo": "Tres lecturas del mismo radar: el error baja y el \\(F\\) de la interacción sube", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Gráfico animado, tres pulsaciones: cada una añade la lectura siguiente en los dos paneles; la cuarta revela las viñetas y la lectura. El eje dice cuántos datos tiene cada lectura: que no se lea la tercera barra como efecto del bloqueo solo. Los F son cuentas de los cuadrados medios publicados: 38.5417/31.5833 = 1.22, 38.5417/11.0889 = 3.48 y 63.3611/9.9 = 6.40 (la Tabla 5.25 imprime 63.37: SS 126.73 entre 2; el F es el mismo). Con los mismos 24 datos, bloquear la deja en p = 0.058, que no llega al 5 %. Del bloqueo al latino, lo que más pesa son los datos nuevos: con el MS_AB del latino y el error de bloques el F sería 5.71; con el MS_AB de bloques y el error del latino, 3.89.<\/p>"}, {"titulo": "El día no vale nada y los operadores sí: la regla del capítulo 6", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El último párrafo del módulo 7.10 cierra con la regla del capítulo 6: un bloqueo mejora el error solo si su cuadrado medio supera al MS_E que ya había. Aquí se ven las dos caras en la misma tabla. El 8.09 es aritmética de la Tabla 5.25 (no está en el capítulo): quitar los días le devuelve 5 gl al error.<\/p>"}, {"titulo": "Bloquear no cambia lo que se estima: cambia contra qué se compara", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Séptima de «Lo que hay que llevarse» del módulo 7.12, sin su final («falla en dos de los cuatro ejercicios guiados»), que adelanta el resultado de la práctica.<\/p>"}, {"titulo": "Ciencia de datos", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Este módulo no tiene simulador. Dos diapositivas: rejilla de hiperparámetros y pruebas A/B.<\/p>"}, {"titulo": "OFAT parte del centro de la rejilla: ¿dónde termina, y cuál es la mejor de las nueve?", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Pregunta hecha con la rejilla del módulo 7.11 (no es de la autoevaluación). La superficie la construye el capítulo: 0.86 + 0.03·lr − 0.02·reg − 0.045·lr² − 0.025·reg² − 0.05·lr·reg; no es un experimento real. OFAT: con reg = 0, el mejor lr es 0 (0.860 frente a 0.855 y 0.845); con lr = 0, el mejor reg es 0, y se queda ahí. El término lr × reg es la interacción del módulo 7.1 con otro nombre. Las cifras del Monte Carlo salen del precálculo con una semilla por réplica; el capítulo no publica ese código.<\/p>"}, {"titulo": "Dos pruebas A/B contra la misma base no son una prueba de dos factores", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>0.0213 es peor que elegir al azar entre cuatro (0.25): con interacción negativa fuerte, los dos cambios ganan por separado y se lanza casi siempre la celda mala (el capítulo dice «siempre»). El capítulo llama a esto «dos pruebas A/B seguidas» y «estrategia secuencial»; lo que simula son dos A/B contra la misma base. Si la segunda se corriera con el ganador de la primera ya puesto, compararía 11.0 con 8.6 y acertaría. La prueba de las cuatro celdas no se mantiene en 0.90 en todo el rango: con λ = −0.5 baja a 0.604, porque las dos mejores celdas quedan muy cerca. El apartado 2 del módulo, que no se proyecta, reparte la suma de cuadrados de la embotelladora como un análisis de sensibilidad: esos sí son datos reales de Montgomery.<\/p>"}, {"titulo": "Cierre y práctica", "seccion": "Cierre y práctica", "k": 5, "notas": ""}, {"titulo": "Lo que se llevan hoy", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>El capítulo 8 se queda con el caso de todos los factores a dos niveles; el 9 rompe el supuesto de que los factores son fijos.<\/p>"}, {"titulo": "Práctica en R: el tubo de televisión en clase, el papel en casa", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>EG-28 del módulo 7.12, con pista y solución en el material; nada de él se proyectó en las dos sesiones. Ojo: el resumen del 7.12 (punto 8) y la pregunta 4 de la autoevaluación adelantan su apartado (b), y la propia pista dice que «la prueba no rechaza» (mejora 14 del informe): pedir que lo hagan sin mirar el resumen. La respuesta es la corriente necesaria para un brillo dado (menos es mejor). Unos 20 minutos; lo que no alcance, para casa. El EG-27 va a casa.<\/p>"}, {"titulo": "Datos del EG-27: resistencia del papel según madera, presión y tiempo de cocción", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>Datos del problema 5.23, cotejados con el libro (p. 224) y con la tabla que el EG-27 trae en el capítulo. En el (c), las marginales que engañan son las de la madera (a 400 psi el 2 % es el peor), y bajar la madera compensa a 500 y a 650 psi.<\/p>"}], "secciones": [{"titulo": "Sin interacción y sin réplicas", "icono": "fa-book-open", "primera": 2, "diapos": [2, 3, 4, 5, 6, 7, 8, 9, 10]}, {"titulo": "Tres factores y más", "icono": "fa-book-open", "primera": 11, "diapos": [11, 12, 13, 14, 15, 16, 17]}, {"titulo": "Curvas de respuesta y superficies", "icono": "fa-book-open", "primera": 18, "diapos": [18, 19, 20, 21, 22, 23, 24]}, {"titulo": "Bloqueo en un factorial", "icono": "fa-book-open", "primera": 25, "diapos": [25, 26, 27, 28, 29, 30, 31, 32, 33]}, {"titulo": "Ciencia de datos", "icono": "fa-book-open", "primera": 34, "diapos": [34, 35, 36]}, {"titulo": "Cierre y práctica", "icono": "fa-award", "primera": 37, "diapos": [37, 38, 39, 40]}], "iconos": {}, "graficas": {}}</script>
+    <script id="datos-mazo" type="application/json">{"config": {"asignatura": "Diseño de Experimentos", "numero": "7", "titulo": "Diseños factoriales", "ra": "", "horas": "", "stack": [], "institucion": "Universidad El Bosque", "sigla": "UnBosque", "unidad": "Capítulo", "storageKey": "unbosque_diseño_de_experimentos_7"}, "diapos": [{"titulo": "Portada", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Hoja de ruta", "seccion": "", "k": -1, "notas": ""}, {"titulo": "Sin interacción y sin réplicas", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>El simulador de esta sección («Lo que la prueba de Tukey puede y no puede ver») añade a la impureza una interacción multiplicativa. Arranca en γ añadido = 0, que son los datos reales (F₀ = 0.363), y los F de los efectos principales no cambian con γ: todo lo añadido va a SS_N.<\/p>"}, {"titulo": "Quitar la interacción cuando sí la hay infla el error: \\(MS_E\\) pasa de 675.21 a 898.21", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «El modelo aditivo sobre la batería» del módulo 7.7. Es la misma regla que el bloqueo de los capítulos 5 y 6: juntar dos fuentes solo baja el error si lo que se añade tiene un cuadrado medio menor que el que ya había. Las nueve discrepancias del modelo aditivo (media de celda menos ajustado) son exactamente las (τβ) estimadas de la sesión 1: la interacción se define como lo que le falta al modelo aditivo, y contra los ajustados dibujan la curvatura de la figura 5.15 (Montgomery, p. 198: «positive to negative to positive to negative again»).<\/p>"}, {"titulo": "Con una observación por celda, la interacción se supone o se prueba", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Es el arranque de «Cuando hay una sola observación por celda» del módulo 7.7. La guía de SPSS de la Universidad de Granada es fuente de contraste del curso, y el estudiante puede tenerla delante: su frase («no puede haber interacción») confunde «no se puede estimar» con «no existe». La guía, además, elimina las interacciones no significativas del modelo paso a paso (§22, §24 y §25); el capítulo trata eso con la misma regla de la diapositiva anterior.<\/p>"}, {"titulo": "En la impureza, con una corrida por combinación, el residuo mezcla interacción y error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Datos del bloque «Datos de la impureza» del módulo 7.7 (Tabla 5.10 del libro). Sumas de cuadrados con la corrección y²../ab = 44²/15 = 129.07. El residuo tiene (a − 1)(b − 1) = 8 gl y, sin réplicas, no se puede partir en interacción y error sin un supuesto.<\/p>"}, {"titulo": "La prueba de no aditividad de Tukey compra un solo grado de libertad", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Fórmula del módulo 7.7, ya corregida (la errata está declarada en el módulo). La idea: no pedir una interacción cualquiera, que necesitaría 8 gl, sino una de forma multiplicativa, que solo necesita uno. Con el exponente de más, SS_N saldría del orden de 10^8. No hace falta decirlo en clase.<\/p>"}, {"titulo": "En la impureza, la prueba de no aditividad da \\(F_0 = 0.363\\), \\(p = 0.566\\)", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Las cifras salen del bloque «La prueba de no aditividad» del módulo 7.7 (SS_N = 0.098522, F₀ = 0.362694, p = 0.566003). La Tabla 5.11 del libro imprime p = 0.5674: es el valor p del F redondeado a 0.36 (pf(0.36, 1, 7)); con el exacto da 0.5660. No es errata. El crítico al 5 % con 1 y 7 gl es 5.591.<\/p>"}, {"titulo": "La prueba de no aditividad no rechaza: ¿qué se puede concluir?", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Pregunta 5 de la autoevaluación, con las opciones abreviadas. La 3: el experimento es válido con un supuesto extra; es justo el modelo del DBCA (diapositiva siguiente). La 4: subir α no arregla la falta de réplicas, y con p = 0.566 tampoco cambiaría nada.<\/p>"}, {"titulo": "Con \\(n = 1\\), el factorial de dos factores tiene el modelo del DBCA del capítulo 5", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Bloque «La misma tabla como DBCA» del módulo 7.7, recortado (sin las dos líneas de cabecera de anova). Las sumas de cuadrados son las que da el DBCA del capítulo 5 sobre estos datos (el capítulo 5 no analizó la impureza). Y una cosa más que conviene saber: después de la prueba de Tukey, la Tabla 5.11 prueba los efectos contra el error de 7 gl (imprime F = 42.97 y 10.68; el exacto es 42.95), no contra el de 8 de esta tabla.<\/p>"}, {"titulo": "Con una observación por celda, la interacción no se separa del error", "seccion": "Sin interacción y sin réplicas", "k": 0, "notas": "<p>Cuarta de «Lo que hay que llevarse» del módulo 7.12. Transición: de dos factores a tres, sin aprender nada nuevo.<\/p>"}, {"titulo": "Tres factores y más", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El simulador de esta sección («El cubo del factorial de tres factores») dibuja los ocho vértices del 2³ que queda con la carbonatación extrema, con cada factor rotulado en una de sus aristas; el interruptor añade el plano del 12 %, y la lectura da la curvatura (2.50 frente a 3.44).<\/p>"}, {"titulo": "Con \\(k\\) factores, cada efecto es lo que queda tras descontar sus subconjuntos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Definición y derivación del módulo 7.8. Con S = {A}, θ es τ̂; con S = {A, B}, los cuatro signos alternos de la interacción doble; con S = {A, B, C}, ocho términos que no hace falta memorizar. Con tres factores, 2³ − 1 = 7 efectos.<\/p>"}, {"titulo": "La embotelladora cruza tres factores en 24 corridas, y la guía de la UGR usa otros datos", "seccion": "Tres factores y más", "k": 1, "notas": "<p>El contexto es el de Montgomery (ejemplo 5.3, «The Soft Drink Bottling Problem»). La guía de la UGR lo usa con datos propios: en la celda de 10 %, 25 psi y 200 bpm tiene 10 y 20, y concluye que la interacción carbonatación × velocidad es significativa, eliminando antes las demás paso a paso. El capítulo no avisa de esto (mejora 4 del informe).<\/p>"}, {"titulo": "R lee los siete efectos con una sola fórmula: carbonatacion  presion  velocidad", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Bloque «El factorial de tres factores» del módulo 7.8, recortado: falta la construcción de los datos (bebida). Resaltada, la interacción triple: es la primera que se lee. Los gl de los efectos son productos de (niveles − 1): carbonatación × presión × velocidad, 2 · 1 · 1 = 2.<\/p>"}, {"titulo": "¿Cuáles de estas lecturas de la embotelladora son correctas?", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Adaptada de la pregunta 7 de la autoevaluación: la 1 y la 2 son sus opciones 1 y 3; la 3 es lo que dice la retroalimentación de su opción 1, en negativo. Se quitaron tres opciones: la 2 del capítulo, correcta, que justifica leer las marginales con el umbral del 5 % (mejora 18 del informe), y dos distractores cuya retroalimentación es discutible (la multiplicidad de los siete F, y llamar sesgo de selección a reducir el modelo, que la guía de la UGR hace en tres apartados). Va antes del flujo, que la responde.<\/p>"}, {"titulo": "Se lee por orden de interacción: la triple, las dobles y al final los principales", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Es el ejercicio «Cómo se lee una tabla de siete efectos» del módulo 7.8. Se lee empezando por la interacción de mayor orden, como la de la batería. El 1.56 % viene de la descomposición del módulo 7.11 (5.25/336.625): pesa poco, que es mejor razón que «no llega al 5 %». Montgomery (p. 204) lee ese p = 0.0558 como «some interaction», y la dibuja en la figura 5.16 (d), p. 205. Los p de la Tabla 5.14 (0.4867, 0.6713, 0.2485) salen del F redondeado; los de R, del exacto: mismo caso que el 0.5674 de la Tabla 5.11.<\/p>"}, {"titulo": "Con dos niveles, cada efecto es un número; pero al 12 % la carbonatación se curva", "seccion": "Tres factores y más", "k": 1, "notas": "<p>Diapositiva opcional si falta tiempo. Los efectos son la salida del bloque «Los efectos del diseño de dos niveles» del módulo 7.8 (7.875 = 7.375 − (−0.50)). Las medias por carbonatación son aritmética de los totales de la Tabla 5.13 (−4, 20 y 59, ocho botellas cada uno). El capítulo dice que «el plano no cae a media altura» y que «eso es curvatura», sin medirla; un contraste cuadrático la da significativa (F = 6.62 con 1 y 12 gl, p = 0.024; cuenta de la auditoría, no del capítulo).<\/p>"}, {"titulo": "Curvas de respuesta y superficies", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>El simulador de esta sección («De tres curvas a una superficie») tiene dos vistas; en «curvas», el interruptor dibuja la curva del material 2 con el coeficiente que imprime la Tabla 5.15, que se sale del gráfico.<\/p>"}, {"titulo": "Casi todo el efecto de la temperatura es lineal; la interacción está en la curvatura", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Salida del bloque «Partición polinómica» del módulo 7.9 (contrastes ortogonales de contr.poly). La interacción de cuatro grados de libertad (p = 0.0186) se reparte muy desigual. Aviso del capítulo: que las dos partes sumen la interacción no comprueba el reparto (2315.08 y 7298.69 frente a, digamos, 4806.89 y 4806.89, que también suman lo mismo): cada componente se recalcula desde su propio contraste.<\/p>"}, {"titulo": "El independiente y el lineal coinciden con el libro, y el cuadrático no. ¿Qué se afirma?", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Pregunta 8 de la autoevaluación, con la clave abreviada (en el capítulo es la más larga). Va antes del gráfico de las curvas, que la responde. Que coincidan justo el independiente y el lineal descarta otra parametrización. El centrado sí explica otra cosa del capítulo: el intercepto codificado de la Tabla 5.15 (107.58) no es la gran media (105.53).<\/p>"}, {"titulo": "La parábola del material 1 se curva hacia arriba; las del 2 y el 3, hacia abajo", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Gráfico animado: las nueve medias están desde el principio; la primera pulsación dibuja la parábola del material 1 (cóncava hacia arriba) y la segunda, las de los materiales 2 y 3 (hacia abajo); la tercera revela la cuenta y la lectura. Coeficientes del bloque «Las tres curvas de respuesta» del módulo 7.9. Ojo: entre las medias la curva es pura interpolación; el mínimo del material 1 (≈ 47.7 h hacia 97 °F) y el máximo del 3 (≈ 152.6 h hacia 44 °F) nunca se observaron. Con tres puntos y tres coeficientes el ajuste es saturado: no es un ajuste, es una interpolación. La cuenta: 2.50145 · 70 = 175.10 y 0.012851 · 4900 = 62.97, y 169.38 − 175.10 + 62.97 = 57.25.<\/p>"}, {"titulo": "La Tabla 5.15 imprime mal dos cuadráticos: con el suyo, el material 2 daría 6642 horas", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Errata declarada en el módulo 7.9 (la «más consecuente» del capítulo). La cuenta: 0.17335 · 125 = 21.67; 0.41627 · 15 625 = 6504.22; 159.62 − 21.67 + 6504.22 = 6642.17. En el simulador, el interruptor dibuja esa curva.<\/p>"}, {"titulo": "Con los dos factores cuantitativos, el modelo es una superficie: la herramienta de corte", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Montgomery dice «the coded data»: por eso hay vidas negativas. ANOVA del bloque «La vida de una herramienta» del módulo 7.9: ángulo 24.33, velocidad 25.33, interacción 61.33 y error 13.00 con 9 gl. 61.33/124 = 0.495.<\/p>"}, {"titulo": "El segundo orden tiene un máximo, pero se queda corto: falta de ajuste con \\(F = 12.31\\)", "seccion": "Curvas de respuesta y superficies", "k": 2, "notas": "<p>Cifras del bloque «La superficie de segundo orden» y de la nota «El modelo de segundo orden se queda corto» del módulo 7.9; Montgomery publica el punto estacionario (20.2381, 166.0714) y la respuesta 3.781746 ± 2.384705 en la Tabla 5.18 (JMP). Se proyecta en este orden a propósito: primero lo que explica el modelo y después el óptimo. La falta de ajuste es aritmética de cifras del capítulo (SS de falta de ajuste 66.33 − 13 = 53.33 con 3 gl, contra el error puro 1.4444; p ≈ 0.0015): el capítulo no la calcula (mejora 8 del informe). Con los tres términos que faltan, la regresión vuelve a ser el ANOVA (R² = 0.8952). La razón entre valores propios, 57.43 en grados e in/min, depende de las unidades: con la región codificada a ±1 son −0.79 y −2.21 (razón 2.78), un máximo bien definido; lo impreciso es su altura (±2.38).<\/p>"}, {"titulo": "Bloqueo en un factorial", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El simulador de esta sección («Tres lecturas del mismo experimento») tiene las tres tablas ANOVA y, en la segunda vista, la potencia de la prueba del clutter según cuánto difieran los operadores.<\/p>"}, {"titulo": "El bloque se suma al modelo sin interactuar con los tratamientos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Modelo del módulo 7.10: δ_k es el efecto del bloque k, que se supone sin interacción con los tratamientos (Montgomery, §5.6). Con n bloques hay n observaciones por celda (b es el número de niveles del filtro).<\/p>"}, {"titulo": "Bloquear no cambia ninguna suma de cuadrados de tratamiento: parte el error", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Es la advertencia «Ninguna suma de cuadrados de tratamiento cambió» del módulo 7.10, con las dos tablas del bloque «El radar, con y sin bloques». Dos pulsaciones. Lo mismo que el capítulo 5 decía del DBCA, visto sin necesidad de creérselo. (El capítulo dice que bloquear «no explica más la respuesta»; el R² sí sube, de 0.722 a 0.919: lo que no cambia son las sumas de los tratamientos.)<\/p>"}, {"titulo": "¿Cuánto vale la varianza del operador, \\(\\hat\\sigma^2_\\delta\\)?", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Pregunta 6 de la autoevaluación (numérica). El error típico es dividir entre 4 (los bloques) en lugar de entre 6 (las observaciones dentro de cada bloque). Montgomery publica en la Tabla 5.23 el ajuste REML de JMP, que coincide porque el diseño es balanceado.<\/p>"}, {"titulo": "El operador es la mayor fuente de ruido: 20.49 de 31.58, el 64.89 %", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Paso 4 de la derivación del módulo 7.10. La identidad es exacta: (MS_bl + (ab − 1)MS_E)/ab es lo que da juntar las dos filas, porque el error tiene (ab − 1) veces los gl de los bloques. JMP publica un intervalo de Wald (−15.28, 56.27) que se va a negativo por abajo: un intervalo simétrico no sirve para una varianza.<\/p>"}, {"titulo": "El radar como cuadro latino \\(6 \\times 6\\): los operadores 1 a 4 son los mismos", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Ejercicio «Y son los mismos operadores» del módulo 7.10, que el capítulo pide comprobar en vez de creer: la columna del operador 1 del cuadro latino es 90, 114, 102, 87, 93 y 86, que suman 572. Es el puente con el capítulo 6. La errata de la G está declarada en el módulo 7.10 y en la tabla del 7.12.<\/p>"}, {"titulo": "Tres lecturas del mismo radar: el error baja y el \\(F\\) de la interacción sube", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Gráfico animado, tres pulsaciones: cada una añade la lectura siguiente en los dos paneles; la cuarta revela las viñetas y la lectura. El eje dice cuántos datos tiene cada lectura: que no se lea la tercera barra como efecto del bloqueo solo. Los F son cuentas de los cuadrados medios publicados: 38.5417/31.5833 = 1.22, 38.5417/11.0889 = 3.48 y 63.3611/9.9 = 6.40 (la Tabla 5.25 imprime 63.37: SS 126.73 entre 2; el F es el mismo). Con los mismos 24 datos, bloquear la deja en p = 0.058, que no llega al 5 %. Del bloqueo al latino, lo que más pesa son los datos nuevos: con el MS_AB del latino y el error de bloques el F sería 5.71; con el MS_AB de bloques y el error del latino, 3.89.<\/p>"}, {"titulo": "El día no vale nada y los operadores sí: la regla del capítulo 6", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>El último párrafo del módulo 7.10 cierra con la regla del capítulo 6: un bloqueo mejora el error solo si su cuadrado medio supera al MS_E que ya había. Aquí se ven las dos caras en la misma tabla. El 8.09 es aritmética de la Tabla 5.25 (no está en el capítulo): quitar los días le devuelve 5 gl al error.<\/p>"}, {"titulo": "Bloquear no cambia lo que se estima: cambia contra qué se compara", "seccion": "Bloqueo en un factorial", "k": 3, "notas": "<p>Séptima de «Lo que hay que llevarse» del módulo 7.12, sin su final («falla en dos de los cuatro ejercicios guiados»), que adelanta el resultado de la práctica.<\/p>"}, {"titulo": "Ciencia de datos", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Este módulo no tiene simulador. Cinco diapositivas: la rejilla de hiperparámetros, las pruebas A/B y las tres del contraejemplo de los autos usados (apartado 4), el único con datos reales.<\/p>"}, {"titulo": "OFAT parte del centro de la rejilla: ¿dónde termina, y cuál es la mejor de las nueve?", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Pregunta hecha con la rejilla del módulo 7.11 (no es de la autoevaluación). La superficie la construye el capítulo: 0.86 + 0.03·lr − 0.02·reg − 0.045·lr² − 0.025·reg² − 0.05·lr·reg; no es un experimento real. OFAT: con reg = 0, el mejor lr es 0 (0.860 frente a 0.855 y 0.845); con lr = 0, el mejor reg es 0, y se queda ahí. El término lr × reg es la interacción del módulo 7.1 con otro nombre. Las cifras del Monte Carlo salen del precálculo con una semilla por réplica; el capítulo no publica ese código.<\/p>"}, {"titulo": "Dos pruebas A/B contra la misma base no son una prueba de dos factores", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>0.0213 es peor que elegir al azar entre cuatro (0.25): con interacción negativa fuerte, los dos cambios ganan por separado y se lanza casi siempre la celda mala (el capítulo dice «siempre»). El capítulo llama a esto «dos pruebas A/B seguidas» y «estrategia secuencial»; lo que simula son dos A/B contra la misma base. Si la segunda se corriera con el ganador de la primera ya puesto, compararía 11.0 con 8.6 y acertaría. La prueba de las cuatro celdas no se mantiene en 0.90 en todo el rango: con λ = −0.5 baja a 0.604, porque las dos mejores celdas quedan muy cerca. El apartado 2 del módulo, que no se proyecta, reparte la suma de cuadrados de la embotelladora como un análisis de sensibilidad: esos sí son datos reales de Montgomery.<\/p>"}, {"titulo": "En 5951 autos usados, la interacción da \\(F = 166.55\\): ¿qué dice de la transmisión?", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Datos reales pero observacionales: 7253 avisos de autos usados en 11 ciudades de la India. Las tres marcas son 683 de los 1108 diésel automáticos. La página de Kaggle no documenta cómo se recopilaron ni con qué licencia, así que el capítulo no reproduce filas: su código lee el CSV que descarga el estudiante. Se dejan fuera las 1234 filas sin precio (un bloque al final del archivo, sin imputar) y los pocos autos de gas y eléctricos. En logaritmo, una diferencia de medias es un cociente de medias geométricas: cuántas veces cuesta más el auto típico de una celda que el de otra. El orden importa porque anova() reparte en el orden en que se escriben los términos y las celdas van de 610 a 2136 autos; en el factorial balanceado del 7.3 no importaba. Transición: comparar autos parecidos.<\/p>"}, {"titulo": "Entre modelos comparables, la interacción se encoge", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>Gráfico animado, tres pulsaciones, y la cuarta revela la cuenta y la lectura: el diésel con todos los autos (3.017 a 1.738), la gasolina (2.060 a 1.246: las rectas se separan) y los cuatro modelos comparables (diésel 2.126 a 1.830, gasolina 1.958 a 1.775), en la misma escala. Los comparables son los modelos (marca y primera palabra del nombre, una regla gruesa) que se venden en las cuatro versiones con al menos 5 autos en cada celda: Hyundai Creta, Hyundai Verna, Skoda Rapid y Volkswagen Vento. La prima del automático baja a ×1.34 en diésel y ×1.20 en gasolina. El 0.114 sale de las medias exactas; con las de tres decimales del gráfico da 0.113. Tratar el modelo como bloque es lo del capítulo 5 y del 7.10; el módulo 5.11 lo llama emparejar. Transición: ese 5 lo elegimos nosotros.<\/p>"}, {"titulo": "El veredicto depende del umbral y del bloque; la interacción siempre baja", "seccion": "Ciencia de datos", "k": 4, "notas": "<p>La interacción es la prima del automático en diésel menos la de gasolina, en log, ya descontado el modelo. En el 2×2 crudo era 0.465: con cualquier umbral y los dos modelos queda entre 0.091 y 0.239, y parte de la bajada la hace elegir modelos comparables (sin bloque, 0.114 con 4 a 8 autos por celda). El bloque sumado es el del 7.10: supone la misma prima en todos los modelos, y la prueba bloque × tratamiento lo rechaza con cualquier umbral (con 4 a 8, F = 2.59 con 9 gl). Con 1 a 3 entran modelos con celdas de uno a tres autos, como el Mercedes-Benz E-Class (dos diésel manuales y un gasolina manual). Hasta «modelo» es una decisión: con una clave que separa el Swift Dzire y junta los C-Class, con 5 por celda entran cinco modelos y la interacción da 0.082 (p = 0.215). La caja «Lo que este apartado no demuestra» del capítulo: no prueba que la interacción sea cero (como en el EG-28), ni que el automático valga ×1.34, porque dentro de los cuatro modelos los diésel automáticos siguen siendo más nuevos (año medio 2015.17 frente a 2013.53), y el bloque no lo quita. Y no se puede sortear la transmisión de un auto usado. Para cerrar, la pregunta del capítulo: «¿es esto un diseño factorial?». La estructura sí; el diseño no.<\/p>"}, {"titulo": "Cierre y práctica", "seccion": "Cierre y práctica", "k": 5, "notas": ""}, {"titulo": "Lo que se llevan hoy", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>El capítulo 8 se queda con el caso de todos los factores a dos niveles; el 9 rompe el supuesto de que los factores son fijos.<\/p>"}, {"titulo": "Práctica en R: el tubo de televisión en clase, el papel en casa", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>EG-28 del módulo 7.12, con pista y solución en el material; nada de él se proyectó en las dos sesiones. Ojo: el resumen del 7.12 (punto 8) y la pregunta 4 de la autoevaluación adelantan su apartado (b), y la propia pista dice que «la prueba no rechaza» (mejora 14 del informe): pedir que lo hagan sin mirar el resumen. La respuesta es la corriente necesaria para un brillo dado (menos es mejor). Unos 20 minutos; lo que no alcance, para casa. El EG-27 va a casa.<\/p>"}, {"titulo": "Datos del EG-27: resistencia del papel según madera, presión y tiempo de cocción", "seccion": "Cierre y práctica", "k": 5, "notas": "<p>Datos del problema 5.23, cotejados con el libro (p. 224) y con la tabla que el EG-27 trae en el capítulo. En el (c), las marginales que engañan son las de la madera (a 400 psi el 2 % es el peor), y bajar la madera compensa a 500 y a 650 psi.<\/p>"}], "secciones": [{"titulo": "Sin interacción y sin réplicas", "icono": "fa-book-open", "primera": 2, "diapos": [2, 3, 4, 5, 6, 7, 8, 9, 10]}, {"titulo": "Tres factores y más", "icono": "fa-book-open", "primera": 11, "diapos": [11, 12, 13, 14, 15, 16, 17]}, {"titulo": "Curvas de respuesta y superficies", "icono": "fa-book-open", "primera": 18, "diapos": [18, 19, 20, 21, 22, 23, 24]}, {"titulo": "Bloqueo en un factorial", "icono": "fa-book-open", "primera": 25, "diapos": [25, 26, 27, 28, 29, 30, 31, 32, 33]}, {"titulo": "Ciencia de datos", "icono": "fa-book-open", "primera": 34, "diapos": [34, 35, 36, 37, 38, 39]}, {"titulo": "Cierre y práctica", "icono": "fa-award", "primera": 40, "diapos": [40, 41, 42, 43]}], "iconos": {}, "graficas": {}}</script>
 
     <script>
     (() => {
