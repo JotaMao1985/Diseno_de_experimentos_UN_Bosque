@@ -7654,6 +7654,87 @@ print(pd.DataFrame(filas).to_string(index=False, float_format=lambda v: f"{v:.3g
     </div>
   </template>
 
+  <!-- ============================================================ -->
+  <!-- MÓDULO 13 · Simulacro del quiz del capítulo 7                -->
+  <!-- ============================================================ -->
+  <template id="module-13">
+    <div class="animate-fade-in">
+      <div class="border-b border-gray-100 pb-6 mb-6">
+        <div class="flex items-center space-x-2 text-sm text-secondary font-semibold mb-2 uppercase tracking-wide">
+          <span>Módulo 13</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" style="border:none; padding:0;">7.13 Simulacro del quiz <span
+            class="text-gray-400 font-normal text-2xl">/ Mock quiz</span></h2>
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-start gap-3">
+          <span class="text-xl">🎯</span>
+          <div>
+            <h3 class="font-bold text-gray-800 text-sm" style="margin:0;">Objetivo</h3>
+            <p class="text-gray-600 text-sm" style="margin:0;">Medir, con el reloj puesto, si las cuentas y las
+              decisiones de este capítulo salen solas cuando las pide un mismo experimento, y dejar por escrito las
+              respuestas para contrastarlas después.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Este módulo no añade contenido: es un ensayo. El quiz del capítulo 7 se presenta en Brightspace, en clase, y
+        dura <strong>cincuenta minutos</strong>. Tiene <strong>doce preguntas</strong> de un punto. Las nueve primeras
+        salen de <strong>un mismo taller y sus probetas</strong>, un factorial de dos factores con réplicas: sus efectos, la
+        partición de la suma de cuadrados, la prueba de la interacción, cómo comparar los niveles, el diagnóstico de los
+        residuos y el bloqueo (módulos 7.1 a 7.5 y 7.10). Las tres últimas son de otros experimentos: un plan de un
+        factor a la vez (módulo 7.1), un factorial con una sola
+        observación por celda (módulo 7.7) y unos registros que no son un experimento (módulo 7.11). Seis preguntas
+        piden una cifra que se teclea y seis son de selección con una sola respuesta; dos de estas se responden leyendo
+        un gráfico. Cada estudiante recibe una de tres versiones, con sus propios datos.</p>
+
+      <p>Abajo está un simulacro con esa misma forma: el caso arriba, con su tabla, y las preguntas debajo.
+        <strong>No es ninguna de las versiones del quiz</strong>: es otra aparte, con otros datos y otros contextos, que
+        no se usa en Brightspace. Memorizar sus cifras no sirve de nada; lo que se repite de una versión a otra es la
+        <em>decisión</em> —qué medias entran en un efecto de interacción, entre qué se divide cada suma de cuadrados,
+        con cuántas probetas se calcula la diferencia crítica de Tukey, cuántos grados de libertad se llevan los
+        bloques— y esa es la que conviene tener automatizada antes de entrar.</p>
+
+      <div class="warning">
+        <p><strong>Aquí no se corrige.</strong> El simulacro no trae la clave ni la retroalimentación, y no las trae a
+          propósito: esta página es pública, y una clave incrustada en ella la lee cualquiera desde el código fuente.
+          Responde, anota lo que respondiste —el resumen de abajo lo escribe por ti— y contrástalo con el material:
+          cada pregunta dice de qué módulo sale. Las ocho preguntas del <strong>módulo 12</strong> sí llevan pista y
+          explicación de cada opción.</p>
+      </div>
+
+      <div class="simulacro" data-simulador="cap7-simulacro">
+        <h4><i class="fas fa-stopwatch" aria-hidden="true"></i> Simulacro del quiz · capítulo 7</h4>
+        <p class="text-sm" style="margin-bottom:0;">Un caso, doce preguntas, cincuenta minutos. Se responde y se
+          cronometra; no se corrige.</p>
+        <div class="simulacro-mandos">
+          <button type="button" class="simulacro-empezar"></button>
+          <span class="simulacro-reloj" role="timer" aria-live="off"></span>
+          <span class="simulacro-conteo"></span>
+          <button type="button" class="simulacro-borrar">Borrar</button>
+        </div>
+        <div class="simulacro-caso"></div>
+        <div class="simulacro-preguntas"></div>
+        <p class="simulacro-resumen" role="status"></p>
+      </div>
+
+      <div class="note">
+        <p><strong>Cómo aprovecharlo.</strong> Hazlo una vez con el reloj y sin abrir nada: lo que falle ahí es lo que
+          hay que repasar. Después repítelo con el material delante y mira cuánto cuesta cada consulta, porque en el
+          quiz ese tiempo sale del mismo presupuesto. Las que más se demoran son la segunda —la suma de cuadrados de
+          la interacción, que pide los efectos de las ocho celdas— y la tercera, y se abrevian sabiendo de antemano qué
+          entra en cada fórmula.</p>
+        <p>En Brightspace se ve <strong>una pregunta por página y no se puede volver a la anterior</strong>; por eso
+          allí cada pregunta trae las cifras que necesita, también las que salieron de las anteriores. Aquí están
+          todas en la misma página, así que las que dependen de otra te piden usar la tuya («su MS<sub>E</sub> de la
+          pregunta 3»), redondeada como la escribiste. Teclea
+          las cifras como las teclearías en el quiz: con los decimales que pide cada pregunta, punto o coma como
+          separador decimal y <strong>sin separador de miles</strong>.</p>
+        <p style="margin-bottom:0;">El reloj sigue corriendo si sales a otro módulo, igual que el del salón, y lo
+          respondido se conserva mientras no cierres la página. <strong>Borrar</strong> lo devuelve todo al
+          principio.</p>
+      </div>
+    </div>
+  </template>
+
   <script>
     // ================================================================
     // Configuración del capítulo
@@ -7682,7 +7763,8 @@ print(pd.DataFrame(filas).to_string(index=False, float_format=lambda v: f"{v:.3g
         { id: 9, title: "7.9 Curvas de respuesta y superficies", shortTitle: "Superficies", duration: "26 min" },
         { id: 10, title: "7.10 Bloqueo en un diseño factorial", shortTitle: "Bloqueo", duration: "24 min" },
         { id: 11, title: "7.11 Ciencia de datos: hiperparámetros, sensibilidad, A/B y datos observacionales", shortTitle: "Ciencia de datos", duration: "40 min" },
-        { id: 12, title: "7.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "28 min" }
+        { id: 12, title: "7.12 Resumen, autoevaluación y lecturas", shortTitle: "Cierre", duration: "28 min" },
+        { id: 13, title: "7.13 Simulacro del quiz", shortTitle: "Simulacro", duration: "50 min" }
       ]
     };
 
@@ -10716,6 +10798,337 @@ const SOLUCIONES_CAP7 = {"capitulo":7,"fecha_corte":"2026-08-03","semilla":2026,
         ]
       }
     ];
+
+    // ================================================================
+    // Simulacro del quiz (Módulo 13)
+    //
+    // Se responde y se cronometra, pero NO se corrige: en la página no hay
+    // clave, ni retroalimentación, ni nada de donde deducirlas. Es lo que
+    // lo distingue de la autoevaluación del módulo 12, que sí las lleva: un
+    // examen de práctica no puede publicar su clave, porque viajaría en el
+    // HTML de un capítulo público.
+    //
+    // Es el motor del módulo 5.13 del capítulo 5, sin un cambio de
+    // comportamiento: el quiz del capítulo 7 es un CASO, con el encabezado
+    // arriba como en el cuestionario de Brightspace, seis de sus doce
+    // preguntas piden un NÚMERO y dos traen una figura en SVG dentro del
+    // enunciado, que el motor pinta tal cual.
+    //
+    // Se engancha al registro SIMULADORES, que loadModule() ya recorre, y lo
+    // respondido y la hora de final del reloj viven en ESTADO_SIMULACRO,
+    // fuera del renderizado: salir al módulo 5 a consultar algo y volver no
+    // borra el trabajo, y el reloj sigue corriendo mientras tanto.
+    //
+    // El CSS del componente .simulacro ya está en los dieciocho documentos
+    // (lo instaló ensamblado/retropropaga_simulacro.py). Este motor y su
+    // registro los instala ensamblado/retropropaga_simulacro_cap7.py.
+    //
+    // SIMULACROS['id'] = { minutos, variante, caso, preguntas: [{ n,
+    // etiqueta, tipo, enunciado, opciones? }] } lo escribe
+    // quiz7/exporta_simulacro.py. `tipo` es 'opcion' (una marca) o 'numero'
+    // (una casilla).
+    // ================================================================
+    const SIMULACROS = {};
+    const ESTADO_SIMULACRO = {};
+
+    SIMULADORES['cap7-simulacro'] = function (raiz) {
+      const id = raiz.dataset.simulador;
+      const sim = SIMULACROS[id];
+      if (!sim) {
+        console.warn(`Simulacro no registrado: ${id}`);
+        return [];
+      }
+      if (!ESTADO_SIMULACRO[id]) {
+        ESTADO_SIMULACRO[id] = {
+          respuestas: sim.preguntas.map(pr => pr.tipo === 'numero' ? '' : []),
+          finAt: null,
+          restante: sim.minutos * 60
+        };
+      }
+      return pintarSimulacro(raiz, sim, ESTADO_SIMULACRO[id]);
+    };
+
+    function pintarSimulacro(raiz, sim, estado) {
+      const caso = raiz.querySelector('.simulacro-caso');
+      const contenedor = raiz.querySelector('.simulacro-preguntas');
+      const conteo = raiz.querySelector('.simulacro-conteo');
+      const resumen = raiz.querySelector('.simulacro-resumen');
+      const reloj = raiz.querySelector('.simulacro-reloj');
+      const empezar = raiz.querySelector('.simulacro-empezar');
+      const borrar = raiz.querySelector('.simulacro-borrar');
+      const listas = [];
+      const casillas = [];
+      caso.innerHTML = sim.caso;
+      contenedor.innerHTML = '';
+
+      const vacia = r => (Array.isArray(r) ? r.length === 0 : r.trim() === '');
+
+      sim.preguntas.forEach((pr, i) => {
+        const caja = document.createElement('div');
+        caja.className = 'simulacro-pregunta';
+        caja.innerHTML = `<span class="simulacro-etiqueta">${pr.n}. ${pr.etiqueta}</span>` +
+          `<div class="simulacro-enunciado">${pr.enunciado}</div>`;
+        if (pr.tipo === 'numero') {
+          const fila = document.createElement('label');
+          fila.className = 'simulacro-respuesta';
+          fila.innerHTML = '<span>Respuesta</span>';
+          const casilla = document.createElement('input');
+          casilla.type = 'text';
+          casilla.inputMode = 'decimal';
+          casilla.autocomplete = 'off';
+          casilla.spellcheck = false;
+          casilla.className = 'simulacro-numero';
+          casilla.setAttribute('aria-label', `Respuesta de la pregunta ${pr.n}`);
+          casilla.value = estado.respuestas[i];
+          casilla.oninput = () => {
+            estado.respuestas[i] = casilla.value;
+            pintaMarcador();
+          };
+          fila.appendChild(casilla);
+          caja.appendChild(fila);
+          casillas[i] = casilla;
+        } else {
+          const lista = document.createElement('div');
+          lista.className = 'simulacro-opciones';
+          lista.setAttribute('role', 'group');
+          lista.setAttribute('aria-label', `Opciones de la pregunta ${pr.n}`);
+          pr.opciones.forEach((texto, j) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'simulacro-opcion';
+            b.innerHTML = `<span class="simulacro-letra">${LETRAS[j]})</span><span>${texto}</span>`;
+            b.onclick = () => {
+              estado.respuestas[i] = estado.respuestas[i].includes(j) ? [] : [j];
+              pintaOpciones(i);
+              pintaMarcador();
+            };
+            lista.appendChild(b);
+          });
+          caja.appendChild(lista);
+          listas[i] = lista;
+        }
+        contenedor.appendChild(caja);
+        if (listas[i]) pintaOpciones(i);
+      });
+
+      function pintaOpciones(i) {
+        listas[i].querySelectorAll('.simulacro-opcion').forEach((o, j) => {
+          const marcada = estado.respuestas[i].includes(j);
+          o.classList.toggle('marcada', marcada);
+          o.setAttribute('aria-pressed', marcada ? 'true' : 'false');
+        });
+      }
+
+      // Lo tecleado entra en el resumen como TEXTO, nunca como HTML: es lo
+      // único de la página que escribe el estudiante.
+      function pintaMarcador() {
+        const hechas = estado.respuestas.filter(r => !vacia(r)).length;
+        conteo.textContent = `${hechas} de ${sim.preguntas.length} respondidas`;
+        resumen.textContent = 'Tus respuestas: ';
+        sim.preguntas.forEach((pr, i) => {
+          const r = estado.respuestas[i];
+          const b = document.createElement('b');
+          b.textContent = `${pr.n}: ` + (vacia(r) ? '—'
+            : Array.isArray(r) ? r.map(j => LETRAS[j]).join('') : r.trim());
+          if (i) resumen.appendChild(document.createTextNode(' · '));
+          resumen.appendChild(b);
+        });
+        resumen.appendChild(document.createTextNode('. No se corrigen aquí.'));
+      }
+
+      // El reloj: `finAt` es la hora en que se acaba y manda mientras corre;
+      // `restante` solo guarda los segundos cuando está pausado.
+      let tic = null;
+      function para() {
+        if (tic !== null) { clearInterval(tic); tic = null; }
+      }
+      function segundos() {
+        return estado.finAt === null
+          ? estado.restante
+          : Math.max(0, Math.round((estado.finAt - Date.now()) / 1000));
+      }
+      function pintaReloj() {
+        const s = segundos();
+        reloj.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+        reloj.classList.toggle('acabado', s === 0);
+        empezar.textContent = estado.finAt !== null ? 'Pausar'
+          : (s === sim.minutos * 60 ? `Empezar los ${sim.minutos} minutos` : 'Seguir');
+      }
+      function arranca() {
+        para();
+        tic = setInterval(() => {
+          if (segundos() === 0) {
+            estado.finAt = null;
+            estado.restante = 0;
+            para();
+          }
+          pintaReloj();
+        }, 250);
+      }
+      empezar.onclick = () => {
+        if (estado.finAt !== null) {          // corriendo: se pausa
+          estado.restante = segundos();
+          estado.finAt = null;
+          para();
+        } else {
+          if (estado.restante === 0) estado.restante = sim.minutos * 60;
+          estado.finAt = Date.now() + estado.restante * 1000;
+          arranca();
+        }
+        pintaReloj();
+      };
+      borrar.onclick = () => {
+        para();
+        estado.respuestas = sim.preguntas.map(pr => pr.tipo === 'numero' ? '' : []);
+        estado.finAt = null;
+        estado.restante = sim.minutos * 60;
+        sim.preguntas.forEach((pr, i) => {
+          if (casillas[i]) casillas[i].value = '';
+          if (listas[i]) pintaOpciones(i);
+        });
+        pintaMarcador();
+        pintaReloj();
+      };
+
+      if (estado.finAt !== null) arranca();
+      pintaReloj();
+      pintaMarcador();
+      // Lo que devuelve un simulador son los objetos que destruirSimuladores()
+      // apaga al cambiar de módulo. Aquí no hay gráficos: lo que hay que apagar
+      // es el intervalo, que si no seguiría pintando sobre nodos que ya no
+      // están en el documento.
+      return [{ destroy: para }];
+    }
+
+    // [inicio · simulacro del quiz]
+    // ================================================================
+    // Simulacro del quiz (Módulo 13) · SIN CLAVE
+    //
+    // NO SE EDITA A MANO: lo escribe quiz7/exporta_simulacro.py desde el
+    // mismo generador que arma los paquetes de Brightspace. Aquí solo
+    // viajan el caso, los enunciados y las opciones: la clave y la
+    // retroalimentación se quedan fuera, porque este capítulo es público.
+    //
+    // No es ninguna de las tres versiones del quiz, a propósito: publicar
+    // una le daría a un tercio del grupo los datos que le tocan, con
+    // tiempo ilimitado para estudiarlos.
+    // ================================================================
+    SIMULACROS['cap7-simulacro'] = {
+      "minutos": 50,
+      "variante": "S",
+      "caso": "<h3>Probetas impresas en 3D — Simulacro</h3>\n<p>Un taller de impresión 3D compara la <b>resistencia a la tracción de sus probetas, en MPa</b>, con cuatro\nfilamentos —<b>PLA</b>, <b>PETG</b>, <b>ABS</b> y <b>nailon</b>— y dos orientaciones de impresión: la pieza\nacostada (<b>plana</b>) o de pie sobre su borde (<b>de canto</b>). Es un factorial 4 × 2 con n = 3 probetas por\ncombinación, 24 en total: durante tres días se imprimió cada día una probeta de cada combinación, en un orden\nsorteado. La tabla da la media (ȳ) y la desviación estándar (s) de las tres probetas de cada combinación.</p>\n<table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Filamento</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plana: ȳ</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plana: s</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">De canto: ȳ</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">De canto: s</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PLA</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">53.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.05</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.61</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PETG</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">52.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.78</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.69</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ABS</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.89</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">32.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.48</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Nailon</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.15</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">30.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.70</td></tr></tbody></table>\n<p>Las preguntas 1 a 9 son de este taller de impresión y las 10 a 12, de otros tres experimentos. Aquí\nestán todas en la misma página, así que las que necesitan una respuesta anterior le piden usar <b>la suya</b>\n(«su MS<sub>E</sub> de la pregunta 3»), redondeada como la escribió. Escriba cada cifra con los decimales que pida su\npregunta, con punto o con coma como separador decimal y <b>sin separar los miles</b>. En el quiz de Brightspace se ve\nuna pregunta por página, no se puede volver a la anterior y cada pregunta trae las cifras que necesita.</p>",
+      "preguntas": [
+        {
+          "n": 1,
+          "etiqueta": "cap. 7 · mód. 7.2 · Un efecto de interacción",
+          "enunciado": "<p>Las medias de las tres probetas de cada combinación son estas (MPa):</p><table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Filamento</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plana</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">De canto</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PLA</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">53.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.5</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PETG</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">52.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.0</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ABS</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">32.1</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Nailon</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">30.4</td></tr></tbody></table><p>Estime el efecto de interacción (τβ)<sub>ij</sub> de la combinación <b>PETG de canto</b> en el modelo de efectos del factorial. Responda con dos decimales; si es negativo, con su signo.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 2,
+          "etiqueta": "cap. 7 · mód. 7.3 · La SS de la interacción",
+          "enunciado": "<p>Las medias de celda, con las de cada filamento (ȳ<sub>i..</sub>), las de cada orientación (ȳ<sub>.j.</sub>) y la general (ȳ<sub>...</sub>), son estas (MPa), con n = 3 probetas por combinación:</p><table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Filamento</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Plana</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">De canto</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">ȳ<sub>i..</sub></th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PLA</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">53.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.5</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.25</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PETG</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">52.7</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.0</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">44.35</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ABS</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">40.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">32.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">36.25</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Nailon</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">45.1</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">30.4</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">37.75</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ȳ<sub>.j.</sub></td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">47.80</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">35.00</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">41.40</td></tr></tbody></table><p>Calcule SS<sub>AB</sub>, la suma de cuadrados de la interacción filamento × orientación. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 3,
+          "etiqueta": "cap. 7 · mód. 7.3 · El MS del error",
+          "enunciado": "<p>Las desviaciones estándar de las tres probetas de cada combinación son estas (MPa):</p><table style=\"border-collapse:collapse;margin:6px 0 12px 0;font-size:95%\"><thead><tr><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">Filamento</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">s plana</th><th style=\"border:1px solid #999;padding:3px 8px;background:#eef\">s de canto</th></tr></thead><tbody><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PLA</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.05</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.61</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">PETG</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.78</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.69</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">ABS</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.89</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.48</td></tr><tr><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">Nailon</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">1.15</td><td style=\"border:1px solid #999;padding:3px 8px;text-align:right\">0.70</td></tr></tbody></table><p>Calcule MS<sub>E</sub>, el cuadrado medio del error del modelo factorial, sin bloques. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 4,
+          "etiqueta": "cap. 7 · mód. 7.3 · La F de la interacción",
+          "enunciado": "<p>En el factorial de 4 filamentos × 2 orientaciones con n = 3, en el modelo sin bloques, tome su SS<sub>AB</sub> de la pregunta 2 y su MS<sub>E</sub> de la pregunta 3, ambos con dos decimales. Calcule el estadístico F<sub>0</sub> de la interacción filamento × orientación. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 5,
+          "etiqueta": "cap. 7 · mód. 7.3 y 7.5 · Cómo comparar los filamentos",
+          "enunciado": "<p>Para la interacción filamento × orientación, en el modelo sin bloques, la prueba F tiene 3 y 16 grados de libertad; tome su F<sub>0</sub> de la pregunta 4 (con dos decimales) y F<sub>0.05</sub>(3, 16) = 3.24. Para decidir qué filamento resiste más, ¿qué comparación conviene, según esa prueba?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "Con la media de cada filamento, promediando las dos orientaciones.",
+            "Con una prueba t por cada par de filamentos, sin corregir por el número de pares.",
+            "Con las medias de cada combinación, por separado dentro de cada orientación.",
+            "Con la caída de cada filamento de plana a de canto, ordenando esas caídas."
+          ]
+        },
+        {
+          "n": 6,
+          "etiqueta": "cap. 7 · mód. 7.5 · Diferencia crítica de Tukey",
+          "enunciado": "<p>En el factorial de 4 filamentos × 2 orientaciones con n = 3 probetas por combinación, en el modelo sin bloques, el error tiene 16 grados de libertad; tome su MS<sub>E</sub> de la pregunta 3 (con dos decimales) y q<sub>0.05</sub>(4, 16) = 4.05. Calcule T, la diferencia crítica de Tukey al 5 %, para comparar dos filamentos dentro de la orientación de canto. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 7,
+          "etiqueta": "cap. 7 · mód. 7.10 · El error con los días como bloques",
+          "enunciado": "<p>Cada día se imprimió una probeta de cada combinación, así que los tres días pueden entrar al modelo como bloques. Sin bloques, SS<sub>E</sub> = 16·(su MS<sub>E</sub> de la pregunta 3, con dos decimales), con 16 grados de libertad; la suma de cuadrados de los días es SS<sub>Días</sub> = 7.59. Calcule el MS<sub>E</sub> del modelo con los días como bloques. Responda con dos decimales.</p>",
+          "tipo": "numero"
+        },
+        {
+          "n": 8,
+          "etiqueta": "cap. 7 · mód. 7.1 · El gráfico de interacción de la elongación",
+          "enunciado": "<p>El taller midió también la elongación a la rotura, en %, de las mismas probetas. La figura traza la elongación media de cada filamento en las dos orientaciones, unidas por una recta. ¿Qué muestra?</p><figure class='simulacro-figura'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 460 320' role='img' aria-label='Gráfico de interacción: 4 rectas, una por filamento, entre las dos orientaciones' font-family='Montserrat, system-ui, sans-serif' font-size='12'><rect x='64' y='30' width='284' height='234' fill='none' stroke='#cbd5e1'/><g stroke='#e2e8f0'><line class='grid-y' data-v='5' x1='64' x2='348' y1='230.9' y2='230.9'/><line class='grid-y' data-v='10' x1='64' x2='348' y1='162.7' y2='162.7'/><line class='grid-y' data-v='15' x1='64' x2='348' y1='94.5' y2='94.5'/></g><g fill='#475569' text-anchor='end'><text class='tick-y' data-v='5' x='58' y='234.9'>5</text><text class='tick-y' data-v='10' x='58' y='166.7'>10</text><text class='tick-y' data-v='15' x='58' y='98.5'>15</text></g><text x='14' y='147' text-anchor='middle' fill='#475569' transform='rotate(-90 14 147)'>Elongación media (%)</text><g fill='#475569' text-anchor='middle'><text class='tick-x' data-j='0' x='134' y='282'>Plana</text><text class='tick-x' data-j='1' x='278' y='282'>De canto</text></g><text x='206' y='304' text-anchor='middle' fill='#475569'>Orientación de impresión</text><g stroke-width='2.4'><line class='recta' data-i='0' x1='134' y1='108.1' x2='278' y2='244.5' stroke='#012820'/><line class='recta' data-i='1' x1='134' y1='49.5' x2='278' y2='115' stroke='#FF6600'/><line class='recta' data-i='2' x1='134' y1='195.4' x2='278' y2='214.5' stroke='#2563eb'/><line class='recta' data-i='3' x1='134' y1='169.5' x2='278' y2='170.9' stroke='#c026d3'/></g><g><circle class='media' data-i='0' data-j='0' cx='134' cy='108.1' r='5' fill='#012820'/><circle class='media' data-i='0' data-j='1' cx='278' cy='244.5' r='5' fill='#012820'/><rect class='media' data-i='1' data-j='0' data-cx='134' data-cy='49.5' x='129.5' y='45' width='9' height='9' fill='#FF6600'/><rect class='media' data-i='1' data-j='1' data-cx='278' data-cy='115' x='273.5' y='110.5' width='9' height='9' fill='#FF6600'/><path class='media' data-i='2' data-j='0' data-cx='134' data-cy='195.4' d='M134 189.7L139.8 200L128.2 200Z' fill='#2563eb'/><path class='media' data-i='2' data-j='1' data-cx='278' data-cy='214.5' d='M278 208.8L283.8 219.1L272.2 219.1Z' fill='#2563eb'/><path class='media' data-i='3' data-j='0' data-cx='134' data-cy='169.5' d='M134 163.5L140 169.5L134 175.5L128 169.5Z' fill='#c026d3'/><path class='media' data-i='3' data-j='1' data-cx='278' data-cy='170.9' d='M278 164.9L284 170.9L278 176.9L272 170.9Z' fill='#c026d3'/></g><g text-anchor='start'><text class='nombre' data-i='1' x='292' y='119' fill='#FF6600' font-weight='600'>PETG</text><text class='nombre' data-i='3' x='292' y='174.9' fill='#c026d3' font-weight='600'>Nailon</text><text class='nombre' data-i='2' x='292' y='218.5' fill='#2563eb' font-weight='600'>ABS</text><text class='nombre' data-i='0' x='292' y='248.5' fill='#012820' font-weight='600'>PLA</text></g></svg><figcaption>Cada recta une las dos medias de un filamento: la de las probetas planas, a la izquierda, y la de las de canto, a la derecha.</figcaption></figure>",
+          "tipo": "opcion",
+          "opciones": [
+            "Las rectas no se cruzan ni son paralelas: unas bajan mucho más que otras.",
+            "Las rectas se cruzan: el orden de los filamentos cambia de una orientación a otra.",
+            "Las rectas son casi paralelas: la orientación cambia igual a todos los filamentos.",
+            "Las rectas son casi horizontales: la orientación apenas cambia la elongación."
+          ]
+        },
+        {
+          "n": 9,
+          "etiqueta": "cap. 7 · mód. 7.4 · Los residuos de la tanda piloto",
+          "enunciado": "<p>Antes del experimento, el taller imprimió una tanda piloto, con filamentos de otro proveedor y el mismo plan —cuatro filamentos, dos orientaciones, tres probetas por combinación, impresas en un orden sorteado— y le ajustó el modelo factorial completo. Estos son sus cuatro paneles de diagnóstico. ¿Qué problema ponen en evidencia?</p><figure class='simulacro-figura'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 264 228' role='img' aria-label='Panel de diagnóstico: Gráfico normal' data-panel='normal' font-family='Montserrat, system-ui, sans-serif' font-size='12'><text x='132' y='16' text-anchor='middle' font-size='13.5' fill='#012820' font-weight='600'>Gráfico normal</text><rect x='50' y='30' width='206' height='152' fill='none' stroke='#cbd5e1'/><g stroke='#e2e8f0'><line class='grid-y' data-v='-2' x1='50' x2='256' y1='158.4' y2='158.4'/><line class='grid-y' data-v='0' x1='50' x2='256' y1='106' y2='106'/><line class='grid-y' data-v='2' x1='50' x2='256' y1='53.6' y2='53.6'/></g><g fill='#475569' text-anchor='end'><text class='tick-y' data-v='-2' x='44' y='162.4'>−2</text><text class='tick-y' data-v='0' x='44' y='110'>0</text><text class='tick-y' data-v='2' x='44' y='57.6'>2</text></g><text x='14' y='106' text-anchor='middle' fill='#475569' transform='rotate(-90 14 106)'>Residuo estandarizado</text><g stroke='#e2e8f0'><line class='grid-x' data-v='-2' x1='82' x2='82' y1='30' y2='182'/><line class='grid-x' data-v='0' x1='153' x2='153' y1='30' y2='182'/><line class='grid-x' data-v='2' x1='224' x2='224' y1='30' y2='182'/></g><g fill='#475569' text-anchor='middle'><text class='tick-x' data-v='-2' x='82' y='197'>−2</text><text class='tick-x' data-v='0' x='153' y='197'>0</text><text class='tick-x' data-v='2' x='224' y='197'>2</text></g><text x='153' y='216' text-anchor='middle' fill='#475569'>Cuantil teórico (Blom)</text><line class='identidad' x1='50' x2='256' y1='182' y2='30' stroke='#64748b' stroke-width='1.5'/><g fill-opacity='0.85'><circle class='pt' data-k='0' cx='151.2' cy='107.2' r='4' fill='#012820'/><circle class='pt' data-k='1' cx='116.1' cy='116.2' r='4' fill='#012820'/><circle class='pt' data-k='2' cx='189.9' cy='94.6' r='4' fill='#012820'/><circle class='pt' data-k='3' cx='135.8' cy='111.4' r='4' fill='#012820'/><circle class='pt' data-k='4' cx='170.2' cy='102.4' r='4' fill='#012820'/><circle class='pt' data-k='5' cx='162.3' cy='104.2' r='4' fill='#012820'/><circle class='pt' data-k='6' cx='166.1' cy='103' r='4' fill='#012820'/><circle class='pt' data-k='7' cx='121.9' cy='115.6' r='4' fill='#012820'/><circle class='pt' data-k='8' cx='174.4' cy='99.4' r='4' fill='#012820'/><circle class='pt' data-k='9' cx='158.5' cy='104.2' r='4' fill='#012820'/><circle class='pt' data-k='10' cx='109.1' cy='122.1' r='4' fill='#012820'/><circle class='pt' data-k='11' cx='196.9' cy='91.7' r='4' fill='#012820'/><circle class='pt' data-k='12' cx='143.7' cy='107.8' r='4' fill='#012820'/><circle class='pt' data-k='13' cx='99.8' cy='136.5' r='4' fill='#012820'/><circle class='pt' data-k='14' cx='206.2' cy='73.7' r='4' fill='#012820'/><circle class='pt' data-k='15' cx='222.1' cy='43.9' r='4' fill='#012820'/><circle class='pt' data-k='16' cx='154.8' cy='104.8' r='4' fill='#012820'/><circle class='pt' data-k='17' cx='83.9' cy='169.3' r='4' fill='#012820'/><circle class='pt' data-k='18' cx='184.1' cy='97' r='4' fill='#012820'/><circle class='pt' data-k='19' cx='147.5' cy='107.8' r='4' fill='#012820'/><circle class='pt' data-k='20' cx='127' cy='113.2' r='4' fill='#012820'/><circle class='pt' data-k='21' cx='179' cy='97.6' r='4' fill='#012820'/><circle class='pt' data-k='22' cx='131.6' cy='112' r='4' fill='#012820'/><circle class='pt' data-k='23' cx='139.9' cy='108.4' r='4' fill='#012820'/></g></svg><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 264 228' role='img' aria-label='Panel de diagnóstico: Residuos contra ajustados' data-panel='ajustados' font-family='Montserrat, system-ui, sans-serif' font-size='12'><text x='132' y='16' text-anchor='middle' font-size='13.5' fill='#012820' font-weight='600'>Residuos contra ajustados</text><rect x='50' y='30' width='206' height='152' fill='none' stroke='#cbd5e1'/><g stroke='#e2e8f0'><line class='grid-y' data-v='-4' x1='50' x2='256' y1='175.4' y2='175.4'/><line class='grid-y' data-v='-2' x1='50' x2='256' y1='140.7' y2='140.7'/><line class='grid-y' data-v='0' x1='50' x2='256' y1='106' y2='106'/><line class='grid-y' data-v='2' x1='50' x2='256' y1='71.3' y2='71.3'/><line class='grid-y' data-v='4' x1='50' x2='256' y1='36.6' y2='36.6'/></g><g fill='#475569' text-anchor='end'><text class='tick-y' data-v='-4' x='44' y='179.4'>−4</text><text class='tick-y' data-v='-2' x='44' y='144.7'>−2</text><text class='tick-y' data-v='0' x='44' y='110'>0</text><text class='tick-y' data-v='2' x='44' y='75.3'>2</text><text class='tick-y' data-v='4' x='44' y='40.6'>4</text></g><text x='14' y='106' text-anchor='middle' fill='#475569' transform='rotate(-90 14 106)'>Residuo (MPa)</text><g stroke='#e2e8f0'><line class='grid-x' data-v='30' x1='104.8' x2='104.8' y1='30' y2='182'/><line class='grid-x' data-v='40' x1='161.2' x2='161.2' y1='30' y2='182'/><line class='grid-x' data-v='50' x1='217.6' x2='217.6' y1='30' y2='182'/></g><g fill='#475569' text-anchor='middle'><text class='tick-x' data-v='30' x='104.8' y='197'>30</text><text class='tick-x' data-v='40' x='161.2' y='197'>40</text><text class='tick-x' data-v='50' x='217.6' y='197'>50</text></g><text x='153' y='216' text-anchor='middle' fill='#475569'>Valor ajustado (MPa)</text><line class='cero' x1='50' x2='256' y1='106' y2='106' stroke='#64748b' stroke-width='1.5' stroke-dasharray='5 4'/><g fill-opacity='0.85'><circle class='pt' data-k='0' cx='223.6' cy='107.2' r='4' fill='#012820'/><circle class='pt' data-k='1' cx='223.6' cy='115.8' r='4' fill='#012820'/><circle class='pt' data-k='2' cx='223.6' cy='95' r='4' fill='#012820'/><circle class='pt' data-k='3' cx='99.7' cy='111.2' r='4' fill='#012820'/><circle class='pt' data-k='4' cx='99.7' cy='102.5' r='4' fill='#012820'/><circle class='pt' data-k='5' cx='99.7' cy='104.3' r='4' fill='#012820'/><circle class='pt' data-k='6' cx='181.1' cy='103.1' r='4' fill='#FF6600'/><circle class='pt' data-k='7' cx='181.1' cy='115.3' r='4' fill='#FF6600'/><circle class='pt' data-k='8' cx='181.1' cy='99.6' r='4' fill='#FF6600'/><circle class='pt' data-k='9' cx='64.2' cy='104.3' r='4' fill='#FF6600'/><circle class='pt' data-k='10' cx='64.2' cy='121.6' r='4' fill='#FF6600'/><circle class='pt' data-k='11' cx='64.2' cy='92.1' r='4' fill='#FF6600'/><circle class='pt' data-k='12' cx='206.3' cy='107.7' r='4' fill='#2563eb'/><circle class='pt' data-k='13' cx='206.3' cy='135.5' r='4' fill='#2563eb'/><circle class='pt' data-k='14' cx='206.3' cy='74.8' r='4' fill='#2563eb'/><circle class='pt' data-k='15' cx='108.9' cy='45.9' r='4' fill='#2563eb'/><circle class='pt' data-k='16' cx='108.9' cy='104.8' r='4' fill='#2563eb'/><circle class='pt' data-k='17' cx='108.9' cy='167.3' r='4' fill='#2563eb'/><circle class='pt' data-k='18' cx='241.8' cy='97.3' r='4' fill='#c026d3'/><circle class='pt' data-k='19' cx='241.8' cy='107.7' r='4' fill='#c026d3'/><circle class='pt' data-k='20' cx='241.8' cy='112.9' r='4' fill='#c026d3'/><circle class='pt' data-k='21' cx='127' cy='97.9' r='4' fill='#c026d3'/><circle class='pt' data-k='22' cx='127' cy='111.8' r='4' fill='#c026d3'/><circle class='pt' data-k='23' cx='127' cy='108.3' r='4' fill='#c026d3'/></g></svg><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 264 228' role='img' aria-label='Panel de diagnóstico: Residuos contra orden' data-panel='orden' font-family='Montserrat, system-ui, sans-serif' font-size='12'><text x='132' y='16' text-anchor='middle' font-size='13.5' fill='#012820' font-weight='600'>Residuos contra orden</text><rect x='50' y='30' width='206' height='152' fill='none' stroke='#cbd5e1'/><g stroke='#e2e8f0'><line class='grid-y' data-v='-4' x1='50' x2='256' y1='175.4' y2='175.4'/><line class='grid-y' data-v='-2' x1='50' x2='256' y1='140.7' y2='140.7'/><line class='grid-y' data-v='0' x1='50' x2='256' y1='106' y2='106'/><line class='grid-y' data-v='2' x1='50' x2='256' y1='71.3' y2='71.3'/><line class='grid-y' data-v='4' x1='50' x2='256' y1='36.6' y2='36.6'/></g><g fill='#475569' text-anchor='end'><text class='tick-y' data-v='-4' x='44' y='179.4'>−4</text><text class='tick-y' data-v='-2' x='44' y='144.7'>−2</text><text class='tick-y' data-v='0' x='44' y='110'>0</text><text class='tick-y' data-v='2' x='44' y='75.3'>2</text><text class='tick-y' data-v='4' x='44' y='40.6'>4</text></g><text x='14' y='106' text-anchor='middle' fill='#475569' transform='rotate(-90 14 106)'>Residuo (MPa)</text><g stroke='#e2e8f0'><line class='grid-x' data-v='0' x1='50' x2='50' y1='30' y2='182'/><line class='grid-x' data-v='10' x1='132.4' x2='132.4' y1='30' y2='182'/><line class='grid-x' data-v='20' x1='214.8' x2='214.8' y1='30' y2='182'/></g><g fill='#475569' text-anchor='middle'><text class='tick-x' data-v='0' x='50' y='197'>0</text><text class='tick-x' data-v='10' x='132.4' y='197'>10</text><text class='tick-x' data-v='20' x='214.8' y='197'>20</text></g><text x='153' y='216' text-anchor='middle' fill='#475569'>Orden de impresión</text><line class='cero' x1='50' x2='256' y1='106' y2='106' stroke='#64748b' stroke-width='1.5' stroke-dasharray='5 4'/><g fill-opacity='0.85'><circle class='pt' data-k='0' cx='190.1' cy='107.2' r='4' fill='#012820'/><circle class='pt' data-k='1' cx='115.9' cy='115.8' r='4' fill='#012820'/><circle class='pt' data-k='2' cx='107.7' cy='95' r='4' fill='#012820'/><circle class='pt' data-k='3' cx='173.6' cy='111.2' r='4' fill='#012820'/><circle class='pt' data-k='4' cx='74.7' cy='102.5' r='4' fill='#012820'/><circle class='pt' data-k='5' cx='99.4' cy='104.3' r='4' fill='#012820'/><circle class='pt' data-k='6' cx='132.4' cy='103.1' r='4' fill='#FF6600'/><circle class='pt' data-k='7' cx='206.6' cy='115.3' r='4' fill='#FF6600'/><circle class='pt' data-k='8' cx='157.1' cy='99.6' r='4' fill='#FF6600'/><circle class='pt' data-k='9' cx='247.8' cy='104.3' r='4' fill='#FF6600'/><circle class='pt' data-k='10' cx='91.2' cy='121.6' r='4' fill='#FF6600'/><circle class='pt' data-k='11' cx='140.6' cy='92.1' r='4' fill='#FF6600'/><circle class='pt' data-k='12' cx='58.2' cy='107.7' r='4' fill='#2563eb'/><circle class='pt' data-k='13' cx='231.3' cy='135.5' r='4' fill='#2563eb'/><circle class='pt' data-k='14' cx='124.2' cy='74.8' r='4' fill='#2563eb'/><circle class='pt' data-k='15' cx='223' cy='45.9' r='4' fill='#2563eb'/><circle class='pt' data-k='16' cx='239.5' cy='104.8' r='4' fill='#2563eb'/><circle class='pt' data-k='17' cx='165.4' cy='167.3' r='4' fill='#2563eb'/><circle class='pt' data-k='18' cx='198.3' cy='97.3' r='4' fill='#c026d3'/><circle class='pt' data-k='19' cx='148.9' cy='107.7' r='4' fill='#c026d3'/><circle class='pt' data-k='20' cx='181.8' cy='112.9' r='4' fill='#c026d3'/><circle class='pt' data-k='21' cx='214.8' cy='97.9' r='4' fill='#c026d3'/><circle class='pt' data-k='22' cx='83' cy='111.8' r='4' fill='#c026d3'/><circle class='pt' data-k='23' cx='66.5' cy='108.3' r='4' fill='#c026d3'/></g></svg><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 264 228' role='img' aria-label='Panel de diagnóstico: Residuos contra filamento' data-panel='filamento' font-family='Montserrat, system-ui, sans-serif' font-size='12'><text x='132' y='16' text-anchor='middle' font-size='13.5' fill='#012820' font-weight='600'>Residuos contra filamento</text><rect x='50' y='30' width='206' height='152' fill='none' stroke='#cbd5e1'/><g stroke='#e2e8f0'><line class='grid-y' data-v='-4' x1='50' x2='256' y1='175.4' y2='175.4'/><line class='grid-y' data-v='-2' x1='50' x2='256' y1='140.7' y2='140.7'/><line class='grid-y' data-v='0' x1='50' x2='256' y1='106' y2='106'/><line class='grid-y' data-v='2' x1='50' x2='256' y1='71.3' y2='71.3'/><line class='grid-y' data-v='4' x1='50' x2='256' y1='36.6' y2='36.6'/></g><g fill='#475569' text-anchor='end'><text class='tick-y' data-v='-4' x='44' y='179.4'>−4</text><text class='tick-y' data-v='-2' x='44' y='144.7'>−2</text><text class='tick-y' data-v='0' x='44' y='110'>0</text><text class='tick-y' data-v='2' x='44' y='75.3'>2</text><text class='tick-y' data-v='4' x='44' y='40.6'>4</text></g><text x='14' y='106' text-anchor='middle' fill='#475569' transform='rotate(-90 14 106)'>Residuo (MPa)</text><g fill='#475569' text-anchor='middle'><text class='tick-x' data-v='1' x='75.8' y='198'>PLA</text><text class='tick-x' data-v='2' x='127.2' y='198'>PETG</text><text class='tick-x' data-v='3' x='178.8' y='198'>ABS</text><text class='tick-x' data-v='4' x='230.2' y='198'>Nailon</text></g><text x='153' y='216' text-anchor='middle' fill='#475569'>Filamento</text><line class='cero' x1='50' x2='256' y1='106' y2='106' stroke='#64748b' stroke-width='1.5' stroke-dasharray='5 4'/><g fill-opacity='0.85'><circle class='pt' data-k='0' cx='68' cy='107.2' r='4' fill='#012820'/><circle class='pt' data-k='1' cx='71.1' cy='115.8' r='4' fill='#012820'/><circle class='pt' data-k='2' cx='74.2' cy='95' r='4' fill='#012820'/><circle class='pt' data-k='3' cx='77.3' cy='111.2' r='4' fill='#012820'/><circle class='pt' data-k='4' cx='80.4' cy='102.5' r='4' fill='#012820'/><circle class='pt' data-k='5' cx='83.5' cy='104.3' r='4' fill='#012820'/><circle class='pt' data-k='6' cx='119.5' cy='103.1' r='4' fill='#FF6600'/><circle class='pt' data-k='7' cx='122.6' cy='115.3' r='4' fill='#FF6600'/><circle class='pt' data-k='8' cx='125.7' cy='99.6' r='4' fill='#FF6600'/><circle class='pt' data-k='9' cx='128.8' cy='104.3' r='4' fill='#FF6600'/><circle class='pt' data-k='10' cx='131.9' cy='121.6' r='4' fill='#FF6600'/><circle class='pt' data-k='11' cx='135' cy='92.1' r='4' fill='#FF6600'/><circle class='pt' data-k='12' cx='171' cy='107.7' r='4' fill='#2563eb'/><circle class='pt' data-k='13' cx='174.1' cy='135.5' r='4' fill='#2563eb'/><circle class='pt' data-k='14' cx='177.2' cy='74.8' r='4' fill='#2563eb'/><circle class='pt' data-k='15' cx='180.3' cy='45.9' r='4' fill='#2563eb'/><circle class='pt' data-k='16' cx='183.4' cy='104.8' r='4' fill='#2563eb'/><circle class='pt' data-k='17' cx='186.5' cy='167.3' r='4' fill='#2563eb'/><circle class='pt' data-k='18' cx='222.5' cy='97.3' r='4' fill='#c026d3'/><circle class='pt' data-k='19' cx='225.6' cy='107.7' r='4' fill='#c026d3'/><circle class='pt' data-k='20' cx='228.7' cy='112.9' r='4' fill='#c026d3'/><circle class='pt' data-k='21' cx='231.8' cy='97.9' r='4' fill='#c026d3'/><circle class='pt' data-k='22' cx='234.9' cy='111.8' r='4' fill='#c026d3'/><circle class='pt' data-k='23' cx='238' cy='108.3' r='4' fill='#c026d3'/></g></svg><figcaption>Los cuatro paneles de la tanda piloto. El primero usa el residuo estandarizado, en un solo color; los otros tres, el residuo en MPa, con un color por filamento: <span style='white-space:nowrap'><span style='color:#012820;font-weight:600'>●</span> PLA</span> · <span style='white-space:nowrap'><span style='color:#FF6600;font-weight:600'>●</span> PETG</span> · <span style='white-space:nowrap'><span style='color:#2563eb;font-weight:600'>●</span> ABS</span> · <span style='white-space:nowrap'><span style='color:#c026d3;font-weight:600'>●</span> Nailon</span>.</figcaption></figure>",
+          "tipo": "opcion",
+          "opciones": [
+            "Los residuos se abren en embudo frente a los ajustados: la varianza sube con la media.",
+            "Los residuos dependen del orden de impresión: crecen a medida que avanza la tanda.",
+            "Los residuos forman una curva contra los ajustados: la relación no es lineal.",
+            "Los residuos de un filamento se dispersan mucho más que los de los otros tres."
+          ]
+        },
+        {
+          "n": 10,
+          "etiqueta": "cap. 7 · mód. 7.1 · Un plan de un factor a la vez",
+          "enunciado": "<p>Un laboratorio de cosmética prueba k = 5 ingredientes de una crema, cada uno presente o ausente, y da por hecho que sus efectos se suman. El factorial 2<sup>5</sup> completo, con una corrida por combinación (32 corridas), estima cada efecto principal con varianza σ²/8. Con un plan de un factor a la vez (OFAT) —una línea base y una combinación más por factor, cada una repetida r veces—, ¿cuántas corridas en total necesita para estimar cada efecto con esa misma varianza?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "96 corridas",
+            "80 corridas",
+            "48 corridas",
+            "192 corridas"
+          ]
+        },
+        {
+          "n": 11,
+          "etiqueta": "cap. 7 · mód. 7.7 · Una observación por celda",
+          "enunciado": "<p>Un taller de motores ensaya cuatro aceites lubricantes a seis velocidades de giro, con una sola prueba por combinación, y mide la temperatura del rodamiento. Sin réplicas, el modelo aditivo deja un residuo con SS<sub>residuo</sub> = 109.11 y 15 grados de libertad. De ese residuo, Tukey separa la parte proporcional al producto de los efectos, SS<sub>N</sub> = 41.89, con 1 grado de libertad, y la compara con lo que queda; F<sub>0.05</sub>(1, 14) = 4.60. ¿Qué se concluye?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "No rechaza: no se ve interacción γτ<sub>i</sub>β<sub>j</sub>, aunque otra forma podría escaparse.",
+            "No rechaza, y eso prueba que aceite y velocidad no interactúan de ninguna forma.",
+            "Rechaza: hay interacción γτ<sub>i</sub>β<sub>j</sub>, aunque conviene confirmarla con réplicas.",
+            "Nada: con una sola observación por combinación no queda error para ninguna prueba."
+          ]
+        },
+        {
+          "n": 12,
+          "etiqueta": "cap. 7 · mód. 7.11 · Un ANOVA sobre registros",
+          "enunciado": "<p>Una cadena de supermercados revisa sus ventas: el valor del tiquete de 38 500 compras según el tipo de tienda (de barrio o de centro comercial) y el día (laboral o fin de semana). Nadie asignó las compras a las tiendas ni a los días, y las cuatro celdas tienen tamaños muy distintos. Un ANOVA de dos factores da F = 120 para la interacción tienda × día, con p &lt; 0.001. ¿Qué se puede concluir?</p>",
+          "tipo": "opcion",
+          "opciones": [
+            "Mover una compra al fin de semana subiría su tiquete más en una tienda que en la otra.",
+            "El tiquete muestra una asociación tienda × día, pero estos datos no dicen qué la causa.",
+            "Ninguna: un ANOVA solo se puede calcular con datos de un ensayo con sorteo.",
+            "Con 38 500 compras el sesgo se diluye, y el F se lee como el de un experimento."
+          ]
+        }
+      ]
+    };
+    // [fin · simulacro del quiz]
 
   </script>
 
