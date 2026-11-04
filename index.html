@@ -226,6 +226,127 @@
     .corte-rotulo .corte-semanas { color: #FF6600; font-weight: 700; font-size: 0.85rem; }
     .corte-rotulo .corte-lema { color: #64748B; font-size: 0.85rem; font-style: italic; }
 
+    /* ------------------------------------------------------------------
+       El calendario del proyecto (4 nov 2026). Una fila de cinco en
+       pantalla ancha y una columna en el teléfono. Las insignias las pone
+       el guion de la sección: «es-cerrada» apaga la entrega que ya pasó y
+       «es-proxima» enciende la que sigue. Las clases ganan a `main ol`,
+       `main p` y `main a` de más abajo, que valen (0,0,2).
+       ------------------------------------------------------------------ */
+    .calendario {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) { .calendario { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .calendario { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+    .hito {
+      display: flex;
+      gap: 0.9rem;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    @media (min-width: 1024px) { .hito { flex-direction: column; } }
+
+    .hito-fecha {
+      flex-shrink: 0;
+      align-self: flex-start;
+      min-width: 3.6rem;
+      text-align: center;
+      line-height: 1.1;
+      border-radius: 0.85rem;
+      padding: 0.45rem 0.5rem;
+      background: #F1F5F9;
+      color: #012820;
+    }
+
+    .hito-dia, .hito-mes {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    .hito-num { display: block; font-size: 1.5rem; font-weight: 800; }
+    .hito-cuerpo { min-width: 0; }
+    .hito-cuerpo p { margin: 0; }
+
+    .hito-estado {
+      display: inline-block;
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+    }
+
+    .hito-estado:not(:empty) { padding: 0.2rem 0.55rem; margin-bottom: 0.45rem; }
+    .hito-orden { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748B; }
+    .hito-nombre { color: #012820; font-weight: 700; line-height: 1.3; }
+    .hito-cuerpo .hito-cuando { font-size: 0.8rem; font-weight: 600; color: #334155; margin-top: 0.15rem; }
+    .hito-peso { font-size: 0.75rem; color: #64748B; }
+    .hito-cuerpo .hito-que { font-size: 0.8rem; color: #475569; margin-top: 0.5rem; line-height: 1.45; }
+
+    .hito-cuerpo .hito-pie {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.8rem;
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+    }
+
+    .hito-pie code {
+      font-size: 0.7rem;
+      color: #334155;
+      background: #F1F5F9;
+      border-radius: 0.35rem;
+      padding: 0.1rem 0.4rem;
+    }
+
+    .hito-enlace {
+      color: #475569;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(255, 102, 0, 0.35);
+    }
+
+    .hito-enlace:hover { color: #012820; border-bottom-color: #FF6600; }
+
+    .es-cerrada { background: #F8FAFC; box-shadow: none; }
+    .es-cerrada .hito-fecha { background: #E2E8F0; }
+    .es-cerrada .hito-num, .es-cerrada .hito-nombre { color: #64748B; }
+    .es-cerrada .hito-estado { color: #475569; background: #E2E8F0; }
+    /* En el teléfono, lo que ya cerró se queda en una línea: si no, la
+       próxima entrega queda tres pantallas más abajo. */
+    @media (max-width: 639px) {
+      .es-cerrada { padding: 0.6rem 1rem; align-items: center; }
+      .es-cerrada .hito-fecha { padding: 0.25rem 0.4rem; }
+      .es-cerrada .hito-num { font-size: 1.1rem; }
+      .es-cerrada .hito-peso, .es-cerrada .hito-que, .es-cerrada .hito-pie, .es-cerrada .hito-orden { display: none; }
+      .es-cerrada .hito-cuerpo .hito-estado { margin-bottom: 0.15rem; }
+    }
+
+    .es-proxima { border-color: rgba(255, 102, 0, 0.55); box-shadow: 0 12px 32px rgba(255, 102, 0, 0.16); }
+    .es-proxima .hito-fecha { background: linear-gradient(140deg, #012820 0%, #FF6600 100%); color: #fff; }
+    .es-proxima .hito-dia, .es-proxima .hito-mes { color: rgba(255, 255, 255, 0.85); }
+    .es-proxima .hito-estado { color: #fff; background: #C2410C; }
+
+    .calendario-nota { margin-top: 1rem; font-size: 0.8rem; color: #64748B; }
+
     a:focus-visible { outline: 3px solid rgba(255, 102, 0, 0.6); outline-offset: 3px; }
 
     ::-webkit-scrollbar { width: 9px; }
@@ -405,6 +526,109 @@
               class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span></p>
       </article>
       </div>
+    </section>
+
+    <section class="mb-12" aria-labelledby="calendario-titulo">
+      <div class="corte-rotulo">
+        <h2 id="calendario-titulo">Entregas del proyecto aplicado</h2>
+        <span class="corte-semanas">Semanas 10–16</span>
+        <span class="corte-lema">Cada entrega cierra a las 11:00, hora de Colombia, como una release en GitHub</span>
+      </div>
+      <ol class="calendario" data-calendario>
+        <li class="hito" data-cierre="2026-10-16T11:00:00-05:00" data-hora="11:00">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">vie</span><span class="hito-num">16</span><span class="hito-mes">oct</span></div>
+          <div class="hito-cuerpo">
+            <p class="hito-estado"></p>
+            <p class="hito-orden">Hito 1</p>
+            <p class="hito-nombre">Ficha del tema<span class="sr-only">: cierra el viernes 16 de octubre a las 11:00</span></p>
+            <p class="hito-peso">Sin nota · semana 10</p>
+            <p class="hito-que">Una ficha de unas 150 palabras: tema, factores y unidad experimental</p>
+            <p class="hito-pie"><code>release ficha</code><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-4">Qué se entrega</a></p>
+          </div>
+        </li>
+        <li class="hito" data-cierre="2026-10-23T11:00:00-05:00" data-hora="11:00">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">vie</span><span class="hito-num">23</span><span class="hito-mes">oct</span></div>
+          <div class="hito-cuerpo">
+            <p class="hito-estado"></p>
+            <p class="hito-orden">Hito 2</p>
+            <p class="hito-nombre">Preregistro<span class="sr-only">: cierra el viernes 23 de octubre a las 11:00</span></p>
+            <p class="hito-peso">15 % del proyecto · semana 11</p>
+            <p class="hito-que">El plan completo, escrito antes de tener un solo dato, y la tabla de corridas</p>
+            <p class="hito-pie"><code>release preregistro</code><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-5">Qué se entrega</a></p>
+          </div>
+        </li>
+        <li class="hito" data-cierre="2026-11-06T11:00:00-05:00" data-hora="11:00">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">vie</span><span class="hito-num">6</span><span class="hito-mes">nov</span></div>
+          <div class="hito-cuerpo">
+            <p class="hito-estado"></p>
+            <p class="hito-orden">Hito 3</p>
+            <p class="hito-nombre">Avance<span class="sr-only">: cierra el viernes 6 de noviembre a las 11:00</span></p>
+            <p class="hito-peso">10 % del proyecto · semana 13</p>
+            <p class="hito-que">Los datos crudos, la bitácora de ejecución y las desviaciones del plan</p>
+            <p class="hito-pie"><code>release avance</code><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-6">Qué se entrega</a></p>
+          </div>
+        </li>
+        <li class="hito" data-cierre="2026-11-23T11:00:00-05:00" data-hora="11:00">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">lun</span><span class="hito-num">23</span><span class="hito-mes">nov</span></div>
+          <div class="hito-cuerpo">
+            <p class="hito-estado"></p>
+            <p class="hito-orden">Hito 4</p>
+            <p class="hito-nombre">Informe y código<span class="sr-only">: cierra el lunes 23 de noviembre a las 11:00</span></p>
+            <p class="hito-peso">45 % del proyecto · semana 16</p>
+            <p class="hito-que">El informe, el código que lo produce y los datos</p>
+            <p class="hito-pie"><code>release informe</code><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-7">Qué se entrega</a></p>
+          </div>
+        </li>
+        <li class="hito" data-desde="2026-11-23" data-hasta="2026-11-28">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">semana</span><span class="hito-num">16</span><span class="hito-mes">23–28 nov</span></div>
+          <div class="hito-cuerpo">
+            <p class="hito-estado"></p>
+            <p class="hito-orden">En clase</p>
+            <p class="hito-nombre">Exposición<span class="sr-only">: del lunes 23 al sábado 28 de noviembre</span></p>
+            <p class="hito-cuando">El día se acuerda en clase</p>
+            <p class="hito-peso">30 % del proyecto · semana 16</p>
+            <p class="hito-que">10 minutos por equipo y 5 de preguntas, en clase</p>
+            <p class="hito-pie"><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-8">Cómo es</a></p>
+          </div>
+        </li>
+      </ol>
+      <p class="calendario-nota">Las fechas, los pesos y lo que lleva cada entrega son los de la
+        <a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-1">guía del proyecto</a>, que es la que manda.</p>
+      <script>
+        (function () {
+          var cal = document.querySelector('[data-calendario]');
+          if (!cal) return;
+          var fmt = new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'America/Bogota', year: 'numeric', month: '2-digit', day: '2-digit' });
+          function dia(t) { return fmt.format(new Date(t)); }
+          function entre(a, b) { return Math.round((Date.parse(b) - Date.parse(a)) / 864e5); }
+          function plural(n) { return n === 1 ? 'Falta 1 día' : 'Faltan ' + n + ' días'; }
+          window.marcaCalendario = function (ahora) {
+            var hoy = dia(ahora), hayProxima = false;
+            Array.prototype.forEach.call(cal.querySelectorAll('.hito'), function (li) {
+              var d = li.dataset, estado = '', texto = '';
+              if (d.cierre) {
+                var cierre = Date.parse(d.cierre);
+                if (ahora >= cierre) { estado = 'es-cerrada'; texto = 'Cerrada'; }
+                else if (!hayProxima) {
+                  var n = entre(hoy, dia(cierre));
+                  estado = 'es-proxima';
+                  texto = n === 0 ? 'Hoy, a las ' + d.hora : n === 1 ? 'Mañana, a las ' + d.hora : plural(n);
+                }
+              } else if (hoy > d.hasta) { estado = 'es-cerrada'; texto = 'Terminó'; }
+              else if (hoy >= d.desde) { estado = 'es-proxima'; texto = 'Esta semana'; }
+              else if (!hayProxima) { estado = 'es-proxima'; texto = plural(entre(hoy, d.desde)); }
+              if (estado === 'es-proxima') hayProxima = true;
+              li.classList.remove('es-cerrada', 'es-proxima');
+              if (estado) li.classList.add(estado);
+              if (estado === 'es-proxima') li.setAttribute('aria-current', 'step');
+              else li.removeAttribute('aria-current');
+              li.querySelector('.hito-estado').textContent = texto;
+            });
+          };
+          window.marcaCalendario(Date.now());
+        })();
+      </script>
     </section>
 
     <section class="mb-12">
