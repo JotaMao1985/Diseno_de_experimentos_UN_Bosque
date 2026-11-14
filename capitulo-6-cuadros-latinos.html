@@ -4092,6 +4092,107 @@
     }
     /* ------------------- fin del componente .simulacro ------------------- */
 
+    /* ------------------- pantallas estrechas (motor) -------------------
+       Fallos que solo se ven cuando la columna es estrecha —un teléfono, una
+       tableta, una ventana partida— y que no son de ningún capítulo sino de la
+       hoja común (auditoría del capítulo 2, nov 2026):
+
+       1. Una fórmula de bloque más ancha que su columna se CORTABA sin poder
+          desplazarse en cuanto no iba dentro de una caja `.formula`: en las
+          derivaciones, en las soluciones de los ejercicios, en las listas.
+          `<main>` lleva `overflow-x: hidden`, así que lo que no cabía
+          sencillamente no se veía — en la derivación de la identidad del
+          ANOVA, justo el término cruzado. A 375 px eran 93 fórmulas en los 17
+          documentos. Ahora cada `.katex-display` se desplaza por sí misma. El
+          relleno vertical evita que `overflow-y: hidden` recorte lo que KaTeX
+          deja sobresalir; el margen se reduce en lo mismo, pero donde la
+          fórmula tiene vecinos con margen propio la separación crece unos
+          7 px (los márgenes se funden y el relleno no). Se acepta.
+          Dentro de `.formula` no cambia nada, ni el aspecto ni la
+          separación: ahí sigue desplazándose la caja, que corta en su borde
+          y deja ver que la fórmula continúa.
+       2. KaTeX pone su copia MathML en posición absoluta, y dentro de una
+          tabla ancha esa copia podía ensanchar la PÁGINA (506 px vistos en
+          una ventana de 375). Con `.katex` posicionado queda en su caja.
+       3. La etiqueta de una ecuación numerada va en posición absoluta al
+          borde derecho, y si la ecuación no deja sitio se le monta encima:
+          pasaba a 375 px, pero también a 768 y a 1024. Ahora la etiqueta va
+          en el flujo, dentro de una fila flexible: alineada a la derecha
+          cuando cabe —como siempre— y detrás de la ecuación, desplazándose
+          con ella, cuando no.
+       4. La tabla ordenable no dejaba partir sus cabeceras y tenía un ancho
+          mínimo de 34rem: a 375 px no enseñaba ninguna columna numérica, a
+          768 enseñaba una y a 1280 cortaba la última. */
+    .katex {
+      position: relative;
+    }
+
+    .katex-display {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.45rem 0;
+      margin: calc(1em - 0.45rem) 0;
+    }
+
+    .formula .katex-display {
+      max-width: none;
+      overflow: visible;
+      padding: 0;
+      margin: 1em 0;
+    }
+
+    .katex-display > .katex > .katex-html:has(> .tag) {
+      display: flex;
+      align-items: baseline;
+    }
+
+    /* El hueco de la izquierda es elástico y se encoge hasta cero cuando la
+       ecuación no cabe; el de la derecha lo lleva la etiqueta. */
+    .katex-display > .katex > .katex-html:has(> .tag)::before {
+      content: "";
+      flex: 1 1 1.2em;
+    }
+
+    .katex-display > .katex > .katex-html > .tag {
+      position: static;
+      flex: 1 1 0;
+      margin-left: 1.2em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .tabla-ranking table {
+      min-width: 0;
+    }
+
+    .tabla-ranking thead th,
+    .tabla-ranking .tabla-ranking-boton {
+      white-space: normal;
+    }
+
+    /* El título de un simulador es un contenedor flexible (el icono y el
+       texto), y KaTeX mete ahí un elemento más: «Mueve $\mu$ y mira los
+       ajustados» quedaba partido en tres columnas estrechas a 375 px. Con
+       envoltura, las piezas vuelven a fluir como una línea de texto
+       (auditoría del capítulo 2, mejora de figuras 12). */
+    .simulador h4 {
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 480px) {
+      .tabla-ranking table {
+        font-size: 0.72rem;
+      }
+
+      .tabla-ranking th,
+      .tabla-ranking td {
+        padding: 0.35rem 0.3rem;
+      }
+    }
+    /* ------------------- fin de «pantallas estrechas» ------------------- */
+
   </style>
 </head>
 
@@ -7822,7 +7923,31 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
       return [];
     }
 
+    // Las fuentes web llegan DESPUÉS que el primer dibujo. Chart.js mide el
+    // ancho de los rótulos de un eje la primera vez que lo compone y guarda
+    // esa medida por nombre de fuente. Si entonces Fira Code o Montserrat no
+    // han cargado, mide la de respaldo, que es más estrecha; cuando la fuente
+    // llega, los rótulos se pintan con la buena en un hueco medido con la
+    // otra, y «1.0» se lee «.0» en cuanto se mueve un control. Lo vio la
+    // auditoría del capítulo 1 (10 nov 2026): 27.75 px medidos donde hacían
+    // falta 33.8. Aquí se piden las fuentes y, cuando están, se tira esa
+    // medida y se recompone cada gráfico que siga en el documento.
+    function remedirGraficosTrasFuentes(graficos) {
+      if (!graficos.length || !document.fonts || !document.fonts.load) return;
+      Promise.all(['11px "Fira Code"', '12px Montserrat', '600 12px Montserrat']
+        .map(fuente => document.fonts.load(fuente)))
+        .then(() => {
+          graficos.forEach(g => {
+            if (!g || !g.canvas || !g.canvas.isConnected || !g.scales) return;
+            Object.values(g.scales).forEach(eje => { eje._longestTextCache = {}; });
+            g.update('none');
+          });
+        })
+        .catch(() => { /* sin fuentes web, el gráfico se queda como estaba */ });
+    }
+
     function iniciarSimuladores() {
+      const desde = graficosActivos.length;
       mainContent.querySelectorAll('[data-simulador]').forEach(raiz => {
         const id = raiz.dataset.simulador;
         const init = SIMULADORES[id];
@@ -7840,6 +7965,7 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
             + `y el resto del módulo sigue.`, e);
         }
       });
+      remedirGraficosTrasFuentes(graficosActivos.slice(desde));
     }
 
     function destruirSimuladores() {
@@ -8060,6 +8186,16 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
     // Gráfico de barras para correlogramas. `opciones.lineas` dibuja rectas de
     // referencia horizontales (la banda ±1.96/√T, el nivel nominal de una
     // prueba, etc.) como conjuntos de datos de línea sobre las barras.
+    //
+    // Dos opciones más, desde la auditoría del capítulo 1 (10 nov 2026), que
+    // no cambian nada en quien no las pide:
+    //   `tituloY`            título del eje Y. Un eje sin título obliga a
+    //                        adivinar qué mide y en qué unidad.
+    //   `todasLasEtiquetas`  rotula TODAS las categorías. Por defecto Chart.js
+    //                        se salta las que no caben, y a 375 px desaparecía
+    //                        justo la barra de la que hablaba la prosa. Con
+    //                        esto los rótulos giran antes que perderse; pensado
+    //                        para pocas categorías, no para un correlograma.
     function crearGraficoBarras(canvas, etiquetas, valores, opciones = {}) {
       const n = etiquetas.length;
       const datasets = [{
@@ -8132,10 +8268,17 @@ const SOLUCIONES_CAP6 = {"capitulo":6,"fecha_corte":"2026-08-01","semilla":2026,
                 text: opciones.tituloX,
                 font: { family: 'Montserrat', size: 11 }
               },
-              ticks: { font: { family: 'Fira Code', size: 10 }, maxRotation: 0 },
+              ticks: Object.assign(
+                { font: { family: 'Fira Code', size: 10 }, maxRotation: 0 },
+                opciones.todasLasEtiquetas ? { autoSkip: false, maxRotation: 50 } : {}),
               grid: { display: false }
             },
             y: {
+              title: {
+                display: !!opciones.tituloY,
+                text: opciones.tituloY,
+                font: { family: 'Montserrat', size: 11 }
+              },
               suggestedMin: opciones.min !== undefined ? opciones.min : -1,
               suggestedMax: opciones.max !== undefined ? opciones.max : 1,
               ticks: { font: { family: 'Fira Code', size: 11 } },
