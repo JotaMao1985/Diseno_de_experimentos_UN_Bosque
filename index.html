@@ -579,13 +579,13 @@
             <p class="hito-pie"><code>release informe</code><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-7">Qué se entrega</a></p>
           </div>
         </li>
-        <li class="hito" data-desde="2026-11-23" data-hasta="2026-11-28">
-          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">semana</span><span class="hito-num">16</span><span class="hito-mes">23–28 nov</span></div>
+        <li class="hito" data-dia="2026-11-23">
+          <div class="hito-fecha" aria-hidden="true"><span class="hito-dia">lun</span><span class="hito-num">23</span><span class="hito-mes">nov</span></div>
           <div class="hito-cuerpo">
             <p class="hito-estado"></p>
             <p class="hito-orden">En clase</p>
-            <p class="hito-nombre">Exposición<span class="sr-only">: del lunes 23 al sábado 28 de noviembre</span></p>
-            <p class="hito-cuando">El día se acuerda en clase</p>
+            <p class="hito-nombre">Exposición<span class="sr-only">: el lunes 23 de noviembre, en clase</span></p>
+            <p class="hito-cuando">Todos los equipos exponen ese día</p>
             <p class="hito-peso">30 % del proyecto · semana 16</p>
             <p class="hito-que">10 minutos por equipo y 5 de preguntas, en clase</p>
             <p class="hito-pie"><a class="hito-enlace" href="proyecto-aplicado-corte-iii.html#modulo-8">Cómo es</a></p>
@@ -615,9 +615,13 @@
                   estado = 'es-proxima';
                   texto = n === 0 ? 'Hoy, a las ' + d.hora : n === 1 ? 'Mañana, a las ' + d.hora : plural(n);
                 }
-              } else if (hoy > d.hasta) { estado = 'es-cerrada'; texto = 'Terminó'; }
-              else if (hoy >= d.desde) { estado = 'es-proxima'; texto = 'Esta semana'; }
-              else if (!hayProxima) { estado = 'es-proxima'; texto = plural(entre(hoy, d.desde)); }
+              } else if (hoy > d.dia) { estado = 'es-cerrada'; texto = 'Terminó'; }
+              else if (hoy === d.dia) { estado = 'es-proxima'; texto = 'Hoy, en clase'; }
+              else if (!hayProxima) {
+                var m = entre(hoy, d.dia);
+                estado = 'es-proxima';
+                texto = m === 1 ? 'Mañana, en clase' : plural(m);
+              }
               if (estado === 'es-proxima') hayProxima = true;
               li.classList.remove('es-cerrada', 'es-proxima');
               if (estado) li.classList.add(estado);
