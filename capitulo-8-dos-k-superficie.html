@@ -8300,17 +8300,25 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
       gris: '#94a3b8'
     };
 
+    // `tituloX`, `tituloY`, `ejeX`, `ejeY` y `leyenda` son atajos de la casa, los
+    // mismos que entienden los ayudantes de dispersión de los capítulos: se
+    // traducen a las escalas y a la leyenda de Chart.js. Hasta el 24 nov 2026
+    // este ayudante los pasaba tal cual al primer nivel de las opciones, donde
+    // Chart.js no los lee, y los gráficos que los usaban salían sin títulos de
+    // eje (capítulo 6) o con la escala equivocada (pregunta 8 del capítulo 5).
+    // Lo demás de `opciones` se aplica encima, como siempre.
     function crearGraficoLinea(canvas, etiquetas, datasets, opciones = {}) {
-      return new Chart(canvas, {
-        type: 'line',
-        data: { labels: etiquetas, datasets: datasets },
-        options: Object.assign({
+      const { tituloX, tituloY, ejeX, ejeY, leyenda, ...resto } = opciones;
+      const tituloEje = texto => ({ display: !!texto, text: texto || '',
+                                    font: { family: 'Montserrat', size: 11 } });
+      const base = {
           responsive: true,
           maintainAspectRatio: false,
           animation: false,
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: {
+              display: leyenda !== false,
               labels: { font: { family: 'Montserrat', size: 12 }, boxWidth: 24 }
             },
             tooltip: {
@@ -8320,20 +8328,26 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
             }
           },
           scales: {
-            x: {
+            x: Object.assign({
+              title: tituloEje(tituloX),
               ticks: {
                 font: { family: 'Montserrat', size: 11 },
                 maxTicksLimit: 12,
                 maxRotation: 0
               },
               grid: { display: false }
-            },
-            y: {
+            }, ejeX || {}),
+            y: Object.assign({
+              title: tituloEje(tituloY),
               ticks: { font: { family: 'Fira Code', size: 11 } },
               grid: { color: 'rgba(148, 163, 184, 0.2)' }
-            }
+            }, ejeY || {})
           }
-        }, opciones)
+        };
+      return new Chart(canvas, {
+        type: 'line',
+        data: { labels: etiquetas, datasets: datasets },
+        options: Object.assign(base, resto)
       });
     }
 
@@ -8713,13 +8727,22 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
         return filas.length ? `<ul>${filas.join('')}</ul>` : '';
       }
 
-      function mostrarPista(i, bloque) {
+      // `fallada`, si se pasa, es la opción que el estudiante eligió y no era: al
+      // primer fallo se enseña su explicación junto a la pista. Antes solo se
+      // veía la pista, y al cerrar la pregunta la explicación de la SEGUNDA
+      // opción elegida: la de la primera no salía nunca, aunque el rótulo del
+      // quiz promete «cada opción lleva su explicación» (auditoría del capítulo
+      // 5, P5, 24 nov 2026).
+      function mostrarPista(i, bloque, fallada) {
         const pista = bloque.querySelector('.quiz-pista');
-        if (pista && preguntas[i].pista) {
-          pista.innerHTML = `<strong>Casi. Una pista:</strong> ${preguntas[i].pista}`;
-          pista.hidden = false;
-          katexEn(pista);
-        }
+        if (!pista) return;
+        const partes = [];
+        if (fallada && fallada.retro) partes.push(`<strong>No es esa.</strong> ${fallada.retro}`);
+        if (preguntas[i].pista) partes.push(`<strong>Una pista para el segundo intento:</strong> ${preguntas[i].pista}`);
+        if (!partes.length) return;
+        pista.innerHTML = partes.join('<br>');
+        pista.hidden = false;
+        katexEn(pista);
       }
 
       preguntas.forEach((p, i) => {
@@ -8903,10 +8926,11 @@ const SOLUCIONES_CAP8 = {"capitulo":8,"fecha_corte":"2026-08-03","semilla":2026,
                 botones.forEach((x, k) => { x.disabled = true; if (p.opciones[k].correcta) x.classList.add('correcta'); });
                 cerrar(i, bloque, true, op.retro);
               } else if (estado[i].intentos === 1) {
-                // Primer fallo: se descarta esa opción, se da la pista y se reintenta
+                // Primer fallo: se descarta esa opción, se explica por qué no era,
+                // se da la pista y se reintenta
                 b.disabled = true;
                 b.classList.add('incorrecta');
-                mostrarPista(i, bloque);
+                mostrarPista(i, bloque, op);
               } else {
                 botones.forEach((x, k) => { x.disabled = true; if (p.opciones[k].correcta) x.classList.add('correcta'); });
                 b.classList.add('incorrecta');
